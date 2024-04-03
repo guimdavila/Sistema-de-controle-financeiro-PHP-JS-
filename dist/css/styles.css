@@ -1,0 +1,213 @@
+/*Gerais*/
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.row{
+    margin: 0;
+}
+
+.container{
+    padding: 70px 0;
+}
+.containerSobre{
+    padding: 0px 0;
+}
+
+p, li{
+    color: #444;
+    font-size: 14px;   
+}
+
+
+
+
+/*Barra de Navegação*/
+header, .navbar {
+    background-color: #45c3f5;
+}
+
+#nav-container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#logo{
+    width: 125px;
+    margin-left: 50px;
+}
+
+.navbar-brand {
+    color: #FFF;
+
+}
+.navbar-brand:hover{
+    color: #000000;
+}
+
+#navbar-links a{
+    color: #000000;
+}
+
+#navbar-links a:hover{
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link{ 
+    margin-right: 50px;
+}
+
+
+.container-fluid{
+    padding: 0px;
+}
+
+#mainSlider .carousel-inner, #mainSlider .carousel-item{ /*Faz o slider cobrir somente 90% da tela*/
+    height: 100vh;
+    width: 100vw;
+    margin-left: -12px;
+} 
+
+#mainSlider .carousel-caption {
+    top: 40%;
+}
+
+#mainSlider .carousel-caption h2 {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+#mainSlider .carousel-caption p {
+    font-size: 22px;
+    font-weight: 300px;
+    margin-bottom: 100px;
+    color: white;
+}
+
+
+/*Sobre a empresa*/
+#about-area{
+background-color: #ffffff;
+}
+.main-title{
+    color: #444;
+    margin: 0 0 65px 0;   /*cima, direita, baixo, esquerda*/
+    font-size: 40px;
+    text-align: center;
+}
+.main-title::after{ /*underline abaixo do titulo*/
+    content: "";
+    border-top: 2px solid #333;
+    width: 15%;
+    position: absolute;
+    top: 60px;
+    left: 42.5%;
+}
+
+.img-fluid{
+    width: 1200px;
+}
+
+.about-title{
+    font-size: 17px;
+    color: #444;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#about-list{
+    list-style: none;
+    padding-left: 0;
+
+}
+#about-list li{
+    line-height: 20px;
+}
+#about-list i{
+    line-height: 20px;
+}
+#about-list i{
+    color: #07b0f3;
+    margin-right: 15px;
+}
+
+
+
+/*Serviços*/
+
+
+.service-box{
+    text-align: center;
+    margin-bottom: 50px;
+
+}
+
+.service-box i, .service-box h4{
+    transition: .5s;
+}
+.service-box i{
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.service-box h4{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.service-box:hover > i, .service-box:hover > h4{
+    color: #07b0f3;
+}
+
+
+/*Contato*/
+
+#contact-area {
+    text-align: center;
+  }
+  
+  .contact-box {
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #3EC1D5;
+  }
+  
+  .contact-box i {
+    color: #444;
+    border: solid 1px #444;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .contact-box p {
+    font-size: 16px;
+  }
+  
+  .contact-tile {
+    font-weight: bold;
+    color: #07b0f3;
+  }
+  
+  #msg-box p {
+    font-size: 22px;
+  }
+  
+  #contact-form input[type="text"], #contact-form textarea {
+    margin-bottom: 15px;
+    border-radius: 0;
+  }
+  
+  #contact-form .main-btn {
+    width: 120px;
+    height: 50px;
+  }
+  
+  #contact-form .main-btn:hover {
+    color: #07b0f3;
+  }
