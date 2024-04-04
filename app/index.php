@@ -8,9 +8,6 @@
 </head>
 
 <body>
-
-
-
     <form method="POST" action="php/validaLogin.php">
 
         <p>
