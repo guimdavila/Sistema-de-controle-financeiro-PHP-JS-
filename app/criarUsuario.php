@@ -32,7 +32,7 @@
         <div class="container">
 
 
-            <form method="POST" action="php/validaLogin.php"> <!-- Validação dos dados de login -->
+            <form method="POST" action="php/criarConta.php"> <!-- Validação dos dados de login -->
 
                 <div class="form-group">
                 <input type="text" class="form-control" id="nomeuser" name="nNomeUser" placeholder="Nome Completo">
@@ -51,7 +51,7 @@
                     <input type="password" class="form-control" id="exampleInputPassword1" name="nConfirmaSenha" placeholder="Confirme a Senha">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Entrar</button>
+                <button type="submit" class="btn btn-primary"><a href="index.php"> Criar conta </a></button>
 
         </div>
 </body>
