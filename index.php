@@ -14,11 +14,12 @@
     <!--Font - icons -->
     <script src="https://kit.fontawesome.com/363bffc621.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="dist/css/bootstrap.css">
+
     <style type="text/css" href="index.css">
         <?php include('dist/css/styles.css');   ?>
     </style> 
 
-    <link rel="stylesheet" href="dist/css/bootstrap.css">
 
     <link rel="icon" href="dist/img/logominin.png" type="image/png">
     <title>Nordic System</title>
@@ -41,7 +42,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
 
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" id="inicia-sessao" href="app"> <b>Iniciar Sessão</b></a>
+                        <a class="nav-item nav-link" id="inicia-sessao" href="SA---Nordic-Finance\app"> <b>Iniciar Sessão</b></a>
                       </div>
                 </div>
             </nav>

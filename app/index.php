@@ -4,27 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!--Font - icons -->
+    <script src="https://kit.fontawesome.com/363bffc621.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="dist/css/bootstrap.css">
+
+    <style type="text/css" href="index.css">
+        <?php include('dist/css/styles.css');   ?>
+    </style>
+
+
     <title>Nordic System</title>
 </head>
 
 <body>
+<<<<<<< HEAD
     <form method="POST" action="php/validaLogin.php">
+=======
+    
+<img src="dist/img/logoNordicFinance.png" alt="">
 
-        <p>
-            <label for="iEmail">E-mail: </label>
-            <input type="email" id="iEmail" name="nEmail" required>
-        </p>
-
-        <p>
-            <label for="iSenha">Senha: </label>
-            <input type="password" id="iSenha" name="nSenha" required>
-        </p>
-
-        <button type="submit">Logar</button>
-
-    </form>
+    <div class="container">
 
 
+        <form method="POST" action="php/validaLogin.php"> <!-- Validação dos dados de login -->
+
+            <div class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail">
+                
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Entrar</button>
+>>>>>>> 0e0af77109f29ffc9ebf3dfb19499e7774bb89f2
+
+        </form>
+
+        <form action=""><!-- Recuperação de Senha -->
+
+            <button type="submit" class="btn btn-secundary">Esqueceu a senha? </button> <br>
+
+        </form>
+        <form action=""><!-- Criar nova conta -->
+
+
+            <button type="submit" class="btn btn-secundary">Criar nova conta </button> <br>
+        </form>
+    </div>
 </body>
 
 </html>
