@@ -42,7 +42,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
 
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" id="inicia-sessao" href="SA---Nordic-Finance\app"> <b>Iniciar Sessão</b></a>
+                        <a class="nav-item nav-link" id="inicia-sessao" href="./app"> <b>Iniciar Sessão</b></a>
                       </div>
                 </div>
             </nav>
