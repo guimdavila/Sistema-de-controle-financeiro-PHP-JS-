@@ -39,8 +39,7 @@
     }else{
 
         
-=======
-        //Voltar para INDEX
+        //Voltar para a primeira tela da pasta selecionada (INDEX)
         header('location:../');
 
     }
