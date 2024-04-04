@@ -22,7 +22,7 @@
 
     }else{
         //Voltar para INDEX
-        header('location:..//');
+        header('location:../');
 
     }
 
