@@ -23,9 +23,9 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+
     <form method="POST" action="php/validaLogin.php">
-=======
+
     
 <img src="dist/img/logoNordicFinance.png" alt="">
 
@@ -43,7 +43,6 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Entrar</button>
->>>>>>> 0e0af77109f29ffc9ebf3dfb19499e7774bb89f2
 
         </form>
 
