@@ -20,10 +20,11 @@
     $resultSql = mysql_query($conexao, $sql);
 
     //Após pesquisa e resultado encerra a conexão com o banco
-    mysqli_close(conexao);
+    mysqli_close(co
+    nexao);
 
     //Avalia se existe linhas no banco com os parâmetros inseridos
-    if(mysqli_num_rows(resultSql) > 0){
+    if(mysqli_num_rows($resultSql) > 0){
 
         //Recebe o valor da linha selecionada a partir da execução e adicionada ao valor SESSION
         foreach ($resultSql as $call){
