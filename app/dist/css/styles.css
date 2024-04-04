@@ -1,0 +1,46 @@
+body{
+    background-color: black;
+}
+
+img{
+    margin-left: 50px;
+    top: 50%;
+
+}
+
+.container{
+    margin: 0 auto;
+    width: fit-content;
+    padding: 45px;
+    padding-bottom: 10px;
+    background-color: #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+.container input, button{
+    margin-bottom: 35px;
+
+}
+
+button{
+    width: 272px;
+    height: 36px;
+    transition: color 0.5s;
+}
+
+.btn-secundary{
+    margin-bottom: 20px;
+}
+
+.btn-secundary:hover{
+    color: #0b5ed7;
+
+}
