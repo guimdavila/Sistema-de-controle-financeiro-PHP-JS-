@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="nSenha" placeholder="Confirme a Senha">
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="nConfirmaSenha" placeholder="Confirme a Senha">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Entrar</button>
