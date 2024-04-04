@@ -35,16 +35,20 @@
             <form method="POST" action="php/validaLogin.php"> <!-- Validação dos dados de login -->
 
                 <div class="form-group">
-                    <input type="text" class="form-control" id="nomeuser" placeholder="Nome Completo">
-
+                <input type="text" class="form-control" id="nomeuser" name="nNomeUser" placeholder="Nome Completo">
+                    
                 </div>
 
                 <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail">
-
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="nEmail" aria-describedby="emailHelp" placeholder="E-mail">
                 </div>
+
                 <div class="form-group">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="nSenha" placeholder="Senha">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="nSenha" placeholder="Confirme a Senha">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Entrar</button>
