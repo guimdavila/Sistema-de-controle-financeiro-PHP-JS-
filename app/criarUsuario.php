@@ -51,7 +51,7 @@
                     <input type="password" class="form-control" id="exampleInputPassword1" name="nConfirmaSenha" placeholder="Confirme a Senha">
                 </div>
 
-                <button type="submit" class="btn btn-primary"><a href="index.php"> Criar conta </a></button>
+                <button type="submit" class="btn btn-primary"><a href="index.php" class="abutton"> Criar conta </a></button>
 
         </div>
 </body>

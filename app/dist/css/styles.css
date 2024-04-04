@@ -41,6 +41,10 @@ button{
     transition: color 0.5s;
 }
 
+.abutton{
+    text-decoration: none;
+    color: white;
+}
 .btn-secundary{
     margin-bottom: 20px;
 }
