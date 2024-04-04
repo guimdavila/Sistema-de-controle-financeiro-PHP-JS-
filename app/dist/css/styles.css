@@ -7,6 +7,11 @@ img{
     top: 50%;
 
 }
+.form-group{
+    width: 272px;
+    height: 36px;
+    margin-bottom: 35px;
+}
 
 .container{
     margin: 0 auto;

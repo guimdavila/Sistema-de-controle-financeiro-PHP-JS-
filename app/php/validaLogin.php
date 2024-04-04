@@ -37,7 +37,11 @@
 
     //Caso não seja encontrado usuário com os parâmetros entregues ele retorna para a tela de login
     }else{
+<<<<<<< HEAD
         
+=======
+        //Voltar para INDEX
+>>>>>>> 80a48741cff2ed14975f9438b06ce7418a73aa4d
         header('location:../');
 
     }
