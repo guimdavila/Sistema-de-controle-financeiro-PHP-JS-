@@ -20,8 +20,7 @@
     $resultSql = mysql_query($conexao, $sql);
 
     //Após pesquisa e resultado encerra a conexão com o banco
-    mysqli_close(co
-    nexao);
+    mysqli_close($conexao);
 
     //Avalia se existe linhas no banco com os parâmetros inseridos
     if(mysqli_num_rows($resultSql) > 0){
