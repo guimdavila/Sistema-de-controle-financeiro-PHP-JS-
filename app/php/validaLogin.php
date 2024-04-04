@@ -17,7 +17,7 @@
     $sql = "SELECT * FROM USUARIO WHERE EMAIL = '".$email."' AND SENHA = md5('".$senha."');";
 
     //Resultado do texto feito anteriormente transportado para o banco por meio da conexao.
-    $resultSql = mysql_query($conexao, $sql);
+    $resultSql = mysqli_query($conexao, $sql);
 
     //Após pesquisa e resultado encerra a conexão com o banco
     mysqli_close($conexao);
