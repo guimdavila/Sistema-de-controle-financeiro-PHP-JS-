@@ -24,36 +24,33 @@
 
 <body>
 
-    <form method="POST" action="php/validaLogin.php">
+    <img src="dist/img/logoNordicFinance.png" alt="">
+
+    <div class="container">
 
 
-        <img src="dist/img/logoNordicFinance.png" alt="">
+        <form method="POST" action="php/criarConta.php"> <!-- Validação dos dados de login -->
 
-        <div class="container">
+            <div class="form-group">
+            <input type="text" class="form-control" id="nomeuser" name="nNomeUser" placeholder="Nome Completo">
+                
+            </div>
 
+            <div class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="nEmail" aria-describedby="emailHelp" placeholder="E-mail">
+            </div>
 
-            <form method="POST" action="php/criarConta.php"> <!-- Validação dos dados de login -->
+            <div class="form-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="nSenha" placeholder="Senha">
+            </div>
 
-                <div class="form-group">
-                <input type="text" class="form-control" id="nomeuser" name="nNomeUser" placeholder="Nome Completo">
-                    
-                </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="nConfirmaSenha" placeholder="Confirme a Senha">
+            </div>
 
-                <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" name="nEmail" aria-describedby="emailHelp" placeholder="E-mail">
-                </div>
+            <button type="submit" class="btn btn-primary"><a class="abutton"> Criar conta </a></button>
 
-                <div class="form-group">
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="nSenha" placeholder="Senha">
-                </div>
-
-                <div class="form-group">
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="nConfirmaSenha" placeholder="Confirme a Senha">
-                </div>
-
-                <button type="submit" class="btn btn-primary"><a href="index.php" class="abutton"> Criar conta </a></button>
-
-        </div>
+    </div>
 </body>
 
 </html>
