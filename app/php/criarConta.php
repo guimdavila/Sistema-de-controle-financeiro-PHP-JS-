@@ -9,8 +9,7 @@
     $confSenha = $_POST['nConfirmaSenha'];
 
     if($senha != $confSenha){
-        header('location: ../criarUsuario.php');
-        
+        header('location: ../criarUsuario.php');       
 
     }
 
@@ -21,9 +20,7 @@
     $resultSql = mysqli_query($conexao, $sql);
 
     if(mysqli_num_rows($resultSql) > 0){
-        header('location: ../criarUsuario.php');
-        var_dump("Email ja utilizado");
-        
+        header('location: ../criarUsuario.php');        
 
     }else{
         $sql = "INSERT INTO USUARIO(NOMEUSUARIO, EMAIL, SENHA, IDTIPOUSUARIO) "
@@ -32,8 +29,9 @@
         $criaConta = mysqli_query($conexao, $sql);
 
         header('location: ../');
-        var_dump("Usuário registrado com sucesso!!");
 
     }
+
+    mysqli_close($conexao);
 
 ?>
