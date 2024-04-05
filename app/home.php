@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php 
-        echo("Logou com sucesso!!! = ");
+        echo("Logou com sucesso!!!");
     
     ?>
     

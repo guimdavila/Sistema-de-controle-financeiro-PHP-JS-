@@ -31,18 +31,32 @@
             $_SESSION['logado'] = 1;
 
             //Transfere o Usuário para a proxima tela
-            //header('location: ../ProximaTela');
+            header('location: ../home.php/');
+            exit;
 
         }
 
-    //Caso não seja encontrado usuário com os parâmetros entregues ele retorna para a tela de login
+    //Caso não seja encontrado usuário com os parâmetros entregues ele retorna para a tela de login 
     }else{
 
-        
-        //Voltar para a primeira tela da pasta selecionada (INDEX)
-        header('location:../');
+        //Pesquisa para ver se o email utilizado possui um cadastro
+        $sql = "SELECT EMAIL FROM USUARIO WHERE EMAIL = '".$email."';";
+        $resultSql = mysqli_query(conexao, sql);
+        if(mysqli_num_rows($resultSql) > 0){
+            //Voltar para a primeira tela da pasta selecionada (INDEX)
+            header('location:../');
+            //Garante que a tela foi encerrada
+            exit;
+
+        }else{
+            
+            //Voltar para a primeira tela da pasta selecionada (INDEX)
+            header('location: ../');
+            //Garante que a tela foi encerrada
+            exit;
+
+        }        
 
     }
-
 
 ?>
