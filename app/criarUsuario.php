@@ -24,7 +24,7 @@
 
 <body>
 
-    <img src="dist/img/logoNordicFinance.png" alt="">
+    <img src="dist/img/logoNordicFinance.png" class="logoLogin" >
 
     <div class="container">
 

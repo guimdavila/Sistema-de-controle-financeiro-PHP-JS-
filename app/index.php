@@ -26,8 +26,7 @@
 
     <form method="POST" action="php/validaLogin.php">
 
-
-        <img src="dist/img/logoNordicFinance.png" alt="">
+        <img src="dist/img/logoNordicFinance.png" class="logoLogin" alt="">
 
         <div class="container">
 

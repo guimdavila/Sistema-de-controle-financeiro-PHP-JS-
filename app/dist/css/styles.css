@@ -2,11 +2,14 @@ body{
     background-color: black;
 }
 
-img{
-    margin-left: 50px;
-    top: 50%;
 
+.logoLogin{
+
+    position: absolute;
+    top: 20%;
+    left:10%;
 }
+
 .form-group{
     width: 272px;
     height: 36px;
