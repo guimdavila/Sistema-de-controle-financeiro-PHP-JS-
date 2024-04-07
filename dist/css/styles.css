@@ -47,11 +47,10 @@ header, .navbar {
 }
 
 #navbar-links a{
-    color: #000000;
+    color: #ffffff;
 }
 
 #navbar-links a:hover{
-    color: #ffffff;
     cursor: pointer;
 }
 
@@ -128,7 +127,7 @@ background-color: #ffffff;
     line-height: 20px;
 }
 #about-list i{
-    color: #07b0f3;
+    color: #202226;
     margin-right: 15px;
 }
 
@@ -149,7 +148,7 @@ background-color: #ffffff;
 .service-box i{
     font-size: 36px;
     margin-bottom: 20px;
-    color: #444;
+    color: #999797;
 }
 
 .service-box h4{
@@ -158,7 +157,7 @@ background-color: #ffffff;
 }
 
 .service-box:hover > i, .service-box:hover > h4{
-    color: #07b0f3;
+    color: #202226;
 }
 
 
@@ -171,12 +170,12 @@ background-color: #ffffff;
   .contact-box {
     padding-bottom: 50px;
     margin-bottom: 50px;
-    border-bottom: 1px solid #3EC1D5;
+    border-bottom: 1px solid #202226;
   }
   
   .contact-box i {
     color: #444;
-    border: solid 1px #444;
+    border: solid 1px #999797;
     border-radius: 50%;
     width: 55px;
     height: 55px;
@@ -191,7 +190,7 @@ background-color: #ffffff;
   
   .contact-tile {
     font-weight: bold;
-    color: #07b0f3;
+    color: #202226;
   }
   
   #msg-box p {
@@ -209,5 +208,5 @@ background-color: #ffffff;
   }
   
   #contact-form .main-btn:hover {
-    color: #07b0f3;
+    color: #202226;
   }
