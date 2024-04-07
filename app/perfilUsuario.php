@@ -32,15 +32,9 @@
       <?php
       include('partes/sidebar.php') //importes de CSS
       ?>
-
     </aside>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-  </div>
+
   <!-- ./wrapper -->
 
   <?php

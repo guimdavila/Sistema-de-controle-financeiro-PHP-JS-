@@ -7,7 +7,7 @@
             <img src="" class="img-circle elevation-2" alt="User Image"> <!-- adicionar icone para foto de usuário -->
           </div>
           <div class="info">
-            <a href="#" class="d-block">Usuário</a>
+            <a href="../app/perfilUsuario.php" class="d-block">Usuário</a>
           </div>
         </div>
 

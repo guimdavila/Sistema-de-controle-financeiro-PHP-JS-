@@ -17,7 +17,7 @@
   <div class="wrapper">
 
     <?php
-    include('partes/navbar.php') //importes de CSS
+    include('partes/navbar.php') //importes de Navbar
     ?>
 
     <!-- Main Sidebar Container -->
@@ -30,21 +30,17 @@
 
 
       <?php
-      include('partes/sidebar.php') //importes de CSS
+      include('partes/sidebar.php') //importes de Sidebar
       ?>
 
     </aside>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+
   </div>
   <!-- ./wrapper -->
 
   <?php
-  include('partes/js.php') //importes de CSS
+  include('partes/js.php') //importes de JS
   ?>
 
 </body>
