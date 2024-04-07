@@ -31,7 +31,7 @@
             $_SESSION['logado'] = 1;
 
             //Transfere o Usuário para a proxima tela
-            header('location: ../home.php/');
+            header('location: ../home.php');
             exit;
 
         }
@@ -41,7 +41,7 @@
 
         //Pesquisa para ver se o email utilizado possui um cadastro
         $sql = "SELECT EMAIL FROM USUARIO WHERE EMAIL = '".$email."';";
-        $resultSql = mysqli_query(conexao, sql);
+        $resultSql = mysqli_query($conexao, $sql);
         if(mysqli_num_rows($resultSql) > 0){
             //Voltar para a primeira tela da pasta selecionada (INDEX)
             header('location:../');
