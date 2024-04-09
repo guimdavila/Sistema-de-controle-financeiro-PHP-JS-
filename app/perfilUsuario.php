@@ -35,11 +35,29 @@
     </aside>
 
 
-  <!-- ./wrapper -->
 
-  <?php
-  include('partes/js.php') //importes de CSS
-  ?>
+    <div class="content-wrapper">
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="col-sm-6">
+            <h1 class="m-0 tituloPerfil">Perfil</h1>
+          </div>
+          <div class="col-sm-6">
+
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <?php
+
+
+
+    include('partes/js.php') //importes de CSS
+    ?>
 
 </body>
 

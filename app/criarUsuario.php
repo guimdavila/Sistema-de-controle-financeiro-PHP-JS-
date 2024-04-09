@@ -24,16 +24,17 @@
 
 <body>
 
-    <img src="dist/img/logoNordicFinance.png" class="logoLogin" >
+    <img src="dist/img/logoNordicFinance.png" class="logoLogin">
 
     <div class="container">
 
-
         <form method="POST" action="php/criarConta.php"> <!-- Validação dos dados de login -->
 
+            <label class="tituloContainer">Criar uma nova conta</label>
+
             <div class="form-group">
-            <input type="text" class="form-control" id="nomeuser" name="nNomeUser" placeholder="Nome Completo">
-                
+                <input type="text" class="form-control" id="nomeuser" name="nNomeUser" placeholder="Nome Completo">
+
             </div>
 
             <div class="form-group">
@@ -49,6 +50,10 @@
             </div>
 
             <button type="submit" class="btn btn-primary"><a class="abutton"> Criar conta </a></button>
+
+            <button class="btn btn-secundary"><a href="index.php">Voltar</a></button>
+
+
 
     </div>
 </body>

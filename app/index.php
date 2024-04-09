@@ -32,6 +32,8 @@
 
             <form method="POST" action="php/validaLogin.php"> <!-- Validação dos dados de login -->
 
+                <label class="tituloContainer">Faça o Login</label>
+
                 <div class="form-group">
                     <input type="email" class="form-control" id="exampleInputEmail1" name="nEmail" aria-describedby="emailHelp" placeholder="E-mail">
 
@@ -45,7 +47,7 @@
             </form>
 
             <button class="btn btn-secundary"> <a href=""> Esqueceu a senha? </a></button>
-            
+
             <button class="btn btn-secundary"> <a href="criarUsuario.php"> Criar nova conta </a></button>
 
         </div>

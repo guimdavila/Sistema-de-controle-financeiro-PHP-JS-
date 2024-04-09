@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: #202226;
 }
 
 
@@ -10,6 +10,7 @@ body{
     left:10%;
 }
 
+
 .form-group{
     width: 272px;
     height: 36px;
@@ -18,7 +19,7 @@ body{
 
 .container{
     margin: 0 auto;
-    width: fit-content;
+    width: 360px;
     padding: 45px;
     padding-bottom: 10px;
     background-color: #ccc;
@@ -33,9 +34,17 @@ body{
     transform: translate(-50%, -50%);
 }
 
-.container input, button{
+.container input, button, .tituloContainer{
     margin-bottom: 35px;
 
+}
+
+.tituloContainer{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    font-size: 25px;
+    font-weight: bold;
 }
 
 button{
@@ -55,4 +64,9 @@ button{
 .btn-secundary:hover{
     color: #0b5ed7;
 
+}
+
+.tituloPerfil{
+    text-decoration: none;
+    font-size: 500px;
 }
