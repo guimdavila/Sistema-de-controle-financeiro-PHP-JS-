@@ -18,13 +18,12 @@
 
     //Resultado do texto feito anteriormente transportado para o banco por meio da conexao.
     $resultSql = mysqli_query($conexao, $sql);
-
     //Após pesquisa e resultado encerra a conexão com o banco
-    mysqli_close($conexao);
+    
 
     //Avalia se existe linhas no banco com os parâmetros inseridos
     if(mysqli_num_rows($resultSql) > 0){
-
+        mysqli_close($conexao);
         //Recebe o valor da linha selecionada a partir da execução e adicionada ao valor SESSION
         foreach ($resultSql as $call){
             $_SESSION['idTipoUsuario'] = $call['idTipoUsuario'];
@@ -40,16 +39,17 @@
     }else{
 
         //Pesquisa para ver se o email utilizado possui um cadastro
-        $sql = "SELECT EMAIL FROM USUARIO WHERE EMAIL = '".$email."';";
-        $resultSql = mysqli_query($conexao, $sql);
-        if(mysqli_num_rows($resultSql) > 0){
+        $sqlEmail = "SELECT EMAIL FROM USUARIO WHERE EMAIL = '".$email."';";
+        $resultSqlEmail = mysqli_query($conexao, $sqlEmail);
+        if(mysqli_num_rows($resultSqlEmail) > 0){
+            mysqli_close($conexao);
             //Voltar para a primeira tela da pasta selecionada (INDEX)
             header('location:../');
             //Garante que a tela foi encerrada
             exit;
 
         }else{
-            
+            mysqli_close($conexao);
             //Voltar para a primeira tela da pasta selecionada (INDEX)
             header('location: ../');
             //Garante que a tela foi encerrada
@@ -58,5 +58,6 @@
         }        
 
     }
+    
 
 ?>
