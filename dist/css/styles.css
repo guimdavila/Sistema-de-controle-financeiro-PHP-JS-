@@ -76,12 +76,13 @@ header, .navbar {
 #mainSlider .carousel-caption h2 {
     font-size: 50px;
     margin-bottom: 30px;
+    color: #202020;
 }
 #mainSlider .carousel-caption p {
     font-size: 22px;
     font-weight: 300px;
     margin-bottom: 100px;
-    color: white;
+    color: #202020 ;
 }
 
 
