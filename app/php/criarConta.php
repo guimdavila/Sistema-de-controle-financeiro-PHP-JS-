@@ -8,7 +8,7 @@
     $senha      = $_POST['nSenha'];
     $confSenha  = $_POST['nConfirmaSenha'];
 
-    if($senha != $confSenha || strlen($senha)< 5){
+    if($senha != $confSenha){
         header('location: ../criarUsuario.php');       
 
     }
