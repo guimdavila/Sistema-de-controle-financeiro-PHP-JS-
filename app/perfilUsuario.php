@@ -34,23 +34,11 @@
       ?>
     </aside>
 
-
-
     <div class="content-wrapper">
-      <div class="content-header">
         <div class="container-fluid">
-          <div class="col-sm-6">
-            <h1 class="m-0 tituloPerfil">Perfil</h1>
-          </div>
-          <div class="col-sm-6">
-
-          </div>
-
-
-
+            <h1 class="cabecalhoPerfil">Perfil</h1>
 
         </div>
-      </div>
     </div>
     <?php
 
