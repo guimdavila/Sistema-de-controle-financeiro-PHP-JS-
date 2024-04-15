@@ -30,3 +30,5 @@
 <script src="dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+<!-- Font-awesome -->
+<script src="https://kit.fontawesome.com/363bffc621.js" crossorigin="anonymous"></script>

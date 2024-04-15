@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Abr-2024 às 01:27
+-- Tempo de geração: 16-Abr-2024 às 00:26
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -214,18 +214,19 @@ CREATE TABLE `usuario` (
   `email` varchar(100) DEFAULT NULL,
   `senha` varchar(32) NOT NULL,
   `sexo` enum('Masculino','Feminino') DEFAULT NULL,
-  `idTipoUsuario` int(11) NOT NULL
+  `idTipoUsuario` int(11) NOT NULL,
+  `fotoPerfil` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `nomeUsuario`, `dataNasc`, `telefone`, `cpf`, `email`, `senha`, `sexo`, `idTipoUsuario`) VALUES
-(1, 'Guilherme Davila de Souza', '1999-02-10', '(47)99790-1880', '08143419932', 'davilaa754@gmail.com', '202cb962ac59075b964b07152d234b70', 'Masculino', 1),
-(2, 'Eduardo Angeli', '2004-11-15', '(47)99999-9999', '08143419934', 'a@a.com.br', '202cb962ac59075b964b07152d234b70', 'Masculino', 1),
-(3, 'Matheus Borba', '1111-02-10', '(47)99999-9999', '08143419935', 'b@b.com.br', '202cb962ac59075b964b07152d234b70', 'Masculino', 1),
-(4, 'Convidado', '1000-01-01', '', '', '', '202cb962ac59075b964b07152d234b70', 'Masculino', 1);
+INSERT INTO `usuario` (`idUsuario`, `nomeUsuario`, `dataNasc`, `telefone`, `cpf`, `email`, `senha`, `sexo`, `idTipoUsuario`, `fotoPerfil`) VALUES
+(1, 'Guilherme Davila de Souza', '1999-02-10', '(47)99790-1880', '08143419932', 'davilaa754@gmail.com', '202cb962ac59075b964b07152d234b70', 'Masculino', 1, NULL),
+(2, 'Eduardo Angeli', '2004-11-15', '(47)99999-9999', '08143419934', 'a@a.com.br', '202cb962ac59075b964b07152d234b70', 'Masculino', 1, NULL),
+(3, 'Matheus Borba', '1111-02-10', '(47)99999-9999', '08143419935', 'b@b.com.br', '202cb962ac59075b964b07152d234b70', 'Masculino', 1, NULL),
+(4, 'Convidado', '1000-01-01', '', '', '', '202cb962ac59075b964b07152d234b70', 'Masculino', 1, NULL);
 
 --
 -- Índices para tabelas despejadas
