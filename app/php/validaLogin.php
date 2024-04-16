@@ -26,6 +26,7 @@
         mysqli_close($conexao);
         //Recebe o valor da linha selecionada a partir da execução e adicionada ao valor SESSION
         foreach ($resultSql as $call){
+            $_SESSION['idUsuario'] = $call['idUsuario'];
             $_SESSION['idTipoUsuario'] = $call['idTipoUsuario'];
             $_SESSION['logado'] = 1;
 
@@ -34,6 +35,8 @@
             exit;
 
         }
+
+
 
     //Caso não seja encontrado usuário com os parâmetros entregues ele retorna para a tela de login 
     }else{
@@ -58,6 +61,4 @@
         }        
 
     }
-    
-
 ?>

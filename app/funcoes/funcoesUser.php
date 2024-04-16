@@ -2,12 +2,13 @@
 
 function fotoUsuario($id){
 
+
     $resp = "";
     
     include("conexao.php");
-    $sql = "SELECT fotoPerfil FROM usuario WHERE idUsuario = $id;";
-    $result = mysqli_query($conn,$sql);
-    mysqli_close($conn);
+    $sql = "SELECT fotoPerfil FROM usuario WHERE idUsuario = '".$id."'";
+    $result = mysqli_query($conexao,$sql);
+    mysqli_close($conexao);
     
     //Validar se tem retorno do BD
     if (mysqli_num_rows($result) > 0) {
@@ -22,6 +23,7 @@ function fotoUsuario($id){
             //***Verificar os dados da consulta SQL
             $resp = $coluna["fotoPerfil"];
         }
+        
     } 
     
     return $resp;

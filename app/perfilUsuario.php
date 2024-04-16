@@ -1,5 +1,10 @@
+<?php
+  session_start();
+  include('php/funcoes.php');
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
@@ -32,8 +37,13 @@
       <?php
       include('partes/sidebar.php') //importes de CSS
       ?>
+
     </aside>
 
+
+    <?php
+    include('funções/funçõesUser.php')
+    ?>
     <div class="content-wrapper">
       <!-- Main content -->
       <section class="content">
@@ -41,11 +51,12 @@
           <div class="row">
             <div class="col-md-12">
 
+
               <!-- Profile Image -->
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                   <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="<?php// echo fotoUsuario($_SESSION['idLogin']); ?>" alt="User profile picture">
+                    <img class="profile-user-img img-fluid img-circle" src="<?php  fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
                   </div>
 
                   <h3 class="profile-username text-center">Nina Mcintire</h3>
