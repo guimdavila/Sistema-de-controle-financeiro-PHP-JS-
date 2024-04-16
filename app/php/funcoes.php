@@ -1,4 +1,4 @@
 <?php
 
-include("../funcoes/funcoesUser.php");
+include("funcoesUser.php");
 ?>
