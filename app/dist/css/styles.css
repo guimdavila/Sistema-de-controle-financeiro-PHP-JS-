@@ -96,3 +96,31 @@ hr{
     
     background-color: #202226;
 }
+
+.navbar-light .navbar-nav .nav-link{
+    color: #202226;
+}
+
+.profile-user-img{
+    border: transparent;
+}
+.fa-pen-to-square{
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.bttEditarUsuario{
+    border: none;          
+    background: none;       
+    padding: 0px;            
+    margin: 0px;              
+    color: inherit;        
+    font: inherit;          
+    width: 25px;
+    height: 25px;
+}
+
+.aSemTextDecoration{
+    text-decoration: none; 
+    color: inherit; 
+}

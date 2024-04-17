@@ -298,5 +298,14 @@ function coabitante($id){
     return $resp;
 }
 
+function editarUsuario($id){
+
+    $emEdicao = 1;
+
+    
+
+    
+}
+
 
 ?>

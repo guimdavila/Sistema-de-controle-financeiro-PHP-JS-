@@ -61,7 +61,7 @@ include('php/funcoes.php');
                   </div>
 
 
-                  <h3 class="profile-username text-center"><?php echo nomeUsuario($_SESSION['idUsuario']); ?> <button class="bttEditarUsuario"><a class="aSemTextDecoration" href="alterar-usuario.php"><i class="fa-solid fa-pen-to-square"></i></a></button></h3>
+                  <h3 class="profile-username text-center"><?php echo nomeUsuario($_SESSION['idUsuario']); ?> <button class="bttEditarUsuario"><i class="fa-solid fa-pen-to-square"></i></button></h3>
 
 
                 </div>
