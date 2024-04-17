@@ -1,6 +1,6 @@
 <?php
-  session_start();
-  include('php/funcoes.php');
+session_start();
+include('php/funcoes.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +14,11 @@
   <?php
   include('partes/css.php') //importes de CSS
   ?>
+
+
+  <style type="text/css" href="index.css">
+    <?php include('dist/css/styles.css')  ?>
+  </style>
 
 
 </head>
@@ -40,10 +45,6 @@
 
     </aside>
 
-
-    <?php
-    include('funções/funçõesUser.php')
-    ?>
     <div class="content-wrapper">
       <!-- Main content -->
       <section class="content">
@@ -56,10 +57,10 @@
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                   <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="<?php  fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
+                    <img class="profile-user-img img-fluid img-circle" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
                   </div>
 
-                  <h3 class="profile-username text-center">Nina Mcintire</h3>
+                  <h3 class="profile-username text-center"><?php echo nomeUsuario($_SESSION['idUsuario']); ?></h3>
                 </div>
 
                 <!-- /.card-body -->
@@ -72,40 +73,51 @@
                   <h3 class="card-title">Dados</h3>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body">
+                <div class="card-body" id="card-body-margin-reduzida">
                   <strong><i class="far fa-calendar-alt mr-1"></i> Data de Nascimento</strong>
 
                   <p class="text-muted">
-                    B.S. in Computer Science from the University of Tennessee at Knoxville
+                    <?php echo DataNasc($_SESSION['idUsuario']); ?>
+
                   </p>
                   <hr>
                   <strong><i class="fas fa-mobile-alt mr-1"></i> Telefone</strong>
 
-                  <p class="text-muted">Malibu, California</p>
+                  <p class="text-muted">
+                    <?php echo Telefone($_SESSION['idUsuario']); ?>
+                  </p>
 
                   <hr>
 
                   <strong><i class="fas fa-address-card mr-1"></i> CPF</strong>
 
                   <p class="text-muted">
-                    <span class="tag tag-danger">UI Design</span>
-                    <span class="tag tag-success">Coding</span>
-                    <span class="tag tag-info">Javascript</span>
-                    <span class="tag tag-warning">PHP</span>
-                    <span class="tag tag-primary">Node.js</span>
+                    <?php echo cpf($_SESSION['idUsuario']); ?>
                   </p>
 
                   <hr>
 
                   <strong><i class="fa-solid fa-at"></i> E-mail</strong>
 
-                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                  <p class="text-muted">
+                    <?php echo email($_SESSION['idUsuario']); ?>
+                  </p>
 
                   <hr>
 
                   <strong><i class="fa-regular fa-user mr-1"></i> Sexo</strong>
 
-                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                  <p class="text-muted">
+                    <?php echo sexo($_SESSION['idUsuario']); ?>
+                  </p>
+
+                  <hr>
+
+                  <strong><i class="fa-regular fa-user mr-1"></i> Coabitantes</strong>
+
+                  <p class="text-muted">
+                    <?php echo coabitante($_SESSION['idUsuario']); ?>
+                  </p>
                 </div>
                 <!-- /.card-body -->
               </div>

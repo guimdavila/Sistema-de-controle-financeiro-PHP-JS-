@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Abr-2024 às 00:26
+-- Tempo de geração: 17-Abr-2024 às 03:10
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -76,7 +76,7 @@ CREATE TABLE `coabitanteusuario` (
 
 INSERT INTO `coabitanteusuario` (`idCoabitanteUsuario`, `nomeCoabitante`, `idUsuarioPrincipal`) VALUES
 (1, 'Nicole Bergamo de Santana', 1),
-(2, 'Camila', 4);
+(2, 'Camila', 3);
 
 -- --------------------------------------------------------
 
@@ -223,7 +223,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nomeUsuario`, `dataNasc`, `telefone`, `cpf`, `email`, `senha`, `sexo`, `idTipoUsuario`, `fotoPerfil`) VALUES
-(1, 'Guilherme Davila de Souza', '1999-02-10', '(47)99790-1880', '08143419932', 'davilaa754@gmail.com', '202cb962ac59075b964b07152d234b70', 'Masculino', 1, NULL),
+(1, 'Guilherme Davila de Souza', '1999-02-10', '(47)99790-1880', '08143419932', 'davilaa754@gmail.com', '202cb962ac59075b964b07152d234b70', 'Masculino', 1, 'dist/img/fotoPerfilGuilherme.jpg'),
 (2, 'Eduardo Angeli', '2004-11-15', '(47)99999-9999', '08143419934', 'a@a.com.br', '202cb962ac59075b964b07152d234b70', 'Masculino', 1, NULL),
 (3, 'Matheus Borba', '1111-02-10', '(47)99999-9999', '08143419935', 'b@b.com.br', '202cb962ac59075b964b07152d234b70', 'Masculino', 1, NULL),
 (4, 'Convidado', '1000-01-01', '', '', '', '202cb962ac59075b964b07152d234b70', 'Masculino', 1, NULL);
@@ -297,7 +297,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de tabela `coabitanteusuario`
 --
 ALTER TABLE `coabitanteusuario`
-  MODIFY `idCoabitanteUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCoabitanteUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `movimentacao`
