@@ -6,7 +6,7 @@
             <img src="<?php  echo fotoUsuario($_SESSION['idUsuario']); ?>" class="img-circle elevation-2" alt="User Image"> <!-- adicionar icone para foto de usuário -->
           </div>
           <div class="info">
-            <a href="../app/perfilUsuario.php" class="d-block"><?php  echo nomeUsuario($_SESSION['idUsuario']);?> </a>
+            <a href="../app/perfilUsuario.php" class="d-block"><?php  echo primeiroNomeUsuario($_SESSION['idUsuario']);?> </a>
           </div>
         </div>
 
@@ -17,7 +17,7 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+              <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   MENU 1

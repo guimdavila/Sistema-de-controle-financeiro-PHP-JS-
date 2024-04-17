@@ -28,6 +28,7 @@
         foreach ($resultSql as $call){
             $_SESSION['idUsuario'] = $call['idUsuario'];
             $_SESSION['nomeUsuario'] = $call['nomeUsuario'];
+            $_SESSION['email'] = $call['email'];
             $_SESSION['idTipoUsuario'] = $call['idTipoUsuario'];
             $_SESSION['logado'] = 1;
 
