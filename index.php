@@ -42,7 +42,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
 
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" id="inicia-sessao" href="./app"> <b>Iniciar Sessão</b></a>
+                        <a class="nav-item nav-link" id="inicia-sessao" href="./app"><b>Iniciar Sessão</b></a>
                       </div>
                 </div>
             </nav>
@@ -62,8 +62,8 @@
                             alt="Projetos de e-commerce"><!--1 w-100 classe do boostrap para deixar largura = 100%  -->
                         <!-- alt nesse caso utilizado para acessibilidade  -->
                         <div class="carousel-caption d-none d-md-block">
-                            <h2>Quer ter o controle das suas finanças?</h2>
-                            <p>Conte conosco, nosso sistema oferece uma solução completa e intuitiva</p>
+                            <h2>Quer ter o controle da suas finanças?</h2>
+                            <p>Conte Conosco, Nosso Sistema Oferece uma Solução Completa e Intuitiva.</p>
                         </div>
                     </div>
                 </div>

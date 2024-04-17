@@ -1,5 +1,4 @@
 /*Gerais*/
-
 body{
     font-family: 'Roboto', sans-serif;
 }
@@ -74,15 +73,22 @@ header, .navbar {
 }
 
 #mainSlider .carousel-caption h2 {
-    font-size: 50px;
+    font-size: 53px;
     margin-bottom: 30px;
     color: #202020;
+    font-family: "Sedan", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 #mainSlider .carousel-caption p {
-    font-size: 22px;
+    font-size: 23px;
     font-weight: 300px;
     margin-bottom: 100px;
     color: #202020 ;
+    font-family: "Sedan", serif;
+    font-weight: 500;
+    font-style: normal;
+    padding-top: 58px;
 }
 
 
@@ -95,14 +101,6 @@ background-color: #ffffff;
     margin: 0 0 65px 0;   /*cima, direita, baixo, esquerda*/
     font-size: 40px;
     text-align: center;
-}
-.main-title::after{ /*underline abaixo do titulo*/
-    content: "";
-    border-top: 2px solid #333;
-    width: 15%;
-    position: absolute;
-    top: 60px;
-    left: 42.5%;
 }
 
 .img-fluid{
