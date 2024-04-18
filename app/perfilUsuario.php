@@ -123,22 +123,18 @@ include('php/funcoes.php');
                   <strong><i class="fa-regular fa-user mr-1"></i> Coabitantes</strong>
 
                   <p class="text-muted">
-                    <?php 
-                    $coabitantes = array();                    
-              
-                    array_push($coabitantes, coabitante($_SESSION['idUsuario']));                  
-
-                  
-                    $nome = implode(':', $coabitantes);
+                    <?php                 
+      
+                    /*$coabitantes = coabitante($_SESSION['idUsuario']);
                     
                     var_dump($coabitantes);
                     die();
-                    echo($nome);                    
-                  
+                    echo($coabitantes);                    
+                  */
 
                     ?>
                       
-                    <!--<?php echo coabitante($_SESSION['idUsuario']); ?>-->
+                    <?php echo rtrim(coabitante($_SESSION['idUsuario']), ', '); ?>
                   </p>
 
                   <hr>
