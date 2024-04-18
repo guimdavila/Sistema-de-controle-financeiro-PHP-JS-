@@ -109,18 +109,24 @@ hr{
     margin-left: 10px;
 }
 
-.bttEditarUsuario{
-    border: none;          
-    background: none;       
-    padding: 0px;            
-    margin: 0px;              
-    color: inherit;        
-    font: inherit;          
-    width: 25px;
-    height: 25px;
+.btn{    
+    margin-top: 16px;
+    margin-bottom: 0px;  
+    margin-left: 10px;
+    width: 100px;
+    height: 35px;
 }
 
 .aSemTextDecoration{
     text-decoration: none; 
     color: inherit; 
+} 
+
+.input-group{
+    width: 35%
+}
+
+.btn-edit-perfil{
+    display: flex; 
+    justify-content: flex-end; 
 }

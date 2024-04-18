@@ -61,7 +61,8 @@ include('php/funcoes.php');
                   </div>
 
 
-                  <h3 class="profile-username text-center"><?php echo nomeUsuario($_SESSION['idUsuario']); ?> <button class="bttEditarUsuario"><a class="aSemTextDecoration" href="alterar-usuario.php"><i class="fa-solid fa-pen-to-square"></i></a></button></h3>
+                  <h3 class="profile-username text-center"><?php echo nomeUsuario($_SESSION['idUsuario']); ?>
+                  </h3>
 
 
                 </div>
@@ -97,7 +98,7 @@ include('php/funcoes.php');
 
                   <strong><i class="fas fa-address-card mr-1"></i> CPF</strong>
 
-                  <p class="text-muted" >
+                  <p class="text-muted">
                     <?php echo cpf($_SESSION['idUsuario']); ?>
                   </p>
 
@@ -124,6 +125,16 @@ include('php/funcoes.php');
                   <p class="text-muted">
                     <?php echo coabitante($_SESSION['idUsuario']); ?>
                   </p>
+
+                  <hr>
+
+                  <div class="btn-edit-perfil">
+                    <a href="alterar-usuario.php">
+                      <button class="btn btn-primary">Editar</button>
+                    </a>
+
+                  </div>
+
                 </div>
                 <!-- /.card-body -->
               </div>
