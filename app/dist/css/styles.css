@@ -109,13 +109,6 @@ hr{
     margin-left: 10px;
 }
 
-.btn{    
-    margin-top: 16px;
-    margin-bottom: 0px;  
-    margin-left: 10px;
-    width: 100px;
-    height: 35px;
-}
 
 .aSemTextDecoration{
     text-decoration: none; 
@@ -127,6 +120,12 @@ hr{
 }
 
 .btn-edit-perfil{
-    display: flex; 
-    justify-content: flex-end; 
+    margin-top: 16px;
+    margin-bottom: 0px;  
+    margin-left: 10px;
+    width: 100px;
+    height: 35px;
+}
+.botoesEdicaoPerfil{
+    text-align: right;
 }
