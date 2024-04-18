@@ -269,33 +269,50 @@ function sexo($id){
     return $resp;
 }
 
-function coabitante($id){
 
-    $resp = "";
+
+function coabitante($id){       
 
     include("conexao.php");
     $sql = "SELECT a.nomeCoabitante from coabitanteusuario as a inner join usuario as b on a.idUsuarioPrincipal = b.idUsuario where b.idUsuario = $id;";
     $result = mysqli_query($conexao, $sql);
     mysqli_close($conexao);
+    $coabitantes = "";
+
+    $array = array();
 
     //Validar se tem retorno do BD
     if (mysqli_num_rows($result) > 0) {
 
-        $array = array();
-
         while ($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             array_push($array, $linha);
+            
+        }        
+
+        foreach ($array as $coluna) {      
+            
+            if($coabitantes == ""){
+                $coabitantes = $coluna["nomeCoabitante"]. ", ";
+
+            }else{
+                $coabitantes = $coabitantes.$coluna["nomeCoabitante"]. ", ";
+
+            }
+
         }
 
-        foreach ($array as $coluna) {
-            //***Verificar os dados da consulta SQL
-            $resp = $coluna["nomeCoabitante"];
-
-
-        }
     }
 
-    return $resp;
+    return $coabitantes;
+}
+
+function editarUsuario($id){
+
+    $emEdicao = 1;
+
+    
+
+    
 }
 
 

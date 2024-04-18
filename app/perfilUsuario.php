@@ -33,7 +33,7 @@ include('php/funcoes.php');
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="home.php" class="brand-link">
         <img src="dist/img/logo128x128.png" alt="Nordic System" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Nordic System</span>
       </a>
@@ -60,9 +60,12 @@ include('php/funcoes.php');
                     <img class="profile-user-img img-fluid img-circle" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
                   </div>
 
-                  <h3 class="profile-username text-center"><?php echo nomeUsuario($_SESSION['idUsuario']); ?></h3>
-                </div>
 
+                  <h3 class="profile-username text-center"><?php echo nomeUsuario($_SESSION['idUsuario']); ?>
+                  </h3>
+
+
+                </div>
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
@@ -77,7 +80,11 @@ include('php/funcoes.php');
                   <strong><i class="far fa-calendar-alt mr-1"></i> Data de Nascimento</strong>
 
                   <p class="text-muted">
-                    <?php echo DataNasc($_SESSION['idUsuario']); ?>
+                    <?php echo DataNasc($_SESSION['idUsuario']);
+
+
+
+                    ?>
 
                   </p>
                   <hr>
@@ -116,8 +123,27 @@ include('php/funcoes.php');
                   <strong><i class="fa-regular fa-user mr-1"></i> Coabitantes</strong>
 
                   <p class="text-muted">
-                    <?php echo coabitante($_SESSION['idUsuario']); ?>
+                    <?php                 
+      
+                    /*$coabitantes = coabitante($_SESSION['idUsuario']);
+                    
+                    var_dump($coabitantes);
+                    die();
+                    echo($coabitantes);                    
+                  */
+
+                    ?>
+                      
+                    <?php echo rtrim(coabitante($_SESSION['idUsuario']), ', '); ?>
                   </p>
+
+                  <hr>
+
+                    <a href="alterar-usuario.php">
+                      <button class="btn btn-primary btn-edit-perfil">Editar</button>
+                    </a>
+
+
                 </div>
                 <!-- /.card-body -->
               </div>

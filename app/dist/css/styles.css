@@ -96,3 +96,36 @@ hr{
     
     background-color: #202226;
 }
+
+.navbar-light .navbar-nav .nav-link{
+    color: #202226;
+}
+
+.profile-user-img{
+    border: transparent;
+}
+.fa-pen-to-square{
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+
+.aSemTextDecoration{
+    text-decoration: none; 
+    color: inherit; 
+} 
+
+.input-group{
+    width: 35%
+}
+
+.btn-edit-perfil{
+    margin-top: 16px;
+    margin-bottom: 0px;  
+    margin-left: 10px;
+    width: 100px;
+    height: 35px;
+}
+.botoesEdicaoPerfil{
+    text-align: right;
+}

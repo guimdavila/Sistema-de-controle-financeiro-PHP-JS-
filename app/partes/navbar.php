@@ -6,7 +6,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
+          <a href="../app/home.php" class="nav-link">Home</a>
         </li>
 
       </ul>
@@ -88,7 +88,7 @@
         </li>
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
+          <a class="nav-link" data-toggle="dropdown" href="../app/home.php">
             <i class="far fa-bell"></i>
             <span class="badge badge-warning navbar-badge">15</span>
           </a>
