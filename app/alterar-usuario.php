@@ -147,16 +147,14 @@ include('php/funcoes.php');
 
                                         <hr>
 
-                                        <div class="btn-edit-perfil">
-                                            <button class="btn btn-success" data-taggle="modal">Salvar</button>
+                                            <button class="btn btn-success btn-edit-perfil" data-taggle="modal">Salvar</button>
 
-                                        </div>
                                     </form>
 
 
                                     <!-- Voltar -->
-                                    <a href="perfilUsuario.php" class="btn-edit-perfil">
-                                        <button class="btn btn-danger" data-taggle="modal"> Cancelar</button>
+                                    <a href="perfilUsuario.php" >
+                                        <button class="btn btn-danger btn-edit-perfil" data-taggle="modal"> Cancelar</button>
                                     </a>
 
                                 </div>

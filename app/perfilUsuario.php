@@ -143,12 +143,10 @@ include('php/funcoes.php');
 
                   <hr>
 
-                  <div class="btn-edit-perfil">
                     <a href="alterar-usuario.php">
-                      <button class="btn btn-primary">Editar</button>
+                      <button class="btn btn-primary btn-edit-perfil">Editar</button>
                     </a>
 
-                  </div>
 
                 </div>
                 <!-- /.card-body -->
