@@ -281,21 +281,21 @@ function coabitante($id){
     //Validar se tem retorno do BD
     if (mysqli_num_rows($result) > 0) {
 
-        $array = array();
+        $array[] = array();
 
         while ($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             array_push($array, $linha);
         }
 
-        foreach ($array as $coluna) {
+        /*foreach ($array[$linha] as $coluna) {
             //***Verificar os dados da consulta SQL
-            $resp = $coluna["nomeCoabitante"];
+            array_push($resp, $coluna["nomeCoabitante"]);
 
 
-        }
+        }*/
     }
 
-    return $resp;
+    return $array;
 }
 
 function editarUsuario($id){
