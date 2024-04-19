@@ -55,9 +55,10 @@ include('php/funcoes.php');
 
               <!-- Profile Image -->
               <div class="card card-primary card-outline">
-                <div class="card-body box-profile">
+                <div class="card-body box-profile box-perfil-user">
                   <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
+
                   </div>
 
 
@@ -77,71 +78,71 @@ include('php/funcoes.php');
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body" id="card-body-margin-reduzida">
-                  <strong><i class="far fa-calendar-alt mr-1"></i> Data de Nascimento</strong>
 
-                  <p class="text-muted">
-                    <?php echo DataNasc($_SESSION['idUsuario']);
+                  <div class="dadosUser">
+                    <strong><i class="far fa-calendar-alt mr-1"></i> Data de Nascimento</strong>
 
+                    <p class="text-muted">
+                      <?php echo DataNasc($_SESSION['idUsuario']);
 
+                      ?>
+                    </p>
 
-                    ?>
-
-                  </p>
-                  <hr>
-                  <strong><i class="fas fa-mobile-alt mr-1"></i> Telefone</strong>
-
-                  <p class="text-muted">
-                    <?php echo Telefone($_SESSION['idUsuario']); ?>
-                  </p>
+                  </div>
 
                   <hr>
 
-                  <strong><i class="fas fa-address-card mr-1"></i> CPF</strong>
+                  <div class="dadosUser">
+                    <strong><i class="fas fa-mobile-alt mr-1"></i> Telefone</strong>
 
-                  <p class="text-muted">
-                    <?php echo cpf($_SESSION['idUsuario']); ?>
-                  </p>
-
-                  <hr>
-
-                  <strong><i class="fa-solid fa-at"></i> E-mail</strong>
-
-                  <p class="text-muted">
-                    <?php echo email($_SESSION['idUsuario']); ?>
-                  </p>
+                    <p class="text-muted">
+                      <?php echo Telefone($_SESSION['idUsuario']); ?>
+                    </p>
+                  </div>
 
                   <hr>
 
-                  <strong><i class="fa-regular fa-user mr-1"></i> Sexo</strong>
+                  <div class="dadosUser">
+                    <strong><i class="fas fa-address-card mr-1"></i> CPF</strong>
 
-                  <p class="text-muted">
-                    <?php echo sexo($_SESSION['idUsuario']); ?>
-                  </p>
+                    <p class="text-muted">
+                      <?php echo cpf($_SESSION['idUsuario']); ?>
+                    </p>
+                  </div>
+                  <hr>
+
+                  <div class="dadosUser">
+                    <strong><i class="fa-solid fa-at"></i> E-mail</strong>
+
+                    <p class="text-muted">
+                      <?php echo email($_SESSION['idUsuario']); ?>
+                    </p>
+                  </div>
+                  <hr>
+
+                  <div class="dadosUser">
+                    <strong><i class="fa-regular fa-user mr-1"></i> Sexo</strong>
+
+                    <p class="text-muted">
+                      <?php echo sexo($_SESSION['idUsuario']); ?>
+                    </p>
+                  </div>
 
                   <hr>
 
-                  <strong><i class="fa-regular fa-user mr-1"></i> Coabitantes</strong>
+                  <div class="dadosUser">
+                    <strong><i class="fa-regular fa-user mr-1"></i> Coabitantes</strong>
 
-                  <p class="text-muted">
-                    <?php                 
-      
-                    /*$coabitantes = coabitante($_SESSION['idUsuario']);
-                    
-                    var_dump($coabitantes);
-                    die();
-                    echo($coabitantes);                    
-                  */
+                    <p class="text-muted">
 
-                    ?>
-                      
-                    <?php echo rtrim(coabitante($_SESSION['idUsuario']), ', '); ?>
-                  </p>
-
+                      <?php echo rtrim(coabitante($_SESSION['idUsuario']), ', '); ?>
+                    </p>
+                  </div>
                   <hr>
 
-                    <a href="alterar-usuario.php">
-                      <button class="btn btn-primary btn-edit-perfil">Editar</button>
-                    </a>
+                  <a href="alterar-usuario.php">
+                    <button class="btn btn-primary btn-edit-perfil">Editar</button>
+                  </a>
 
 
                 </div>

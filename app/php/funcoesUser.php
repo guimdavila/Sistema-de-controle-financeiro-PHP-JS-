@@ -66,6 +66,11 @@ function primeiroNomeUsuario($id){
 
 function fotoUsuario($id){
 
+
+
+
+
+
     $resp = "";
 
     include("conexao.php");
@@ -83,12 +88,20 @@ function fotoUsuario($id){
         }
 
         foreach ($array as $coluna) {
-            //***Verificar os dados da consulta SQL
+            
             $resp = $coluna["fotoPerfil"];
+
+            if (!empty($resp)) {
+
+            } else {
+                // Nenhuma foto do perfil está disponível, você pode exibir um valor padrão ou nada
+                $resp = 'dist/img/foto defaut user.jpg';
+                
+            }
+            return $resp;
         }
     }
 
-    return $resp;
 }
 
 function converterDataGregoriano($dateString) {
@@ -292,10 +305,12 @@ function coabitante($id){
         foreach ($array as $coluna) {      
             
             if($coabitantes == ""){
-                $coabitantes = $coluna["nomeCoabitante"]. ", ";
+                $coabitantes =  $coluna["nomeCoabitante"] ;
 
             }else{
-                $coabitantes = $coabitantes.$coluna["nomeCoabitante"]. ", ";
+                $coabitantes = $coabitantes . ", ";
+
+                $coabitantes = $coabitantes.$coluna["nomeCoabitante"];
 
             }
 
@@ -314,6 +329,12 @@ function editarUsuario($id){
 
     
 }
+
+
+
+
+
+
 
 
 ?>

@@ -75,8 +75,9 @@ button{
 
 .card-primary:not(.card-outline)>.card-header {
     background-color: rgb(55, 132, 164);
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
 }
 hr{
     margin-top: 5px;
@@ -102,7 +103,8 @@ hr{
 }
 
 .profile-user-img{
-    border: transparent;
+    border: solid 3px rgb(55, 132, 164);
+    padding: 0px;
 }
 .fa-pen-to-square{
     font-size: 15px;
@@ -125,7 +127,43 @@ hr{
     margin-left: 10px;
     width: 100px;
     height: 35px;
+    background-color: rgb(55, 132, 164);
+    border-color: rgb(55, 132, 164);
+    transition: none;
+
+}
+.btn-edit-perfil:hover{
+    background-color: rgb(55, 132, 164);
+    border-color: rgb(55, 132, 164);
+
 }
 .botoesEdicaoPerfil{
     text-align: right;
+}
+
+.card-body box-profile{
+    padding: 0px;
+    
+}
+
+
+.box-perfil-user {
+    padding: 0.50rem;
+    height: 145px;
+}
+
+.img-fluid{
+    height: 100px;
+    width: 100px;
+}
+
+.text-muted{
+    margin: 0px;
+}
+.dadosUser{
+    height: 45px;
+}
+
+.fa-pen-to-square{
+    font-size: 20px;
 }
