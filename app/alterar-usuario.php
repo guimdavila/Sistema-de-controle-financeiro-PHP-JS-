@@ -64,7 +64,6 @@ include('php/funcoes.php');
                                     <h3 class="profile-username text-center"><?php echo nomeUsuario($_SESSION['idUsuario']); ?>
                                     </h3>
 
-
                                 </div>
                                 <!-- /.card-body -->
                             </div>

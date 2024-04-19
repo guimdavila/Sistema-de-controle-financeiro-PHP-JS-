@@ -42,11 +42,9 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
 
                     <div class="navbar-nav">
-<<<<<<< HEAD
+
                         <a class="nav-item nav-link" id="inicia-sessao" href="./app"><b>Iniciar Sessão</b></a>
-=======
-                        <a class="nav-item nav-link" id="inicia-sessao" href="./app">Iniciar Sessão</a>
->>>>>>> a4067d07f729d3ed09c36ae9cc3efae40a12c9c1
+
                       </div>
                 </div>
             </nav>
