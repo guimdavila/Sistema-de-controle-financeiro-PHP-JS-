@@ -55,7 +55,7 @@ include('php/funcoes.php');
 
                             <!-- Profile Image -->
                             <div class="card card-primary card-outline">
-                                <div class="card-body box-profile">
+                                <div class="card-body box-profile box-perfil-user">
                                     <div class="text-center">
                                         <img class="profile-user-img img-fluid img-circle" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
                                     </div>
@@ -78,13 +78,28 @@ include('php/funcoes.php');
                                 <!-- /.card-header -->
                                 <div class="card-body" id="card-body-margin-reduzida">
 
-                                    <form method="POST" action="">
+
+
+
+
+
+
+                                    <form method="POST" action="php/salvarUsuario.php">
+
+
+                                        <?php
+
+                                        $_SESSION['idUsuario'];
+
+                                        ?>
+
 
                                         <strong><i class="far fa-calendar-alt mr-1"></i> Data de Nascimento</strong>
 
                                         <p class="text-muted">
                                         <div class="input-group mb-3">
                                             <input type="date" name="nDate" class="form-control" aria-describedby="inputGroup-sizing-default">
+
                                         </div>
                                         </p>
                                         <hr>
@@ -92,7 +107,7 @@ include('php/funcoes.php');
 
                                         <p class="text-muted">
                                         <div class="input-group mb-3">
-                                            <input type="text" name="nTelefone" class="form-control" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" name="nTelefone" class="form-control" aria-describedby="inputGroup-sizing-default" maxlength="11">
                                         </div>
 
                                         </p>
@@ -103,7 +118,7 @@ include('php/funcoes.php');
 
                                         <p class="text-muted">
                                         <div class="input-group mb-3">
-                                            <input type="text" name="nCpf" class="form-control" aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" name="nCpf" class="form-control" aria-describedby="inputGroup-sizing-default" maxlength="11">
                                         </div>
                                         </p>
 
@@ -114,7 +129,7 @@ include('php/funcoes.php');
                                         <p class="text-muted">
 
                                         <div class="input-group mb-3">
-                                            <input type="e-mail" name="nTelefone" class="form-control" aria-describedby="inputGroup-sizing-default">
+                                            <input type="e-mail" name="nEmail" class="form-control" aria-describedby="inputGroup-sizing-default">
                                         </div>
 
                                         </p>
@@ -127,11 +142,11 @@ include('php/funcoes.php');
 
 
                                         <div class="input-group mb-3">
-                                            <select class="custom-select" id="inputGroupSelect01">
+                                            <select class="custom-select" id="inputGroupSelect01" name="nSexo">
                                                 <option selected>Escolher...</option>
-                                                <option value="vMasculino">Marculino</option>
-                                                <option value="vFeminino">Feminino</option>
-                                                <option value="vOutros">Outros</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Feminino">Feminino</option>
+                                                <option value="Outros">Outros</option>
                                             </select>
                                         </div>
 
@@ -139,21 +154,12 @@ include('php/funcoes.php');
 
                                         <hr>
 
-                                        <strong><i class="fa-regular fa-user mr-1"></i> Coabitantes</strong>
-
-                                        <p class="text-muted">
-                                            <?php echo coabitante($_SESSION['idUsuario']); ?>
-                                        </p>
-
-                                        <hr>
-
-                                            <button class="btn btn-success btn-edit-perfil" data-taggle="modal">Salvar</button>
+                                        <button type="submit" class="btn btn-success btn-edit-perfil" data-taggle="modal">Salvar</button>
 
                                     </form>
-
-
+                          
                                     <!-- Voltar -->
-                                    <a href="perfilUsuario.php" >
+                                    <a href="perfilUsuario.php">
                                         <button class="btn btn-danger btn-edit-perfil" data-taggle="modal"> Cancelar</button>
                                     </a>
 
