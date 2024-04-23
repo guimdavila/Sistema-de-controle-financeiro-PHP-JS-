@@ -28,12 +28,12 @@
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
-<<<<<<< HEAD
+
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/pages/dashboard.js"></script>
-=======
+
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- Font-awesome -->
 <script src="https://kit.fontawesome.com/363bffc621.js" crossorigin="anonymous"></script>
->>>>>>> 106107d63601059966fbaf6b5932ad6656036697
+

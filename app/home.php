@@ -1,14 +1,13 @@
 <?php
   session_start();
   include('php/funcoes.php');
-  include('partes/css.php') //importes de CSS
- 
+  include('partes/css.php'); //importes de CSS
+  include('partes/navbar.php'); //importes de Navbar
+  
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
- 
 
 <head>
   <meta charset="utf-8">
@@ -18,7 +17,7 @@
   
   
   <style type="text/css" href="index.css">
-    <?php include('dist/css/styles.css')  ?>
+    <?php include('dist/css/styles.css');?>
   </style>
 
 </head>
@@ -29,9 +28,6 @@
 
   <div class="wrapper">
 
-    <?php
-    include('partes/navbar.php') //importes de Navbar
-    ?>
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -43,18 +39,18 @@
 
 
       <?php
-      include('partes/sidebar.php') //importes de Sidebar
+        include('partes/sidebar.php'); //importes de Sidebar
       ?>
 
+      <?php
+        include('partes/js.php'); //importes de JS
+      ?>
     </aside>
 
 
   </div>
   <!-- ./wrapper -->
 
-  <?php
-  include('partes/js.php') //importes de JS
-  ?>
 
 </body>
 

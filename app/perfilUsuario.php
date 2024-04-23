@@ -12,12 +12,12 @@ include('php/funcoes.php');
   <title>Nordic Finance</title>
 
   <?php
-  include('partes/css.php') //importes de CSS
+  include('partes/css.php'); //importes de CSS
   ?>
 
 
   <style type="text/css" href="index.css">
-    <?php include('dist/css/styles.css')  ?>
+    <?php include('dist/css/styles.css');  ?>
   </style>
 
 
@@ -27,7 +27,7 @@ include('php/funcoes.php');
   <div class="wrapper">
 
     <?php
-    include('partes/navbar.php') //importes de CSS
+    include('partes/navbar.php'); //importes de CSS
     ?>
 
     <!-- Main Sidebar Container -->
@@ -40,7 +40,7 @@ include('php/funcoes.php');
 
 
       <?php
-      include('partes/sidebar.php') //importes de CSS
+      include('partes/sidebar.php'); //importes de CSS
       ?>
 
     </aside>
@@ -157,7 +157,7 @@ include('php/funcoes.php');
     </div>
 
     <?php
-    include('partes/js.php') //importes de CSS
+    include('partes/js.php'); //importes de CSS
     ?>
 
 </body>
