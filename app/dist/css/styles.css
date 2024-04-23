@@ -1,5 +1,5 @@
 body{
-    background-color: #202226;
+    background-color: #134b4b;
 }
 
 
@@ -90,12 +90,13 @@ hr{
 }
 
 .brand-link {
-    background-color: #202226;
+    background-color: #134b4b;
+    font-size: 22px;
+    font-family: "Sedan", serif;
 }
-
 .os-content{
     
-    background-color: #202226;
+    background-color: #134b4b;
 }
 
 .navbar-light .navbar-nav .nav-link{

@@ -1,20 +1,21 @@
 <?php
   session_start();
   include('php/funcoes.php');
-
+  include('partes/css.php') //importes de CSS
+ 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
+ 
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nordic Finance</title>
 
-  <?php
-  include('partes/css.php') //importes de CSS
-  ?>
+  
   
   <style type="text/css" href="index.css">
     <?php include('dist/css/styles.css')  ?>
@@ -23,6 +24,9 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
+
+
   <div class="wrapper">
 
     <?php
