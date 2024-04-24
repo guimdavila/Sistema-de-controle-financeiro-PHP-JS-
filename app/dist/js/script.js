@@ -36,3 +36,22 @@ function editCpf() {
     // Posicione o cursor no campo de entrada para facilitar a edição
     inputField.focus();
 }
+
+document.getElementById('tela2').style.display = 'block';
+
+function mostrarTela(tela) {
+
+  if (tela == 'tela1') {
+    document.getElementById('tela1').style.display = 'block';
+    document.getElementById('tela2').style.display = 'none';
+  } else {
+    document.getElementById('tela1').style.display = 'none';
+    document.getElementById('tela2').style.display = 'block';
+  }
+}
+
+
+function iniciaTelaUsuario(){
+    
+    document.getElementById('tela2').style.display = 'block';
+}

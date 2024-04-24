@@ -1,3 +1,6 @@
+      
+      <script src="dist/js/script.js"></script>
+
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->

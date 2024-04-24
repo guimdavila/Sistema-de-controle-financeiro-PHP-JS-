@@ -131,11 +131,13 @@ hr{
     background-color: rgb(55, 132, 164);
     border-color: rgb(55, 132, 164);
     transition: none;
+    color: white;
 
 }
 .btn-edit-perfil:hover{
     background-color: rgb(55, 132, 164);
     border-color: rgb(55, 132, 164);
+    color: white;
 
 }
 .botoesEdicaoPerfil{
@@ -160,6 +162,9 @@ hr{
 
 .text-muted{
     margin: 0px;
+    position: relative;
+    top: 35%;
+    
 }
 .dadosUser{
     height: 45px;
@@ -168,3 +173,4 @@ hr{
 .fa-pen-to-square{
     font-size: 20px;
 }
+

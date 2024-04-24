@@ -1,9 +1,9 @@
 <?php
-  session_start();
-  include('php/funcoes.php');
-  include('partes/css.php'); //importes de CSS
-  include('partes/navbar.php'); //importes de Navbar
-  
+session_start();
+include('php/funcoes.php');
+include('partes/css.php'); //importes de CSS
+include('partes/navbar.php'); //importes de Navbar
+
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +14,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nordic Finance</title>
 
-  
-  
+
+
   <style type="text/css" href="index.css">
-    <?php include('dist/css/styles.css');?>
+    <?php include('dist/css/styles.css'); ?>
   </style>
+
 
 </head>
 
@@ -39,11 +40,11 @@
 
 
       <?php
-        include('partes/sidebar.php'); //importes de Sidebar
+      include('partes/sidebar.php'); //importes de Sidebar
       ?>
 
       <?php
-        include('partes/js.php'); //importes de JS
+      include('partes/js.php'); //importes de JS
       ?>
     </aside>
 
