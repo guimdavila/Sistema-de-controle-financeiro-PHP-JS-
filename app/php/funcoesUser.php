@@ -324,8 +324,20 @@ function coabitante($id){
 function editarUsuario($id){
 
     $emEdicao = 1;
-
     
+}
+
+
+//Alteração foto do perfil
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["foto"])) {
+    $caminho = "C:/xampp/htdocs/SA---Nordic-Finance/app/dist/img/" . $_FILES["foto"]["name"]; //Salva foto na pasta
+
+    if (move_uploaded_file($_FILES["foto"]["tmp_name"], $caminho)) {
+        $caminho;
+    } else {
+        echo "";
+    }
+
 
     
 }
