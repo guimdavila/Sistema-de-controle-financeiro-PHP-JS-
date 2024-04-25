@@ -1,6 +1,5 @@
 <?php 
 
-    function criaUser(){
         if(session_status() !== PHP_SESSION_ACTIVE){
             session_start();
         }
@@ -35,7 +34,6 @@
         }
 
         mysqli_close($conexao);
-    }
 
     function validaUser(){
 
