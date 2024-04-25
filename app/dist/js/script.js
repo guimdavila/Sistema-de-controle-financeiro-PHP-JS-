@@ -37,7 +37,6 @@ function editCpf() {
     inputField.focus();
 }
 
-document.getElementById('tela2').style.display = 'block';
 
 function mostrarTela(tela) {
 

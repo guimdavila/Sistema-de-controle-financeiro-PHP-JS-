@@ -65,8 +65,9 @@ include('php/funcoes.php');
                 <div class="card card-primary card-outline">
                   <div class="card-body box-profile box-perfil-user">
                     <div class="text-center">
-                      <img class="profile-user-img img-fluid img-circle" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
-
+                      <button type="button" class="botao-foto profile-user-img img-fluid img-circle" data-toggle="modal" data-target="#editarFoto">
+                        <img class=" img-fluid img-circle" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
+                      </button>
                     </div>
 
 
@@ -152,7 +153,13 @@ include('php/funcoes.php');
                     </div>
                     <hr>
 
-                    <button class="btn btn-edit-perfil" onclick="mostrarTela('tela2')">Editar</button>
+                    <div class="botoes-editar">
+                      <button class="btn btn-edit-perfil" onclick="mostrarTela('tela2')">Editar</button>
+                      <button class="btn btn-edit-perfil" data-taggle="modal" data-target="#novocoabitante">Coabitante </button>
+                    </div>
+
+
+
 
 
 
@@ -164,6 +171,60 @@ include('php/funcoes.php');
             </div>
             <!-- /.row -->
           </div><!-- /.container-fluid -->
+
+          <div class="modal fade" id="editarFoto">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+
+
+                <div class="modal-header bg-sucess">
+                  <h4 class="modal-title">Cabeçalho</h4>
+                  <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+
+                <div class="modal-body">
+                  <form method="POST" action="php/salvarUsuario.php?funcao=I" enctype="multipart/form-data">
+
+                    <div class="row">
+                      <div class="col-4 caixaFoto">
+                        <div class="form-group ">
+
+                          <div class="botao-foto profile-user-img img-fluid img-circle">
+                            <img class="img-fluid img-circle" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-8 caixaFile">
+                        <div class="form-group ">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                            <label class="custom-file-label">Enviar arquivo</label>   
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-edit-perfil" data-dismiss="modal">Voltar</button>
+                      <button type="submit" class="btn btn-edit-perfil">Salvar</button>
+                    </div>
+
+                  </form>
+
+                </div>
+
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
         </section>
       </div>
 
@@ -276,10 +337,10 @@ include('php/funcoes.php');
 
                       <button type="submit" class="btn btn-edit-perfil" data-taggle="modal" onclick="mostrarTela('tela1')">Salvar</button>
 
-                      <input type="button" class="btn  btn-edit-perfil" data-taggle="modal" onclick="mostrarTela('tela1')" value="Cancelar"> 
+                      <input type="button" class="btn  btn-edit-perfil" data-taggle="modal" onclick="mostrarTela('tela1')" value="Cancelar">
                     </form>
 
-                  
+
                   </div>
                   <!-- /.card-body -->
                 </div>
@@ -288,9 +349,12 @@ include('php/funcoes.php');
             </div>
             <!-- /.row -->
           </div><!-- /.container-fluid -->
+
         </section>
       </div>
     </div>
+
+
 
     <?php
     include('partes/js.php'); //importes de CSS

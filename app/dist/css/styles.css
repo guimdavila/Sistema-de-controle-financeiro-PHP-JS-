@@ -104,8 +104,12 @@ hr{
 }
 
 .profile-user-img{
-    border: solid 3px rgb(55, 132, 164);
     padding: 0px;
+}
+
+.botao-foto{
+    background-color: transparent;
+    border: 1px solid transparent;
 }
 .fa-pen-to-square{
     font-size: 15px;
@@ -126,7 +130,7 @@ hr{
     margin-top: 16px;
     margin-bottom: 0px;  
     margin-left: 10px;
-    width: 100px;
+    width: 110px;
     height: 35px;
     background-color: rgb(55, 132, 164);
     border-color: rgb(55, 132, 164);
@@ -174,3 +178,19 @@ hr{
     font-size: 20px;
 }
 
+.caixaFoto{
+    height: 116px;
+
+}
+
+
+.caixaFile{
+    margin-bottom: 1rem;
+    
+}
+.custom-file-label{
+    top: 65%;
+}
+.custom-file{
+    right: -30%
+}
