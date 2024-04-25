@@ -1,6 +1,7 @@
 <?php
 
-function nomeUsuario($id){
+function nomeUsuario($id)
+{
 
     $resp = "";
 
@@ -27,15 +28,17 @@ function nomeUsuario($id){
     return $resp;
 }
 
-function coletaPrimeiraPalavra($phrase) {
+function coletaPrimeiraPalavra($phrase)
+{
     // Use strtok para dividir a string usando um espaço como delimitador
     $primeiraPalavra = strtok($phrase, " ");
-    
+
     // Retorne a primeira palavra
     return $primeiraPalavra;
 }
 
-function primeiroNomeUsuario($id){
+function primeiroNomeUsuario($id)
+{
 
     $resp = "";
 
@@ -56,7 +59,7 @@ function primeiroNomeUsuario($id){
         foreach ($array as $coluna) {
             //***Verificar os dados da consulta SQL
 
-             
+
             $resp = coletaPrimeiraPalavra($coluna["nomeUsuario"]);
         }
     }
@@ -64,7 +67,8 @@ function primeiroNomeUsuario($id){
     return $resp;
 }
 
-function fotoUsuario($id){
+function fotoUsuario($id)
+{
 
 
 
@@ -88,32 +92,31 @@ function fotoUsuario($id){
         }
 
         foreach ($array as $coluna) {
-            
+
             $resp = $coluna["fotoPerfil"];
 
             if (!empty($resp)) {
-
             } else {
                 // Nenhuma foto do perfil está disponível, você pode exibir um valor padrão ou nada
                 $resp = 'dist/img/foto defaut user.jpg';
-                
             }
             return $resp;
         }
     }
-
 }
 
-function converterDataGregoriano($dateString) {
+function converterDataGregoriano($dateString)
+{
 
     $date = new DateTime($dateString);
-    
+
     $formattedDate = $date->format('d/m/Y');
 
     return $formattedDate;
 }
 
-function DataNasc($id){
+function DataNasc($id)
+{
 
     $resp = "";
 
@@ -136,14 +139,14 @@ function DataNasc($id){
             $resp = $coluna["dataNasc"];
 
             $resp = converterDataGregoriano($resp);
-
         }
     }
 
     return $resp;
 }
 
-function FormatarTelefone($telefone) {
+function FormatarTelefone($telefone)
+{
 
     if (preg_match('/^(\d{2})(\d{5})(\d{4})$/', $telefone, $matches)) {
 
@@ -155,7 +158,8 @@ function FormatarTelefone($telefone) {
     }
 }
 
-function Telefone($id){
+function Telefone($id)
+{
 
     $resp = "";
 
@@ -178,23 +182,24 @@ function Telefone($id){
             $resp = $coluna["telefone"];
 
             $resp = FormatarTelefone($resp);
-
         }
     }
 
     return $resp;
 }
 
-function formatarCPF ($cpf){
-    if(preg_match('/^(\d{3})(\d{3})(\d{3})(\d{2})$/', $cpf, $matches)){
-        $cpfFormatado = sprintf('%s.%s.%s-%s', $matches[1],$matches[2],$matches[3],$matches[4]);
+function formatarCPF($cpf)
+{
+    if (preg_match('/^(\d{3})(\d{3})(\d{3})(\d{2})$/', $cpf, $matches)) {
+        $cpfFormatado = sprintf('%s.%s.%s-%s', $matches[1], $matches[2], $matches[3], $matches[4]);
         return $cpfFormatado;
-    }else{
+    } else {
         return $cpf;
     }
 }
 
-function cpf($id){
+function cpf($id)
+{
 
     $resp = "";
 
@@ -217,14 +222,14 @@ function cpf($id){
             $resp = $coluna["cpf"];
 
             $resp = formatarCPF($resp);
-
         }
     }
 
     return $resp;
 }
 
-function email($id){
+function email($id)
+{
 
     $resp = "";
 
@@ -245,15 +250,14 @@ function email($id){
         foreach ($array as $coluna) {
             //***Verificar os dados da consulta SQL
             $resp = $coluna["email"];
-
-
         }
     }
 
     return $resp;
 }
 
-function sexo($id){
+function sexo($id)
+{
 
     $resp = "";
 
@@ -274,8 +278,6 @@ function sexo($id){
         foreach ($array as $coluna) {
             //***Verificar os dados da consulta SQL
             $resp = $coluna["sexo"];
-
-
         }
     }
 
@@ -284,7 +286,8 @@ function sexo($id){
 
 
 
-function coabitante($id){       
+function coabitante($id)
+{
 
     include("conexao.php");
     $sql = "SELECT a.nomeCoabitante from coabitanteusuario as a inner join usuario as b on a.idUsuarioPrincipal = b.idUsuario where b.idUsuario = $id;";
@@ -299,34 +302,31 @@ function coabitante($id){
 
         while ($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             array_push($array, $linha);
-            
-        }        
-
-        foreach ($array as $coluna) {      
-            
-            if($coabitantes == ""){
-                $coabitantes =  $coluna["nomeCoabitante"] ;
-
-            }else{
-                $coabitantes = $coabitantes . ", ";
-
-                $coabitantes = $coabitantes.$coluna["nomeCoabitante"];
-
-            }
-
         }
 
+        foreach ($array as $coluna) {
+
+            if ($coabitantes == "") {
+                $coabitantes =  $coluna["nomeCoabitante"];
+            } else {
+                $coabitantes = $coabitantes . ", ";
+
+                $coabitantes = $coabitantes . $coluna["nomeCoabitante"];
+            }
+        }
     }
 
     return $coabitantes;
 }
 
-function editarUsuario($id){
+function editarUsuario($id)
+{
 
     $emEdicao = 1;
-    
 }
 
+
+$idUsuario = $_SESSION['idUsuario'];
 
 //Alteração foto do perfil
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["foto"])) {
@@ -339,14 +339,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["foto"])) {
     }
 
 
-    
+    include("conexao.php");
+
+    if ($caminho != "") {
+
+        $caminho2 = str_replace('C:/xampp/htdocs/SA---Nordic-Finance/app/', '', $caminho);
+
+        if ($caminho2 == "dist/img/") {
+
+            $sql = "UPDATE USUARIO SET FOTOPERFIL = 'dist/img/foto defaut user.jpg' where idUsuario = $idUsuario";
+
+            $resultSql = mysqli_query($conexao, $sql);
+        } else {
+
+            $sql = "UPDATE USUARIO SET FOTOPERFIL = '$caminho2' where idUsuario = $idUsuario";
+
+            $resultSql = mysqli_query($conexao, $sql);
+        }
+    } else {
+    };
 }
-
-
-
-
-
-
-
-
-?>

@@ -180,8 +180,8 @@ include('php/funcoes.php');
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
 
-                                <div class="modal-header bg-sucess">
-                                    <h4 class="modal-title">Cabeçalho</h4>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Alterar Foto</h4>
                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
