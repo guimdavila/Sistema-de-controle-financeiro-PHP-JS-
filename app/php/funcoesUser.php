@@ -319,6 +319,42 @@ function coabitante($id)
     return $coabitantes;
 }
 
+/* RETORNAR COABITANTES COM QUEBRA DE LINHA
+
+function coabitanteEditarPerfil($id)
+{
+
+    include("conexao.php");
+    $sql = "SELECT a.nomeCoabitante from coabitanteusuario as a inner join usuario as b on a.idUsuarioPrincipal = b.idUsuario where b.idUsuario = $id;";
+    $result = mysqli_query($conexao, $sql);
+    mysqli_close($conexao);
+    $coabitantes = "";
+
+    $array = array();
+
+    //Validar se tem retorno do BD
+    if (mysqli_num_rows($result) > 0) {
+
+        while ($linha = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($array, $linha);
+        }
+
+        foreach ($array as $coluna) {
+
+            if ($coabitantes == "") {
+                $coabitantes =  $coluna["nomeCoabitante"];
+            } else {
+
+                $coabitantes = $coabitantes . "\n" . $coluna["nomeCoabitante"];
+            }
+        }
+    }
+
+    return $coabitantes;
+}
+
+*/
+
 function editarUsuario($id)
 {
 
@@ -358,4 +394,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["foto"])) {
         }
     } else {
     };
+}
+
+
+
+function listaUsuario($id){
+
+    include("conexao.php");
+    $sql = "SELECT a.nomeCoabitante from coabitanteusuario as a inner join usuario as b on a.idUsuarioPrincipal = b.idUsuario where b.idUsuario = $id;";
+            
+    $result = mysqli_query($conexao,$sql);
+    mysqli_close($conexao);
+
+    $lista = '';
+
+    //Validar se tem retorno do BD
+    if (mysqli_num_rows($result) > 0) {
+        
+        
+        foreach ($result as $coluna) {
+            
+            //***Verificar os dados da consulta SQL
+            $lista .= 
+            "<tr>"
+                ."<td>".$coluna["nomeCoabitante"]."</td>"
+                ."<td>"
+                    .//FAZER JAVASCRIPT PARA ALTERAR CAMPOS ACIMA APÓS CLICAR NO BOTÃO
+                    ."<a href='alterar-usuario.php?id=".$coluna["idUsuario"]."'>Alterar</a>"
+                    ."<a href='php/excluirUsuario.php?id=".md5($coluna["idUsuario"])."'> Excluir</a>"
+                ."</td>"
+            ."</tr>";            
+        }    
+    }
+    
+    return $lista;
 }

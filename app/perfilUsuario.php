@@ -76,6 +76,58 @@ include('php/funcoes.php');
                                             </button>
                                         </div>
 
+                                        <!-- Editar foto -->
+                                        <div class="modal fade" id="editarFoto">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Alterar Foto</h4>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+
+                                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+
+                                                        <div class="modal-body">
+
+                                                            <div class="row">
+                                                                <div class="col-4 caixaFoto">
+                                                                    <div class="form-group ">
+
+                                                                        <div class="botao-foto profile-user-img img-fluid img-circle">
+                                                                            <img class="img-fluid img-circle" src="
+                                                        <?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-8 caixaFile">
+                                                                    <div class="form-group ">
+                                                                        <div class="custom-file">
+                                                                            <input type="file" class="custom-file-input" name="foto" id="foto" onchange="exibirImagem(this)">
+                                                                            <label class="custom-file-label">Enviar arquivo</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-edit-perfil" data-dismiss="modal">Voltar</button>
+                                                                <button type="submit" class="btn btn-edit-perfil">Salvar</button>
+                                                            </div>
+                                                    </form>
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
 
                                         <h3 class="profile-username text-center">
                                             <?php echo nomeUsuario($_SESSION['idUsuario']); ?>
@@ -119,7 +171,6 @@ include('php/funcoes.php');
 
                                         <hr>
 
-
                                         <strong><i class="fas fa-address-card mr-1"></i> CPF</strong>
                                         <div class="dadosUser">
 
@@ -162,7 +213,7 @@ include('php/funcoes.php');
 
                                         <div class="botoes-editar">
                                             <button class="btn btn-edit-perfil" onclick="mostrarTela('tela2')">Editar</button>
-                                            <button class="btn btn-edit-perfil" data-taggle="modal" data-target="#novocoabitante">Coabitante </button>
+                                            <button class="btn btn-edit-perfil" data-toggle="modal" data-target="#editarCoabitante">Coabitante </button>
                                         </div>
 
 
@@ -176,45 +227,48 @@ include('php/funcoes.php');
                     </div><!-- /.container-fluid -->
 
 
-                    <div class="modal fade" id="editarFoto">
+
+
+                    <!-- Editar coabitante -->
+                    <div class="modal fade" id="editarCoabitante">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
 
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Alterar Foto</h4>
+                                    <h4 class="modal-title">Coabitantes</h4>
                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
 
 
-                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                                <form action="" method="post" enctype="multipart/form-data">
 
                                     <div class="modal-body">
 
                                         <div class="row">
-                                            <div class="col-4 caixaFoto">
-                                                <div class="form-group ">
 
-                                                    <div class="botao-foto profile-user-img img-fluid img-circle">
-                                                        <img class="img-fluid img-circle" src="
-                                                        <?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
-                                                    </div>
+                                             <div class="card-body">
+                                                <table id="tabela" class="table table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nome</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
 
-                                                </div>
+                                                        
+                                                        <?php echo listaUsuario($_SESSION['idUsuario']); ?>
+
+                                                    </tbody>
+
+                                                </table>
                                             </div>
 
-                                            <div class="col-8 caixaFile">
-                                                <div class="form-group ">
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" name="foto" id="foto" onchange="exibirImagem(this)">
-                                                        <label class="custom-file-label">Enviar arquivo</label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           
+
 
                                         </div>
-
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-edit-perfil" data-dismiss="modal">Voltar</button>
@@ -227,6 +281,17 @@ include('php/funcoes.php');
                         </div>
                         <!-- /.modal-content -->
                     </div>
+
+
+
+
+
+
+
+
+
+
+
                     <!-- /.modal-dialog -->
                 </section>
             </div>
