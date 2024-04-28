@@ -401,31 +401,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["foto"])) {
 function listaUsuario($id){
 
     include("conexao.php");
-    $sql = "SELECT a.nomeCoabitante from coabitanteusuario as a inner join usuario as b on a.idUsuarioPrincipal = b.idUsuario where b.idUsuario = $id;";
+    $sql = "SELECT a.nomeCoabitante FROM coabitanteusuario AS a INNER JOIN usuario AS b ON a.idUsuarioPrincipal = b.idUsuario WHERE b.idUsuario = $id;";
             
-    $result = mysqli_query($conexao,$sql);
+    $result = mysqli_query($conexao, $sql);
     mysqli_close($conexao);
 
     $lista = '';
 
-    //Validar se tem retorno do BD
     if (mysqli_num_rows($result) > 0) {
-        
         
         foreach ($result as $coluna) {
             
-            //***Verificar os dados da consulta SQL
             $lista .= 
             "<tr>"
-                ."<td>".$coluna["nomeCoabitante"]."</td>"
                 ."<td>"
-                    .//FAZER JAVASCRIPT PARA ALTERAR CAMPOS ACIMA APÓS CLICAR NO BOTÃO
-                    ."<a href='alterar-usuario.php?id=".$coluna["idUsuario"]."'>Alterar</a>"
-                    ."<a href='php/excluirUsuario.php?id=".md5($coluna["idUsuario"])."'> Excluir</a>"
+                    // Se o botão "Alterar" for clicado, mostra um campo de entrada de texto
+                    ."<span id='nomeCoabitante_".$coluna["nomeCoabitante"]."'>".$coluna["nomeCoabitante"]."</span>"
+                    ."<input type='text' id='novoNome_".$coluna["nomeCoabitante"]."' style='display:none;' value='".$coluna["nomeCoabitante"]."'>"
                 ."</td>"
-            ."</tr>";            
-        }    
+                ."<td>"
+                    ."<button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick=\"mostrarCampoTexto('".$coluna["nomeCoabitante"]."')\">Alterar</button>"
+                    ."<button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='removerLinha(this)'>Excluir</button>"
+                ."</td>"
+            ."</tr>";   
+        }
+
     }
     
+    // Adiciona o script JavaScript
+    $lista .= "
+        <script>
+            function mostrarCampoTexto(nomeCoabitante) {
+                var span = document.getElementById('nomeCoabitante_' + nomeCoabitante);
+                var input = document.getElementById('novoNome_' + nomeCoabitante);
+
+                span.style.display = 'none';
+                input.style.display = 'inline-block';
+            }
+
+            function adicionarLinha() {
+                var table = document.getElementById('tabela');
+                var newRow = table.insertRow();
+
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+
+                cell1.innerHTML = '<input type=\"text\">';
+                cell2.innerHTML = '<button type=\"button\" class=\"btn btn-edit-perfil\" data-toggle=\"modal\" onclick=\"mostrarCampoTexto(this)\">Alterar</button><button type=\"button\" class=\"btn btn-edit-perfil\" data-toggle=\"modal\" onclick=\"removerLinha(this)\">Excluir</button>';
+            }
+
+            function removerLinha(button) {
+                var row = button.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+            }
+        </script>
+    ";
+
     return $lista;
 }
+
+
+
+
+

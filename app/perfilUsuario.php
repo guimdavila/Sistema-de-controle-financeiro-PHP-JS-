@@ -248,16 +248,21 @@ include('php/funcoes.php');
 
                                         <div class="row">
 
-                                             <div class="card-body">
+                                            <div class="card-body">
                                                 <table id="tabela" class="table table-bordered table-hover">
+
+                                                <button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='adicionarLinha()'>Adicionar</button>
+
+
                                                     <thead>
                                                         <tr>
                                                             <th>Nome</th>
                                                         </tr>
                                                     </thead>
+
                                                     <tbody>
 
-                                                        
+
                                                         <?php echo listaUsuario($_SESSION['idUsuario']); ?>
 
                                                     </tbody>
@@ -265,7 +270,7 @@ include('php/funcoes.php');
                                                 </table>
                                             </div>
 
-                                           
+
 
 
                                         </div>
@@ -399,6 +404,7 @@ include('php/funcoes.php');
                                         </p>
 
                                         <hr>
+
 
                                         <button type="submit" class="btn btn-edit-perfil" data-taggle="modal" onclick="mostrarTela('tela1')">Salvar</button>
 

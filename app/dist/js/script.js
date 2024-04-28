@@ -49,8 +49,12 @@ function mostrarTela(tela) {
   }
 }
 
-
 function iniciaTelaUsuario(){
     
     document.getElementById('tela2').style.display = 'block';
 }
+
+
+
+
+
