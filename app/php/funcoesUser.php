@@ -396,38 +396,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["foto"])) {
     };
 }
 
+function AlteraNomeCoabitante($id, $coluna)
+{
+    include("conexao.php");
+    $idCoabitanteUsuario = $coluna["idCoabitanteUsuario"];
+    $sql = "UPDATE coabitanteusuario SET nomeCoabitante = '$idCoabitanteUsuario' WHERE idUsuarioPrincipal = '$id' AND nomeCoabitante = '".$coluna["nomeCoabitante"]."'";
+
+    $resultSql = mysqli_query($conexao, $sql);
+}
 
 
-function listaUsuario($id){
+
+function listaUsuario($id)
+{
 
     include("conexao.php");
-    $sql = "SELECT a.nomeCoabitante FROM coabitanteusuario AS a INNER JOIN usuario AS b ON a.idUsuarioPrincipal = b.idUsuario WHERE b.idUsuario = $id;";
-            
+    $sql = "SELECT a.nomeCoabitante, a.idCoabitanteUsuario, a.nomeCoabitante FROM coabitanteusuario AS a INNER JOIN usuario AS b ON a.idUsuarioPrincipal = b.idUsuario WHERE b.idUsuario = $id;";
+
     $result = mysqli_query($conexao, $sql);
     mysqli_close($conexao);
 
     $lista = '';
 
     if (mysqli_num_rows($result) > 0) {
-        
-        foreach ($result as $coluna) {
-            
-            $lista .= 
-            "<tr>"
-                ."<td>"
-                    // Se o botão "Alterar" for clicado, mostra um campo de entrada de texto
-                    ."<span id='nomeCoabitante_".$coluna["nomeCoabitante"]."'>".$coluna["nomeCoabitante"]."</span>"
-                    ."<input type='text' id='novoNome_".$coluna["nomeCoabitante"]."' style='display:none;' value='".$coluna["nomeCoabitante"]."'>"
-                ."</td>"
-                ."<td>"
-                    ."<button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick=\"mostrarCampoTexto('".$coluna["nomeCoabitante"]."')\">Alterar</button>"
-                    ."<button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='removerLinha(this)'>Excluir</button>"
-                ."</td>"
-            ."</tr>";   
-        }
 
+        foreach ($result as $coluna) {
+
+            $idCoabitanteUsuario = $coluna["idCoabitanteUsuario"];
+
+            $lista .=
+                "<tr>"
+                . "<td>"
+                // Se o botão "Alterar" for clicado, mostra um campo de entrada de texto
+                . "<span id='nomeCoabitante_" . $coluna["nomeCoabitante"] . "'>" . $coluna["nomeCoabitante"] . "</span>"
+                . "<input type='text' id='novoNome_" . $coluna["nomeCoabitante"] . "' style='display:none;' value='" . $coluna["nomeCoabitante"] . "'>"
+                . "</td>"
+                . "<td>"
+                . "<button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick=\"mostrarCampoTexto('" . $coluna["nomeCoabitante"] . "')\">Alterar</button>"
+                . "<button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='removerLinha(this)'>Excluir</button>"
+                . "</td>"
+                . "</tr>";
+        }
     }
-    
+
     // Adiciona o script JavaScript
     $lista .= "
         <script>
@@ -457,10 +468,9 @@ function listaUsuario($id){
         </script>
     ";
 
+
+    AlteraNomeCoabitante($id, $coluna);
+
+
     return $lista;
 }
-
-
-
-
-

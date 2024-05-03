@@ -73,12 +73,19 @@ button{
     margin-bottom: 200px;
 }
 
+
+
 .card-primary:not(.card-outline)>.card-header {
     background-color:#134b4b;
     padding-top: 10px;
     padding-bottom: 10px;
     
 }
+
+.card{
+    margin-top: 15px;
+}
+
 hr{
     margin-top: 5px;
     margin-bottom: 5px;
@@ -215,6 +222,12 @@ hr{
 .caixaRetornoCoabitantes{
     padding-left: 90px;
     padding-top: 20px;
-
-
 }
+
+/*Consulta de Categoria e SubCatgoria*/
+.tituloInput{
+    margin-right: 10px;
+    display: flex;
+    padding-top: 5px;
+}
+
