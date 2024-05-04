@@ -1,25 +1,36 @@
 <?php
-function listaCategoria($id){
+function listaCategoria($id)
+{
+    $lista = '';
+    $tipoCategoria = '';
 
-include("conexao.php");
-$sql = "SELECT b.nomecategoria, a.especieMovimentacao FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idusuario = $id OR b.idusuario IS NULL;";
         
-$result = mysqli_query($conexao, $sql);
-mysqli_close($conexao);
+    include("conexao.php");
+    $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idusuario = $id OR b.idusuario IS NULL;";
 
-$lista = '';
+    $result = mysqli_query($conexao, $sql);
+    mysqli_close($conexao);
+  
 
-if (mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($result) > 0) {
 
-    foreach ($result as $coluna) {
+        foreach ($result as $coluna) {
 
-        $lista .=
-            "<tr>"
-                ."<td align='center'>".$coluna["nomecategoria"]."</td>"
-                ."<td align='center'>".$coluna["especieMovimentacao"]."</td>"
-            ."</tr>";  
+            if ($coluna["idUsuario"] != "") {
+
+                $tipoCategoria = "Personalizada";
+            } else {
+                $tipoCategoria = "Padrão";
+            }
+
+            $lista .=
+                "<tr>"
+                . "<td align='center'>" . $coluna["nomecategoria"] . "</td>"
+                . "<td align='center'>" . $coluna["especieMovimentacao"] . "</td>"
+                . "<td align='center'>" . $tipoCategoria . "</td>"
+                . "</tr>";
+        }
     }
-}
 
-return $lista;
+    return $lista;
 }

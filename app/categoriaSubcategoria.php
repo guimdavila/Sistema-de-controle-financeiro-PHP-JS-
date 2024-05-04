@@ -73,18 +73,27 @@ include('partes/css.php'); //importes de CSS
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
+
                                         <div class="col-md-6">
+
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="tituloInput"><strong>Consulta:</strong></span>
                                                 </div>
 
                                                 <input type="text" name="nConsultaCategoria" class="form-control">
+
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
+                                                    <label class="custom-control-label" for="customSwitch1">Personalizado</label>
+                                                </div>
                                             </div>
 
                                             <div class="botoes-editar">
-                                                <button class="btn btn-edit-perfil" onclick="mostrarTela('tela2')">Pesquisar</button>
+                                                <button type="submit" class="btn btn-edit-perfil">Pesquisar</button>
                                             </div>
+
+
                                         </div>
                                         <div class="col-md-6">
                                             <table id="tabela" class="table table-bordered table-hover">
@@ -103,6 +112,7 @@ include('partes/css.php'); //importes de CSS
                                             </table>
 
                                         </div>
+
                                     </div>
 
 
