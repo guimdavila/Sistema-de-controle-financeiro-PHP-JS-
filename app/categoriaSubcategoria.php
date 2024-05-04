@@ -72,48 +72,49 @@ include('partes/css.php'); //importes de CSS
                                     </ul>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
 
-                                        <div class="col-md-6">
+                                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="col-12">
+                                                    <div class="input-group mb-3">
 
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="tituloInput"><strong>Consulta:</strong></span>
+                                                        <div class="input-group-prepend">
+                                                            <span class="tituloInput"><strong>Consulta:</strong></span>
+                                                        </div>
+                                                        <input type="text" name="nConsultaCategoria" class="form-control">
+
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
+                                                            <label class="custom-control-label" for="customSwitch1">Personalizado</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="botoes-editar">
+                                                        <button type="submit" class="btn btn-edit-perfil">Pesquisar</button>
+                                                    </div>
                                                 </div>
 
-                                                <input type="text" name="nConsultaCategoria" class="form-control">
 
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
-                                                    <label class="custom-control-label" for="customSwitch1">Personalizado</label>
-                                                </div>
                                             </div>
+                                            <div class="col-6">
 
-                                            <div class="botoes-editar">
-                                                <button type="submit" class="btn btn-edit-perfil">Pesquisar</button>
+                                                <table id="tabela" class="table table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Categorias</th>
+                                                            <th>Especie</th>
+                                                            <th>Tipo</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php echo listaCategoria($_SESSION['idUsuario'], 0, ''); ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
-
-
-                                        </div>
-                                        <div class="col-md-6">
-                                            <table id="tabela" class="table table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Categorias</th>
-                                                        <th>Especie</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                    <?php echo listaCategoria($_SESSION['idUsuario']); ?>
-
-                                                </tbody>
-
-                                            </table>
-
                                         </div>
 
-                                    </div>
+                                    </form>
+
 
 
 
