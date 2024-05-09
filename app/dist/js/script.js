@@ -37,7 +37,7 @@ function editCpf() {
     inputField.focus();
 }
 
-
+// perfilUsuario.php
 function mostrarTela(tela) {
 
   if (tela == 'tela1') {
@@ -54,7 +54,14 @@ function iniciaTelaUsuario(){
     document.getElementById('tela2').style.display = 'block';
 }
 
+// categoriaSubcategoria.php
 
-
-
-
+function setActiveButton(buttonId) {
+  // Remove a classe 'active' de todos os botões
+  var buttons = document.getElementsByClassName('botaoCategorias');
+  for (var i = 0; i < buttons.length; i++) {
+      buttons[i].classList.remove('active');
+  }
+  // Adiciona a classe 'active' ao botão clicado
+  document.getElementById(buttonId).classList.add('active');
+}

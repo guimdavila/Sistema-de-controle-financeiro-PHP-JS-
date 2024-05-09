@@ -64,89 +64,168 @@ include('partes/css.php'); //importes de CSS
                                 <div class="card-header">
                                     <ul class="nav nav-pills card-header-pills">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Categoria</a>
+                                            <button id="categoriaBtn" type="button" class="botaoCategorias btn active" onclick="mostrarTela('tela1'); setActiveButton('categoriaBtn')">Categoria</button>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Subcategoria</a>
+                                            <button id="subcategoriaBtn" class="botaoCategorias btn" onclick="mostrarTela('tela2'); setActiveButton('subcategoriaBtn')">SubCategoria</button>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="card-body">
+                                <div id="tela1">
+                                    <div class="card-body">
 
-                                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <div class="col-12">
-                                                    <div class="input-group mb-3">
+                                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="col-12">
+                                                        <div class="input-group mb-3">
 
-                                                        <div class="input-group-prepend">
-                                                            <span class="tituloInput"><strong>Consulta:</strong></span>
-                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                            <div class="custom-control custom-switch">
-                                                                <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
-                                                                <label class="custom-control-label" for="customSwitch1">Personalizado</label>
+                                                            <div class="input-group-prepend">
+                                                                <span class="tituloInput"><strong>Consulta:</strong></span>
+                                                                <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                                <div class="custom-control custom-switch">
+                                                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
+                                                                    <label class="custom-control-label" for="customSwitch1">Personalizado</label>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="botoes-editar">
-                                                        <button type="submit" class="btn btn-edit-perfil btnPesquisar">Pesquisar</button>
-                                                    </div>
+                                                        <div class="botoes-editar">
+                                                            <button type="submit" class="btn btn-edit-perfil btnPesquisar">Pesquisar</button>
+                                                        </div>
 
-                                                    <hr>
+                                                        <hr>
 
-                                                    <p class="tituloEdicao">Edição</p>
+                                                        <p class="tituloEdicao">Edição</p>
 
-                                                    <div class="input-group-prepend">
-                                                        <span class="tituloInput"><strong>Categoria:</strong></span>
-                                                        <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                    </div>
+                                                        <div class="input-group-prepend">
+                                                            <span class="tituloInput"><strong>Categoria:</strong></span>
+                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                        </div>
 
-                                                    <div class="input-group-prepend">
-                                                        <span class="tituloInput"><strong>Especie:</strong></span>
-                                                        <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                    </div>
+                                                        <div class="input-group-prepend">
+                                                            <span class="tituloInput"><strong>Especie:</strong></span>
+                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                        </div>
 
-                                                    <div class="input-group-prepend">
-                                                        <span class="tituloInput"><strong>Tipo:</strong></span>
-                                                        <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                    </div>
+                                                        <div class="input-group-prepend">
+                                                            <span class="tituloInput"><strong>Tipo:</strong></span>
+                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                        </div>
 
 
-                                                    <div class="botoes-editar">
-                                                        <button type="submit" class="btn btn-edit-perfil btnPesquisar">Salvar</button>
+                                                        <div class="botoes-editar">
+                                                            <button type="submit" class="btn btn-edit-perfil btnPesquisar">Salvar</button>
+                                                        </div>
+
+
                                                     </div>
 
 
                                                 </div>
+                                                <div class="col-8">
 
-
+                                                    <table id="tabela" class="table table-bordered table-hover">
+                                                        <thead>
+                                                            <tr class="colunasCategorias">
+                                                                <th>Categorias</th>
+                                                                <th>Especie</th>
+                                                                <th>Tipo</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php echo listaCategoria($_SESSION['idUsuario'], 0, ''); ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-                                            <div class="col-8">
 
-                                                <table id="tabela" class="table table-bordered table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Categorias</th>
-                                                            <th>Especie</th>
-                                                            <th>Tipo</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php echo listaCategoria($_SESSION['idUsuario'], 0, ''); ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                        </form>
 
-                                    </form>
-
-
-
-
-
+                                    </div>
 
                                 </div>
+
+                                <div id="tela2">
+                                    <div class="card-body">
+
+                                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="col-12">
+                                                        <div class="input-group mb-3">
+
+                                                            <div class="input-group-prepend">
+                                                                <span class="tituloInput"><strong>SUBCATEGORIA:</strong></span>
+                                                                <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                                <div class="custom-control custom-switch">
+                                                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
+                                                                    <label class="custom-control-label" for="customSwitch1">Personalizado</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="botoes-editar">
+                                                            <button type="submit" class="btn btn-edit-perfil btnPesquisar">Pesquisar</button>
+                                                        </div>
+
+                                                        <hr>
+
+                                                        <p class="tituloEdicao">Edição</p>
+
+                                                        <div class="input-group-prepend">
+                                                            <span class="tituloInput"><strong>Categoria:</strong></span>
+                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                        </div>
+
+                                                        <div class="input-group-prepend">
+                                                            <span class="tituloInput"><strong>Especie:</strong></span>
+                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                        </div>
+
+                                                        <div class="input-group-prepend">
+                                                            <span class="tituloInput"><strong>Tipo:</strong></span>
+                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                        </div>
+
+
+                                                        <div class="botoes-editar">
+                                                            <button type="submit" class="btn btn-edit-perfil btnPesquisar">Salvar</button>
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="col-8">
+
+                                                    <table id="tabela" class="table table-bordered table-hover">
+                                                        <thead>
+                                                            <tr class="colunasCategorias">
+                                                                <th>Categorias</th>
+                                                                <th>Especie</th>
+                                                                <th>Tipo</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php echo listaCategoria($_SESSION['idUsuario'], 0, ''); ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+
+
+
+
+
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
 

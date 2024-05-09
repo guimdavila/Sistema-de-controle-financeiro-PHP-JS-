@@ -1,31 +1,31 @@
-body{
+body {
     background-color: #134b4b;
 }
 
 /*Sidebar*/
 
-.iconeSideBar{
+.iconeSideBar {
     margin-left: 13px;
     margin-right: 5px;
 }
 
 /*Sidebar*/
 
-.logoLogin{
+.logoLogin {
 
     position: absolute;
     top: 20%;
-    left:10%;
+    left: 10%;
 }
 
 
-.form-group{
+.form-group {
     width: 272px;
     height: 36px;
     margin-bottom: 35px;
 }
 
-.container{
+.container {
     margin: 0 auto;
     width: 360px;
     padding: 45px;
@@ -42,41 +42,44 @@ body{
     transform: translate(-50%, -50%);
 }
 
-.container input, button, .tituloContainer{
+.container input,
+button,
+.tituloContainer {
     margin-bottom: 35px;
 
 }
 
-.tituloContainer{
+.tituloContainer {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     font-size: 25px;
     font-weight: bold;
 }
 
-button{
+button {
     width: 272px;
     height: 36px;
     transition: color 0.5s;
 }
 
-.abutton{
+.abutton {
     text-decoration: none;
     color: white;
 }
-.btn-secundary{
+
+.btn-secundary {
     margin-bottom: 20px;
 }
 
-.btn-secundary:hover{
+.btn-secundary:hover {
     color: #0b5ed7;
 
 }
 
-.cabecalhoPerfil{
-    font-size: 36px; 
-    
+.cabecalhoPerfil {
+    font-size: 36px;
+
     margin-top: 200px;
     margin-bottom: 200px;
 }
@@ -84,22 +87,22 @@ button{
 
 
 .card-primary:not(.card-outline)>.card-header {
-    background-color:#134b4b;
+    background-color: #134b4b;
     padding-top: 10px;
     padding-bottom: 10px;
-    
+
 }
 
-.card{
+.card {
     margin-top: 15px;
 }
 
-hr{
+hr {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.card-primary.card-outline{
+.card-primary.card-outline {
     border-top: 0;
     margin-top: 1rem;
 }
@@ -109,47 +112,52 @@ hr{
     font-size: 22px;
     font-family: "Sedan", serif;
 }
-.os-content{
-    
+
+.os-content {
+
     background-color: #134b4b;
 }
 
-.navbar-light .navbar-nav .nav-link{
-    color: white;
-}
-.navbar-white{
-    background-color:#134b4b;
-}
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+.navbar-light .navbar-nav .nav-link {
     color: white;
 }
 
-.profile-user-img{
+.navbar-white {
+    background-color: #134b4b;
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.profile-user-img {
     padding: 0px;
 }
 
-.botao-foto{
+.botao-foto {
     background-color: transparent;
     border: 1px solid transparent;
 }
-.fa-pen-to-square{
+
+.fa-pen-to-square {
     font-size: 15px;
     margin-left: 10px;
 }
 
 
-.aSemTextDecoration{
-    text-decoration: none; 
-    color: inherit; 
-} 
+.aSemTextDecoration {
+    text-decoration: none;
+    color: inherit;
+}
 
-.input-group{
+.input-group {
     width: 35%
 }
 
-.btn-edit-perfil{
+.btn-edit-perfil {
     margin-top: 16px;
-    margin-bottom: 0px;  
+    margin-bottom: 0px;
     margin-left: 10px;
     width: 110px;
     height: 35px;
@@ -159,19 +167,21 @@ hr{
     color: white;
 
 }
-.btn-edit-perfil:hover{
+
+.btn-edit-perfil:hover {
     background-color: rgb(55, 132, 164);
     border-color: rgb(55, 132, 164);
     color: white;
 
 }
-.botoesEdicaoPerfil{
+
+.botoesEdicaoPerfil {
     text-align: right;
 }
 
-.card-body box-profile{
+.card-body box-profile {
     padding: 0px;
-    
+
 }
 
 
@@ -180,89 +190,139 @@ hr{
     height: 145px;
 }
 
-.img-fluid{
+.img-fluid {
     height: 100px;
     width: 100px;
 }
 
-.text-muted{
+.text-muted {
     margin: 0px;
     position: relative;
     top: 35%;
-    
+
 }
-.dadosUser{
+
+.dadosUser {
     height: 45px;
 }
 
-.fa-pen-to-square{
+.fa-pen-to-square {
     font-size: 20px;
 }
 
-.caixaFoto{
+.caixaFoto {
     height: 116px;
 
 }
 
 
-.caixaFile{
+.caixaFile {
     margin-bottom: 1rem;
-    
+
 }
-.custom-file-label{
+
+.custom-file-label {
     top: 65%;
 }
-.custom-file{
+
+.custom-file {
     right: -30%;
-    
+
 }
-.modal-header{
+
+.modal-header {
     background-color: #134b4b;
 
 }
+
 .modal-header .modal-title {
     color: white;
 }
 
-.modal-header .close{
+.modal-header .close {
     width: 50px;
 }
-.caixaRetornoCoabitantes{
+
+.caixaRetornoCoabitantes {
     padding-left: 90px;
     padding-top: 20px;
 }
 
 /*Consulta de Categoria e SubCatgoria*/
-.tituloInput{
+.botaoCategorias {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    margin-right: 25px;
+}
+.botaoCategorias.active {
+    background-color:#134b4b;
+    color: white;
+}
+
+.botaoCategorias.active:hover {
+    background-color:#134b4b;
+    color: white;
+}
+
+.botaoCategorias:hover {
+    color: #134b4b;
+}
+
+.tituloInput {
     margin-right: 10px;
     display: flex;
     padding-top: 5px;
     width: 75px;
 }
 
-.btnPesquisar{
+.btnPesquisar {
     margin-bottom: 25px;
     margin-left: 0px;
 
 }
-.custom-control{
+
+.custom-control {
     padding-top: 5px;
     margin-left: 15px;
     width: 70px;
 }
 
-.inputCategorias{
+.inputCategorias {
     width: 300px;
     margin-right: 20px;
 }
-.input-group-prepend{
+
+.input-group-prepend {
     margin-top: 25px;
 }
-.tituloEdicao{
+
+.tituloEdicao {
     margin-top: 25px;
     font-size: 25px;
     font-weight: bold;
 }
 
+tr.colunasCategorias th {
+    background-color: #134b4b;
+    color: white;
+    text-align: center;
+}
+
+tr.colunasCategorias td {
+    border-color: #134b4b;
+}
+
+tr.colunasCategorias td:hover {
+    cursor: pointer;
+}
+
+
+/* Cor quando está checked */
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color:#134b4b !important;
+}
 
 /*------------------------------*/

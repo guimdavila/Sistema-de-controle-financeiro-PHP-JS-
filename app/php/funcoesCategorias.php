@@ -32,7 +32,7 @@ function listaCategoria($id, $personalizado, $consultaUser)
             } else {
                 $tipoCategoria = "Padrão";
             }
-            $lista .= "<tr>"
+            $lista .= "<tr class='colunasCategorias'>"
                 . "<td align='center'>" . $coluna["nomecategoria"] . "</td>"
                 . "<td align='center'>" . $coluna["especieMovimentacao"] . "</td>"
                 . "<td align='center'>" . $tipoCategoria . "</td>"
