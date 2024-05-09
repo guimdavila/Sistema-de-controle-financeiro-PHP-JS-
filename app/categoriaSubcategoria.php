@@ -75,28 +75,54 @@ include('partes/css.php'); //importes de CSS
 
                                     <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-4">
                                                 <div class="col-12">
                                                     <div class="input-group mb-3">
 
                                                         <div class="input-group-prepend">
                                                             <span class="tituloInput"><strong>Consulta:</strong></span>
+                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                            <div class="custom-control custom-switch">
+                                                                <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
+                                                                <label class="custom-control-label" for="customSwitch1">Personalizado</label>
+                                                            </div>
                                                         </div>
-                                                        <input type="text" name="nConsultaCategoria" class="form-control">
+                                                    </div>
 
-                                                        <div class="custom-control custom-switch">
-                                                            <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
-                                                            <label class="custom-control-label" for="customSwitch1">Personalizado</label>
-                                                        </div>
-                                                    </div>
                                                     <div class="botoes-editar">
-                                                        <button type="submit" class="btn btn-edit-perfil">Pesquisar</button>
+                                                        <button type="submit" class="btn btn-edit-perfil btnPesquisar">Pesquisar</button>
                                                     </div>
+
+                                                    <hr>
+
+                                                    <p class="tituloEdicao">Edição</p>
+
+                                                    <div class="input-group-prepend">
+                                                        <span class="tituloInput"><strong>Categoria:</strong></span>
+                                                        <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                    </div>
+
+                                                    <div class="input-group-prepend">
+                                                        <span class="tituloInput"><strong>Especie:</strong></span>
+                                                        <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                    </div>
+
+                                                    <div class="input-group-prepend">
+                                                        <span class="tituloInput"><strong>Tipo:</strong></span>
+                                                        <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                    </div>
+
+
+                                                    <div class="botoes-editar">
+                                                        <button type="submit" class="btn btn-edit-perfil btnPesquisar">Salvar</button>
+                                                    </div>
+
+
                                                 </div>
 
 
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-8">
 
                                                 <table id="tabela" class="table table-bordered table-hover">
                                                     <thead>

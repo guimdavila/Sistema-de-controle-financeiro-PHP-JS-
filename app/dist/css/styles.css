@@ -237,10 +237,32 @@ hr{
     margin-right: 10px;
     display: flex;
     padding-top: 5px;
+    width: 75px;
 }
 
+.btnPesquisar{
+    margin-bottom: 25px;
+    margin-left: 0px;
+
+}
 .custom-control{
     padding-top: 5px;
     margin-left: 15px;
     width: 70px;
 }
+
+.inputCategorias{
+    width: 300px;
+    margin-right: 20px;
+}
+.input-group-prepend{
+    margin-top: 25px;
+}
+.tituloEdicao{
+    margin-top: 25px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+/*------------------------------*/
