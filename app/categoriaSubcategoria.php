@@ -64,10 +64,10 @@ include('partes/css.php'); //importes de CSS
                                 <div class="card-header">
                                     <ul class="nav nav-pills card-header-pills">
                                         <li class="nav-item">
-                                            <button id="categoriaBtn" type="button" class="botaoCategorias btn active" onclick="mostrarTela('tela1'); setActiveButton('categoriaBtn')">Categoria</button>
+                                            <button id="categoriaBtn" type="button" class="botaoCategorias btn active" onclick="mostrarTela('tela1'); setActiveButton(this)">Categoria</button>
                                         </li>
                                         <li class="nav-item">
-                                            <button id="subcategoriaBtn" class="botaoCategorias btn" onclick="mostrarTela('tela2'); setActiveButton('subcategoriaBtn')">SubCategoria</button>
+                                            <button id="subcategoriaBtn" class="botaoCategorias btn" onclick="mostrarTela('tela2'); setActiveButton(this)">SubCategoria</button>
                                         </li>
                                     </ul>
                                 </div>
@@ -156,7 +156,7 @@ include('partes/css.php'); //importes de CSS
                                                         <div class="input-group mb-3">
 
                                                             <div class="input-group-prepend">
-                                                                <span class="tituloInput"><strong>SUBCATEGORIA:</strong></span>
+                                                                <span class="tituloInput"><strong>Consulta:</strong></span>
                                                                 <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
                                                                 <div class="custom-control custom-switch">
                                                                     <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
@@ -188,6 +188,11 @@ include('partes/css.php'); //importes de CSS
                                                             <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
                                                         </div>
 
+                                                        <div class="input-group-prepend">
+                                                            <span class="tituloInput"><strong>Categoria:</strong></span>
+                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
+                                                        </div>
+
 
                                                         <div class="botoes-editar">
                                                             <button type="submit" class="btn btn-edit-perfil btnPesquisar">Salvar</button>
@@ -203,13 +208,14 @@ include('partes/css.php'); //importes de CSS
                                                     <table id="tabela" class="table table-bordered table-hover">
                                                         <thead>
                                                             <tr class="colunasCategorias">
+                                                                <th>Sub-Categoria</th>
                                                                 <th>Categorias</th>
                                                                 <th>Especie</th>
                                                                 <th>Tipo</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php echo listaCategoria($_SESSION['idUsuario'], 0, ''); ?>
+                                                            <?php echo listaSubCategoria($_SESSION['idUsuario'], 0, ''); ?>
                                                         </tbody>
                                                     </table>
                                                 </div>

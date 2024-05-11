@@ -44,4 +44,47 @@ function listaCategoria($id, $personalizado, $consultaUser)
 
     return $lista;
 }
+
+function listaSubCategoria($id, $personalizado, $consultaUser)
+{
+    $lista = '';
+    $tipoCategoria = '';
+
+    include("conexao.php");
+
+    if (!empty($consultaUser)) {
+        if ($personalizado == 0) {
+            $sql = "SELECT c.nomesubcategoria ,b.nomecategoria, a.especieMovimentacao, c.idUsuario FROM tipomovimentacao AS a  INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao INNER JOIN subcategoria as c ON B.idcategoria = c.idcategoria  WHERE b.nomecategoria like '%$consultaUser%' and (b.idusuario = $id);";
+        } else {
+            $sql = "SELECT c.nomesubcategoria ,b.nomecategoria, a.especieMovimentacao, c.idUsuario FROM tipomovimentacao AS a  INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao INNER JOIN subcategoria as c ON B.idcategoria = c.idcategoria  WHERE b.nomecategoria like '%$consultaUser%' and (b.idusuario = $id OR b.idusuario IS NULL);";
+        }
+    } else {
+        $sql = "SELECT c.nomesubcategoria ,b.nomecategoria, a.especieMovimentacao, c.idUsuario FROM tipomovimentacao AS a  INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao INNER JOIN subcategoria as c ON B.idcategoria = c.idcategoria  WHERE b.idusuario = $id OR b.idusuario IS NULL;";
+    }
+
+    $result = mysqli_query($conexao, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $coluna) {
+            if ($coluna["idUsuario"] != "") {
+                $tipoCategoria = "Personalizada";
+            } else {
+                $tipoCategoria = "Padrão";
+            }
+            $lista .= "<tr class='colunasCategorias'>"
+                . "<td align='center'>" . $coluna["nomesubcategoria"] . "</td>"
+                . "<td align='center'>" . $coluna["nomecategoria"] . "</td>"
+                . "<td align='center'>" . $coluna["especieMovimentacao"] . "</td>"
+                . "<td align='center'>" . $tipoCategoria . "</td>"
+                . "</tr>";
+        }
+    }
+
+    mysqli_close($conexao);
+
+    return $lista;
+}
+
+
+
 ?>
