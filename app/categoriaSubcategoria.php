@@ -50,7 +50,9 @@ include('partes/css.php'); //importes de CSS
             ?>
 
             <script src="dist/js/script.js"></script>
-
+            <?php
+            include('dist/js/script.js'); //importes de js
+            ?>
         </aside>
 
         <div class="content-wrapper">
@@ -82,50 +84,17 @@ include('partes/css.php'); //importes de CSS
 
                                                             <div class="input-group-prepend">
                                                                 <span class="tituloInput"><strong>Consulta:</strong></span>
-                                                                <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                                <div class="custom-control custom-switch">
-                                                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
-                                                                    <label class="custom-control-label" for="customSwitch1">Personalizado</label>
-                                                                </div>
+                                                                <input type="text" id="inputValor1" oninput="filterTable('inputValor1', 'tabela1')" class="form-control inputCategorias">
+
                                                             </div>
                                                         </div>
 
-                                                        <div class="botoes-editar">
-                                                            <button type="submit" class="btn btn-edit-perfil btnPesquisar">Pesquisar</button>
-                                                        </div>
-
-                                                        <hr>
-
-                                                        <p class="tituloEdicao">Edição</p>
-
-                                                        <div class="input-group-prepend">
-                                                            <span class="tituloInput"><strong>Categoria:</strong></span>
-                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                        </div>
-
-                                                        <div class="input-group-prepend">
-                                                            <span class="tituloInput"><strong>Especie:</strong></span>
-                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                        </div>
-
-                                                        <div class="input-group-prepend">
-                                                            <span class="tituloInput"><strong>Tipo:</strong></span>
-                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                        </div>
-
-
-                                                        <div class="botoes-editar">
-                                                            <button type="submit" class="btn btn-edit-perfil btnPesquisar">Salvar</button>
-                                                        </div>
-
-
                                                     </div>
-
 
                                                 </div>
                                                 <div class="col-8">
 
-                                                    <table id="tabela" class="table table-bordered table-hover">
+                                                    <table id="tabela1" class="table table-bordered table-hover">
                                                         <thead>
                                                             <tr class="colunasCategorias">
                                                                 <th>Categorias</th>
@@ -146,6 +115,7 @@ include('partes/css.php'); //importes de CSS
 
                                 </div>
 
+
                                 <div id="tela2">
                                     <div class="card-body">
 
@@ -157,45 +127,9 @@ include('partes/css.php'); //importes de CSS
 
                                                             <div class="input-group-prepend">
                                                                 <span class="tituloInput"><strong>Consulta:</strong></span>
-                                                                <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                                <div class="custom-control custom-switch">
-                                                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" name="nPersonalizado">
-                                                                    <label class="custom-control-label" for="customSwitch1">Personalizado</label>
-                                                                </div>
+                                                                <input type="text" id="inputValor2" oninput="filterTable('inputValor2', 'tabela2')" class="form-control inputCategorias">
+
                                                             </div>
-                                                        </div>
-
-                                                        <div class="botoes-editar">
-                                                            <button type="submit" class="btn btn-edit-perfil btnPesquisar">Pesquisar</button>
-                                                        </div>
-
-                                                        <hr>
-
-                                                        <p class="tituloEdicao">Edição</p>
-
-                                                        <div class="input-group-prepend">
-                                                            <span class="tituloInput"><strong>Categoria:</strong></span>
-                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                        </div>
-
-                                                        <div class="input-group-prepend">
-                                                            <span class="tituloInput"><strong>Especie:</strong></span>
-                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                        </div>
-
-                                                        <div class="input-group-prepend">
-                                                            <span class="tituloInput"><strong>Tipo:</strong></span>
-                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                        </div>
-
-                                                        <div class="input-group-prepend">
-                                                            <span class="tituloInput"><strong>Categoria:</strong></span>
-                                                            <input type="text" name="nConsultaCategoria" class="form-control inputCategorias">
-                                                        </div>
-
-
-                                                        <div class="botoes-editar">
-                                                            <button type="submit" class="btn btn-edit-perfil btnPesquisar">Salvar</button>
                                                         </div>
 
 
@@ -205,7 +139,7 @@ include('partes/css.php'); //importes de CSS
                                                 </div>
                                                 <div class="col-8">
 
-                                                    <table id="tabela" class="table table-bordered table-hover">
+                                                    <table id="tabela2" class="table table-bordered table-hover">
                                                         <thead>
                                                             <tr class="colunasCategorias">
                                                                 <th>Sub-Categoria</th>
@@ -318,6 +252,8 @@ include('partes/css.php'); //importes de CSS
                 mostrarTela('tela1');
             };
         </script>
+
+        
 
 </body>
 
