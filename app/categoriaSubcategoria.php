@@ -50,6 +50,7 @@ include('partes/css.php'); //importes de CSS
             ?>
 
             <script src="dist/js/script.js"></script>
+
             <?php
             include('dist/js/script.js'); //importes de js
             ?>
@@ -66,13 +67,33 @@ include('partes/css.php'); //importes de CSS
                                 <div class="card-header">
                                     <ul class="nav nav-pills card-header-pills">
                                         <li class="nav-item">
-                                            <button id="categoriaBtn" type="button" class="botaoCategorias btn active" onclick="mostrarTela('tela1'); setActiveButton(this)">Categoria</button>
+                                            <button id="categoriaBtn" type="button" class="botaoCategorias btn active" onclick="mostrarTela('tela1')">Categoria</button>
                                         </li>
                                         <li class="nav-item">
-                                            <button id="subcategoriaBtn" class="botaoCategorias btn" onclick="mostrarTela('tela2'); setActiveButton(this)">SubCategoria</button>
+                                            <button id="subcategoriaBtn" type="button" class="botaoCategorias btn" onclick="mostrarTela('tela2')">SubCategoria</button>
                                         </li>
                                     </ul>
                                 </div>
+
+                                <script>
+                                    var botaoCate = document.getElementById('categoriaBtn');
+                                    var botaoSub = document.getElementById('subcategoriaBtn');
+
+                                    botaoCate.addEventListener('click', function() {
+                                        this.classList.add('active');
+                                        botaoSub.classList.remove('active');
+                                    });
+
+                                    botaoSub.addEventListener('click', function() {
+                                        this.classList.add('active');
+                                        botaoCate.classList.remove('active');
+                                    });
+                                </script>
+
+
+
+
+
                                 <div id="tela1">
                                     <div class="card-body">
 
@@ -253,7 +274,7 @@ include('partes/css.php'); //importes de CSS
             };
         </script>
 
-        
+
 
 </body>
 
