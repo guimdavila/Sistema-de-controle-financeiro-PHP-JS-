@@ -90,10 +90,6 @@ include('partes/css.php'); //importes de CSS
                                     });
                                 </script>
 
-
-
-
-
                                 <div id="tela1">
                                     <div class="card-body">
 
@@ -121,16 +117,54 @@ include('partes/css.php'); //importes de CSS
                                                                 <th>Categorias</th>
                                                                 <th>Especie</th>
                                                                 <th>Tipo</th>
+                                                                <th>Permissão</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php echo listaCategoria($_SESSION['idUsuario'], 0, ''); ?>
                                                         </tbody>
+
                                                     </table>
                                                 </div>
                                             </div>
 
                                         </form>
+                                        <div class="modal fade" id="crudCategoria">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edição</h4>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="card-body">
+
+                                                            <?php echo acaoCategoria($_SESSION['idUsuario']);?>
+
+                                                            <p></p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
 
                                     </div>
 
@@ -167,6 +201,7 @@ include('partes/css.php'); //importes de CSS
                                                                 <th>Categorias</th>
                                                                 <th>Especie</th>
                                                                 <th>Tipo</th>
+                                                                <th>Permissão</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>

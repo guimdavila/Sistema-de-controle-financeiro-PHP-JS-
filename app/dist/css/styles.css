@@ -325,4 +325,9 @@ tr.colunasCategorias td:hover {
     background-color:#134b4b !important;
 }
 
-/*------------------------------*/
+.classeLapis{
+    margin-right: 10px;
+}
+.iconTabela{
+    color: #134b4b;
+}
