@@ -1,27 +1,16 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Chame a função se o formulário foi enviado
-    $personalizado = isset($_POST["nPersonalizado"]) ? 1 : 0;
-    $consultaUser = $_POST["nConsultaCategoria"];
-    echo listaCategoria($_SESSION['idUsuario'], $personalizado, $consultaUser);
+    echo listaCategoria($_SESSION['idUsuario']);
 }
 
-function listaCategoria($id, $personalizado, $consultaUser)
+function listaCategoria($id)
 {
     $lista = '';
     $tipoCategoria = '';
 
     include("conexao.php");
 
-    if (!empty($consultaUser)) {
-        if ($personalizado == 0) {
-            $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.nomecategoria like '%$consultaUser%' and (b.idusuario = $id);";
-        } else {
-            $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.nomecategoria like '%$consultaUser%' and (b.idusuario = $id OR b.idusuario IS NULL);";
-        }
-    } else {
-        $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idusuario = $id OR b.idusuario IS NULL;";
-    }
+    $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idusuario = $id OR b.idusuario IS NULL;";
 
     $result = mysqli_query($conexao, $sql);
 
@@ -34,11 +23,11 @@ function listaCategoria($id, $personalizado, $consultaUser)
                 $tipoCategoria = "Padrão";
                 $tipoPermissao = "<i class='fa-solid fa-eye iconTabela'></i>";
             }
-            $lista .= "<tr class='colunasCategorias' data-toggle='modal' data-target='#crudCategoria'>"
+            $lista .= "<tr class='colunasCategorias' >"
                 . "<td align='center' >" . $coluna["nomecategoria"] . "</td>"
                 . "<td align='center' >" . $coluna["especieMovimentacao"] . "</td>"
                 . "<td align='center' >" . $tipoCategoria . "</td>"
-                . "<td align='center' data-target='#crudCategoria'>" . $tipoPermissao . "</td>"
+                . "<td align='center' data-toggle='modal' data-target='#crudCategoria'>" . $tipoPermissao . "</td>"
                 . "</tr>";
         }
     }
@@ -49,9 +38,10 @@ function listaCategoria($id, $personalizado, $consultaUser)
 }
 
 
-function acaoCategoria($id){
+function acaoCategoria($id)
+{
     $retornaValor = '';
-    
+
     include("conexao.php");
     $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idusuario = $id OR b.idusuario IS NULL;";
 
@@ -65,24 +55,20 @@ function acaoCategoria($id){
             } else {
                 $tipoCategoria = "Padrão";
             }
-            
+
             if ($coluna["idUsuario"] != "") {
 
-                $retornaValor .= "<span class='tituloInput'><strong>Nome Categoria: </strong></span>". $coluna["nomecategoria"]
-                                ."<span class='tituloInput'><strong>Especie Movimentação: </strong></span>".$coluna["especieMovimentacao"]
-                                ."<span class='tituloInput'><strong>Tipo</strong></span>". $tipoCategoria;
-                
+                $retornaValor .= "<span class='tituloInput'><strong>Nome Categoria: </strong></span>" . $coluna["nomecategoria"]
+                    . "<span class='tituloInput'><strong>Especie Movimentação: </strong></span>" . $coluna["especieMovimentacao"]
+                    . "<span class='tituloInput'><strong>Tipo</strong></span>" . $tipoCategoria;
             } else {
-                
             }
-        
         }
     }
-    
+
     mysqli_close($conexao);
 
     return $retornaValor;
-
 }
 
 
@@ -91,26 +77,14 @@ function acaoCategoria($id){
 
 
 
-
-
-
-
-function listaSubCategoria($id, $personalizado, $consultaUser)
+function listaSubCategoria($id)
 {
     $lista = '';
     $tipoCategoria = '';
 
     include("conexao.php");
 
-    if (!empty($consultaUser)) {
-        if ($personalizado == 0) {
-            $sql = "SELECT c.nomesubcategoria ,b.nomecategoria, a.especieMovimentacao, c.idUsuario FROM tipomovimentacao AS a  INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao INNER JOIN subcategoria as c ON B.idcategoria = c.idcategoria  WHERE b.nomecategoria like '%$consultaUser%' and (b.idusuario = $id);";
-        } else {
-            $sql = "SELECT c.nomesubcategoria ,b.nomecategoria, a.especieMovimentacao, c.idUsuario FROM tipomovimentacao AS a  INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao INNER JOIN subcategoria as c ON B.idcategoria = c.idcategoria  WHERE b.nomecategoria like '%$consultaUser%' and (b.idusuario = $id OR b.idusuario IS NULL);";
-        }
-    } else {
-        $sql = "SELECT c.nomesubcategoria ,b.nomecategoria, a.especieMovimentacao, c.idUsuario FROM tipomovimentacao AS a  INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao INNER JOIN subcategoria as c ON B.idcategoria = c.idcategoria  WHERE b.idusuario = $id OR b.idusuario IS NULL;";
-    }
+    $sql = "SELECT c.nomesubcategoria ,b.nomecategoria, a.especieMovimentacao, c.idUsuario FROM tipomovimentacao AS a  INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao INNER JOIN subcategoria as c ON B.idcategoria = c.idcategoria  WHERE b.idusuario = $id OR b.idusuario IS NULL;";
 
     $result = mysqli_query($conexao, $sql);
 
@@ -137,8 +111,3 @@ function listaSubCategoria($id, $personalizado, $consultaUser)
 
     return $lista;
 }
-
-
-
-
-?>
