@@ -396,7 +396,6 @@ include('php/funcoes.php');
 
                                         <hr>
 
-
                                         <button type="submit" class="btn btn-edit-perfil" data-taggle="modal" onclick="mostrarTela('tela1')">Salvar</button>
 
                                         <input type="button" class="btn  btn-edit-perfil" data-taggle="modal" onclick="mostrarTela('tela1')" value="Cancelar">

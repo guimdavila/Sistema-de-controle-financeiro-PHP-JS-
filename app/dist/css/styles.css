@@ -257,13 +257,14 @@ hr {
     width: 100px;
     margin-right: 25px;
 }
+
 .botaoCategorias.active {
-    background-color:#134b4b;
+    background-color: #134b4b;
     color: white;
 }
 
 .botaoCategorias.active:hover {
-    background-color:#134b4b;
+    background-color: #134b4b;
     color: white;
 }
 
@@ -272,7 +273,7 @@ hr {
 }
 
 .tituloInput {
-    margin-right: 10px;
+    margin-right: 15px;
     display: flex;
     padding-top: 5px;
     width: 75px;
@@ -291,12 +292,12 @@ hr {
 }
 
 .inputCategorias {
-    width: 300px;
+    width: 15rem;
     margin-right: 20px;
 }
 
 .input-group-prepend {
-    margin-top: 25px;
+    margin-top: 50px;
 }
 
 .tituloEdicao {
@@ -318,11 +319,82 @@ tr.colunasCategorias td {
 tr.colunasCategorias td:hover {
     cursor: pointer;
 }
-
-
-/* Cor quando está checked */
-.custom-control-input:checked ~ .custom-control-label::before {
-    background-color:#134b4b !important;
+.container-cat-botao{
+    display: flex;
+    justify-content: flex-end;
 }
 
-/*------------------------------*/
+.btn-novo-cat {
+    margin-bottom: 10px;
+    width: 200px;
+    height: 35px;
+    background-color: #134b4b;
+    border-color: #134b4b;
+    transition: none;
+    color: white;
+    left: 100%;
+}
+
+.btn-novo-cat:hover {
+    background-color: #134b4b;
+    border-color: #134b4b;
+    color: white;
+
+}
+
+.form-control-categoria{
+    width: 15rem;
+}
+
+.tituloInputNovoCate {
+    margin-right: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    padding-top: 5px;
+    width: 150px;
+}
+
+.input-group-prependCategoria{
+    margin-top: 20px;
+}
+
+.caixaSelecaoCate{
+    background-color: white;
+    height: 35px;
+    width: 240px;
+}
+
+.btn-salvar-cat {
+    margin-bottom: 10px;
+    width: 150px;
+    height: 35px;
+    background-color: #134b4b;
+    border-color: #134b4b;
+    transition: none;
+    color: white;
+    left: 100%;
+}
+
+.btn-salvar-cat:hover {
+    background-color: #134b4b;
+    border-color: #134b4b;
+    color: white;
+
+}
+
+.tdInvisivel {
+    display: none;
+}
+
+/* Cor quando está checked */
+.custom-control-input:checked~.custom-control-label::before {
+    background-color: #134b4b !important;
+}
+
+.classeLapis {
+    margin-right: 10px;
+}
+
+.iconTabela {
+    color: #134b4b;
+}
