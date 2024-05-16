@@ -257,6 +257,8 @@ include('partes/css.php'); //importes de CSS
                                                                                     <span class="tituloInputNovoCate"><strong>Categoria:</strong></span>
                                                                                     <select class="input-group-text caixaSelecaoCate" name="nCategoriasNaSubcategoria" required>
                                                                                         <option value="" disabled selected>Selecione</option>
+                                                                                        <?php echo SolicitaCategorias($_SESSION['idUsuario']); ?>    
+                                                                                    
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="modal-footer">
@@ -290,20 +292,6 @@ include('partes/css.php'); //importes de CSS
                                     </div>
                                 </div>
 
-                                <script>
-                                    document.addEventListener("DOMContentLoaded", function() {
-                                        var tabela = document.getElementById('tabela1');
-                                        var select = document.querySelector('select[name="nCategoriasNaSubcategoria"]');
-
-                                        for (var i = 1; i < tabela.rows.length; i++) {
-                                            var cell = tabela.rows[i].cells[0]; // Coluna "Categorias"
-                                            var option = document.createElement('option');
-                                            option.value = cell.innerHTML.trim(); // Modificação aqui
-                                            option.textContent = cell.innerHTML.trim(); // Modificação aqui
-                                            select.appendChild(option);
-                                        }
-                                    });
-                                </script>
 
 
 

@@ -15,8 +15,6 @@ $nomeSubCategoria          = $_POST['nNomeSubCategoria'];
 $categoriasNaSubcategoria       = $_POST['nCategoriasNaSubcategoria'];
 
 
-
-
 if ($nomeCategoria != "") {
 
     include("conexao.php");
@@ -50,22 +48,14 @@ if ($nomeSubCategoria != "") {
         echo "Categoria já existe";
     } else {
         
-        $sql = "SELECT IDCATEGORIA FROM CATEGORIA WHERE NOMECATEGORIA = '" . $categoriasNaSubcategoria . "'";
-
-        $idCategoriaSub = mysqli_query($conexao, $sql);
-        
         $sql = "INSERT INTO SUBCATEGORIA(NOMESUBCATEGORIA, IDCATEGORIA, IDUSUARIO) "
-            . "VALUES('" . $nomeSubCategoria . "', " . $idCategoriaSub . ", " . $id . ")";
+            . "VALUES('" . $nomeSubCategoria . "', " . $categoriasNaSubcategoria . ", " . $id . ")";
 
         $criarCategoria = mysqli_query($conexao, $sql);
     }
     $nomeSubCategoria == "";
     mysqli_close($conexao); 
 }
-
-
-
-
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -79,7 +69,7 @@ function listaCategoria($id)
 
     include("conexao.php");
 
-    $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idusuario = $id OR b.idusuario IS NULL;";
+    $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario, b.idcategoria FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idusuario = $id OR b.idusuario IS NULL;";
 
     $result = mysqli_query($conexao, $sql);
 
@@ -106,6 +96,22 @@ function listaCategoria($id)
     return $lista;
 }
 
+function SolicitaCategorias($id){
+
+
+    include("conexao.php");
+
+    $sql = "SELECT NOMESUBCATEGORIA, IDCATEGORIA FROM SUBCATEGORIA WHERE idusuario = $id OR idusuario IS NULL;";
+
+    $resultSql = mysqli_query($conexao, $sql);
+
+    foreach ($resultSql as $coluna) {
+        
+        $lista .= "<option value= '". $coluna["IDCATEGORIA"] . "'>".$coluna["NOMESUBCATEGORIA"]."</option>";
+    }
+
+    return $lista;
+}
 
 function acaoCategoria($id)
 {
