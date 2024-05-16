@@ -1,4 +1,73 @@
 <?php
+
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+// Criar categoria
+$id                     = $_SESSION['idUsuario'];
+
+$nomeCategoria          = $_POST['nNomeCategoria'];
+$especieCategoria       = $_POST['nEspecie'];
+
+$nomeSubCategoria          = $_POST['nNomeSubCategoria'];
+$categoriasNaSubcategoria       = $_POST['nCategoriasNaSubcategoria'];
+
+
+
+
+if ($nomeCategoria != "") {
+
+    include("conexao.php");
+
+    $sql = "SELECT NOMECATEGORIA FROM CATEGORIA WHERE NOMECATEGORIA = '" . $nomeCategoria . "'";
+
+    $resultSql = mysqli_query($conexao, $sql);
+
+    if (mysqli_num_rows($resultSql) > 0) {
+        echo "Categoria já existe";
+    } else {
+        
+        $sql = "INSERT INTO CATEGORIA(NOMECATEGORIA, IDTIPOMOVIMENTACAO, IDUSUARIO) "
+            . "VALUES('" . $nomeCategoria . "', " . $especieCategoria . ", " . $id . ")";
+
+        $criarCategoria = mysqli_query($conexao, $sql);
+    }
+    $nomeCategoria == "";
+    mysqli_close($conexao); 
+}
+
+if ($nomeSubCategoria != "") {
+
+    include("conexao.php");
+
+    $sql = "SELECT NOMESUBCATEGORIA FROM SUBCATEGORIA WHERE NOMESUBCATEGORIA = '" . $nomeSubCategoria . "'";
+
+    $resultSql = mysqli_query($conexao, $sql);
+
+    if (mysqli_num_rows($resultSql) > 0) {
+        echo "Categoria já existe";
+    } else {
+        
+        $sql = "SELECT IDCATEGORIA FROM CATEGORIA WHERE NOMECATEGORIA = '" . $categoriasNaSubcategoria . "'";
+
+        $idCategoriaSub = mysqli_query($conexao, $sql);
+        
+        $sql = "INSERT INTO SUBCATEGORIA(NOMESUBCATEGORIA, IDCATEGORIA, IDUSUARIO) "
+            . "VALUES('" . $nomeSubCategoria . "', " . $idCategoriaSub . ", " . $id . ")";
+
+        $criarCategoria = mysqli_query($conexao, $sql);
+    }
+    $nomeSubCategoria == "";
+    mysqli_close($conexao); 
+}
+
+
+
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo listaCategoria($_SESSION['idUsuario']);
 }
