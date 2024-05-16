@@ -5,7 +5,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-// Criar categoria
 $id                     = $_SESSION['idUsuario'];
 
 $nomeCategoria          = $_POST['nNomeCategoria'];
@@ -15,6 +14,7 @@ $nomeSubCategoria          = $_POST['nNomeSubCategoria'];
 $categoriasNaSubcategoria       = $_POST['nCategoriasNaSubcategoria'];
 
 
+// Criar categoria
 if ($nomeCategoria != "") {
 
     include("conexao.php");
@@ -36,6 +36,8 @@ if ($nomeCategoria != "") {
     mysqli_close($conexao); 
 }
 
+
+// Criar Subcategoria
 if ($nomeSubCategoria != "") {
 
     include("conexao.php");
@@ -62,40 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo listaCategoria($_SESSION['idUsuario']);
 }
 
-function listaCategoria($id)
-{
-    $lista = '';
-    $tipoCategoria = '';
-
-    include("conexao.php");
-
-    $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario, b.idcategoria FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idusuario = $id OR b.idusuario IS NULL;";
-
-    $result = mysqli_query($conexao, $sql);
-
-    if (mysqli_num_rows($result) > 0) {
-        foreach ($result as $coluna) {
-            if ($coluna["idUsuario"] != "") {
-                $tipoCategoria = "Personalizada";
-                $tipoPermissao = "<i class='fa-solid fa-pen classeLapis iconTabela'></i> <i class='fa-solid fa-eye iconTabela'></i>";
-            } else {
-                $tipoCategoria = "Padrão";
-                $tipoPermissao = "<i class='fa-solid fa-eye iconTabela'></i>";
-            }
-            $lista .= "<tr class='colunasCategorias' >"
-                . "<td align='center' >" . $coluna["nomecategoria"] . "</td>"
-                . "<td align='center' >" . $coluna["especieMovimentacao"] . "</td>"
-                . "<td align='center' >" . $tipoCategoria . "</td>"
-                . "<td align='center' data-toggle='modal' data-target='#crudCategoria'>" . $tipoPermissao . "</td>"
-                . "</tr>";
-        }
-    }
-
-    mysqli_close($conexao);
-
-    return $lista;
-}
-
+// Lista como Option as categorias
 function SolicitaCategorias($id){
 
 
@@ -113,6 +82,7 @@ function SolicitaCategorias($id){
     return $lista;
 }
 
+// Alterar categoria
 function acaoCategoria($id)
 {
     $retornaValor = '';
@@ -147,11 +117,51 @@ function acaoCategoria($id)
 }
 
 
+// Tabela de categorias
+function listaCategoria($id)
+{
+    $lista = '';
+    $tipoCategoria = '';
+
+    include("conexao.php");
+
+    $sql = "SELECT b.nomecategoria, a.especieMovimentacao, b.idUsuario, b.idcategoria FROM tipomovimentacao AS a INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idusuario = $id OR b.idusuario IS NULL;";
+
+    $result = mysqli_query($conexao, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $coluna) {
+            if ($coluna["idUsuario"] != "") {
+                $tipoCategoria = "Personalizada";
+                $tipoPermissao = "<i class='fa-solid fa-pen classeLapis iconTabela' data-toggle='modal' data-target='#crudCategoria'></i> <i class='fa-solid fa-eye iconTabela'></i>";
+            } else {
+                $tipoCategoria = "Padrão";
+                $tipoPermissao = "<i class='fa-solid fa-eye iconTabela'></i>";
+            }
+            $lista .= "<tr class='colunasCategorias' >"
+                . "<td align='center' >" . $coluna["nomecategoria"] . "</td>"
+                . "<td align='center' >" . $coluna["especieMovimentacao"] . "</td>"
+                . "<td align='center' >" . $tipoCategoria . "</td>"
+                . "<td align='center' >" . $tipoPermissao . "</td>"
+                . "</tr>";
+        }
+    }
+
+    mysqli_close($conexao);
+
+    return $lista;
+}
 
 
 
 
 
+
+
+
+
+
+// Tabela de Subcategorias
 function listaSubCategoria($id)
 {
     $lista = '';

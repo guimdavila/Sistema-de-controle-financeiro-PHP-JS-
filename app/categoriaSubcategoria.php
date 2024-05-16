@@ -153,12 +153,7 @@ include('partes/css.php'); //importes de CSS
                                                                                 <div class="modal-footer">
                                                                                     <button type="submit" class="btn btn-salvar-cat" data-taggle="modal">Salvar</button>
                                                                                 </div>
-
-
                                                                             </form>
-
-
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -380,11 +375,6 @@ include('partes/css.php'); //importes de CSS
     include('partes/js.php'); //importes de CSS
     ?>
 
-    <script>
-        window.onload = function() {
-            mostrarTela('tela1');
-        };
-    </script>
 
 
 
