@@ -227,8 +227,6 @@ include('php/funcoes.php');
                     </div><!-- /.container-fluid -->
 
 
-
-
                     <!-- Editar coabitante -->
                     <div class="modal fade" id="editarCoabitante">
                         <div class="modal-dialog modal-lg">
@@ -241,8 +239,8 @@ include('php/funcoes.php');
                                     </button>
                                 </div>
 
-
-                                <form action="" method="post" enctype="multipart/form-data">
+                               
+                                <form onsubmit="<?php teste($_SESSION['idUsuario']) ?>" method="post" enctype="multipart/form-data">
 
                                     <div class="modal-body">
 
@@ -251,7 +249,7 @@ include('php/funcoes.php');
                                             <div class="card-body">
                                                 <table id="tabela" class="table table-bordered table-hover">
 
-                                                <button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='adicionarLinha()'>Adicionar</button>
+
 
 
                                                     <thead>
@@ -261,24 +259,17 @@ include('php/funcoes.php');
                                                     </thead>
 
                                                     <tbody>
-
-
-                                                        <?php echo listaUsuario($_SESSION['idUsuario']); ?>
-
+                                                        <?php echo listaUsuario($_SESSION['idUsuario']);?>                        
+                                                        
                                                     </tbody>
 
                                                 </table>
                                             </div>
 
-
-
-
                                         </div>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-edit-perfil" data-dismiss="modal">Voltar</button>
                                             <button type="submit" class="btn btn-edit-perfil">Salvar</button>
-                                        </div>
+                                        
                                 </form>
 
                             </div>
