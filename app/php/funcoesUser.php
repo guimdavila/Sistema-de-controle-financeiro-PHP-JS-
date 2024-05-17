@@ -70,11 +70,6 @@ function primeiroNomeUsuario($id)
 function fotoUsuario($id)
 {
 
-
-
-
-
-
     $resp = "";
 
     include("conexao.php");
@@ -425,11 +420,11 @@ function listaUsuario($id)
                 "<tr>"
                 . "<td>"
                 // Se o botão "Alterar" for clicado, mostra um campo de entrada de texto
-                . "<span id='nomeCoabitante_" . $coluna["nomeCoabitante"] . "'>" .  $coluna["nomeCoabitante"] . "</span>"
-                . "<input type='text' id='novoNome_" .  $coluna["nomeCoabitante"] . "' style='display:none;' name='nTeste[]' value='" .  $coluna["nomeCoabitante"] . "'>"
+                . "<span id='nomeCoabitante_" . $coluna["nomeCoabitante"] . "'>" . $coluna["nomeCoabitante"] . "</span>"
+                . "<input type='text' id='novoNome_" . $coluna["nomeCoabitante"] . "' style='display:none;' name='nTeste[]'  value='" . $coluna["nomeCoabitante"] . "'>"
                 . "</td>"
                 . "<td>"
-                . "<button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick=\"mostrarCampoTexto('" .  $coluna["nomeCoabitante"] . "')\">Alterar</button>"
+                . "<button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick=\"mostrarCampoTexto('" . $coluna["nomeCoabitante"] . "')\">Alterar</button>"
                 . "<button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='removerLinha(this)'>Excluir</button>"
                 . "</td>"
                 . "</tr>";
@@ -437,6 +432,8 @@ function listaUsuario($id)
             // Adiciona o script JavaScript
         }
     }
+
+    
 
 
         $lista .= "
@@ -447,18 +444,32 @@ function listaUsuario($id)
 
                     span.style.display = 'none';
                     input.style.display = 'inline-block';
-                }                   
+                }   
+                
+                function adicionarLinha() {
+                    var table = document.getElementById('tabela');
+                    var newRow = table.insertRow();
+    
+                    var cell1 = newRow.insertCell(0);
+                    var cell2 = newRow.insertCell(1);
+    
+                    cell1.innerHTML = '<input type=\"text\">';
+                    cell2.innerHTML = '<button type=\"button\" class=\"btn btn-edit-perfil\" data-toggle=\"modal\" onclick=\"mostrarCampoTexto(this)\">Alterar</button><button type=\"button\" class=\"btn btn-edit-perfil\" data-toggle=\"modal\" onclick=\"removerLinha(this)\">Excluir</button>';
+                }
                             
 
                 function removerLinha(button) {
                     var row = button.parentNode.parentNode;
                     row.parentNode.removeChild(row);
                 }
+                
             </script>
 
             
         
             ";   
+
+            
 
         
         AlteraNomeCoabitante($id, $coluna);
@@ -467,57 +478,8 @@ function listaUsuario($id)
         return $lista;
 
 }
-/*
-function teste($iduser){
-    //Recebe os valores Email e Senha da tela login por meio de post
-    $id[] = $_POST["nTeste"];
-
-    $qntd = count($id);    
-    $t = 0;
-
-    /*while($t < $qntd){
-        echo($id[$t]);
-        $t = $t + 1;
-        
-    }
-    
-}
-*/
-
-function teste($id){
-
-    include('conexao.php');
-
-    $id[] = $_POST["nTeste"];
-
-    $qntd = count($id);    
-    $t = 0;
-
-    include("conexao.php");
-
-    $sql = "SELECT * FROM coabitanteusuario where idUsuarioPrincipal = ". $id;
-
-    $result = mysqli_query($conexao, $sql);
-
-    if (mysqli_num_rows($result) > 0) {
-
-        foreach ($result as $coluna) {
-            if($id[$t] == $coluna["idCoabitanteUsuario"]){
-
-                echo($coluna["idCoabitanteUsuario"]);
-                die();
-
-                $t = $t + 1;
 
 
-
-            }
-            
-        
-        }
-    
-    }
-}
 
 
 ?>

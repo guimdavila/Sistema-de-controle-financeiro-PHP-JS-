@@ -240,7 +240,7 @@ include('php/funcoes.php');
                                 </div>
 
                                
-                                <form onsubmit="<?php teste($_SESSION['idUsuario']) ?>" method="post" enctype="multipart/form-data">
+                                <form  method="post" action="php/teste.php" enctype="multipart/form-data">
 
                                     <div class="modal-body">
 
@@ -248,9 +248,7 @@ include('php/funcoes.php');
 
                                             <div class="card-body">
                                                 <table id="tabela" class="table table-bordered table-hover">
-
-
-
+                                                <button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='adicionarLinha()'>Adicionar</button>
 
                                                     <thead>
                                                         <tr>
@@ -395,6 +393,7 @@ include('php/funcoes.php');
                                         </p>
 
                                         <hr>
+
 
                                         <button type="submit" class="btn btn-edit-perfil" data-taggle="modal" onclick="mostrarTela('tela1')">Salvar</button>
 
