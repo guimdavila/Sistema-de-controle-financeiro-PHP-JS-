@@ -130,6 +130,17 @@ include('php/funcoes.php');
                             <div class="card">
                                 <div class="card-body tamanho-body2">
 
+                                    <div class="objetosSaldos">
+
+                                    </div>
+
+                                    <div class="objetosSaldos">
+                                        
+                                    </div>
+                                    
+                                    <div class="objetosSaldos">
+                                        
+                                    </div>
                                 </div>
 
                             </div>
