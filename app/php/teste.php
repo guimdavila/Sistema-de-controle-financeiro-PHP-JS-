@@ -12,41 +12,39 @@
 
     $qntd = count($id);
 
+    if($qntd > 1){
+        var_dump($explode("",$id));
+        die();
+
+    }
+
+    //$salve[] = explode(" ", $id[]);
+
     $sql = "SELECT * FROM coabitanteusuario where idUsuarioPrincipal = ". $idUser;
 
     $result = mysqli_query($conexao, $sql);
 
-    ////////////////////////////////////////////////////////
+    /////////////////DELETAR///////////////////////////////////////
 
     if (mysqli_num_rows($result) > 0) {
 
         foreach ($result as $coluna) {
-
-            $salve = explode(" ", $id[]);
-            var_dump($salve[0]);
-            die();
-
-        
                     
             $idCoabitanteUsuario = $coluna["idCoabitanteUsuario"];
             $salvo = 0;
             $conta = 0;
 
-            for ($t = 0;$t <= $qntd;){
-                
+            for ($t = 0;$t < ($qntd - 1);){    
 
                 if($idCoabitanteUsuario == $id[$conta]){
                     $salvo = 1;
-
-                    var_dump($id[$conta]);
-                    die();
 
                 }
                 $conta++;
             }
 
             if ($salvo == 0){
-                $sqlDel = "DELETE FROM COABITANTEUSUARIO WHERE ID = ". $idCoabitanteUsuario;
+                $sqlDel = "DELETE FROM COABITANTEUSUARIO WHERE idCoabitanteUsuario = ". $idCoabitanteUsuario. " AND idUsuarioPrincipal = ". $idUser;
                 mysqli_query($conexao, $sqlDel);
 
             }
@@ -58,11 +56,9 @@
 
     ///////////////////////////////////////////////////////////
 
-    for ($t = 0;$t <= $qntd;) {
+    for ($t = 0;$t <= ($qntd - 1);) {
 
-        $valor = $id[$t];
-
-        $sql = "SELECT * FROM coabitanteusuario where idCoabitante = ". $idUser;
+        $sql = "SELECT * FROM coabitanteusuario where idCoabitanteUsuario = ". $idUser;
 
         $result = mysqli_query($conexao, $sql);
 
@@ -70,10 +66,9 @@
 
             foreach ($result as $coluna) {
 
-                $idCoabitanteUsuario = $coluna["idCoabitanteUsuario"];
-                
+                $idCoabitanteUsuario = $coluna["idCoabitanteUsuario"];    
 
-                if($valor == $idCoabitanteUsuario){
+                if($salve[$t] == $idCoabitanteUsuario){
 
                     $sqlAlter = "UPDATE COABITANTEUSUARIO SET NOMECOABITANTE = ".$valor."Where idCoabitante = ". $$idCoabitanteUsuario;
                     mysqli_query($conexao, $sqlAlter);
@@ -95,5 +90,7 @@
     mysqli_close($conexao);
 
     header('location: ../perfilUsuario.php');
+
+    
 
 ?>
