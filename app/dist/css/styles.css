@@ -398,3 +398,6 @@ tr.colunasCategorias td:hover {
 .iconTabela {
     color: #134b4b;
 }
+.hidden {
+    display: none;
+}

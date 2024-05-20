@@ -239,8 +239,7 @@ include('php/funcoes.php');
                                     </button>
                                 </div>
 
-                               
-                                <form  method="post" action="php/teste.php" enctype="multipart/form-data">
+                                <form method="post" action="php/teste.php" enctype="multipart/form-data">
 
                                     <div class="modal-body">
 
@@ -248,7 +247,7 @@ include('php/funcoes.php');
 
                                             <div class="card-body">
                                                 <table id="tabela" class="table table-bordered table-hover">
-                                                <button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='adicionarLinha()'>Adicionar</button>
+                                                    <button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='adicionarLinha()'>Adicionar</button>
 
                                                     <thead>
                                                         <tr>
@@ -257,8 +256,8 @@ include('php/funcoes.php');
                                                     </thead>
 
                                                     <tbody>
-                                                        <?php echo listaUsuario($_SESSION['idUsuario']);?>                        
-                                                        
+                                                        <?php echo listaUsuario($_SESSION['idUsuario']); ?>
+
                                                     </tbody>
 
                                                 </table>
@@ -266,8 +265,8 @@ include('php/funcoes.php');
 
                                         </div>
 
-                                            <button type="submit" class="btn btn-edit-perfil">Salvar</button>
-                                        
+                                        <button type="submit" class="btn btn-edit-perfil">Salvar</button>
+
                                 </form>
 
                             </div>
@@ -276,17 +275,7 @@ include('php/funcoes.php');
                         <!-- /.modal-content -->
                     </div>
 
-
-
-
-
-
-
-
-
-
-
-                    <!-- /.modal-dialog -->
+                   <!-- /.modal-dialog -->
                 </section>
             </div>
             <!-- /.modal -->
@@ -413,7 +402,6 @@ include('php/funcoes.php');
             </section>
         </div>
     </div>
-
 
 
     <?php

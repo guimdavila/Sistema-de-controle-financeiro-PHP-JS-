@@ -61,7 +61,6 @@ include('partes/css.php'); //importes de CSS
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
@@ -212,7 +211,7 @@ include('partes/css.php'); //importes de CSS
                                 </div>
 
 
-                                <div id="tela2">
+                                <div id="tela2" class="hidden">
                                     <div class="card-body">
                                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                             <div class="row">
@@ -252,8 +251,8 @@ include('partes/css.php'); //importes de CSS
                                                                                     <span class="tituloInputNovoCate"><strong>Categoria:</strong></span>
                                                                                     <select class="input-group-text caixaSelecaoCate" name="nCategoriasNaSubcategoria" required>
                                                                                         <option value="" disabled selected>Selecione</option>
-                                                                                        <?php echo SolicitaCategorias($_SESSION['idUsuario']); ?>    
-                                                                                    
+                                                                                        <?php echo SolicitaCategorias($_SESSION['idUsuario']); ?>
+
                                                                                     </select>
                                                                                 </div>
                                                                                 <div class="modal-footer">
@@ -286,90 +285,13 @@ include('partes/css.php'); //importes de CSS
                                         </form>
                                     </div>
                                 </div>
-
-
-
-
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
-
-
+            </section>
         </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
-
-
-
-
-    <!-- Editar coabitante -->
-    <div class="modal fade" id="editarCoabitante">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">Coabitantes</h4>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-
-                <form action="" method="post" enctype="multipart/form-data">
-
-                    <div class="modal-body">
-
-                        <div class="row">
-
-                            <div class="card-body">
-                                <table id="tabela" class="table table-bordered table-hover">
-
-                                    <button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='adicionarLinha()'>Adicionar</button>
-
-
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-
-
-                                        <?php echo listaUsuario($_SESSION['idUsuario']); ?>
-
-                                    </tbody>
-
-                                </table>
-                            </div>
-
-
-
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-edit-perfil" data-dismiss="modal">Voltar</button>
-                            <button type="submit" class="btn btn-edit-perfil">Salvar</button>
-                        </div>
-                </form>
-
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
     </div>
-
-
-
-    <!-- /.modal-dialog -->
-    </section>
-    </div>
-
 
     <?php
     include('partes/js.php'); //importes de CSS
