@@ -64,5 +64,26 @@ function filterTable(inputId, tableId) {
   }
 }
 
+//MES ANO
+window.onload = function() {
+  const yearPicker = document.getElementById('anoEscolhido');
+  const currentYear = new Date().getFullYear();
+  const startYear = 2024; 
+  const endYear = currentYear + 2; 
 
+  for (let year = startYear; year <= endYear; year++) {
+      let option = document.createElement('option');
+      option.value = year;
+      option.textContent = year;
+      yearPicker.appendChild(option);
+  }
 
+  document.getElementById('mesEscolhido').addEventListener('change', displaySelection);
+  yearPicker.addEventListener('change', displaySelection);
+
+  function displaySelection() {
+      const selectedMonth = document.getElementById('mesEscolhido').value;
+      const selectedYear = document.getElementById('anoEscolhido').value;
+      console.log(`Ano: ${selectedYear}, Mês: ${selectedMonth}`);
+  }
+};
