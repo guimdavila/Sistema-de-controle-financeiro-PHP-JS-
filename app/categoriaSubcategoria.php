@@ -19,8 +19,7 @@ include('partes/css.php'); //importes de CSS
 
 
     <style type="text/css" href="index.css">
-        <?php include('dist/css/styles.css');
-        ?>
+        <?php include('dist/css/styles.css'); ?>       
     </style>
 
     <style type="text/css" href="index.css">
@@ -297,8 +296,36 @@ include('partes/css.php'); //importes de CSS
     include('partes/js.php'); //importes de CSS
     ?>
 
+    <script>
+        $(function() {
+            $('#tabela1').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/pt-BR.json"
+                }
+            });
 
+            $('#tabela2').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/pt-BR.json"
+                }
+            });
 
+        });
+    </script>
 
 </body>
 

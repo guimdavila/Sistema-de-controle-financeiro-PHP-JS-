@@ -200,7 +200,13 @@ include('php/funcoes.php');
                                         </div>
 
                                         <hr>
-
+                                        <div class="botoes-editar">
+                                            <button class="btn btn-edit-perfil" onclick="mostrarTela('tela2')">Editar</button>
+                                            <!--<button class="btn btn-edit-perfil" data-toggle="modal" data-target="#editarCoabitante">Coabitante </button>
+                                            -->
+                                    </div>
+                                    <!--
+                                        
                                         <strong><i class="fa-regular fa-user mr-1"></i> Coabitantes</strong>
                                         <div class="dadosUser">
 
@@ -211,11 +217,8 @@ include('php/funcoes.php');
                                         </div>
                                         <hr>
 
-                                        <div class="botoes-editar">
-                                            <button class="btn btn-edit-perfil" onclick="mostrarTela('tela2')">Editar</button>
-                                            <button class="btn btn-edit-perfil" data-toggle="modal" data-target="#editarCoabitante">Coabitante </button>
-                                        </div>
-
+                                        
+-->
 
                                     </div>
                                     <!-- /.card-body -->
@@ -224,7 +227,9 @@ include('php/funcoes.php');
                             </div>
                         </div>
                         <!-- /.row -->
-                    </div><!-- /.container-fluid -->
+                    </div><!-- /.container-fluid -->  
+
+
 
 
                     <!-- Editar coabitante -->
