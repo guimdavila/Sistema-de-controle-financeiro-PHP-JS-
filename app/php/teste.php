@@ -1,8 +1,12 @@
+
 <?php
+
     session_start();
 
 ?>
+
 <?php
+/* TESTE FEITO PARA O CADASTRO, EXCLUSÃO E ALTERAÇÃO DE COABITANTES.
 
     $idUser = $_SESSION['idUsuario'];
 
@@ -10,37 +14,49 @@
 
     $id[] = $_POST["nTeste"];
 
-    $qntd = count($id);
+    if($id[0] == 0){
 
-    if($qntd > 1){
-        var_dump($explode("",$id));
-        die();
+        $sqlDel = "DELETE FROM COABITANTEUSUARIO WHERE idUsuarioPrincipal = ". $idUser;
+        mysqli_query($conexao, $sqlDel);
+        
+        header('location: ../perfilUsuario.php');
 
     }
 
-    //$salve[] = explode(" ", $id[]);
+
+    $qntd = count($id);
 
     $sql = "SELECT * FROM coabitanteusuario where idUsuarioPrincipal = ". $idUser;
 
     $result = mysqli_query($conexao, $sql);
 
-    /////////////////DELETAR///////////////////////////////////////
-
+                    /////////////////DELETAR//////////////////////
+ 
     if (mysqli_num_rows($result) > 0) {
 
         foreach ($result as $coluna) {
-                    
+            
+            
             $idCoabitanteUsuario = $coluna["idCoabitanteUsuario"];
             $salvo = 0;
-            $conta = 0;
 
-            for ($t = 0;$t < ($qntd - 1);){    
+            for ($t = 0;$t <= ($qntd - 1);){
+                
 
-                if($idCoabitanteUsuario == $id[$conta]){
+                $testando = implode($id[$t]);
+
+                if($idCoabitanteUsuario == $testando){     
+
+                    
+                       
                     $salvo = 1;
-
+                    
+                    
                 }
-                $conta++;
+
+                $t++;
+                 
+            
             }
 
             if ($salvo == 0){
@@ -52,45 +68,49 @@
         }
 
     }
-
+    
 
     ///////////////////////////////////////////////////////////
 
-    for ($t = 0;$t <= ($qntd - 1);) {
+    $sql = "SELECT * FROM coabitanteusuario where idCoabitanteUsuario = ". $idUser;
 
-        $sql = "SELECT * FROM coabitanteusuario where idCoabitanteUsuario = ". $idUser;
+    $result = mysqli_query($conexao, $sql);
+    $t = 0;
 
-        $result = mysqli_query($conexao, $sql);
-
+        $testando = implode($id[$t]);
+        
         if (mysqli_num_rows($result) > 0) {
 
             foreach ($result as $coluna) {
 
-                $idCoabitanteUsuario = $coluna["idCoabitanteUsuario"];    
-
-                if($salve[$t] == $idCoabitanteUsuario){
-
-                    $sqlAlter = "UPDATE COABITANTEUSUARIO SET NOMECOABITANTE = ".$valor."Where idCoabitante = ". $$idCoabitanteUsuario;
+                if($testando == $idCoabitanteUsuario){
+                    
+                    $sqlAlter = "UPDATE COABITANTEUSUARIO SET NOMECOABITANTE = ".$testando."Where idCoabitante = ". $idCoabitanteUsuario;
                     mysqli_query($conexao, $sqlAlter);
+
+                }else{
+                    
+                    $sqlIns = "INSERT INTO COABITNATEUSUARIO(NOMECOABITANTE, IDUSUARIOPRINCIPAL) 
+                    VALUES(".$testando.", ".$idUser.";";
+
 
                 }
 
+                $t++;
+
             }
         }else{ 
-
+            
             $sqlIns = "INSERT INTO COABITNATEUSUARIO(NOMECOABITANTE, IDUSUARIOPRINCIPAL) 
-            VALUES(".$id[$t].", ".$idUser.";";
+            VALUES(".$testando[$t].", ".$idUser.";";            
 
+        }
 
-        };
-
-        $t++;
-    }
+    
 
     mysqli_close($conexao);
 
     header('location: ../perfilUsuario.php');
-
-    
+    */
 
 ?>
