@@ -385,6 +385,9 @@ tr.colunasCategorias td:hover {
 .tdInvisivel {
     display: none;
 }
+.tamanhoBodyConsulta{
+    height: 87vh;
+}
 
 /* Cor quando está checked */
 .custom-control-input:checked~.custom-control-label::before {
@@ -439,6 +442,10 @@ tr.colunasCategorias td:hover {
 .caixaSelecaoCore {
     display: inline-block; 
     width: 300px; 
+}
+
+.divCore{
+    
 }
 
 .form-control-core{

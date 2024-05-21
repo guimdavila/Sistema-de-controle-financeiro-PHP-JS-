@@ -89,7 +89,7 @@ include('partes/css.php'); //importes de CSS
                                 </script>
 
                                 <div id="tela1">
-                                    <div class="card-body">
+                                    <div class="card-body tamanhoBodyConsulta">
 
                                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                             <div class="row">
@@ -211,7 +211,7 @@ include('partes/css.php'); //importes de CSS
 
 
                                 <div id="tela2" class="hidden">
-                                    <div class="card-body">
+                                    <div class="card-body tamanhoBodyConsulta">
                                         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                             <div class="row">
                                                 <div class="col-4">
