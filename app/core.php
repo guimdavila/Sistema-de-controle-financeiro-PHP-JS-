@@ -54,7 +54,7 @@ include('php/funcoes.php');
                 <div class="container-fluid">
                     <div class="row">
 
-                        <div class="col-md-9">
+                        <div class="col-md-6">
                             <div class="card">
 
                                 <div class="card-header">
@@ -83,9 +83,9 @@ include('php/funcoes.php');
                                 </div>
                                 <div class="card-body tamanho-body1">
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
 
-                                        <p class="text-muted">
+                                        <p class="text-muted-Core">
                                             <span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>
                                             <select name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore" id="selecao" onchange="enviarFormulario(this.value);">
                                                 <option value="1">Entrada de valores</option>
@@ -94,55 +94,67 @@ include('php/funcoes.php');
                                             </select>
                                         </p>
 
-                                        <p class="text-muted">
+                                        <p class="text-muted-Core">
                                             <span class="tituloInputCore"><strong>Categoria:</strong></span>
                                             <select name="nCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
                                                 <option value="1">Puxar do banco</option>
                                             </select>
                                         </p>
 
-                                        <p class="text-muted">
+                                        <p class="text-muted-Core">
                                             <span class="tituloInputCore"><strong>SubCategoria:</strong></span>
                                             <select name="nSubCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
                                                 <option value="1">Puxar do banco</option>
                                             </select>
                                         </p>
 
-                                        <p class="text-muted">
+                                        <p class="text-muted-Core">
                                             <span class="tituloInputCore"><strong>Valor:</strong></span>
 
                                             <input name="nValorCore" type="text" class="form-control caixaSelecaoCore">
                                         </p>
                                     </div>
-
-
-                                    <div class="col-md-6">
-
-                                    </div>
-
-
-
+                            
                                 </div>
 
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body tamanho-body2">
+
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card">
                                 <div class="card-body tamanho-body2">
+                                    <div class="objetosSaldos objetoEntrada">
+                                        <i class="fa-solid fa-plus iconesCore iconesCoreEntrada"></i>
+                                        <span class="spanCore spanCoreEntrada">R$
+                                            <!-- Função PHP com o calculo -->
+                                        </span>
 
-                                    <div class="objetosSaldos">
 
                                     </div>
+                                    <div class="objetosSaldos objetoSaida">
+                                        <i class="fa-solid fa-minus iconesCore iconesCoreSaida"></i>
+                                        <span class="spanCore spanCoreSaida">R$
 
-                                    <div class="objetosSaldos">
-                                        
+                                            <!-- Função PHP com o calculo -->
+                                        </span>
+
                                     </div>
-                                    
-                                    <div class="objetosSaldos">
-                                        
+                                    <div class="objetosSaldos objetoSaldo">
+                                        <i class="fa-solid fa-equals iconesCore iconesCoreSaldo"></i>
+                                        <span class="spanCore spanCoreSaldo">R$
+
+                                            <!-- Função PHP com o calculo -->
+                                        </span>
+
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

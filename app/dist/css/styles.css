@@ -424,13 +424,14 @@ tr.colunasCategorias td:hover {
 }
 .tamanho-body2 {
     height: 89vh; 
+    padding: 0px;
+    border-radius: 5%;
 }
 .tituloInputCore{
-    margin-right: 10px;
-    width: 100px;
+    margin-right: 20px;
     color: black;
     display: inline-block; 
-    width: 180px;
+    width: 170px;
     margin-top: 40px;
     margin-bottom: 40px;
 }
@@ -444,7 +445,59 @@ tr.colunasCategorias td:hover {
     width: 300px;
 }
 
-.objetosSaldos{
-    width: auto;
+.objetosSaldos {
+    flex: auto;
+    display: flex;
+    align-items: center;
+    border: 1px solid black; 
+    height: 33.33%;
+    color: white;
+}
+
+.text-muted-Core {
+    margin: 0px;
+    position: relative;
+    top: 35%; 
 
 }
+
+.objetoEntrada{
+    background-color: rgb(9, 53, 9);
+}
+.objetoSaida{
+    background-color: rgb(110, 10, 10);
+}
+.objetoSaldo{
+    background-color:#134b4b
+}
+
+.iconesCore{
+    font-size: 80px;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 70px;
+}
+.iconesCore:hover{
+    transition: 0.5s;  
+    font-size: 85px;  
+
+}
+.iconesCoreEntrada, .spanCoreEntrada{
+    color: rgb(4, 26, 4);
+}
+.iconesCoreSaida, .spanCoreSaida{
+    color: rgb(77, 7, 7);
+}
+.iconesCoreSaldo, .spanCoreSaldo{
+    color:#0c3030
+}
+
+.spanCore{
+    font-size: 40px;
+}
+
+
+.vertical-line {
+    border-left: 1px solid black; 
+    height: 100%; 
+  }
