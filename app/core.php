@@ -55,55 +55,58 @@ include('php/funcoes.php');
                     <div class="row">
                         <div class="col-md-6 divCore">
                             <div class="card">
-                                <div class="card-header">
-                                    <div class="mesAnoCore" style="text-align: center; display: flex; justify-content: center;">
-                                        <select class="input-group-text caixaSelecaoCate MesCore" name="nMesExibicao" id="mesEscolhido">
-                                            <option value="01">Janeiro</option>
-                                            <option value="02">Fevereiro</option>
-                                            <option value="03">Março</option>
-                                            <option value="04">Abril</option>
-                                            <option value="05">Maio</option>
-                                            <option value="06">Junho</option>
-                                            <option value="07">Julho</option>
-                                            <option value="08">Agosto</option>
-                                            <option value="09">Setembro</option>
-                                            <option value="10">Outubro</option>
-                                            <option value="11">Novembro</option>
-                                            <option value="12">Dezembro</option>
-                                        </select>
-                                        <select class="input-group-text caixaSelecaoCate AnoCore" name="nAnoExibicao" id="anoEscolhido">
-                                            <!-- JavaScript irá preencher os anos -->
-                                        </select>
+                                <form action="" id="form1">
+                                    <div class="card-header">
+                                        <div class="mesAnoCore" style="text-align: center; display: flex; justify-content: center;">
+                                            <select class="input-group-text caixaSelecaoCate MesCore" name="nMesExibicao" id="mesEscolhido">
+                                                <option value="01">Janeiro</option>
+                                                <option value="02">Fevereiro</option>
+                                                <option value="03">Março</option>
+                                                <option value="04">Abril</option>
+                                                <option value="05">Maio</option>
+                                                <option value="06">Junho</option>
+                                                <option value="07">Julho</option>
+                                                <option value="08">Agosto</option>
+                                                <option value="09">Setembro</option>
+                                                <option value="10">Outubro</option>
+                                                <option value="11">Novembro</option>
+                                                <option value="12">Dezembro</option>
+                                            </select>
+                                            <select class="input-group-text caixaSelecaoCate AnoCore" name="nAnoExibicao" id="anoEscolhido">
+                                                <!-- JavaScript irá preencher os anos -->
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-body tamanho-body1">
-                                    <div class="col-md-12">
-                                        <p class="text-muted-Core">
-                                            <span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>
-                                            <select name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore" id="selecao" onchange="enviarFormulario(this.value);">
-                                                <option value="1">Entrada de valores</option>
-                                                <option value="2">Saída de valores</option>
-                                                <option value="3">Transferência</option>
-                                            </select>
-                                        </p>
-                                        <p class="text-muted-Core">
-                                            <span class="tituloInputCore"><strong>Categoria:</strong></span>
-                                            <select name="nCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
-                                                <option value="1">Puxar do banco</option>
-                                            </select>
-                                        </p>
-                                        <p class="text-muted-Core">
-                                            <span class="tituloInputCore"><strong>SubCategoria:</strong></span>
-                                            <select name="nSubCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
-                                                <option value="1">Puxar do banco</option>
-                                            </select>
-                                        </p>
-                                        <p class="text-muted-Core">
-                                            <span class="tituloInputCore"><strong>Valor:</strong></span>
-                                            <input name="nValorCore" type="text" class="form-control caixaSelecaoCore">
-                                        </p>
+                                    <div class="card-body tamanho-body1">
+                                        <div class="col-md-12">
+                                            <p class="text-muted-Core">
+                                                <span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>
+                                                <select  id="selecaoTipo"  name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore"onchange="enviarFormulario(this.value);">
+                                                    <option value="1">Entrada de valores</option>
+                                                    <option value="2">Saída de valores</option>
+                                                    <option value="3">Transferência</option>
+                                                </select>
+                                            </p>
+                                            <p class="text-muted-Core">
+                                                <span class="tituloInputCore"><strong>Categoria:</strong></span>
+                                                <select name="nCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
+                                                    <option value="1">Puxar do banco</option>
+                                                </select>
+                                            </p>
+                                            <p class="text-muted-Core">
+                                                <span class="tituloInputCore"><strong>SubCategoria:</strong></span>
+                                                <select name="nSubCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
+                                                    <option value="1">Puxar do banco</option>
+                                                </select>
+                                            </p>
+                                            <p class="text-muted-Core">
+                                                <span class="tituloInputCore"><strong>Valor:</strong></span>
+                                                <input name="nValorCore" type="text" class="form-control caixaSelecaoCore">
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+
+                                </form>
                             </div>
                         </div>
                         <div class="col-md-3 divCore">

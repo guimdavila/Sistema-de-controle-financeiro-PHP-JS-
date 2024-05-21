@@ -90,4 +90,46 @@ window.onload = function() {
   }
 };
 
+//Envia informações do Mês/Ano { A FAZER }
 
+$('#form1').submit(function(e){ // Referencia o formulário
+  e.preventDefault();
+
+  var js_MesEscolhido = $('#mesEscolhido').val(); // Via id, cria a variavel e grava valor digitado
+  var js_AnoEscolhido = $('#anoEscolhido').val(); 
+
+  //console.log(u_name, u_comment);
+  $.ajax({
+      url: 'http://localhost/xampp/htdocs/SA---Nordic-Finance/app/php/funcoes.php',
+      method: 'POST', // POST = Enviar para o php
+      data: {name: u_name, comment:u_comment}, // instancia as variaveis 'php:js'
+      dataType: 'json'                    // Metodo de enviar informações js para o php
+  }).done(function(result){
+      $('#name').val('');
+      $('#comment').val(''); // após dar salvar, limpar campos
+      console.log(result);
+      getComments();
+  });
+});
+
+
+//Carregar informações do Mês { A FAZER }
+
+$('#form1').submit(function(e){ // Referencia o formulário
+  e.preventDefault();
+
+  var tipoMovimentacao = $('#selecaoTipo').val(); 
+
+  //console.log(u_name, u_comment);
+  $.ajax({
+      url: 'http://localhost/xampp/htdocs/SA---Nordic-Finance/app/php/funcoes.php',
+      method: 'POST', // POST = Enviar para o php
+      data: {phpTipoMovimentacao: tipoMovimentacao}, // instancia as variaveis 'php:js'
+      dataType: 'json'                    // Metodo de enviar informações js para o php
+  }).done(function(result){
+      $('#name').val('');
+      $('#comment').val(''); // após dar salvar, limpar campos
+      console.log(result);
+      getComments();
+  });
+});
