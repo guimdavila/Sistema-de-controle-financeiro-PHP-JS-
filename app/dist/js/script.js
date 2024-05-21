@@ -64,6 +64,8 @@ function filterTable(inputId, tableId) {
   }
 }
 
+  //CORE 
+
 //MES ANO
 window.onload = function() {
   const yearPicker = document.getElementById('anoEscolhido');
@@ -87,3 +89,5 @@ window.onload = function() {
       console.log(`Ano: ${selectedYear}, Mês: ${selectedMonth}`);
   }
 };
+
+
