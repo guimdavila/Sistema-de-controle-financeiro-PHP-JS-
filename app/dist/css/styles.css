@@ -401,3 +401,50 @@ tr.colunasCategorias td:hover {
 .hidden {
     display: none;
 }
+
+
+/*Core.php*/
+.mesAnoCore{
+    height: 2rem;
+}
+.AnoCore{
+    width: 100px;
+}
+
+.MesCore{
+    width: 120px;
+}
+.BotaoTransparente{
+    background-color: transparent;
+    border: none;
+    width: 50px;
+}
+.tamanho-body1 {
+    height: 82vh; 
+}
+.tamanho-body2 {
+    height: 89vh; 
+}
+.tituloInputCore{
+    margin-right: 10px;
+    width: 100px;
+    color: black;
+    display: inline-block; 
+    width: 180px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.caixaSelecaoCore {
+    display: inline-block; 
+    width: 300px; 
+}
+
+.form-control-core{
+    width: 300px;
+}
+
+.objetosSaldos{
+    width: auto;
+
+}

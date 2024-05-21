@@ -76,6 +76,7 @@ include('php/funcoes.php');
 
                                         <select class="input-group-text caixaSelecaoCate AnoCore" name="nAnoExibicao" id="anoEscolhido">
                                             <!-- JavaScript irá preencher os anos -->
+
                                         </select>
 
                                     </div>
@@ -84,34 +85,34 @@ include('php/funcoes.php');
 
                                     <div class="col-md-6">
 
-                                            <p class="text-muted">
-                                                <span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>
-                                                <select name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore" id="selecao" onchange="enviarFormulario(this.value);">
-                                                    <option value="1">Entrada de valores</option>
-                                                    <option value="2">Saída de valores</option>
-                                                    <option value="3">Transferência</option>
-                                                </select>
-                                            </p>
-                                        
-                                            <p class="text-muted">
-                                                <span class="tituloInputCore"><strong>Categoria:</strong></span>
-                                                <select name="nCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore" >
-                                                    <option value="1">Puxar do banco</option>
-                                                </select>
-                                            </p>
-                                            
-                                            <p class="text-muted">
-                                                <span class="tituloInputCore"><strong>SubCategoria:</strong></span>
-                                                <select name="nSubCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore" >
-                                                    <option value="1">Puxar do banco</option>
-                                                </select>
-                                            </p>
+                                        <p class="text-muted">
+                                            <span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>
+                                            <select name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore" id="selecao" onchange="enviarFormulario(this.value);">
+                                                <option value="1">Entrada de valores</option>
+                                                <option value="2">Saída de valores</option>
+                                                <option value="3">Transferência</option>
+                                            </select>
+                                        </p>
 
-                                            <p class="text-muted">
-                                                <span class="tituloInputCore"><strong>Valor:</strong></span>
+                                        <p class="text-muted">
+                                            <span class="tituloInputCore"><strong>Categoria:</strong></span>
+                                            <select name="nCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
+                                                <option value="1">Puxar do banco</option>
+                                            </select>
+                                        </p>
 
-                                                <input name="nValorCore" type="text" class="form-control caixaSelecaoCore">
-                                            </p>
+                                        <p class="text-muted">
+                                            <span class="tituloInputCore"><strong>SubCategoria:</strong></span>
+                                            <select name="nSubCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
+                                                <option value="1">Puxar do banco</option>
+                                            </select>
+                                        </p>
+
+                                        <p class="text-muted">
+                                            <span class="tituloInputCore"><strong>Valor:</strong></span>
+
+                                            <input name="nValorCore" type="text" class="form-control caixaSelecaoCore">
+                                        </p>
                                     </div>
 
 
@@ -129,6 +130,17 @@ include('php/funcoes.php');
                             <div class="card">
                                 <div class="card-body tamanho-body2">
 
+                                    <div class="objetosSaldos">
+
+                                    </div>
+
+                                    <div class="objetosSaldos">
+                                        
+                                    </div>
+                                    
+                                    <div class="objetosSaldos">
+                                        
+                                    </div>
                                 </div>
 
                             </div>
@@ -137,19 +149,6 @@ include('php/funcoes.php');
                 </div>
             </section>
         </div>
-
-
-
-
-
-
-        <script>
-
-
-        </script>
-
-
-
 
         <?php
         include('partes/js.php');
