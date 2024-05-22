@@ -60,7 +60,7 @@
                 <!--"Fotos e classes de transição da foto -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="dist/img/financas.jpg" class="d-block w-100"
+                        <img src="dist/img/Design sem nome (3).png" class="d-block w-100"
                             alt="Projetos de e-commerce"><!--1 w-100 classe do boostrap para deixar largura = 100%  -->
                         <!-- alt nesse caso utilizado para acessibilidade  -->
                         <div class="carousel-caption d-none d-md-block">
