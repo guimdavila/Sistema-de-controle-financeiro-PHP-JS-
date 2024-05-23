@@ -20,6 +20,7 @@ include('php/funcoes.php');
         <?php include('dist/css/styles.css');
         ?>
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 
@@ -81,7 +82,7 @@ include('php/funcoes.php');
                                         <div class="col-md-12">
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>
-                                                <select  id="selecaoTipo"  name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore"onchange="enviarFormulario(this.value);">
+                                                <select id="selecaoTipo" name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
                                                     <option value="1">Entrada de valores</option>
                                                     <option value="2">Saída de valores</option>
                                                     <option value="3">Transferência</option>
@@ -89,14 +90,14 @@ include('php/funcoes.php');
                                             </p>
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Categoria:</strong></span>
-                                                <select name="nCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
-                                                    <option value="1">Puxar do banco</option>
+                                                <select name="nCategoriaCore" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
+                                                    
                                                 </select>
                                             </p>
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>SubCategoria:</strong></span>
                                                 <select name="nSubCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
-                                                    <option value="1">Puxar do banco</option>
+                                                    
                                                 </select>
                                             </p>
                                             <p class="text-muted-Core">
@@ -105,10 +106,11 @@ include('php/funcoes.php');
                                             </p>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
+
+
                         <div class="col-md-3 divCore">
                             <div class="card">
                                 <div class="card-body tamanho-body2">
@@ -145,12 +147,52 @@ include('php/funcoes.php');
             </section>
         </div>
 
+        <script>
+            
+            $(document).ready(function() {
 
+                $('#selecaoTipo').on('change', function() {
+                    var tipoMov = $('#selecaoTipo').val();
+                    var opcaoCategoria = '';
+                    if (tipoMov != "" && tipoMov != 0) {
+                        
+            
+                        $.getJSON('php/phpAjax/CoreAjax.php?tipoMov=' + tipoMov,
+                    
+                            function(dados) {
+                                opcaoCategoria = '<option value="">Puxar do banco</option>'
+                                console.log("entrou1");
+
+                                if (dados.length > 0) {
+                                    $.each(dados, function(i, obj) {
+                                        opcaoCategoria += '<option value="' + obj.idCategoria + '">' + obj.nomeCategoria + '</option>';
+
+                                        console.log("entrou2");
+                                    })
+
+                                    $('#iCategoria').attr("required", "req");
+                                    $('#iCategoria').html(opcaoCategoria).show();
+
+                                    console.log("entrou3");
+                                } else {
+                                    opcaoCategoria += '<option value="">Puxar do banco</option>'
+                                    $('iCategoria').html(opcaoCategoria).show()
+
+                                    console.log("entrou4");
+                                }
+                            })
+                    } else {
+                        opcaoCategoria += '<option value="">Ain</option>'
+                        $('iCategoria').html(opcaoCategoria).show()
+                        console.log("entrou5");
+                    }
+                })
+            })
+        </script>
 
         <?php
         include('partes/js.php');
         ?>
-
 </body>
 
 </html>
