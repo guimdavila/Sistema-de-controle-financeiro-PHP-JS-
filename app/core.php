@@ -20,10 +20,9 @@ include('php/funcoes.php');
         <?php include('dist/css/styles.css');
         ?>
     </style>
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -83,6 +82,7 @@ include('php/funcoes.php');
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>
                                                 <select id="selecaoTipo" name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
+                                                    <option value="" disabled selected>Selecione</option>
                                                     <option value="1">Entrada de valores</option>
                                                     <option value="2">Saída de valores</option>
                                                     <option value="3">Transferência</option>
@@ -91,13 +91,13 @@ include('php/funcoes.php');
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Categoria:</strong></span>
                                                 <select name="nCategoriaCore" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
-                                                    
+
                                                 </select>
                                             </p>
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>SubCategoria:</strong></span>
-                                                <select name="nSubCategoriaCore" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
-                                                    
+                                                <select name="nSubCategoriaCore" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
+
                                                 </select>
                                             </p>
                                             <p class="text-muted-Core">
@@ -148,37 +148,28 @@ include('php/funcoes.php');
         </div>
 
         <script>
-            
             $(document).ready(function() {
 
                 $('#selecaoTipo').on('change', function() {
                     var tipoMov = $('#selecaoTipo').val();
                     var opcaoCategoria = '';
                     if (tipoMov != "" && tipoMov != 0) {
-                        
-            
-                        $.getJSON('php/phpAjax/CoreAjax.php?tipoMov=' + tipoMov,
-                    
+                        console.log('php/Corephpajax.php?tipoMov=' + tipoMov)
+
+                        $.getJSON('php/Corephpajax.php?tipoMov=' + tipoMov,
                             function(dados) {
-                                opcaoCategoria = '<option value="">Puxar do banco</option>'
-                                console.log("entrou1");
+
+                                opcaoCategoria = '<option value="" disabled selected>Selecione</option>'
 
                                 if (dados.length > 0) {
                                     $.each(dados, function(i, obj) {
                                         opcaoCategoria += '<option value="' + obj.idCategoria + '">' + obj.nomeCategoria + '</option>';
-
-                                        console.log("entrou2");
                                     })
-
                                     $('#iCategoria').attr("required", "req");
                                     $('#iCategoria').html(opcaoCategoria).show();
-
-                                    console.log("entrou3");
                                 } else {
                                     opcaoCategoria += '<option value="">Puxar do banco</option>'
                                     $('iCategoria').html(opcaoCategoria).show()
-
-                                    console.log("entrou4");
                                 }
                             })
                     } else {
@@ -188,6 +179,39 @@ include('php/funcoes.php');
                     }
                 })
             })
+
+            $(document).ready(function() {
+
+                $('#iCategoria').on('change', function() {
+                    var categoria = $('#iCategoria').val();
+                    var opcaoSub = '';
+                    if (categoria != "" && categoria != 0) {
+                        console.log('php/Corephpajax.php?tipoMov=' + categoria)
+
+                        $.getJSON('php/Corephpajax.php?tipoMov=' + categoria,
+                            function(dados1) {
+
+                                opcaoSub = '<option value="" disabled selected>Selecione</option>'
+                                console.log(dados1)
+                                if (dados1.length > 0) {
+                                    $.each(dados1, function(i1, obj1) {
+                                        opcaoSub += '<option value="' + obj1.idCategoria + '">' + obj1.nomeCategoria + '</option>';
+                                    })
+                                    $('#iSubCategoria').attr("required", "req");
+                                    $('#iSubCategoria').html(opcaoSub).show();
+                                } else {
+                                    opcaoSub += '<option value="">Puxar do banco</option>'
+                                    $('iSubCategoria').html(opcaoSub).show()
+                                }
+                            })
+                    } else {
+                        opcaoSub += '<option value="">Ain</option>'
+                        $('iSubCategoria').html(opcaoSub).show()
+                    }
+                })
+            })
+
+            
         </script>
 
         <?php
