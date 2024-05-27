@@ -100,7 +100,7 @@ include('php/funcoes.php');
 
                                                 </select>
                                             </p>
-                                            
+
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Data:</strong></span>
                                                 <input name="nDataCore" id="iDataCore" type="date" class="form-control caixaSelecaoCore">
@@ -109,6 +109,10 @@ include('php/funcoes.php');
                                                 <span class="tituloInputCore"><strong>Valor:</strong></span>
                                                 <input name="nValorCore" id="valoCore" type="text" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">
                                             </p>
+
+                                            <div class="text-muted-Core-button">
+                                                <button type="button" class="btn btn-novo-core" data-toggle="modal" data-target="#novoCategoria">Salvar</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -254,7 +258,7 @@ include('php/funcoes.php');
                 } else {
                     SubCCore.disabled = false;
                 }
-                
+
                 if (SubCCore.value.trim() === '') {
                     DataCore.disabled = true;
                 } else {
