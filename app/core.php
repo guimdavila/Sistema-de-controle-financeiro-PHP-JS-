@@ -173,7 +173,7 @@ include('php/funcoes.php');
                                 }
                             })
                     } else {
-                        opcaoCategoria += '<option value="">Ain</option>'
+                        opcaoCategoria += '<option value="">Selecione</option>'
                         $('iCategoria').html(opcaoCategoria).show()
                         console.log("entrou5");
                     }
@@ -186,16 +186,16 @@ include('php/funcoes.php');
                     var categoria = $('#iCategoria').val();
                     var opcaoSub = '';
                     if (categoria != "" && categoria != 0) {
-                        console.log('php/Corephpajax.php?tipoMov=' + categoria)
+                        console.log('php/Corephpajax.php?categoria=' + categoria)
 
-                        $.getJSON('php/Corephpajax.php?tipoMov=' + categoria,
+                        $.getJSON('php/Corephpajax.php?categoria=' + categoria,
                             function(dados1) {
 
                                 opcaoSub = '<option value="" disabled selected>Selecione</option>'
-                                console.log(dados1)
+
                                 if (dados1.length > 0) {
-                                    $.each(dados1, function(i1, obj1) {
-                                        opcaoSub += '<option value="' + obj1.idCategoria + '">' + obj1.nomeCategoria + '</option>';
+                                    $.each(dados1, function(i, obj) {
+                                        opcaoSub += '<option value="' + obj.idSubCategoria + '">' + obj.nomeSubCategoria + '</option>';
                                     })
                                     $('#iSubCategoria').attr("required", "req");
                                     $('#iSubCategoria').html(opcaoSub).show();
@@ -205,13 +205,11 @@ include('php/funcoes.php');
                                 }
                             })
                     } else {
-                        opcaoSub += '<option value="">Ain</option>'
+                        opcaoSub += '<option value="">Selecione</option>'
                         $('iSubCategoria').html(opcaoSub).show()
                     }
                 })
             })
-
-            
         </script>
 
         <?php
