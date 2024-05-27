@@ -89,3 +89,4 @@ window.onload = function() {
       console.log(`Ano: ${selectedYear}, Mês: ${selectedMonth}`);
   }
 };
+

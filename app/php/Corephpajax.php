@@ -28,7 +28,7 @@ function getCategoria($TipoMov, $id)
     $stm = $pdo->prepare($sql);
     $stm->execute();
 
-    sleep(1);
+    sleep(0.5);
 
     echo json_encode($stm->fetchAll(PDO::FETCH_ASSOC));
     $pdo = null;
@@ -50,7 +50,7 @@ function getSubCategoria($idcategoria, $id)
     $stm1 = $pdo->prepare($sql);
     $stm1->execute();
 
-    sleep(1);
+    sleep(0.5);
 
     echo json_encode($stm1->fetchAll(PDO::FETCH_ASSOC));
     $pdo = null;

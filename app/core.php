@@ -90,19 +90,19 @@ include('php/funcoes.php');
                                             </p>
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Categoria:</strong></span>
-                                                <select name="nCategoriaCore" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
+                                                <select name="nCategoriaCore" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>
 
                                                 </select>
                                             </p>
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>SubCategoria:</strong></span>
-                                                <select name="nSubCategoriaCore" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
+                                                <select name="nSubCategoriaCore" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>
 
                                                 </select>
                                             </p>
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Valor:</strong></span>
-                                                <input name="nValorCore" type="text" class="form-control caixaSelecaoCore">
+                                                <input name="nValorCore" id="valoCore" type="text" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">
                                             </p>
                                         </div>
                                     </div>
@@ -210,6 +210,59 @@ include('php/funcoes.php');
                     }
                 })
             })
+
+            document.addEventListener('DOMContentLoaded', (event) => {
+
+                const seleCore = document.getElementById('selecaoTipo');
+                const cateCore = document.getElementById('iCategoria');
+                const SubCCore = document.getElementById('iSubCategoria');
+                const valoCore = document.getElementById('valoCore');
+
+                seleCore.addEventListener('input', checkInput);
+                cateCore.addEventListener('input', checkInput);
+                SubCCore.addEventListener('input', checkInput);
+                valoCore.addEventListener('input', checkInput);
+
+                // Chama a função inicialmente para definir o estado correto do input2
+                checkInput();
+            });
+
+            function checkInput() {
+                const seleCore = document.getElementById('selecaoTipo');
+                const cateCore = document.getElementById('iCategoria');
+                const SubCCore = document.getElementById('iSubCategoria');
+                const valoCore = document.getElementById('valoCore');
+
+                if (seleCore.value.trim() === '') {
+                    cateCore.disabled = true;
+                } else {
+                    cateCore.disabled = false;
+                }
+
+                if (cateCore.value.trim() === '') {
+                    SubCCore.disabled = true;
+                } else {
+                    SubCCore.disabled = false;
+                }
+                
+                if (SubCCore.value.trim() === '') {
+                    valoCore.disabled = true;
+                } else {
+                    valoCore.disabled = false;
+                }
+            }
+
+            function formatarValorMonetario(input) {
+                let value = input.value;
+
+                value = value.replace(/\D/g, '');
+                value = (value / 100).toFixed(2) + '';
+                value = value.replace('.', ',');
+                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                value = 'R$ ' + value;
+
+                input.value = value;
+            }
         </script>
 
         <?php
