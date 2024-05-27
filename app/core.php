@@ -100,6 +100,11 @@ include('php/funcoes.php');
 
                                                 </select>
                                             </p>
+                                            
+                                            <p class="text-muted-Core">
+                                                <span class="tituloInputCore"><strong>Data:</strong></span>
+                                                <input name="nDataCore" id="iDataCore" type="date" class="form-control caixaSelecaoCore">
+                                            </p>
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Valor:</strong></span>
                                                 <input name="nValorCore" id="valoCore" type="text" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">
@@ -216,11 +221,13 @@ include('php/funcoes.php');
                 const seleCore = document.getElementById('selecaoTipo');
                 const cateCore = document.getElementById('iCategoria');
                 const SubCCore = document.getElementById('iSubCategoria');
+                const DataCore = document.getElementById('iDataCore');
                 const valoCore = document.getElementById('valoCore');
 
                 seleCore.addEventListener('input', checkInput);
                 cateCore.addEventListener('input', checkInput);
                 SubCCore.addEventListener('input', checkInput);
+                DataCore.addEventListener('input', checkInput);
                 valoCore.addEventListener('input', checkInput);
 
                 // Chama a função inicialmente para definir o estado correto do input2
@@ -231,6 +238,7 @@ include('php/funcoes.php');
                 const seleCore = document.getElementById('selecaoTipo');
                 const cateCore = document.getElementById('iCategoria');
                 const SubCCore = document.getElementById('iSubCategoria');
+                const DataCore = document.getElementById('iDataCore');
                 const valoCore = document.getElementById('valoCore');
 
                 if (seleCore.value.trim() === '') {
@@ -246,6 +254,12 @@ include('php/funcoes.php');
                 }
                 
                 if (SubCCore.value.trim() === '') {
+                    DataCore.disabled = true;
+                } else {
+                    DataCore.disabled = false;
+                }
+
+                if (DataCore.value.trim() === '') {
                     valoCore.disabled = true;
                 } else {
                     valoCore.disabled = false;
