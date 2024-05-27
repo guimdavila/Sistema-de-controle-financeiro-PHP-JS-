@@ -443,8 +443,8 @@ tr.colunasCategorias td:hover {
     color: black;
     display: inline-block;
     width: 170px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .caixaSelecaoCore {
@@ -469,7 +469,13 @@ tr.colunasCategorias td:hover {
     margin: 0px;
     position: relative;
     top: 35%;
+    align-items: center;
+    display: flex;
+}
 
+.text-muted-Core-area{
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .objetoEntrada {
@@ -533,5 +539,10 @@ tr.colunasCategorias td:hover {
     left: 100%;
 }
 .text-muted-Core-button{
-    margin-top: 2.5rem;
+    margin-top: 1.7rem;
+}
+
+.text-area-core{
+    max-height: 80px;
+    min-height: 80px;
 }

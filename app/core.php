@@ -105,13 +105,20 @@ include('php/funcoes.php');
                                                 <span class="tituloInputCore"><strong>Data:</strong></span>
                                                 <input name="nDataCore" id="iDataCore" type="date" class="form-control caixaSelecaoCore">
                                             </p>
+
+                                            
+                                            <p class="text-muted-Core text-muted-Core-area">
+                                                <span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>
+                                                <textarea name="nDescr" id="iDescr"  class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>
+                                            </p>
+
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Valor:</strong></span>
-                                                <input name="nValorCore" id="valoCore" type="text" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">
+                                                <input name="nValorCore" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">
                                             </p>
 
                                             <div class="text-muted-Core-button">
-                                                <button type="button" class="btn btn-novo-core" data-toggle="modal" data-target="#novoCategoria">Salvar</button>
+                                                <button type="button" class="btn btn-novo-core" data-toggle="modal">Salvar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -226,12 +233,14 @@ include('php/funcoes.php');
                 const cateCore = document.getElementById('iCategoria');
                 const SubCCore = document.getElementById('iSubCategoria');
                 const DataCore = document.getElementById('iDataCore');
+                const DescCore = document.getElementById('iDescr');
                 const valoCore = document.getElementById('valoCore');
 
                 seleCore.addEventListener('input', checkInput);
                 cateCore.addEventListener('input', checkInput);
                 SubCCore.addEventListener('input', checkInput);
                 DataCore.addEventListener('input', checkInput);
+                DescCore.addEventListener('input', checkInput);
                 valoCore.addEventListener('input', checkInput);
 
                 // Chama a função inicialmente para definir o estado correto do input2
@@ -243,6 +252,7 @@ include('php/funcoes.php');
                 const cateCore = document.getElementById('iCategoria');
                 const SubCCore = document.getElementById('iSubCategoria');
                 const DataCore = document.getElementById('iDataCore');
+                const DescCore = document.getElementById('iDescr');
                 const valoCore = document.getElementById('valoCore');
 
                 if (seleCore.value.trim() === '') {
@@ -264,8 +274,11 @@ include('php/funcoes.php');
                 }
 
                 if (DataCore.value.trim() === '') {
+                    DescCore.disabled = true;
                     valoCore.disabled = true;
+
                 } else {
+                    DescCore.disabled = false;
                     valoCore.disabled = false;
                 }
             }
