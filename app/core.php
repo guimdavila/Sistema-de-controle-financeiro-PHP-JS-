@@ -168,14 +168,17 @@ include('php/funcoes.php');
 
                 $('#selecaoTipo').on('change', function() {
                     var tipoMov = $('#selecaoTipo').val();
+                    var opcaoSub = '';
+                    opcaoSub = '<option value="" disabled selected>Selecione</option>'
+                    $('#iSubCategoria').html(opcaoSub).show();
                     var opcaoCategoria = '';
                     if (tipoMov != "" && tipoMov != 0) {
                         console.log('php/Corephpajax.php?tipoMov=' + tipoMov)
 
                         $.getJSON('php/Corephpajax.php?tipoMov=' + tipoMov,
                             function(dados) {
-
                                 opcaoCategoria = '<option value="" disabled selected>Selecione</option>'
+                                
 
                                 if (dados.length > 0) {
                                     $.each(dados, function(i, obj) {
@@ -189,7 +192,7 @@ include('php/funcoes.php');
                                 }
                             })
                     } else {
-                        opcaoCategoria += '<option value="">Selecione</option>'
+                        opcaoCategoria += '<option value="">Selecione</option>'                                              
                         $('iCategoria').html(opcaoCategoria).show()
                         console.log("entrou5");
                     }
@@ -200,7 +203,6 @@ include('php/funcoes.php');
 
                 $('#iCategoria').on('change', function() {
                     var categoria = $('#iCategoria').val();
-                    var opcaoSub = '';
                     if (categoria != "" && categoria != 0) {
                         console.log('php/Corephpajax.php?categoria=' + categoria)
 
