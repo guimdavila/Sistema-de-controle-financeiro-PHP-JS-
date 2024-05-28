@@ -73,6 +73,12 @@ function atualizabanco(){
 
     $pdo = Conectar();
     
+    $sql = "INSERT INTO MOVIMENTACAO (DESCRICAO, DATA, VALOR, IDUSUARIO, IDCATEGORIA, IDSUBCATEGORIA, IDTIPOMOVIMENTACAO) "
+    ."VALUES ('TESTE', 20240527, 500.88, 1, 1, 1, 1)";
+
+    $stm = $pdo->prepare($sql);
+    $stm->execute();
+
 
 }
 
