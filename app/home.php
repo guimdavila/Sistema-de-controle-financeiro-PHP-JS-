@@ -25,10 +25,7 @@ include('partes/navbar.php'); //importes de Navbar
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-
-
   <div class="wrapper">
-
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -37,7 +34,6 @@ include('partes/navbar.php'); //importes de Navbar
         <img src="dist/img/logo128x128.png" alt="Nordic System" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Nordic System</span>
       </a>
-
 
       <?php
       include('partes/sidebar.php'); //importes de Sidebar
@@ -48,7 +44,51 @@ include('partes/navbar.php'); //importes de Navbar
       ?>
     </aside>
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
 
+          <div class="row">
+            <div class="col-12">
+              <div class="card tamanhoHome">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="small-box bg-success">
+                      <div class="inner">
+                        <h3>53<sup style="font-size: 20px"></sup></h3>
+
+                        <p>Entradas</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="small-box bg-danger">
+                      <div class="inner">
+                        <h3>53<sup style="font-size: 20px"></sup></h3>
+
+                        <p>Saídas</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+      <!-- /.Left col -->
+    </div>
   </div>
   <!-- ./wrapper -->
 
