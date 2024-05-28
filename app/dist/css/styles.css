@@ -336,6 +336,7 @@ tr.colunasCategorias td:hover {
     left: 100%;
 }
 
+
 .btn-novo-cat:hover {
     background-color: #134b4b;
     border-color: #134b4b;
@@ -388,6 +389,10 @@ tr.colunasCategorias td:hover {
 }
 
 .tamanhoBodyConsulta {
+    height: 87vh;
+}
+
+.tamanhoHome{
     height: 87vh;
 }
 
