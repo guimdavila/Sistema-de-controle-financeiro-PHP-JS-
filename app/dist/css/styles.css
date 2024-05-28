@@ -319,7 +319,8 @@ tr.colunasCategorias td {
 tr.colunasCategorias td:hover {
     cursor: pointer;
 }
-.container-cat-botao{
+
+.container-cat-botao {
     display: flex;
     justify-content: flex-end;
 }
@@ -343,7 +344,7 @@ tr.colunasCategorias td:hover {
 
 }
 
-.form-control-categoria{
+.form-control-categoria {
     width: 15rem;
 }
 
@@ -355,11 +356,11 @@ tr.colunasCategorias td:hover {
     width: 150px;
 }
 
-.input-group-prependCategoria{
+.input-group-prependCategoria {
     margin-top: 20px;
 }
 
-.caixaSelecaoCate{
+.caixaSelecaoCate {
     background-color: white;
     height: 35px;
     width: 240px;
@@ -386,7 +387,8 @@ tr.colunasCategorias td:hover {
 .tdInvisivel {
     display: none;
 }
-.tamanhoBodyConsulta{
+
+.tamanhoBodyConsulta {
     height: 87vh;
 }
 
@@ -406,54 +408,56 @@ tr.colunasCategorias td:hover {
 .iconTabela {
     color: #134b4b;
 }
+
 .hidden {
     display: none;
 }
 
 
 /*Core.php*/
-.mesAnoCore{
+.mesAnoCore {
     height: 2rem;
 }
-.AnoCore{
+
+.AnoCore {
     width: 100px;
 }
 
-.MesCore{
+.MesCore {
     width: 120px;
 }
-.BotaoTransparente{
+
+.BotaoTransparente {
     background-color: transparent;
     border: none;
     width: 50px;
 }
+
 .tamanho-body1 {
-    height: 82vh; 
+    height: 82vh;
 }
+
 .tamanho-body2 {
-    height: 89vh; 
+    height: 89vh;
     padding: 0px;
     border-radius: 5%;
 }
-.tituloInputCore{
+
+.tituloInputCore {
     margin-right: 20px;
     color: black;
-    display: inline-block; 
+    display: inline-block;
     width: 170px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .caixaSelecaoCore {
-    display: inline-block; 
-    width: 300px; 
+    display: inline-block;
+    width: 300px;
 }
 
-.divCore{
-    
-}
-
-.form-control-core{
+.form-control-core {
     width: 300px;
 }
 
@@ -461,7 +465,7 @@ tr.colunasCategorias td:hover {
     flex: auto;
     display: flex;
     align-items: center;
-    border: 1px solid black; 
+    border: 1px solid black;
     height: 33.33%;
     color: white;
 }
@@ -469,47 +473,81 @@ tr.colunasCategorias td:hover {
 .text-muted-Core {
     margin: 0px;
     position: relative;
-    top: 35%; 
-
+    top: 35%;
+    align-items: center;
+    display: flex;
 }
 
-.objetoEntrada{
+.text-muted-Core-area{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.objetoEntrada {
     background-color: rgb(9, 53, 9);
 }
-.objetoSaida{
+
+.objetoSaida {
     background-color: rgb(110, 10, 10);
 }
-.objetoSaldo{
-    background-color:#134b4b
+
+.objetoSaldo {
+    background-color: #134b4b
 }
 
-.iconesCore{
+.iconesCore {
     font-size: 80px;
     margin-left: 30px;
     margin-right: 30px;
     width: 70px;
 }
-.iconesCore:hover{
-    transition: 0.5s;  
-    font-size: 85px;  
+
+.iconesCore:hover {
+    transition: 0.5s;
+    font-size: 85px;
 
 }
-.iconesCoreEntrada, .spanCoreEntrada{
+
+.iconesCoreEntrada,
+.spanCoreEntrada {
     color: rgb(4, 26, 4);
 }
-.iconesCoreSaida, .spanCoreSaida{
+
+.iconesCoreSaida,
+.spanCoreSaida {
     color: rgb(77, 7, 7);
 }
-.iconesCoreSaldo, .spanCoreSaldo{
-    color:#0c3030
+
+.iconesCoreSaldo,
+.spanCoreSaldo {
+    color: #0c3030
 }
 
-.spanCore{
+.spanCore {
     font-size: 40px;
 }
 
 
 .vertical-line {
-    border-left: 1px solid black; 
-    height: 100%; 
-  }
+    border-left: 1px solid black;
+    height: 100%;
+}
+
+.btn-novo-core {
+    margin-bottom: 10px;
+    width: 200px;
+    height: 35px;
+    background-color: #134b4b;
+    border-color: #134b4b;
+    transition: none;
+    color: white;
+    left: 100%;
+}
+.text-muted-Core-button{
+    margin-top: 1.7rem;
+}
+
+.text-area-core{
+    max-height: 80px;
+    min-height: 80px;
+}

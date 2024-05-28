@@ -100,15 +100,26 @@ include('php/funcoes.php');
 
                                                 </select>
                                             </p>
-                                            
+
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Data:</strong></span>
                                                 <input name="nDataCore" id="iDataCore" type="date" class="form-control caixaSelecaoCore">
                                             </p>
+
+                                            
+                                            <p class="text-muted-Core text-muted-Core-area">
+                                                <span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>
+                                                <textarea name="nDescr" id="iDescr"  class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>
+                                            </p>
+
                                             <p class="text-muted-Core">
                                                 <span class="tituloInputCore"><strong>Valor:</strong></span>
-                                                <input name="nValorCore" id="valoCore" type="text" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">
+                                                <input name="nValorCore" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">
                                             </p>
+
+                                            <div class="text-muted-Core-button">
+                                                <button type="button" class="btn btn-novo-core" data-toggle="modal">Salvar</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -157,14 +168,17 @@ include('php/funcoes.php');
 
                 $('#selecaoTipo').on('change', function() {
                     var tipoMov = $('#selecaoTipo').val();
+                    var opcaoSub = '';
+                    opcaoSub = '<option value="" disabled selected>Selecione</option>'
+                    $('#iSubCategoria').html(opcaoSub).show();
                     var opcaoCategoria = '';
                     if (tipoMov != "" && tipoMov != 0) {
                         console.log('php/Corephpajax.php?tipoMov=' + tipoMov)
 
                         $.getJSON('php/Corephpajax.php?tipoMov=' + tipoMov,
                             function(dados) {
-
                                 opcaoCategoria = '<option value="" disabled selected>Selecione</option>'
+                                
 
                                 if (dados.length > 0) {
                                     $.each(dados, function(i, obj) {
@@ -178,7 +192,7 @@ include('php/funcoes.php');
                                 }
                             })
                     } else {
-                        opcaoCategoria += '<option value="">Selecione</option>'
+                        opcaoCategoria += '<option value="">Selecione</option>'                                              
                         $('iCategoria').html(opcaoCategoria).show()
                         console.log("entrou5");
                     }
@@ -189,7 +203,6 @@ include('php/funcoes.php');
 
                 $('#iCategoria').on('change', function() {
                     var categoria = $('#iCategoria').val();
-                    var opcaoSub = '';
                     if (categoria != "" && categoria != 0) {
                         console.log('php/Corephpajax.php?categoria=' + categoria)
 
@@ -222,12 +235,14 @@ include('php/funcoes.php');
                 const cateCore = document.getElementById('iCategoria');
                 const SubCCore = document.getElementById('iSubCategoria');
                 const DataCore = document.getElementById('iDataCore');
+                const DescCore = document.getElementById('iDescr');
                 const valoCore = document.getElementById('valoCore');
 
                 seleCore.addEventListener('input', checkInput);
                 cateCore.addEventListener('input', checkInput);
                 SubCCore.addEventListener('input', checkInput);
                 DataCore.addEventListener('input', checkInput);
+                DescCore.addEventListener('input', checkInput);
                 valoCore.addEventListener('input', checkInput);
 
                 // Chama a função inicialmente para definir o estado correto do input2
@@ -239,6 +254,7 @@ include('php/funcoes.php');
                 const cateCore = document.getElementById('iCategoria');
                 const SubCCore = document.getElementById('iSubCategoria');
                 const DataCore = document.getElementById('iDataCore');
+                const DescCore = document.getElementById('iDescr');
                 const valoCore = document.getElementById('valoCore');
 
                 if (seleCore.value.trim() === '') {
@@ -252,7 +268,7 @@ include('php/funcoes.php');
                 } else {
                     SubCCore.disabled = false;
                 }
-                
+
                 if (SubCCore.value.trim() === '') {
                     DataCore.disabled = true;
                 } else {
@@ -260,8 +276,11 @@ include('php/funcoes.php');
                 }
 
                 if (DataCore.value.trim() === '') {
+                    DescCore.disabled = true;
                     valoCore.disabled = true;
+
                 } else {
+                    DescCore.disabled = false;
                     valoCore.disabled = false;
                 }
             }
