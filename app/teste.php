@@ -1,37 +1,147 @@
+<?php
+session_start();
+include('php/funcoes.php');
+?>
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo de Inputs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nordic Finance</title>
+
+    <?php
+    include('partes/css.php'); //importes de CSS
+    ?>
+
+
+    <style type="text/css" href="index.css">
+        <?php include('dist/css/styles.css');
+        ?>
+    </style>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body>
-    <input type="text" id="input1" placeholder="Digite algo aqui">
-    <input type="text" id="input2" placeholder="Este campo será desabilitado" disabled>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
 
-    <script>
-        // Função para verificar o valor do input1 e habilitar/desabilitar o input2
-        function checkInput1() {
-            const input1 = document.getElementById('input1');
-            const input2 = document.getElementById('input2');
-            if (input1.value.trim() === '') {
-                input2.disabled = true;
-            } else {
-                input2.disabled = false;
-            }
-        }
+        <?php
+        include('partes/navbar.php'); //importes de CSS
+        ?>
 
-        // Adicionando o evento de escuta para o evento 'input' no input1
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const input1 = document.getElementById('input1');
-            input1.addEventListener('input', checkInput1);
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="home.php" class="brand-link">
+                <img src="dist/img/logo128x128.png" alt="Nordic System" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Nordic System</span>
+            </a>
+            <?php
+            include('partes/sidebar.php'); //importes de CSS
+            ?>
 
-            // Chama a função inicialmente para definir o estado correto do input2
-            checkInput1();
-        });
-    </script>
+
+
+        </aside>
+
+
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+
+
+                        <div class="col-md-3 divCore">
+                            <div class="card">
+                                <div class="card-body tamanho-body2">
+                                    <div class="card-header">
+                                        <div class="mesAnoCore" style="text-align: center; display: flex; justify-content: center;">
+                                            <select class="input-group-text caixaSelecaoCate MesCore" name="nMesExibicao" id="mesEscolhido">
+                                                <option value="01">Janeiro</option>
+                                                <option value="02">Fevereiro</option>
+                                                <option value="03">Março</option>
+                                                <option value="04">Abril</option>
+                                                <option value="05">Maio</option>
+                                                <option value="06">Junho</option>
+                                                <option value="07">Julho</option>
+                                                <option value="08">Agosto</option>
+                                                <option value="09">Setembro</option>
+                                                <option value="10">Outubro</option>
+                                                <option value="11">Novembro</option>
+                                                <option value="12">Dezembro</option>
+                                            </select>
+                                            <select class="input-group-text caixaSelecaoCate AnoCore" name="nAnoExibicao" id="anoEscolhido">
+                                                <!-- JavaScript irá preencher os anos -->
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card">
+                                        <input type="text">
+                                    </div>
+
+                                    <div class="text-muted-Core-button">
+                                        <button type="button" id="btnAddCard" class="btn btn-novo-core" data-toggle="modal">Salvar</button>
+                                    </div>
+
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#btnAddCard').on('click', function() {
+
+                                                var mesEscol = $('#mesEscolhido').val();
+                                                var anoEscol = $('#anoEscolhido').val();
+
+                                                if (mesEscol != "" && anoEscol != 0) {
+                                                    $.getJSON('php/Corephpajax.php?mesEscol=' + categoria + '&anoEscol' + anoEscol,
+
+
+                                                        function(cards) {
+
+                                                            if (cards.length > 0) {
+                                                                $.each(cards, function(i, obj) {
+
+                                                                    for (let i = 1; i <= cards.length; i++) {
+
+                                                                        Retornocards += '<option value="' + obj.idSubCategoria + '">' + obj.nomeSubCategoria + '</option>';
+
+                                                                    }
+
+
+
+                                                                })
+                                                                $('#iSubCategoria').attr("required", "req");
+                                                                $('#iSubCategoria').html(opcaoSub).show();
+                                                            } else {
+                                                                opcaoSub += '<option value="">Puxar do banco</option>'
+                                                                $('iSubCategoria').html(opcaoSub).show()
+                                                            }
+                                                        })
+                                                } else {
+                                                    opcaoSub += '<option value="">Selecione</option>'
+                                                    $('iSubCategoria').html(opcaoSub).show()
+                                                }
+                                            })
+                                        })
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <?php
+        include('partes/js.php');
+        ?>
 </body>
 
 </html>

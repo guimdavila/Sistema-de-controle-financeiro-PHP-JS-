@@ -1,5 +1,5 @@
 body {
-    background-color: #134b4b;
+    background-color: #27374D;
 }
 
 /*Sidebar*/
@@ -87,7 +87,7 @@ button {
 
 
 .card-primary:not(.card-outline)>.card-header {
-    background-color: #134b4b;
+    background-color: #27374D;
     padding-top: 10px;
     padding-bottom: 10px;
 
@@ -108,14 +108,14 @@ hr {
 }
 
 .brand-link {
-    background-color: #134b4b;
+    background-color: #27374D;
     font-size: 22px;
     font-family: "Sedan", serif;
 }
 
 .os-content {
 
-    background-color: #134b4b;
+    background-color: #27374D;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -123,7 +123,7 @@ hr {
 }
 
 .navbar-white {
-    background-color: #134b4b;
+    background-color: #27374D;
 }
 
 .navbar-light .navbar-nav .nav-link:focus,
@@ -231,7 +231,7 @@ hr {
 }
 
 .modal-header {
-    background-color: #134b4b;
+    background-color: #27374D;
 
 }
 
@@ -259,17 +259,17 @@ hr {
 }
 
 .botaoCategorias.active {
-    background-color: #134b4b;
+    background-color: #27374D;
     color: white;
 }
 
 .botaoCategorias.active:hover {
-    background-color: #134b4b;
+    background-color: #27374D;
     color: white;
 }
 
 .botaoCategorias:hover {
-    color: #134b4b;
+    color: #27374D;
 }
 
 .tituloInput {
@@ -307,13 +307,13 @@ hr {
 }
 
 tr.colunasCategorias th {
-    background-color: #134b4b;
+    background-color: #27374D;
     color: white;
     text-align: center;
 }
 
 tr.colunasCategorias td {
-    border-color: #134b4b;
+    border-color: #27374D;
 }
 
 tr.colunasCategorias td:hover {
@@ -329,8 +329,8 @@ tr.colunasCategorias td:hover {
     margin-bottom: 10px;
     width: 200px;
     height: 35px;
-    background-color: #134b4b;
-    border-color: #134b4b;
+    background-color: #27374D;
+    border-color: #27374D;
     transition: none;
     color: white;
     left: 100%;
@@ -338,8 +338,8 @@ tr.colunasCategorias td:hover {
 
 
 .btn-novo-cat:hover {
-    background-color: #134b4b;
-    border-color: #134b4b;
+    background-color: #27374D;
+    border-color: #27374D;
     color: white;
 
 }
@@ -370,16 +370,16 @@ tr.colunasCategorias td:hover {
     margin-bottom: 10px;
     width: 150px;
     height: 35px;
-    background-color: #134b4b;
-    border-color: #134b4b;
+    background-color: #27374D;
+    border-color: #27374D;
     transition: none;
     color: white;
     left: 100%;
 }
 
 .btn-salvar-cat:hover {
-    background-color: #134b4b;
-    border-color: #134b4b;
+    background-color: #27374D;
+    border-color: #27374D;
     color: white;
 
 }
@@ -392,13 +392,13 @@ tr.colunasCategorias td:hover {
     height: 87vh;
 }
 
-.tamanhoHome{
+.tamanhoHome {
     height: 87vh;
 }
 
 /* Cor quando está checked */
 .custom-control-input:checked~.custom-control-label::before {
-    background-color: #134b4b !important;
+    background-color: #27374D !important;
 }
 
 .classeLapis {
@@ -406,7 +406,7 @@ tr.colunasCategorias td:hover {
 }
 
 .iconTabela {
-    color: #134b4b;
+    color: #27374D;
 }
 
 .hidden {
@@ -434,11 +434,11 @@ tr.colunasCategorias td:hover {
 }
 
 .tamanho-body1 {
-    height: 82vh;
+    height: 80vh;
 }
 
 .tamanho-body2 {
-    height: 89vh;
+    height: 87vh;
     padding: 0px;
     border-radius: 5%;
 }
@@ -478,7 +478,7 @@ tr.colunasCategorias td:hover {
     display: flex;
 }
 
-.text-muted-Core-area{
+.text-muted-Core-area {
     margin-top: 25px;
     margin-bottom: 25px;
 }
@@ -492,7 +492,7 @@ tr.colunasCategorias td:hover {
 }
 
 .objetoSaldo {
-    background-color: #134b4b
+    background-color: #27374D
 }
 
 .iconesCore {
@@ -537,17 +537,28 @@ tr.colunasCategorias td:hover {
     margin-bottom: 10px;
     width: 200px;
     height: 35px;
-    background-color: #134b4b;
-    border-color: #134b4b;
+    background-color: #27374D;
+    border-color: #27374D;
     transition: none;
     color: white;
     left: 100%;
 }
-.text-muted-Core-button{
+
+.text-muted-Core-button {
     margin-top: 1.7rem;
 }
 
-.text-area-core{
+.text-area-core {
     max-height: 80px;
     min-height: 80px;
+}
+
+.footerCore {
+    background-color: #27374D;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

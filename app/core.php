@@ -28,10 +28,6 @@ include('php/funcoes.php');
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <?php
-        include('partes/navbar.php'); //importes de CSS
-        ?>
-
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
@@ -106,10 +102,10 @@ include('php/funcoes.php');
                                                 <input name="nDataCore" id="iDataCore" type="date" class="form-control caixaSelecaoCore">
                                             </p>
 
-                                            
+
                                             <p class="text-muted-Core text-muted-Core-area">
                                                 <span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>
-                                                <textarea name="nDescr" id="iDescr"  class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>
+                                                <textarea name="nDescr" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>
                                             </p>
 
                                             <p class="text-muted-Core">
@@ -127,41 +123,48 @@ include('php/funcoes.php');
                         </div>
 
 
-                        <div class="col-md-3 divCore">
+                        <div class="col-md-6 divCore">
                             <div class="card">
                                 <div class="card-body tamanho-body2">
                                     <!-- Conteúdo adicional aqui -->
                                 </div>
                             </div>
                         </div>
+
+                        <!--
                         <div class="col-md-3 divCore">
                             <div class="card">
                                 <div class="card-body tamanho-body2">
                                     <div class="objetosSaldos objetoEntrada">
                                         <i class="fa-solid fa-plus iconesCore iconesCoreEntrada"></i>
                                         <span class="spanCore spanCoreEntrada">R$
-                                            <!-- Função PHP com o cálculo -->
+                                            Função PHP com o cálculo 
                                         </span>
                                     </div>
                                     <div class="objetosSaldos objetoSaida">
                                         <i class="fa-solid fa-minus iconesCore iconesCoreSaida"></i>
                                         <span class="spanCore spanCoreSaida">R$
-                                            <!-- Função PHP com o cálculo -->
+                                            Função PHP com o cálculo 
                                         </span>
                                     </div>
                                     <div class="objetosSaldos objetoSaldo">
                                         <i class="fa-solid fa-equals iconesCore iconesCoreSaldo"></i>
                                         <span class="spanCore spanCoreSaldo">R$
-                                            <!-- Função PHP com o cálculo -->
+                                           Função PHP com o cálculo 
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        -->
                     </div>
                 </div>
             </section>
         </div>
+        <footer class="footerCore">
+            <p>Meu footer fixo</p>
+        </footer>
+
 
         <script>
             $(document).ready(function() {
@@ -169,7 +172,7 @@ include('php/funcoes.php');
                 $('#selecaoTipo').on('change', function() {
                     var tipoMov = $('#selecaoTipo').val();
                     var opcaoSub = '';
-                    opcaoSub = '<option value="" disabled selected>Selecione</option>'
+                    opcaoSub = '<option value="" disabled selected></option>'
                     $('#iSubCategoria').html(opcaoSub).show();
                     var opcaoCategoria = '';
                     if (tipoMov != "" && tipoMov != 0) {
@@ -178,7 +181,7 @@ include('php/funcoes.php');
                         $.getJSON('php/Corephpajax.php?tipoMov=' + tipoMov,
                             function(dados) {
                                 opcaoCategoria = '<option value="" disabled selected>Selecione</option>'
-                                
+
 
                                 if (dados.length > 0) {
                                     $.each(dados, function(i, obj) {
@@ -192,7 +195,7 @@ include('php/funcoes.php');
                                 }
                             })
                     } else {
-                        opcaoCategoria += '<option value="">Selecione</option>'                                              
+                        opcaoCategoria += '<option value="">Selecione</option>'
                         $('iCategoria').html(opcaoCategoria).show()
                     }
                 })
@@ -226,110 +229,111 @@ include('php/funcoes.php');
                         $('iSubCategoria').html(opcaoSub).show()
                     }
 
-                    
+
                 })
             })
             ///////////////////27-05////////////////////////////////
 
             $(document).ready(function() {
 
-            $('#ibt').on('click', function() {
-                var tipo = $('#selecaoTipo').val();
-                var categoria = $('#iCategoria').val();
-                var subcategoria = $('#iSubCategoria').val();
-                var data = $('#iDataCore').val();
-                var desc = $('#iDescr').val();
-                var valor = $('#valoCore').val();
+                        $('#ibt').on('click', function() {
+                                var tipo = $('#selecaoTipo').val();
+                                var categoria = $('#iCategoria').val();
+                                var subcategoria = $('#iSubCategoria').val();
+                                var data = $('#iDataCore').val();
+                                var desc = $('#iDescr').val();
+                                var valor = $('#valoCore').val();
 
-                $.getJSON('php/Corephpajax.php?tipoMov='+tipo+' &categoria='+categoria+' &subcategoria='
-                +subcategoria+' &data='+data+ ' &desc='+desc+' &valor='+valor,                
-                function(dados) {
+                                $.getJSON('php/Corephpajax.php?tipoMov=' + tipo + ' &categoria=' + categoria + ' &subcategoria=' +
+                                    subcategoria + ' &data=' + data + ' &desc=' + desc + ' &valor=' + valor,
+                                    function(dados) {
 
-                if (dados1.length > 0) {                        
-                    $.each(dados1, function(i, obj) {
-                    console.log(valor);
-                })
-
-                } else {
-                
-                }
-                })
-                
-            })
-            })
-
-            //////////////////////////////////////////////////////////
-
-            document.addEventListener('DOMContentLoaded', (event) => {
-
-                const seleCore = document.getElementById('selecaoTipo');
-                const cateCore = document.getElementById('iCategoria');
-                const SubCCore = document.getElementById('iSubCategoria');
-                const DataCore = document.getElementById('iDataCore');
-                const DescCore = document.getElementById('iDescr');
-                const valoCore = document.getElementById('valoCore');
-
-                seleCore.addEventListener('input', checkInput);
-                cateCore.addEventListener('input', checkInput);
-                SubCCore.addEventListener('input', checkInput);
-                DataCore.addEventListener('input', checkInput);
-                DescCore.addEventListener('input', checkInput);
-                valoCore.addEventListener('input', checkInput);
-
-                // Chama a função inicialmente para definir o estado correto do input2
-                checkInput();
-            });
-
-            function checkInput() {
-                const seleCore = document.getElementById('selecaoTipo');
-                const cateCore = document.getElementById('iCategoria');
-                const SubCCore = document.getElementById('iSubCategoria');
-                const DataCore = document.getElementById('iDataCore');
-                const DescCore = document.getElementById('iDescr');
-                const valoCore = document.getElementById('valoCore');
-
-                if (seleCore.value.trim() === '') {
-                    console.log(document.getElementById('selecaoTipo'))
-                    cateCore.disabled = true;
-                } else {
-                    cateCore.disabled = false;
-                }
-
-                if (cateCore.value.trim() === '') {
-                    SubCCore.disabled = true;
-                } else {
-                    SubCCore.disabled = false;
-                }
-
-                if (SubCCore.value.trim() === '') {
-                    DataCore.disabled = true;
-                } else {
-                    DataCore.disabled = false;
-                }
-
-                if (DataCore.value.trim() === '') {
-                    DescCore.disabled = true;
-                    valoCore.disabled = true;
-
-                } else {
-                    DescCore.disabled = false;
-                    valoCore.disabled = false;
-                }
-            }
-
-            function formatarValorMonetario(input) {
-                let value = input.value;
-
-                value = value.replace(/\D/g, '');
-                value = (value / 100).toFixed(2) + '';
-                value = value.replace('.', ',');
-                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                value = 'R$ ' + value;
-
-                input.value = value;
-            }
+                                        if (dados1.length > 0) {
+                                            $.each(dados1, function(i, obj) {
+                                                console.log(valor);
+                                            })
 
 
+                                        } else {
+
+                                        }
+
+                                    })
+                                })
+
+                        })
+                    
+
+                    //////////////////////////////////////////////////////////
+
+                    document.addEventListener('DOMContentLoaded', (event) => {
+
+                        const seleCore = document.getElementById('selecaoTipo');
+                        const cateCore = document.getElementById('iCategoria');
+                        const SubCCore = document.getElementById('iSubCategoria');
+                        const DataCore = document.getElementById('iDataCore');
+                        const DescCore = document.getElementById('iDescr');
+                        const valoCore = document.getElementById('valoCore');
+
+                        seleCore.addEventListener('input', checkInput);
+                        cateCore.addEventListener('input', checkInput);
+                        SubCCore.addEventListener('input', checkInput);
+                        DataCore.addEventListener('input', checkInput);
+                        DescCore.addEventListener('input', checkInput);
+                        valoCore.addEventListener('input', checkInput);
+
+                        // Chama a função inicialmente para definir o estado correto do input2
+                        checkInput();
+                    });
+
+                    function checkInput() {
+                        const seleCore = document.getElementById('selecaoTipo');
+                        const cateCore = document.getElementById('iCategoria');
+                        const SubCCore = document.getElementById('iSubCategoria');
+                        const DataCore = document.getElementById('iDataCore');
+                        const DescCore = document.getElementById('iDescr');
+                        const valoCore = document.getElementById('valoCore');
+
+                        if (seleCore.value.trim() === '') {
+                            console.log(document.getElementById('selecaoTipo'))
+                            cateCore.disabled = true;
+                        } else {
+                            cateCore.disabled = false;
+                        }
+
+                        if (cateCore.value.trim() === '') {
+                            SubCCore.disabled = true;
+                        } else {
+                            SubCCore.disabled = false;
+                        }
+
+                        if (SubCCore.value.trim() === '') {
+                            DataCore.disabled = true;
+                        } else {
+                            DataCore.disabled = false;
+                        }
+
+                        if (DataCore.value.trim() === '') {
+                            DescCore.disabled = true;
+                            valoCore.disabled = true;
+
+                        } else {
+                            DescCore.disabled = false;
+                            valoCore.disabled = false;
+                        }
+                    }
+
+                    function formatarValorMonetario(input) {
+                        let value = input.value;
+
+                        value = value.replace(/\D/g, '');
+                        value = (value / 100).toFixed(2) + '';
+                        value = value.replace('.', ',');
+                        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                        value = 'R$ ' + value;
+
+                        input.value = value;
+                    }
         </script>
 
         <?php
