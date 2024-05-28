@@ -15,18 +15,6 @@ if($tipoMovimentacao != ""){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 function SolicitaCategoriasCore($id, $tipoMovimentacao){
 
 
@@ -43,6 +31,3 @@ function SolicitaCategoriasCore($id, $tipoMovimentacao){
 
     return $lista;
 }
-
-
-

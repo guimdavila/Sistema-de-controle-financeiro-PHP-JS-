@@ -118,7 +118,7 @@ include('php/funcoes.php');
                                             </p>
 
                                             <div class="text-muted-Core-button">
-                                                <button type="button" class="btn btn-novo-core" data-toggle="modal">Salvar</button>
+                                                <button type="button" id="ibt" class="btn btn-novo-core" data-toggle="modal">Salvar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -194,7 +194,6 @@ include('php/funcoes.php');
                     } else {
                         opcaoCategoria += '<option value="">Selecione</option>'                                              
                         $('iCategoria').html(opcaoCategoria).show()
-                        console.log("entrou5");
                     }
                 })
             })
@@ -226,8 +225,39 @@ include('php/funcoes.php');
                         opcaoSub += '<option value="">Selecione</option>'
                         $('iSubCategoria').html(opcaoSub).show()
                     }
+
+                    
                 })
             })
+            ///////////////////27-05////////////////////////////////
+
+            $(document).ready(function() {
+
+            $('#ibt').on('click', function() {
+                var tipo = $('#selecaoTipo').val();
+                var categoria = $('#iCategoria').val();
+                var subcategoria = $('#iSubCategoria').val();
+                var data = $('#iDataCore').val();
+                var desc = $('#iDescr').val();
+                var valor = $('#valoCore').val();
+
+                $.getJSON('php/Corephpajax.php?tipoMov='+tipo+'&categoria='+categoria+'&subcategoria='
+                +subcategoria+'&data='+data+'&desc='+desc+'&valor='+valor,
+                    function(dados1) {
+
+                    if (dados1.length > 0) {                        
+                        console.log("Entrou1");
+
+                    } else {
+                        console.log("Entrou2");
+                    
+                    }
+                })
+                
+            })
+            })
+
+            //////////////////////////////////////////////////////////
 
             document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -258,6 +288,7 @@ include('php/funcoes.php');
                 const valoCore = document.getElementById('valoCore');
 
                 if (seleCore.value.trim() === '') {
+                    console.log(document.getElementById('selecaoTipo'))
                     cateCore.disabled = true;
                 } else {
                     cateCore.disabled = false;
@@ -296,6 +327,8 @@ include('php/funcoes.php');
 
                 input.value = value;
             }
+
+
         </script>
 
         <?php

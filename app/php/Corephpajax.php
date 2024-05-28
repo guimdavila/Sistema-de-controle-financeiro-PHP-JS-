@@ -10,6 +10,15 @@ require_once('conexaoPDO.php');
 $id                     = $_SESSION['idUsuario'];
 $idTipoMov = isset($_GET['tipoMov']) ? $_GET['tipoMov'] : '';
 $idcategoria = isset($_GET['categoria']) ? $_GET['categoria'] : '';
+$subcategoria = isset($_GET['subcategoria']) ? $_GET['subcategoria'] : '';
+$data = isset($_GET['data']) ? $_GET['data'] : '';
+$desc = isset($_GET['desc']) ? $_GET['desc'] : '';
+$valor = isset($_GET['valor']) ? $_GET['valor'] : '';
+
+if (!empty($valor)){
+    echo atualizabanco();
+
+}
 
 if (!empty($idTipoMov)) {
     echo getCategoria($idTipoMov, $id);
@@ -55,3 +64,16 @@ function getSubCategoria($idcategoria, $id)
     echo json_encode($stm1->fetchAll(PDO::FETCH_ASSOC));
     $pdo = null;
 }
+
+/////////////////////27-05////////////////////
+
+//$id //$idTipoMov //$idcategoria //$subcategoria //$data //$desc //$valor 
+
+function atualizabanco(){
+
+    $pdo = Conectar();
+    
+
+}
+
+////////////////////////////////////////////
