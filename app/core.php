@@ -169,7 +169,7 @@ include('php/funcoes.php');
                 $('#selecaoTipo').on('change', function() {
                     var tipoMov = $('#selecaoTipo').val();
                     var opcaoSub = '';
-                    opcaoSub = '<option value="" disabled selected>Selecione</option>'
+                    opcaoSub = '<option value="" disabled selected></option>'
                     $('#iSubCategoria').html(opcaoSub).show();
                     var opcaoCategoria = '';
                     if (tipoMov != "" && tipoMov != 0) {
