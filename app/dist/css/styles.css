@@ -392,7 +392,7 @@ tr.colunasCategorias td:hover {
     height: 87vh;
 }
 
-.tamanhoHome{
+.tamanhoHome {
     height: 87vh;
 }
 
@@ -434,11 +434,11 @@ tr.colunasCategorias td:hover {
 }
 
 .tamanho-body1 {
-    height: 82vh;
+    height: 80vh;
 }
 
 .tamanho-body2 {
-    height: 89vh;
+    height: 87vh;
     padding: 0px;
     border-radius: 5%;
 }
@@ -478,7 +478,7 @@ tr.colunasCategorias td:hover {
     display: flex;
 }
 
-.text-muted-Core-area{
+.text-muted-Core-area {
     margin-top: 25px;
     margin-bottom: 25px;
 }
@@ -543,11 +543,22 @@ tr.colunasCategorias td:hover {
     color: white;
     left: 100%;
 }
-.text-muted-Core-button{
+
+.text-muted-Core-button {
     margin-top: 1.7rem;
 }
 
-.text-area-core{
+.text-area-core {
     max-height: 80px;
     min-height: 80px;
+}
+
+.footerCore {
+    background-color: #27374D;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

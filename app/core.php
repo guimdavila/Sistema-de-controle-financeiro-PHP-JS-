@@ -28,10 +28,6 @@ include('php/funcoes.php');
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <?php
-        include('partes/navbar.php'); //importes de CSS
-        ?>
-
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
@@ -106,10 +102,10 @@ include('php/funcoes.php');
                                                 <input name="nDataCore" id="iDataCore" type="date" class="form-control caixaSelecaoCore">
                                             </p>
 
-                                            
+
                                             <p class="text-muted-Core text-muted-Core-area">
                                                 <span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>
-                                                <textarea name="nDescr" id="iDescr"  class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>
+                                                <textarea name="nDescr" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>
                                             </p>
 
                                             <p class="text-muted-Core">
@@ -127,41 +123,48 @@ include('php/funcoes.php');
                         </div>
 
 
-                        <div class="col-md-3 divCore">
+                        <div class="col-md-6 divCore">
                             <div class="card">
                                 <div class="card-body tamanho-body2">
                                     <!-- Conteúdo adicional aqui -->
                                 </div>
                             </div>
                         </div>
+
+                        <!--
                         <div class="col-md-3 divCore">
                             <div class="card">
                                 <div class="card-body tamanho-body2">
                                     <div class="objetosSaldos objetoEntrada">
                                         <i class="fa-solid fa-plus iconesCore iconesCoreEntrada"></i>
                                         <span class="spanCore spanCoreEntrada">R$
-                                            <!-- Função PHP com o cálculo -->
+                                            Função PHP com o cálculo 
                                         </span>
                                     </div>
                                     <div class="objetosSaldos objetoSaida">
                                         <i class="fa-solid fa-minus iconesCore iconesCoreSaida"></i>
                                         <span class="spanCore spanCoreSaida">R$
-                                            <!-- Função PHP com o cálculo -->
+                                            Função PHP com o cálculo 
                                         </span>
                                     </div>
                                     <div class="objetosSaldos objetoSaldo">
                                         <i class="fa-solid fa-equals iconesCore iconesCoreSaldo"></i>
                                         <span class="spanCore spanCoreSaldo">R$
-                                            <!-- Função PHP com o cálculo -->
+                                           Função PHP com o cálculo 
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        -->
                     </div>
                 </div>
             </section>
         </div>
+        <footer class="footerCore">
+            <p>Meu footer fixo</p>
+        </footer>
+
 
         <script>
             $(document).ready(function() {
@@ -178,7 +181,7 @@ include('php/funcoes.php');
                         $.getJSON('php/Corephpajax.php?tipoMov=' + tipoMov,
                             function(dados) {
                                 opcaoCategoria = '<option value="" disabled selected>Selecione</option>'
-                                
+
 
                                 if (dados.length > 0) {
                                     $.each(dados, function(i, obj) {
@@ -192,7 +195,7 @@ include('php/funcoes.php');
                                 }
                             })
                     } else {
-                        opcaoCategoria += '<option value="">Selecione</option>'                                              
+                        opcaoCategoria += '<option value="">Selecione</option>'
                         $('iCategoria').html(opcaoCategoria).show()
                     }
                 })
@@ -226,35 +229,35 @@ include('php/funcoes.php');
                         $('iSubCategoria').html(opcaoSub).show()
                     }
 
-                    
+
                 })
             })
             ///////////////////27-05////////////////////////////////
 
             $(document).ready(function() {
 
-            $('#ibt').on('click', function() {
-                var tipo = $('#selecaoTipo').val();
-                var categoria = $('#iCategoria').val();
-                var subcategoria = $('#iSubCategoria').val();
-                var data = $('#iDataCore').val();
-                var desc = $('#iDescr').val();
-                var valor = $('#valoCore').val();
+                $('#ibt').on('click', function() {
+                    var tipo = $('#selecaoTipo').val();
+                    var categoria = $('#iCategoria').val();
+                    var subcategoria = $('#iSubCategoria').val();
+                    var data = $('#iDataCore').val();
+                    var desc = $('#iDescr').val();
+                    var valor = $('#valoCore').val();
 
-                $.getJSON('php/Corephpajax.php?tipoMov='+tipo+'&categoria='+categoria+'&subcategoria='
-                +subcategoria+'&data='+data+'&desc='+desc+'&valor='+valor,
-                    function(dados1) {
+                    $.getJSON('php/Corephpajax.php?tipoMov=' + tipo + '&categoria=' + categoria + '&subcategoria=' +
+                        subcategoria + '&data=' + data + '&desc=' + desc + '&valor=' + valor,
+                        function(dados1) {
 
-                    if (dados1.length > 0) {                        
-                        console.log("Entrou1");
+                            if (dados1.length > 0) {
+                                console.log("Entrou1");
 
-                    } else {
-                        console.log("Entrou2");
-                    
-                    }
+                            } else {
+                                console.log("Entrou2");
+
+                            }
+                        })
+
                 })
-                
-            })
             })
 
             //////////////////////////////////////////////////////////
@@ -327,8 +330,6 @@ include('php/funcoes.php');
 
                 input.value = value;
             }
-
-
         </script>
 
         <?php
