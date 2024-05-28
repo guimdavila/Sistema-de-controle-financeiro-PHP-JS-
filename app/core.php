@@ -242,7 +242,8 @@ include('php/funcoes.php');
                                 var subcategoria = $('#iSubCategoria').val();
                                 var data = $('#iDataCore').val();
                                 var desc = $('#iDescr').val();
-                                var valor = $('#valoCore').val();
+                                const valo = $('#valoCore').val().replace(/[^0-9]/g, '')
+                                var valor = valo;
                                 console.log('php/Corephpajax.php?tipoMov=' + tipo + '&categoria=' + categoria + '&subcategoria=' +
                                     subcategoria + '&data=' + data + '&desc=' + desc + '&valor=' + valor);
 
