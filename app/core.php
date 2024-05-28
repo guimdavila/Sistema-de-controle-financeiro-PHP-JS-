@@ -243,19 +243,23 @@ include('php/funcoes.php');
                                 var data = $('#iDataCore').val();
                                 var desc = $('#iDescr').val();
                                 var valor = $('#valoCore').val();
+                                console.log('php/Corephpajax.php?tipoMov=' + tipo + '&categoria=' + categoria + '&subcategoria=' +
+                                    subcategoria + '&data=' + data + '&desc=' + desc + '&valor=' + valor);
 
-                                $.getJSON('php/Corephpajax.php?tipoMov=' + tipo + ' &categoria=' + categoria + ' &subcategoria=' +
-                                    subcategoria + ' &data=' + data + ' &desc=' + desc + ' &valor=' + valor,
-                                    function(dados) {
+                                $.getJSON('php/Corephpajax.php?tipoMov=' + tipo + '&categoria=' + categoria + '&subcategoria=' +
+                                    subcategoria + '&data=' + data + '&desc=' + desc + '&valor=' + valor,
+                                    function(dados1) {
 
+                                        console.log("Entrou1");
                                         if (dados1.length > 0) {
+                                            console.log("Entrou2")
                                             $.each(dados1, function(i, obj) {
                                                 console.log(valor);
                                             })
 
 
                                         } else {
-
+                                            console.log("Entrou3")
                                         }
 
                                     })
