@@ -19,7 +19,7 @@ include('partes/css.php'); //importes de CSS
 
 
     <style type="text/css" href="index.css">
-        <?php include('dist/css/styles.css'); ?>       
+        <?php include('dist/css/styles.css'); ?>
     </style>
 
     <style type="text/css" href="index.css">
@@ -33,10 +33,6 @@ include('partes/css.php'); //importes de CSS
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <?php
-        include('partes/navbar.php'); //importes de CSS
-        ?>
-
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
@@ -48,11 +44,6 @@ include('partes/css.php'); //importes de CSS
             include('partes/sidebar.php'); //importes de CSS
             ?>
 
-            <script src="dist/js/script.js"></script>
-
-            <?php
-            include('dist/js/script.js'); //importes de js
-            ?>
         </aside>
 
         <div class="content-wrapper">
@@ -327,6 +318,11 @@ include('partes/css.php'); //importes de CSS
         });
     </script>
 
+<script src="dist/js/script.js"></script>
+
+<?php
+include('dist/js/script.js'); //importes de js
+?>
 </body>
 
 </html>

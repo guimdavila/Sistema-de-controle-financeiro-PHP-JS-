@@ -32,10 +32,6 @@ include('php/funcoes.php');
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        <?php
-        include('partes/navbar.php'); //importes de CSS
-        ?>
-
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
