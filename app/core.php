@@ -246,7 +246,8 @@ include('php/funcoes.php');
                                 const valo = $('#valoCore').val().replace(/[^0-9]/g, '')
                                 var valor = valo;
 
-                                $.getJSON('php/Corephpajax.php?tipo='+tipo+'&categoria='+categoria+'&subcategoria='+'&data='+data,
+                                $.getJSON('php/Corephpajax.php?tipo='+tipo+'&categoria='+categoria+'&subcategoria='+'&data='+data+
+                                '&desc='+desc+'&valor='+valor,
                                     function(dados) {
 
                                         console.log("Entrou1")

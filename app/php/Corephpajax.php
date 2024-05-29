@@ -14,7 +14,7 @@ $subcategoria = isset($_GET['subcategoria']) ? $_GET['subcategoria'] : '';
 $desc = isset($_GET['desc']) ? $_GET['desc'] : '';
 $valor = isset($_GET['valor']) ? $_GET['valor'] : '';
 
-if (!empty($data)){
+if (!empty($data) && (!empty($valor))){
     echo atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor);
 
 }
@@ -68,19 +68,19 @@ function getSubCategoria($idcategoria, $id)
 //$id $idTipoMov $idcategoria $subcategoria $data $desc $valor 
 //echo atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor)
 
-function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data){
+function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $valor, $desc){
     
     
     $pdo = Conectar();
     
     
     $sql = "INSERT INTO MOVIMENTACAO (DESCRICAO, DATA, VALOR, IDUSUARIO, IDCATEGORIA, IDSUBCATEGORIA, IDTIPOMOVIMENTACAO) "
-    ."VALUES ('Testando',$data,312, $id, $idcategoria, $subcategoria, $idTipoMov)";
+    ."VALUES ('$desc', $data, $valor, $id, $idcategoria, $subcategoria, $idTipoMov)";
 
     $stm = $pdo->prepare($sql);
     $stm->execute();
 
-    echo json_encode(null);
+    echo json_encode($stm->fetchAll(PDO::FETCH_ASSOC));
 
     $pdo = null;
 }
