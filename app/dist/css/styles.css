@@ -568,7 +568,7 @@ tr.colunasCategorias td:hover {
 .container-resumo {
     margin-top: 20px;
     margin-left: 20px;
-    width: 42.5rem;
+    width: 45rem;
     height: auto;
     padding: 10px;
     border-radius: 10px;
@@ -602,6 +602,7 @@ tr.colunasCategorias td:hover {
 }
 
 .cardsGravados {
+    margin-top: 10px;
     width: auto;
     height: 85vh;
     /* Define a altura máxima da div para evitar que ela cresça infinitamente */

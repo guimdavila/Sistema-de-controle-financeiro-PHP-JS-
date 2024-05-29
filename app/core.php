@@ -127,38 +127,11 @@ include('php/funcoes.php');
                             <div class="card">
                                 <div class="card-body tamanho-body2">
                                     <div id="cardsGravados" class="cardsGravados">
-
+                                        <!--CARDS-->
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!--
-                        <div class="col-md-3 divCore">
-                            <div class="card">
-                                <div class="card-body tamanho-body2">
-                                    <div class="objetosSaldos objetoEntrada">
-                                        <i class="fa-solid fa-plus iconesCore iconesCoreEntrada"></i>
-                                        <span class="spanCore spanCoreEntrada">R$
-                                            Função PHP com o cálculo 
-                                        </span>
-                                    </div>
-                                    <div class="objetosSaldos objetoSaida">
-                                        <i class="fa-solid fa-minus iconesCore iconesCoreSaida"></i>
-                                        <span class="spanCore spanCoreSaida">R$
-                                            Função PHP com o cálculo 
-                                        </span>
-                                    </div>
-                                    <div class="objetosSaldos objetoSaldo">
-                                        <i class="fa-solid fa-equals iconesCore iconesCoreSaldo"></i>
-                                        <span class="spanCore spanCoreSaldo">R$
-                                           Função PHP com o cálculo 
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        -->
                     </div>
                 </div>
             </section>
@@ -234,7 +207,6 @@ include('php/funcoes.php');
 
                 })
             })
-            ///////////////////27-05////////////////////////////////
 
             $(document).ready(function() {
                 $('#ibt').on('click', function() {
@@ -257,8 +229,7 @@ include('php/funcoes.php');
                             if (cards.length > 0) {
 
                                 var Retornocards = '';
-                                console.log("chegou")
-                                console.log(cards)
+
                                 $.each(cards, function(i, obj) {
 
                                     Retornocards += '<div class="container-resumo">' +
@@ -289,7 +260,60 @@ include('php/funcoes.php');
                 });
             });
 
+            //////////////////////////////////////////////////////////
 
+            $(document).ready(function() {
+
+                $('#mesEscolhido, #anoEscolhido').on('change', function() {
+                    
+                    var mesEscol = $('#mesEscolhido').val();
+                    var anoEscol = $('#anoEscolhido').val();
+
+                    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0 ) {
+                    
+                        console.log(mesEscol, anoEscol)
+
+                        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+                            function(retornoCardsCore) {
+
+                                if (retornoCardsCore.length > 0) {
+
+                                var Retornocards = '';
+                                
+                                $.each(retornoCardsCore, function(i, obj) {
+
+                                    Retornocards += '<div class="container-resumo">' +
+                                        '<div class="info">' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
+                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
+
+
+                                })
+                                $('#cardsGravados').html(Retornocards).show();
+                            } else {
+                                console.log("Sem retorno de resultado")
+                            }
+                            })
+                    } else {
+                        console.log("Sem retorno de resultado")
+                    }
+
+
+                })
+            })
 
             //////////////////////////////////////////////////////////
 

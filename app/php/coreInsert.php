@@ -40,7 +40,7 @@ function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $des
     $pdo = Conectar();
 
     $sql = "SELECT B.NOMECATEGORIA, C.NOMESUBCATEGORIA, A.DATA, A.VALOR, A.DESCRICAO FROM MOVIMENTACAO AS A INNER JOIN CATEGORIA AS B ON A.IDCATEGORIA = B.IDCATEGORIA INNER JOIN SUBCATEGORIA AS C ON A.IDSUBCATEGORIA = C.IDSUBCATEGORIA "
-        . " WHERE A.DATA BETWEEN '".$anoEscol."".$mesEscol."01' AND '".$anoEscol."".$mesEscol."31' AND A.IDUSUARIO = $id order by A.DATA;" ;
+        . " WHERE A.DATA BETWEEN '".$anoEscol."".$mesEscol."01' AND '".$anoEscol."".$mesEscol."31' AND A.IDUSUARIO = $id order by A.IDMOVIMENTACAO desc;" ;
 
     $stm = $pdo->prepare($sql);
     $stm->execute();
