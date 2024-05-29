@@ -236,100 +236,109 @@ include('php/funcoes.php');
 
             $(document).ready(function() {
 
-                $('#ibt').on('click', function() {
-                    var tipo = $('#selecaoTipo').val();
-                    var categoria = $('#iCategoria').val();
-                    var subcategoria = $('#iSubCategoria').val();
-                    var data = $('#iDataCore').val();
-                    var desc = $('#iDescr').val();
-                    var valor = $('#valoCore').val();
+                        $('#ibt').on('click', function() {
+                                var tipo = $('#selecaoTipo').val();
+                                var categoria = $('#iCategoria').val();
+                                var subcategoria = $('#iSubCategoria').val();
+                                var data = $('#iDataCore').val();
+                                var desc = $('#iDescr').val();
+                                const valo = $('#valoCore').val().replace(/[^0-9]/g, '')
+                                var valor = valo;
+                                console.log('php/Corephpajax.php?tipoMov=' + tipo + '&categoria=' + categoria + '&subcategoria=' +
+                                    subcategoria + '&data=' + data + '&desc=' + desc + '&valor=' + valor);
 
-                    $.getJSON('php/Corephpajax.php?tipoMov=' + tipo + '&categoria=' + categoria + '&subcategoria=' +
-                        subcategoria + '&data=' + data + '&desc=' + desc + '&valor=' + valor,
-                        function(dados1) {
+                                $.getJSON('php/Corephpajax.php?tipoMov=' + tipo + '&categoria=' + categoria + '&subcategoria=' +
+                                    subcategoria + '&data=' + data + '&desc=' + desc + '&valor=' + valor,
+                                    function(dados1) {
 
-                            if (dados1.length > 0) {
-                                console.log("Entrou1");
+                                        console.log("Entrou1");
+                                        if (dados1.length > 0) {
+                                            console.log("Entrou2")
+                                            $.each(dados1, function(i, obj) {
+                                                console.log(valor);
+                                            })
 
-                            } else {
-                                console.log("Entrou2");
 
-                            }
+                                        } else {
+                                            console.log("Entrou3")
+                                        }
+
+                                    })
+                                })
+
                         })
+                    
 
-                })
-            })
+                    //////////////////////////////////////////////////////////
 
-            //////////////////////////////////////////////////////////
+                    document.addEventListener('DOMContentLoaded', (event) => {
 
-            document.addEventListener('DOMContentLoaded', (event) => {
+                        const seleCore = document.getElementById('selecaoTipo');
+                        const cateCore = document.getElementById('iCategoria');
+                        const SubCCore = document.getElementById('iSubCategoria');
+                        const DataCore = document.getElementById('iDataCore');
+                        const DescCore = document.getElementById('iDescr');
+                        const valoCore = document.getElementById('valoCore');
 
-                const seleCore = document.getElementById('selecaoTipo');
-                const cateCore = document.getElementById('iCategoria');
-                const SubCCore = document.getElementById('iSubCategoria');
-                const DataCore = document.getElementById('iDataCore');
-                const DescCore = document.getElementById('iDescr');
-                const valoCore = document.getElementById('valoCore');
+                        seleCore.addEventListener('input', checkInput);
+                        cateCore.addEventListener('input', checkInput);
+                        SubCCore.addEventListener('input', checkInput);
+                        DataCore.addEventListener('input', checkInput);
+                        DescCore.addEventListener('input', checkInput);
+                        valoCore.addEventListener('input', checkInput);
 
-                seleCore.addEventListener('input', checkInput);
-                cateCore.addEventListener('input', checkInput);
-                SubCCore.addEventListener('input', checkInput);
-                DataCore.addEventListener('input', checkInput);
-                DescCore.addEventListener('input', checkInput);
-                valoCore.addEventListener('input', checkInput);
+                        // Chama a função inicialmente para definir o estado correto do input2
+                        checkInput();
+                    });
 
-                // Chama a função inicialmente para definir o estado correto do input2
-                checkInput();
-            });
+                    function checkInput() {
+                        const seleCore = document.getElementById('selecaoTipo');
+                        const cateCore = document.getElementById('iCategoria');
+                        const SubCCore = document.getElementById('iSubCategoria');
+                        const DataCore = document.getElementById('iDataCore');
+                        const DescCore = document.getElementById('iDescr');
+                        const valoCore = document.getElementById('valoCore');
 
-            function checkInput() {
-                const seleCore = document.getElementById('selecaoTipo');
-                const cateCore = document.getElementById('iCategoria');
-                const SubCCore = document.getElementById('iSubCategoria');
-                const DataCore = document.getElementById('iDataCore');
-                const DescCore = document.getElementById('iDescr');
-                const valoCore = document.getElementById('valoCore');
+                        if (seleCore.value.trim() === '') {
+                            console.log(document.getElementById('selecaoTipo'))
+                            cateCore.disabled = true;
+                        } else {
+                            cateCore.disabled = false;
+                        }
 
-                if (seleCore.value.trim() === '') {
-                    console.log(document.getElementById('selecaoTipo'))
-                    cateCore.disabled = true;
-                } else {
-                    cateCore.disabled = false;
-                }
+                        if (cateCore.value.trim() === '') {
+                            SubCCore.disabled = true;
+                        } else {
+                            SubCCore.disabled = false;
+                        }
 
-                if (cateCore.value.trim() === '') {
-                    SubCCore.disabled = true;
-                } else {
-                    SubCCore.disabled = false;
-                }
+                        if (SubCCore.value.trim() === '') {
+                            DataCore.disabled = true;
+                        } else {
+                            DataCore.disabled = false;
+                        }
 
-                if (SubCCore.value.trim() === '') {
-                    DataCore.disabled = true;
-                } else {
-                    DataCore.disabled = false;
-                }
+                        if (DataCore.value.trim() === '') {
+                            DescCore.disabled = true;
+                            valoCore.disabled = true;
 
-                if (DataCore.value.trim() === '') {
-                    DescCore.disabled = true;
-                    valoCore.disabled = true;
+                        } else {
+                            DescCore.disabled = false;
+                            valoCore.disabled = false;
+                        }
+                    }
 
-                } else {
-                    DescCore.disabled = false;
-                    valoCore.disabled = false;
-                }
-            }
+                    function formatarValorMonetario(input) {
+                        let value = input.value;
 
-            function formatarValorMonetario(input) {
-                let value = input.value;
+                        value = value.replace(/\D/g, '');
+                        value = (value / 100).toFixed(2) + '';
+                        value = value.replace('.', ',');
+                        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                        value = 'R$ ' + value;
 
-                value = value.replace(/\D/g, '');
-                value = (value / 100).toFixed(2) + '';
-                value = value.replace('.', ',');
-                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                value = 'R$ ' + value;
-
-                input.value = value;
-            }
+                        input.value = value;
+                    }
         </script>
 
         <?php

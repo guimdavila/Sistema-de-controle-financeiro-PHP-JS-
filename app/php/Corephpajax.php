@@ -7,7 +7,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 include('funcoes.php');
 require_once('conexaoPDO.php');
 
-$id                     = $_SESSION['idUsuario'];
+$id = $_SESSION['idUsuario'];
 $idTipoMov = isset($_GET['tipoMov']) ? $_GET['tipoMov'] : '';
 $idcategoria = isset($_GET['categoria']) ? $_GET['categoria'] : '';
 $subcategoria = isset($_GET['subcategoria']) ? $_GET['subcategoria'] : '';
@@ -16,7 +16,7 @@ $desc = isset($_GET['desc']) ? $_GET['desc'] : '';
 $valor = isset($_GET['valor']) ? $_GET['valor'] : '';
 
 if (!empty($valor)){
-    echo atualizabanco();
+    echo atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor);
 
 }
 
@@ -69,10 +69,21 @@ function getSubCategoria($idcategoria, $id)
 
 //$id //$idTipoMov //$idcategoria //$subcategoria //$data //$desc //$valor 
 
-function atualizabanco(){
+function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor){
 
     $pdo = Conectar();
     
+    $sql = "INSERT INTO MOVIMENTACAO (DESCRICAO, DATA, VALOR, IDUSUARIO, IDCATEGORIA, IDSUBCATEGORIA, IDTIPOMOVIMENTACAO) "
+    ."VALUES ('$desc', $data, $valor, $id, $idcategoria, $subcategoria, $idTipoMov)";
+
+    $stm = $pdo->prepare($sql);
+    $stm->execute();
+
+    $sql2 = "SELECT * FROM MOVIMENTACAO WHERE IDUSUARIO = $id";
+    $stm2 = $pdo->prepare($sql2);
+    $stm2->execute();
+
+    echo json_encode(null);
 
 }
 
