@@ -55,7 +55,7 @@ include('php/funcoes.php');
                     <div class="row">
 
 
-                        <div class="col-md-3 divCore">
+                        <div class="col-md-6 divCore">
                             <div class="card">
                                 <div class="card-body tamanho-body2">
                                     <div class="card-header">
@@ -80,14 +80,14 @@ include('php/funcoes.php');
                                         </div>
                                     </div>
 
-
-                                    <div class="card">
-                                        <input type="text">
+                                    <div id="cardsGravados">
+                                        
                                     </div>
 
                                     <div class="text-muted-Core-button">
                                         <button type="button" id="btnAddCard" class="btn btn-novo-core" data-toggle="modal">Salvar</button>
                                     </div>
+
 
                                     <script>
                                         $(document).ready(function() {
@@ -96,34 +96,55 @@ include('php/funcoes.php');
                                                 var mesEscol = $('#mesEscolhido').val();
                                                 var anoEscol = $('#anoEscolhido').val();
 
+                                                console.log(mesEscol);
+                                                console.log(anoEscol);
+
                                                 if (mesEscol != "" && anoEscol != 0) {
-                                                    $.getJSON('php/Corephpajax.php?mesEscol=' + categoria + '&anoEscol' + anoEscol,
-
-
+                                                    $.getJSON('php/testeCore.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
                                                         function(cards) {
-
                                                             if (cards.length > 0) {
+
+                                                                var Retornocards = '';
+
                                                                 $.each(cards, function(i, obj) {
+                                                                        
+                                                                        Retornocards += '<div class="container-resumo">'
+                                                                                            +'<div class="info">'
+                                                                                            +'<div class="col">'
+                                                                                                +'<div class="caixaSpan">'
+                                                                                                    +'<span class="label">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'
+                                                                                                +'</div>'
+                                                                                                    +'<div class="caixaSpan">'
+                                                                                                        +'<span class="label">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>'
+                                                                                                +'</div>'
+                                                                                            +'</div>'
+                                                                                            +'<div class="col">'
+                                                                                                +'<div class="caixaSpan">'
+                                                                                                    +'<span class="label">Data:</span> <span class="value">' + obj.DATA + '</span>'
+                                                                                                +'</div>'
+                                                                                                +'<div class="caixaSpan">'
+                                                                                                    +'<span class="label">Valor:</span> <span class="value">' + obj.VALOR + '</span>'
+                                                                                                +'</div>'
+                                                                                            +'</div>'
+                                                                                            +'<div class="col">'
+                                                                                                +'<div class="caixaSpan">'
+                                                                                                    +'<span class="label">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>'
+                                                                                                +'</div>'
+                                                                                            +'</div>'
+                                                                                        +'</div>';
+                                                                                        +'</div>'
+                                                                                        +'<hr>'
 
-                                                                    for (let i = 1; i <= cards.length; i++) {
-
-                                                                        Retornocards += '<option value="' + obj.idSubCategoria + '">' + obj.nomeSubCategoria + '</option>';
-
-                                                                    }
-
-
-
+                                                                    
                                                                 })
-                                                                $('#iSubCategoria').attr("required", "req");
-                                                                $('#iSubCategoria').html(opcaoSub).show();
+                                                                $('#cardsGravados').html(Retornocards).show();
                                                             } else {
-                                                                opcaoSub += '<option value="">Puxar do banco</option>'
-                                                                $('iSubCategoria').html(opcaoSub).show()
+                                                                console.log("Sem retorno de resultado")
                                                             }
                                                         })
                                                 } else {
-                                                    opcaoSub += '<option value="">Selecione</option>'
-                                                    $('iSubCategoria').html(opcaoSub).show()
+                                                    
+                                                    console.log("Não recebeu condicionais")
                                                 }
                                             })
                                         })
