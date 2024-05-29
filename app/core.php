@@ -240,23 +240,18 @@ include('php/funcoes.php');
                                 var tipo = $('#selecaoTipo').val();
                                 var categoria = $('#iCategoria').val();
                                 var subcategoria = $('#iSubCategoria').val();
-                                var data = $('#iDataCore').val();
+                                const dataa = $('#iDataCore').val().replace(/[^0-9]/g, '')
+                                var data = dataa;
                                 var desc = $('#iDescr').val();
                                 const valo = $('#valoCore').val().replace(/[^0-9]/g, '')
                                 var valor = valo;
-                                console.log('php/Corephpajax.php?tipoMov=' + tipo + '&categoria=' + categoria + '&subcategoria=' +
-                                    subcategoria + '&data=' + data + '&desc=' + desc + '&valor=' + valor);
 
-                                $.getJSON('php/Corephpajax.php?tipoMov=' + tipo + '&categoria=' + categoria + '&subcategoria=' +
-                                    subcategoria + '&data=' + data + '&desc=' + desc + '&valor=' + valor,
-                                    function(dados1) {
+                                $.getJSON('php/Corephpajax.php?tipo='+tipo+'&categoria='+categoria+'&subcategoria='+'&data='+data,
+                                    function(dados) {
 
-                                        console.log("Entrou1");
-                                        if (dados1.length > 0) {
+                                        console.log("Entrou1")
+                                        if (dados.length > 0) {
                                             console.log("Entrou2")
-                                            $.each(dados1, function(i, obj) {
-                                                console.log(valor);
-                                            })
 
 
                                         } else {
