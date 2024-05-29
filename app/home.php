@@ -2,7 +2,6 @@
 session_start();
 include('php/funcoes.php');
 include('partes/css.php'); //importes de CSS
-include('partes/navbar.php'); //importes de Navbar
 
 ?>
 

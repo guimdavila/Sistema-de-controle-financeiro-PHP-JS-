@@ -79,14 +79,13 @@ include('php/funcoes.php');
                                             </select>
                                         </div>
                                     </div>
-
-                                    <div id="cardsGravados">
-                                        
-                                    </div>
-
                                     <div class="text-muted-Core-button">
                                         <button type="button" id="btnAddCard" class="btn btn-novo-core" data-toggle="modal">Salvar</button>
                                     </div>
+                                    <div id="cardsGravados">
+
+                                    </div>
+
 
 
                                     <script>
@@ -107,35 +106,26 @@ include('php/funcoes.php');
                                                                 var Retornocards = '';
 
                                                                 $.each(cards, function(i, obj) {
-                                                                        
-                                                                        Retornocards += '<div class="container-resumo">'
-                                                                                            +'<div class="info">'
-                                                                                            +'<div class="col">'
-                                                                                                +'<div class="caixaSpan">'
-                                                                                                    +'<span class="label">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'
-                                                                                                +'</div>'
-                                                                                                    +'<div class="caixaSpan">'
-                                                                                                        +'<span class="label">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>'
-                                                                                                +'</div>'
-                                                                                            +'</div>'
-                                                                                            +'<div class="col">'
-                                                                                                +'<div class="caixaSpan">'
-                                                                                                    +'<span class="label">Data:</span> <span class="value">' + obj.DATA + '</span>'
-                                                                                                +'</div>'
-                                                                                                +'<div class="caixaSpan">'
-                                                                                                    +'<span class="label">Valor:</span> <span class="value">' + obj.VALOR + '</span>'
-                                                                                                +'</div>'
-                                                                                            +'</div>'
-                                                                                            +'<div class="col">'
-                                                                                                +'<div class="caixaSpan">'
-                                                                                                    +'<span class="label">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>'
-                                                                                                +'</div>'
-                                                                                            +'</div>'
-                                                                                        +'</div>';
-                                                                                        +'</div>'
-                                                                                        +'<hr>'
 
-                                                                    
+                                                                    Retornocards += '<div class="container-resumo">' +
+                                                                        '<div class="info">' +
+                                                                        '<div class="col">' +
+                                                                        '<div class="caixaSpan">' +
+                                                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
+                                                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                                                                        '</div>' +
+                                                                        '</div>' +
+                                                                        '<div class="col">' +
+                                                                        '<div class="caixaSpan">' +
+                                                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                                                                        '</div>' +
+                                                                        '</div>' +
+                                                                        '</div>' +
+                                                                        '</div>';
+
+
                                                                 })
                                                                 $('#cardsGravados').html(Retornocards).show();
                                                             } else {
@@ -143,7 +133,7 @@ include('php/funcoes.php');
                                                             }
                                                         })
                                                 } else {
-                                                    
+
                                                     console.log("Não recebeu condicionais")
                                                 }
                                             })

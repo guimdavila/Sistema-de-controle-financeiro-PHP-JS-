@@ -235,106 +235,98 @@ include('php/funcoes.php');
             ///////////////////27-05////////////////////////////////
 
             $(document).ready(function() {
-
-                        $('#ibt').on('click', function() {
-                                var tipo = $('#selecaoTipo').val();
-                                var categoria = $('#iCategoria').val();
-                                var subcategoria = $('#iSubCategoria').val();
-                                const dataa = $('#iDataCore').val().replace(/[^0-9]/g, '')
-                                var data = dataa;
-                                var desc = $('#iDescr').val();
-                                const valo = $('#valoCore').val().replace(/[^0-9]/g, '')
-                                var valor = valo;
-
-                                $.getJSON('php/Corephpajax.php?tipo='+tipo+'&categoria='+categoria+'&subcategoria='+'&data='+data+
-                                '&desc='+desc+'&valor='+valor,
-                                    function(dados) {
-
-                                        console.log("Entrou1")
-                                        if (dados.length > 0) {
-                                            console.log("Entrou2")
-
-
-                                        } else {
-                                            console.log("Entrou3")
-                                        }
-
-                                    })
-                                })
-
-                        })
+                $('#ibt').on('click', function() {
+                    var tipo = $('#selecaoTipo').val();
+                    var categoria = $('#iCategoria').val();
+                    var subcategoria = $('#iSubCategoria').val();
+                    const dataa = $('#iDataCore').val().replace(/[^0-9]/g, '');
+                    var data = dataa;
+                    var desc = $('#iDescr').val();
+                    var valo = $('#valoCore').val();
+                    valo = valo.replace(/[^0-9,]/g, '');
+                    valo = valo.replace(/,/g, '.');
+                    var valor = valo;
                     
+                    $.getJSON('php/coreInsert.php?tipo=' + tipo + '&categoria=' + categoria + '&subcategoria=' + subcategoria + '&data=' + data +
+                        '&desc=' + desc + '&valor=' + valor,
+                        function(response) {
+                            console.log(response);
+                        });
+                });
+            });
 
-                    //////////////////////////////////////////////////////////
 
-                    document.addEventListener('DOMContentLoaded', (event) => {
 
-                        const seleCore = document.getElementById('selecaoTipo');
-                        const cateCore = document.getElementById('iCategoria');
-                        const SubCCore = document.getElementById('iSubCategoria');
-                        const DataCore = document.getElementById('iDataCore');
-                        const DescCore = document.getElementById('iDescr');
-                        const valoCore = document.getElementById('valoCore');
+            //////////////////////////////////////////////////////////
 
-                        seleCore.addEventListener('input', checkInput);
-                        cateCore.addEventListener('input', checkInput);
-                        SubCCore.addEventListener('input', checkInput);
-                        DataCore.addEventListener('input', checkInput);
-                        DescCore.addEventListener('input', checkInput);
-                        valoCore.addEventListener('input', checkInput);
+            document.addEventListener('DOMContentLoaded', (event) => {
 
-                        // Chama a função inicialmente para definir o estado correto do input2
-                        checkInput();
-                    });
+                const seleCore = document.getElementById('selecaoTipo');
+                const cateCore = document.getElementById('iCategoria');
+                const SubCCore = document.getElementById('iSubCategoria');
+                const DataCore = document.getElementById('iDataCore');
+                const DescCore = document.getElementById('iDescr');
+                const valoCore = document.getElementById('valoCore');
 
-                    function checkInput() {
-                        const seleCore = document.getElementById('selecaoTipo');
-                        const cateCore = document.getElementById('iCategoria');
-                        const SubCCore = document.getElementById('iSubCategoria');
-                        const DataCore = document.getElementById('iDataCore');
-                        const DescCore = document.getElementById('iDescr');
-                        const valoCore = document.getElementById('valoCore');
+                seleCore.addEventListener('input', checkInput);
+                cateCore.addEventListener('input', checkInput);
+                SubCCore.addEventListener('input', checkInput);
+                DataCore.addEventListener('input', checkInput);
+                DescCore.addEventListener('input', checkInput);
+                valoCore.addEventListener('input', checkInput);
 
-                        if (seleCore.value.trim() === '') {
-                            console.log(document.getElementById('selecaoTipo'))
-                            cateCore.disabled = true;
-                        } else {
-                            cateCore.disabled = false;
-                        }
+                // Chama a função inicialmente para definir o estado correto do input2
+                checkInput();
+            });
 
-                        if (cateCore.value.trim() === '') {
-                            SubCCore.disabled = true;
-                        } else {
-                            SubCCore.disabled = false;
-                        }
+            function checkInput() {
+                const seleCore = document.getElementById('selecaoTipo');
+                const cateCore = document.getElementById('iCategoria');
+                const SubCCore = document.getElementById('iSubCategoria');
+                const DataCore = document.getElementById('iDataCore');
+                const DescCore = document.getElementById('iDescr');
+                const valoCore = document.getElementById('valoCore');
 
-                        if (SubCCore.value.trim() === '') {
-                            DataCore.disabled = true;
-                        } else {
-                            DataCore.disabled = false;
-                        }
+                if (seleCore.value.trim() === '') {
+                    console.log(document.getElementById('selecaoTipo'))
+                    cateCore.disabled = true;
+                } else {
+                    cateCore.disabled = false;
+                }
 
-                        if (DataCore.value.trim() === '') {
-                            DescCore.disabled = true;
-                            valoCore.disabled = true;
+                if (cateCore.value.trim() === '') {
+                    SubCCore.disabled = true;
+                } else {
+                    SubCCore.disabled = false;
+                }
 
-                        } else {
-                            DescCore.disabled = false;
-                            valoCore.disabled = false;
-                        }
-                    }
+                if (SubCCore.value.trim() === '') {
+                    DataCore.disabled = true;
+                } else {
+                    DataCore.disabled = false;
+                }
 
-                    function formatarValorMonetario(input) {
-                        let value = input.value;
+                if (DataCore.value.trim() === '') {
+                    DescCore.disabled = true;
+                    valoCore.disabled = true;
 
-                        value = value.replace(/\D/g, '');
-                        value = (value / 100).toFixed(2) + '';
-                        value = value.replace('.', ',');
-                        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                        value = 'R$ ' + value;
+                } else {
+                    DescCore.disabled = false;
+                    valoCore.disabled = false;
+                }
+            }
 
-                        input.value = value;
-                    }
+            function formatarValorMonetario(input) {
+                let value = input.value;
+
+                value = value.replace(/\D/g, '');
+                value = (value / 100).toFixed(2) + '';
+                value = value.replace('.', ',');
+                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                value = 'R$ ' + value;
+
+                input.value = value;
+            }
         </script>
 
         <?php

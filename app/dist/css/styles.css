@@ -351,8 +351,8 @@ tr.colunasCategorias td:hover {
 .tituloInputNovoCate {
     margin-right: 15px;
     margin-bottom: 20px;
-    display: flex;
     padding-top: 5px;
+    display: flex;
     width: 150px;
 }
 
@@ -572,7 +572,7 @@ tr.colunasCategorias td:hover {
     height: auto;
     padding: 10px;
     border-radius: 10px;
-    background-color: darkgray;
+    background-color: #DDE6ED;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -600,3 +600,4 @@ tr.colunasCategorias td:hover {
 .infoCore > .col > div {
     margin-bottom: 10px;
 }
+

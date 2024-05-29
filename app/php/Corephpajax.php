@@ -14,11 +14,6 @@ $subcategoria = isset($_GET['subcategoria']) ? $_GET['subcategoria'] : '';
 $desc = isset($_GET['desc']) ? $_GET['desc'] : '';
 $valor = isset($_GET['valor']) ? $_GET['valor'] : '';
 
-if (!empty($data) && (!empty($valor))){
-    echo atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor);
-
-}
-
 if (!empty($idTipoMov)) {
     echo getCategoria($idTipoMov, $id);
    
@@ -68,21 +63,20 @@ function getSubCategoria($idcategoria, $id)
 //$id $idTipoMov $idcategoria $subcategoria $data $desc $valor 
 //echo atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor)
 
-function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $valor, $desc){
-    
-    
+if (!empty($data) && !empty($valor)) {
+    atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor);
+    var_dump($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor);
+    die();
+}
+
+function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor) {
+    // Conectando ao banco de dados
     $pdo = Conectar();
     
+    // Preparando a instrução SQL com parâmetros
+    $sql = "INSERT INTO MOVIMENTACAO (DESCRICAO, DATA, VALOR, IDUSUARIO, IDCATEGORIA, IDSUBCATEGORIA, IDTIPOMOVIMENTACAO) VALUES ('$desc', '$data', $valor, $id, $idcategoria, $subcategoria, $idTipoMov)";
     
-    $sql = "INSERT INTO MOVIMENTACAO (DESCRICAO, DATA, VALOR, IDUSUARIO, IDCATEGORIA, IDSUBCATEGORIA, IDTIPOMOVIMENTACAO) "
-    ."VALUES ('$desc', $data, $valor, $id, $idcategoria, $subcategoria, $idTipoMov)";
-
-    $stm = $pdo->prepare($sql);
-    $stm->execute();
-
-    echo json_encode($stm->fetchAll(PDO::FETCH_ASSOC));
-
-    $pdo = null;
+   return $sql;
 }
 
 ////////////////////////////////////////////
