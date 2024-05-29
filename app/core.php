@@ -126,7 +126,9 @@ include('php/funcoes.php');
                         <div class="col-md-6 divCore">
                             <div class="card">
                                 <div class="card-body tamanho-body2">
-                                    <!-- Conteúdo adicional aqui -->
+                                    <div id="cardsGravados" class="cardsGravados">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -246,11 +248,43 @@ include('php/funcoes.php');
                     valo = valo.replace(/[^0-9,]/g, '');
                     valo = valo.replace(/,/g, '.');
                     var valor = valo;
-                    
+                    var mesEscol = $('#mesEscolhido').val();
+                    var anoEscol = $('#anoEscolhido').val();
+
                     $.getJSON('php/coreInsert.php?tipo=' + tipo + '&categoria=' + categoria + '&subcategoria=' + subcategoria + '&data=' + data +
-                        '&desc=' + desc + '&valor=' + valor,
-                        function(response) {
-                            console.log(response);
+                        '&desc=' + desc + '&valor=' + valor + '&mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+                        function(cards) {
+                            if (cards.length > 0) {
+
+                                var Retornocards = '';
+                                console.log("chegou")
+                                console.log(cards)
+                                $.each(cards, function(i, obj) {
+
+                                    Retornocards += '<div class="container-resumo">' +
+                                        '<div class="info">' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
+                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
+
+
+                                })
+                                $('#cardsGravados').html(Retornocards).show();
+                            } else {
+                                console.log("Sem retorno de resultado")
+                            }
                         });
                 });
             });
