@@ -17,6 +17,7 @@ $valor = isset($_GET['valor']) ? $_GET['valor'] : '';
 
 $mesEscol = isset($_GET['mesEscol']) ? $_GET['mesEscol'] : '';
 $anoEscol = isset($_GET['anoEscol']) ? $_GET['anoEscol'] : '';
+$realizaCalculo = isset($_GET['realizaCalculo']) ? $_GET['realizaCalculo'] : '';
 
 if (!empty($mesEscol) && !empty($anoEscol)) {
     echo getCardsMesAno($anoEscol, $mesEscol, $id);
@@ -105,3 +106,24 @@ function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $des
 }
 
 ////////////////////////////////////////////
+
+if (!empty($realizaCalculo)) {
+    echo resultados($anoEscol, $mesEscol, $id);
+   
+}
+
+function resultados($anoEscol, $mesEscol, $id){
+    
+    $pdo = Conectar();
+
+    $sql = "SELECT SUM(CASE WHEN IDTIPOMOVIMENTACAO = '1' THEN VALOR ELSE 0 END) AS POSITIVO /*, SUM(CASE WHEN IDTIPOMOVIMENTACAO = '2' THEN VALOR ELSE 0 END) AS NEGATIVO, SUM(CASE WHEN IDTIPOMOVIMENTACAO = '1' THEN VALOR ELSE -VALOR END) AS SALDO*/ "
+        . " FROM MOVIMENTACAO WHERE IDUSUARIO = $id AND DATA BETWEEN '".$anoEscol."".$mesEscol."01' AND '".$anoEscol."".$mesEscol."31' " ;
+
+    $stm = $pdo->prepare($sql);
+    $stm->execute();
+
+    sleep(0.5);
+
+    echo json_encode($stm->fetchAll(PDO::FETCH_ASSOC));
+    $pdo = null;
+}

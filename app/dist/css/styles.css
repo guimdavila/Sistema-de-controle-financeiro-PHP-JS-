@@ -555,15 +555,6 @@ tr.colunasCategorias td:hover {
     min-height: 80px;
 }
 
-.footerCore {
-    background-color: #27374D;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
 
 .container-resumo {
     margin-top: 20px;
@@ -607,4 +598,28 @@ tr.colunasCategorias td:hover {
     height: 85vh;
     /* Define a altura máxima da div para evitar que ela cresça infinitamente */
     overflow-y: auto;
+}
+
+.footerCore {
+    background-color: #27374D;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 75px;
+}
+
+.containerResultados{
+    margin-left: 15%;
+}
+.labelResultados{
+    margin-right: 10px;
+}
+
+.iconsResultados{
+    margin-right: 20px;
+    font-size: 35px;
+    color: #526D82;
 }

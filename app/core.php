@@ -137,7 +137,24 @@ include('php/funcoes.php');
             </section>
         </div>
         <footer class="footerCore">
-            <p>Meu footer fixo</p>
+            <div class="containerResultados">
+                <!--
+                <span class="labelResultados"><strong>Entradas:</strong></span>
+                -->
+                <i class="fa-solid fa-plus labelResultados iconsResultados"></i>
+                <div id="iPositivo"></div>
+                <!--
+                <span class="labelResultados"><strong>Saidas:</strong></span>
+                -->
+                <i class="fa-solid fa-minus labelResultados iconsResultados"></i>
+                <div id="iNegativo"></div>
+                <!--
+                <span class="labelResultados"><strong>Saldo:</strong></span>
+                -->
+                <i class="fa-solid fa-equals labelResultados iconsResultados"></i>
+                <div id="iSaldo"></div>
+
+            </div>
         </footer>
 
 
@@ -250,8 +267,8 @@ include('php/funcoes.php');
                                         '</div>' +
                                         '</div>';
 
-
                                 })
+
                                 $('#cardsGravados').html(Retornocards).show();
                             } else {
                                 console.log("Sem retorno de resultado")
@@ -260,17 +277,16 @@ include('php/funcoes.php');
                 });
             });
 
-            //////////////////////////////////////////////////////////
 
             $(document).ready(function() {
 
                 $('#mesEscolhido, #anoEscolhido').on('change', function() {
-                    
+
                     var mesEscol = $('#mesEscolhido').val();
                     var anoEscol = $('#anoEscolhido').val();
 
-                    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0 ) {
-                    
+                    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
+
                         console.log(mesEscol, anoEscol)
 
                         $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
@@ -278,34 +294,79 @@ include('php/funcoes.php');
 
                                 if (retornoCardsCore.length > 0) {
 
-                                var Retornocards = '';
-                                
-                                $.each(retornoCardsCore, function(i, obj) {
+                                    var Retornocards = '';
 
-                                    Retornocards += '<div class="container-resumo">' +
-                                        '<div class="info">' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
-                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
-                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';
+                                    $.each(retornoCardsCore, function(i, obj) {
+
+                                        Retornocards += '<div class="container-resumo">' +
+                                            '<div class="info">' +
+                                            '<div class="col">' +
+                                            '<div class="caixaSpan">' +
+                                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
+                                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                                            '</div>' +
+                                            '</div>' +
+                                            '<div class="col">' +
+                                            '<div class="caixaSpan">' +
+                                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                                            '</div>' +
+                                            '</div>' +
+                                            '</div>' +
+                                            '</div>';
 
 
-                                })
-                                $('#cardsGravados').html(Retornocards).show();
-                            } else {
-                                console.log("Sem retorno de resultado")
-                            }
+                                    })
+                                    $('#cardsGravados').html(Retornocards).show();
+                                } else {
+                                    console.log("Sem retorno de resultado")
+                                }
+                            })
+                    } else {
+                        console.log("Sem retorno de resultado")
+                    }
+
+
+                })
+            })
+
+            /////////////////////////CALCULOS/////////////////////////
+
+            $(document).ready(function() {
+
+                $('#mesEscolhido, #anoEscolhido, #ibt').on('change', function() {
+
+                    var mesEscol = $('#mesEscolhido').val();
+                    var anoEscol = $('#anoEscolhido').val();
+                    var realizaCalculo = 1;
+
+                    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
+
+                        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol + '&realizaCalculo' + realizaCalculo,
+                            function(calculos) {
+
+                                if (calculos.length > 0) {
+
+                                    var positivo = '';
+                                    var negativo = '';
+                                    var saldo = '';
+
+                                    $.each(calculos, function(i, obj) {
+
+                                    console.log(obj.POSITIVO/*, obj.NEGATIVO, obj.SALDO*/);
+
+                                        positivo = '<span>R$ '+ obj.POSITIVO +' </span>';
+                                        /*negativo = '<span>R$ '+ obj.NEGATIVO +' </span>';
+                                        saldo = '<span>R$ '+ obj.SALDO +' </span>';*/
+                                    })
+                                    
+                                    $('#iPositivo').html(positivo).show();
+                                    /*$('#iNegativo').html(negativo).show();
+                                    $('#iSaldo').html(saldo).show();*/
+                                } else {
+                                    console.log("Sem retorno de resultado")
+                                }
                             })
                     } else {
                         console.log("Sem retorno de resultado")
