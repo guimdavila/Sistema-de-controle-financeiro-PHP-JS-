@@ -86,9 +86,6 @@ function getSubCategoria($idcategoria, $id)
 
 /////////////////////27-05////////////////////
 
-//$id $idTipoMov $idcategoria $subcategoria $data $desc $valor 
-//echo atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor)
-
 if (!empty($data) && !empty($valor)) {
     atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor);
     var_dump($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor);
@@ -103,6 +100,8 @@ function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $des
     $sql = "INSERT INTO MOVIMENTACAO (DESCRICAO, DATA, VALOR, IDUSUARIO, IDCATEGORIA, IDSUBCATEGORIA, IDTIPOMOVIMENTACAO) VALUES ('$desc', '$data', $valor, $id, $idcategoria, $subcategoria, $idTipoMov)";
     
    return $sql;
+
+   $pdo = null;
 }
 
 ////////////////////////////////////////////

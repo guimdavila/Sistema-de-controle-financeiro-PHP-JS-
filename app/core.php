@@ -55,6 +55,7 @@ include('php/funcoes.php');
                                     <div class="card-header">
                                         <div class="mesAnoCore" style="text-align: center; display: flex; justify-content: center;">
                                             <select class="input-group-text caixaSelecaoCate MesCore" name="nMesExibicao" id="mesEscolhido">
+                                                <option value="" disabled selected>Mês</option>
                                                 <option value="01">Janeiro</option>
                                                 <option value="02">Fevereiro</option>
                                                 <option value="03">Março</option>
@@ -69,6 +70,7 @@ include('php/funcoes.php');
                                                 <option value="12">Dezembro</option>
                                             </select>
                                             <select class="input-group-text caixaSelecaoCate AnoCore" name="nAnoExibicao" id="anoEscolhido">
+                                                <option value="" disabled selected>Ano</option>
                                                 <!-- JavaScript irá preencher os anos -->
                                             </select>
                                         </div>
@@ -227,6 +229,12 @@ include('php/funcoes.php');
 
             $(document).ready(function() {
                 $('#ibt').on('click', function() {
+                    var mesEscol = $('#mesEscolhido').val();
+                    var anoEscol = $('#anoEscolhido').val();
+                    console.log(mesEscol);
+                    if(mesEscol == "" || anoEscol == ""){
+
+                    }else{
                     var tipo = $('#selecaoTipo').val();
                     var categoria = $('#iCategoria').val();
                     var subcategoria = $('#iSubCategoria').val();
@@ -237,8 +245,7 @@ include('php/funcoes.php');
                     valo = valo.replace(/[^0-9,]/g, '');
                     valo = valo.replace(/,/g, '.');
                     var valor = valo;
-                    var mesEscol = $('#mesEscolhido').val();
-                    var anoEscol = $('#anoEscolhido').val();
+                    
 
                     $.getJSON('php/coreInsert.php?tipo=' + tipo + '&categoria=' + categoria + '&subcategoria=' + subcategoria + '&data=' + data +
                         '&desc=' + desc + '&valor=' + valor + '&mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
@@ -274,10 +281,122 @@ include('php/funcoes.php');
                                 console.log("Sem retorno de resultado")
                             }
                         });
-                });
+                    }});
             });
 
+             //document.addEventListener('DOMContentLoaded', (event) => {
+            $(document).ready(function() {
 
+                $('#mesEscolhido, #anoEscolhido').on('change', function() {
+
+                    var mesEscol = $('#mesEscolhido').val();
+                    var anoEscol = $('#anoEscolhido').val();
+
+                    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
+
+                        console.log(mesEscol, anoEscol)
+
+                        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+                            function(retornoCardsCore) {
+
+                                if (retornoCardsCore.length > 0) {
+
+                                    var Retornocards = '';
+
+                                    $.each(retornoCardsCore, function(i, obj) {
+
+                                        Retornocards += '<div class="container-resumo">' +
+                                            '<div class="info">' +
+                                            '<div class="col">' +
+                                            '<div class="caixaSpan">' +
+                                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
+                                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                                            '</div>' +
+                                            '</div>' +
+                                            '<div class="col">' +
+                                            '<div class="caixaSpan">' +
+                                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                                            '</div>' +
+                                            '</div>' +
+                                            '</div>' +
+                                            '</div>';
+
+
+                                    })
+                                    $('#cardsGravados').html(Retornocards).show();
+                                } else {
+                                    console.log("Sem retorno de resultado")
+                                }
+                            })
+                    } else {
+                        console.log("Sem retorno de resultado")
+                    }
+
+
+                })
+            })
+            
+            //////////////////////////////////////////////////////
+
+            //Salvado
+            //document.addEventListener('DOMContentLoaded', (event) => {
+            $(document).ready(function() {
+
+            $('#mesEscolhido, #anoEscolhido').on('change', function() {
+
+                var mesEscol = $('#mesEscolhido').val();
+                var anoEscol = $('#anoEscolhido').val();
+
+                if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
+
+                    console.log(mesEscol, anoEscol)
+
+                    $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+                        function(retornoCardsCore) {
+
+                            if (retornoCardsCore.length > 0) {
+
+                                var Retornocards = '';
+
+                                $.each(retornoCardsCore, function(i, obj) {
+
+                                    Retornocards += '<div class="container-resumo">' +
+                                        '<div class="info">' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
+                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
+
+
+                                })
+                                $('#cardsGravados').html(Retornocards).show();
+                            } else {
+                                console.log("Sem retorno de resultado")
+                            }
+                        })
+                } else {
+                    console.log("Sem retorno de resultado")
+                }
+
+
+            })
+            })
+            ////////////////////////////////////////////////////
+
+            //document.addEventListener('DOMContentLoaded', (event) => {
             $(document).ready(function() {
 
                 $('#mesEscolhido, #anoEscolhido').on('change', function() {
