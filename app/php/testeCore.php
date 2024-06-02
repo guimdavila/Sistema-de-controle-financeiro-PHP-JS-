@@ -40,11 +40,12 @@ function retornaCards($id, $mesEscol, $anoEscol)
     } else {
         
     sleep(0.5);
+        echo json_encode($stm->fetchAll(PDO::FETCH_ASSOC));
         echo("Nenhuma transferência realizada");
 
     }
 
 
-    echo json_encode($stm->fetchAll(PDO::FETCH_ASSOC));
+    
     $pdo = null;
 }

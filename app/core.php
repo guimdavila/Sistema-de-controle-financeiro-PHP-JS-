@@ -215,12 +215,13 @@ include('php/funcoes.php');
                                     $('#iSubCategoria').html(opcaoSub).show();
                                 } else {
                                     opcaoSub += '<option value="">Puxar do banco</option>'
-                                    $('iSubCategoria').html(opcaoSub).show()
+                                    $('iSubCategoria').html(opcaoSub).show();
                                 }
                             })
                     } else {
                         opcaoSub += '<option value="">Selecione</option>'
-                        $('iSubCategoria').html(opcaoSub).show()
+                        $('iSubCategoria').html(opcaoSub).show();
+
                     }
 
 
@@ -246,15 +247,16 @@ include('php/funcoes.php');
                     valo = valo.replace(/,/g, '.');
                     var valor = valo;
                     
-
                     $.getJSON('php/coreInsert.php?tipo=' + tipo + '&categoria=' + categoria + '&subcategoria=' + subcategoria + '&data=' + data +
                         '&desc=' + desc + '&valor=' + valor + '&mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
                         function(cards) {
+                            var Retornocards = '';
+
                             if (cards.length > 0) {
 
-                                var Retornocards = '';
-
                                 $.each(cards, function(i, obj) {
+
+                                    
 
                                     Retornocards += '<div class="container-resumo">' +
                                         '<div class="info">' +
@@ -273,18 +275,19 @@ include('php/funcoes.php');
                                         '</div>' +
                                         '</div>' +
                                         '</div>';
-
+                                    
                                 })
 
-                                $('#cardsGravados').html(Retornocards).show();
                             } else {
-                                console.log("Sem retorno de resultado")
+                                console.log("Sem retorno de resultado");
                             }
+
+                            $('#cardsGravados').html(Retornocards).show();
+
                         });
                     }});
             });
 
-             //document.addEventListener('DOMContentLoaded', (event) => {
             $(document).ready(function() {
 
                 $('#mesEscolhido, #anoEscolhido').on('change', function() {
@@ -292,7 +295,7 @@ include('php/funcoes.php');
                     var mesEscol = $('#mesEscolhido').val();
                     var anoEscol = $('#anoEscolhido').val();
 
-                    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
+                    if (mesEscol != "" && mesEscol != null && anoEscol != "" && anoEscol != null) {
 
                         console.log(mesEscol, anoEscol)
 
@@ -323,12 +326,18 @@ include('php/funcoes.php');
                                             '</div>' +
                                             '</div>';
 
-
                                     })
-                                    $('#cardsGravados').html(Retornocards).show();
+                                    
                                 } else {
+                                    Retornocards = '<div class="container-resumo">' +
+                                    '<div class="info">' +
+                                    '<div class="col">' +
+                                    '<div class="caixaSpan">' +
+                                    '<span class="label label-span">Sem retorno de resultado</span>';
+
                                     console.log("Sem retorno de resultado")
                                 }
+                                $('#cardsGravados').html(Retornocards).show();
                             })
                     } else {
                         console.log("Sem retorno de resultado")
