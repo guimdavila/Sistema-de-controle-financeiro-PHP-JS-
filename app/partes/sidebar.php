@@ -1,5 +1,4 @@
-      
-      <script src="dist/js/script.js"></script>
+<script src="dist/js/script.js"></script>
 
 <!-- Sidebar -->
 <div class="sidebar">

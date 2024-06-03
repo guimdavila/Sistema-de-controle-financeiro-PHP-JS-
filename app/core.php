@@ -393,11 +393,11 @@ include('php/funcoes.php');
                                 })
                                 $('#cardsGravados').html(Retornocards).show();
                             } else {
-                                console.log("Sem retorno de resultado")
+                                console.log("Sem retorno de resultado");
                             }
                         })
                 } else {
-                    console.log("Sem retorno de resultado")
+                    console.log("Sem retorno de resultado");
                 }
 
 

@@ -319,10 +319,7 @@ include('partes/css.php'); //importes de CSS
     </script>
 
 <script src="dist/js/script.js"></script>
-
-<?php
-include('dist/js/script.js'); //importes de js
-?>
+        
 </body>
 
 </html>
