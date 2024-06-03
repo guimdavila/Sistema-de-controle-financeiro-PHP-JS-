@@ -139,24 +139,37 @@ include('php/funcoes.php');
             </section>
         </div>
         <footer class="footerCore">
-            <div class="containerResultados">
-                <!--
-                <span class="labelResultados"><strong>Entradas:</strong></span>
-                -->
-                <i class="fa-solid fa-plus labelResultados iconsResultados"></i>
-                <div id="iPositivo"></div>
-                <!--
-                <span class="labelResultados"><strong>Saidas:</strong></span>
-                -->
-                <i class="fa-solid fa-minus labelResultados iconsResultados"></i>
-                <div id="iNegativo"></div>
-                <!--
-                <span class="labelResultados"><strong>Saldo:</strong></span>
-                -->
-                <i class="fa-solid fa-equals labelResultados iconsResultados"></i>
-                <div id="iSaldo"></div>
+            <div class="containerResultados row">
+                    <!--
+                    <span class="labelResultados"><strong>Entradas:</strong></span>
+                    -->
+                    <div class="col-4">
+                        <i class="fa-solid fa-plus labelResultados iconsResultados"></i>
+                        <div id="iPositivo"></div>
+                    
+                    </div>
+                    <!--
+                    <span class="labelResultados"><strong>Saidas:</strong></span>
+                    -->
+                    <div class="col-4">
+                    <i class="fa-solid fa-minus labelResultados iconsResultados"></i>
+                    <div id="iNegativo"></div>
+
+                    </div>
+                    <!--
+                    <span class="labelResultados"><strong>Saldo:</strong></span>
+                    -->
+                    <div class="col-4">
+                    <i class="fa-solid fa-equals labelResultados iconsResultados"></i>
+                    <div id="iSaldo"></div>
+                    
+                    </div>
+
+
+                </div>
 
             </div>
+
         </footer>
 
 
@@ -348,9 +361,6 @@ include('php/funcoes.php');
             })
             
             //////////////////////////////////////////////////////
-
-            //Salvado
-            //document.addEventListener('DOMContentLoaded', (event) => {
             $(document).ready(function() {
 
             $('#mesEscolhido, #anoEscolhido').on('change', function() {
@@ -423,6 +433,9 @@ include('php/funcoes.php');
                                 if (retornoCardsCore.length > 0) {
 
                                     var Retornocards = '';
+                                    var Retornapositivo = '';
+                                    var RetornaNegativo = '';
+                                    var RetornaSaldo = '';
 
                                     $.each(retornoCardsCore, function(i, obj) {
 
@@ -443,6 +456,10 @@ include('php/funcoes.php');
                                             '</div>' +
                                             '</div>' +
                                             '</div>';
+
+                                        //if(obj.)
+
+                                        
 
 
                                     })
