@@ -145,15 +145,14 @@ include('php/funcoes.php');
                     -->
                     <div class="col-4">
                         <i class="fa-solid fa-plus labelResultados iconsResultados"></i>
-                        <div id="iPositivo"></div>
-                    
+                        <div class="col-10 fa-solid text-success iconefooter" id="iPositivo"></div>
                     </div>
                     <!--
                     <span class="labelResultados"><strong>Saidas:</strong></span>
                     -->
                     <div class="col-4">
                     <i class="fa-solid fa-minus labelResultados iconsResultados"></i>
-                    <div id="iNegativo"></div>
+                    <div class="col-10 fa-solid text-danger iconefooter" id="iNegativo"></div>
 
                     </div>
                     <!--
@@ -161,7 +160,7 @@ include('php/funcoes.php');
                     -->
                     <div class="col-4">
                     <i class="fa-solid fa-equals labelResultados iconsResultados"></i>
-                    <div id="iSaldo"></div>
+                    <div class="col-10 fa-solid iconefooter" id="iSaldo"></div>
                     
                     </div>
 
@@ -269,15 +268,15 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
                             '<div class="info">' +
                             '<div class="col">' +
                             '<div class="caixaSpan">' +
-                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
-                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
+                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
+                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col">' +
                             '<div class="caixaSpan">' +
-                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
-                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
+                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
@@ -338,15 +337,15 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
                             '<div class="info">' +
                             '<div class="col">' +
                             '<div class="caixaSpan">' +
-                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
-                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
+                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
+                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col">' +
                             '<div class="caixaSpan">' +
-                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
-                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
+                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
@@ -408,15 +407,15 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
                             '<div class="info">' +
                             '<div class="col">' +
                             '<div class="caixaSpan">' +
-                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
-                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
+                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
+                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="col">' +
                             '<div class="caixaSpan">' +
-                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
-                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
+                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
@@ -488,15 +487,15 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
                                             '<div class="info">' +
                                             '<div class="col">' +
                                             '<div class="caixaSpan">' +
-                                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
-                                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
+                                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
+                                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
                                             '</div>' +
                                             '</div>' +
                                             '<div class="col">' +
                                             '<div class="caixaSpan">' +
-                                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
-                                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
+                                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
                                             '</div>' +
                                             '</div>' +
                                             '</div>' +
