@@ -288,7 +288,11 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
                         }else if (obj.IDTIPOMOVIMENTACAO == 2){
                             RetornaNegativo += parseFloat(obj.VALOR); 
 
-                        }
+                        }else{
+                                Retornapositivo = 0;
+                                RetornaNegativo = 0;
+
+                            }
 
                     })
                     $('#iPositivo').html(Retornapositivo).show();
@@ -357,7 +361,11 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
                         }else if (obj.IDTIPOMOVIMENTACAO == 2){
                             RetornaNegativo += parseFloat(obj.VALOR); 
 
-                        }
+                        }else{
+                                Retornapositivo = 0;
+                                RetornaNegativo = 0;
+
+                            }
 
                     })
                     $('#iPositivo').html(Retornapositivo).show();
@@ -438,6 +446,9 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
                     '<div class="caixaSpan">' +
                     '<span class="label label-span">Sem retorno de resultado</span>';
 
+                    Retornapositivo = 0;
+                    RetornaNegativo = 0;
+
                     console.log("Sem retorno de resultado")
                 }
                 $('#iPositivo').html(Retornapositivo).show();
@@ -506,6 +517,10 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
 
                                         }else if (obj.IDTIPOMOVIMENTACAO == 2){
                                             RetornaNegativo += parseFloat(obj.VALOR); 
+
+                                        }else{
+                                            Retornapositivo = 0;
+                                            RetornaNegativo = 0;
 
                                         }
 
