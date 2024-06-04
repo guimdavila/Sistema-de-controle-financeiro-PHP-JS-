@@ -242,177 +242,221 @@ include('php/funcoes.php');
             })
 
             $(document).ready(function() {
-                $('#ibt').on('click', function() {
-                    var mesEscol = $('#mesEscolhido').val();
-                    var anoEscol = $('#anoEscolhido').val();
-                    console.log(mesEscol);
-                    if(mesEscol == "" || anoEscol == ""){
 
-                    }else{
-                    var tipo = $('#selecaoTipo').val();
-                    var categoria = $('#iCategoria').val();
-                    var subcategoria = $('#iSubCategoria').val();
-                    const dataa = $('#iDataCore').val().replace(/[^0-9]/g, '');
-                    var data = dataa;
-                    var desc = $('#iDescr').val();
-                    var valo = $('#valoCore').val();
-                    valo = valo.replace(/[^0-9,]/g, '');
-                    valo = valo.replace(/,/g, '.');
-                    var valor = valo;
+$('#mesEscolhido, #anoEscolhido').on('change', function() {
+
+    var mesEscol = $('#mesEscolhido').val();
+    var anoEscol = $('#anoEscolhido').val();
+
+    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
+
+        console.log(mesEscol, anoEscol)
+
+        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+            function(retornoCardsCore) {
+
+                if (retornoCardsCore.length > 0) {
+
+                    var Retornocards = '';
+                    var Retornapositivo = 0;
+                    var RetornaNegativo = 0;
+                    var RetornaSaldo = 0;
                     
-                    $.getJSON('php/coreInsert.php?tipo=' + tipo + '&categoria=' + categoria + '&subcategoria=' + subcategoria + '&data=' + data +
-                        '&desc=' + desc + '&valor=' + valor + '&mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
-                        function(cards) {
-                            var Retornocards = '';
 
-                            if (cards.length > 0) {
+                    $.each(retornoCardsCore, function(i, obj) {
 
-                                $.each(cards, function(i, obj) {
+                        Retornocards += '<div class="container-resumo">' +
+                            '<div class="info">' +
+                            '<div class="col">' +
+                            '<div class="caixaSpan">' +
+                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
+                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col">' +
+                            '<div class="caixaSpan">' +
+                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
+                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
 
-                                    
+                        if(obj.IDTIPOMOVIMENTACAO == 1){
+                            Retornapositivo += parseFloat(obj.VALOR);
 
-                                    Retornocards += '<div class="container-resumo">' +
-                                        '<div class="info">' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
-                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
-                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';
-                                    
-                                })
+                        }else if (obj.IDTIPOMOVIMENTACAO == 2){
+                            RetornaNegativo += parseFloat(obj.VALOR); 
 
-                            } else {
-                                console.log("Sem retorno de resultado");
-                            }
+                        }
 
-                            $('#cardsGravados').html(Retornocards).show();
+                    })
+                    $('#iPositivo').html(Retornapositivo).show();
+                    $('#iNegativo').html(RetornaNegativo).show();
 
-                        });
-                    }});
-            });
+                    var RetornaSaldo = Retornapositivo - RetornaNegativo;
 
+                    $('#iSaldo').html(RetornaSaldo).show();
+                    $('#cardsGravados').html(Retornocards).show();
+                } else {
+                    console.log("Sem retorno de resultado")
+                }
+            })
+    } else {
+        console.log("Sem retorno de resultado")
+    }
+
+
+})
+})
             $(document).ready(function() {
 
-                $('#mesEscolhido, #anoEscolhido').on('change', function() {
+$('#mesEscolhido, #anoEscolhido').on('change', function() {
 
-                    var mesEscol = $('#mesEscolhido').val();
-                    var anoEscol = $('#anoEscolhido').val();
+    var mesEscol = $('#mesEscolhido').val();
+    var anoEscol = $('#anoEscolhido').val();
 
-                    if (mesEscol != "" && mesEscol != null && anoEscol != "" && anoEscol != null) {
+    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
 
-                        console.log(mesEscol, anoEscol)
+        console.log(mesEscol, anoEscol)
 
-                        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
-                            function(retornoCardsCore) {
+        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+            function(retornoCardsCore) {
 
-                                if (retornoCardsCore.length > 0) {
+                if (retornoCardsCore.length > 0) {
 
-                                    var Retornocards = '';
+                    var Retornocards = '';
+                    var Retornapositivo = 0;
+                    var RetornaNegativo = 0;
+                    var RetornaSaldo = 0;
+                    
 
-                                    $.each(retornoCardsCore, function(i, obj) {
+                    $.each(retornoCardsCore, function(i, obj) {
 
-                                        Retornocards += '<div class="container-resumo">' +
-                                            '<div class="info">' +
-                                            '<div class="col">' +
-                                            '<div class="caixaSpan">' +
-                                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
-                                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
-                                            '</div>' +
-                                            '</div>' +
-                                            '<div class="col">' +
-                                            '<div class="caixaSpan">' +
-                                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
-                                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
-                                            '</div>' +
-                                            '</div>' +
-                                            '</div>' +
-                                            '</div>';
+                        Retornocards += '<div class="container-resumo">' +
+                            '<div class="info">' +
+                            '<div class="col">' +
+                            '<div class="caixaSpan">' +
+                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
+                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col">' +
+                            '<div class="caixaSpan">' +
+                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
+                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
 
-                                    })
-                                    
-                                } else {
-                                    Retornocards = '<div class="container-resumo">' +
-                                    '<div class="info">' +
-                                    '<div class="col">' +
-                                    '<div class="caixaSpan">' +
-                                    '<span class="label label-span">Sem retorno de resultado</span>';
+                        if(obj.IDTIPOMOVIMENTACAO == 1){
+                            Retornapositivo += parseFloat(obj.VALOR);
 
-                                    console.log("Sem retorno de resultado")
-                                }
-                                $('#cardsGravados').html(Retornocards).show();
-                            })
-                    } else {
-                        console.log("Sem retorno de resultado")
-                    }
+                        }else if (obj.IDTIPOMOVIMENTACAO == 2){
+                            RetornaNegativo += parseFloat(obj.VALOR); 
 
+                        }
 
-                })
+                    })
+                    $('#iPositivo').html(Retornapositivo).show();
+                    $('#iNegativo').html(RetornaNegativo).show();
+
+                    var RetornaSaldo = Retornapositivo - RetornaNegativo;
+
+                    $('#iSaldo').html(RetornaSaldo).show();
+                    $('#cardsGravados').html(Retornocards).show();
+                } else {
+                    console.log("Sem retorno de resultado")
+                }
             })
+    } else {
+        console.log("Sem retorno de resultado")
+    }
+
+
+})
+})
             
             //////////////////////////////////////////////////////
             $(document).ready(function() {
 
-            $('#mesEscolhido, #anoEscolhido').on('change', function() {
+$('#mesEscolhido, #anoEscolhido').on('change', function() {
 
-                var mesEscol = $('#mesEscolhido').val();
-                var anoEscol = $('#anoEscolhido').val();
+    var mesEscol = $('#mesEscolhido').val();
+    var anoEscol = $('#anoEscolhido').val();
 
-                if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
+    if (mesEscol != "" && mesEscol != null && anoEscol != "" && anoEscol != null) {
 
-                    console.log(mesEscol, anoEscol)
+        console.log(mesEscol, anoEscol)
 
-                    $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
-                        function(retornoCardsCore) {
+        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+            function(retornoCardsCore) {
 
-                            if (retornoCardsCore.length > 0) {
+                if (retornoCardsCore.length > 0) {
 
-                                var Retornocards = '';
+                    var Retornocards = '';
+                    var Retornapositivo = 0;
+                    var RetornaNegativo = 0;
+                    var RetornaSaldo = 0;
 
-                                $.each(retornoCardsCore, function(i, obj) {
+                    $.each(retornoCardsCore, function(i, obj) {
 
-                                    Retornocards += '<div class="container-resumo">' +
-                                        '<div class="info">' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
-                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
-                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';
+                        Retornocards += '<div class="container-resumo">' +
+                            '<div class="info">' +
+                            '<div class="col">' +
+                            '<div class="caixaSpan">' +
+                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
+                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col">' +
+                            '<div class="caixaSpan">' +
+                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
+                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
 
+                            if(obj.IDTIPOMOVIMENTACAO == 1){
+                            Retornapositivo += parseFloat(obj.VALOR);
 
-                                })
-                                $('#cardsGravados').html(Retornocards).show();
-                            } else {
-                                console.log("Sem retorno de resultado");
+                            }else if(obj.IDTIPOMOVIMENTACAO == 2){
+                            RetornaNegativo += parseFloat(obj.VALOR);
+
                             }
-                        })
+
+                    })
+                    
                 } else {
-                    console.log("Sem retorno de resultado");
+                    Retornocards = '<div class="container-resumo">' +
+                    '<div class="info">' +
+                    '<div class="col">' +
+                    '<div class="caixaSpan">' +
+                    '<span class="label label-span">Sem retorno de resultado</span>';
+
+                    console.log("Sem retorno de resultado")
                 }
+                $('#iPositivo').html(Retornapositivo).show();
+                $('#iNegativo').html(RetornaNegativo).show();
+
+                var RetornaSaldo = Retornapositivo - RetornaNegativo;
+
+                $('#iSaldo').html(RetornaSaldo).show();
+                $('#cardsGravados').html(Retornocards).show();
+                
+            })
+    } else {
+        console.log("Sem retorno de resultado")
+    }
 
 
-            })
-            })
+})
+})
             ////////////////////////////////////////////////////
 
             //document.addEventListener('DOMContentLoaded', (event) => {
@@ -433,9 +477,10 @@ include('php/funcoes.php');
                                 if (retornoCardsCore.length > 0) {
 
                                     var Retornocards = '';
-                                    var Retornapositivo = '';
-                                    var RetornaNegativo = '';
-                                    var RetornaSaldo = '';
+                                    var Retornapositivo = 0;
+                                    var RetornaNegativo = 0;
+                                    var RetornaSaldo = 0;
+                                    
 
                                     $.each(retornoCardsCore, function(i, obj) {
 
@@ -457,12 +502,21 @@ include('php/funcoes.php');
                                             '</div>' +
                                             '</div>';
 
-                                        //if(obj.)
+                                        if(obj.IDTIPOMOVIMENTACAO == 1){
+                                            Retornapositivo += parseFloat(obj.VALOR);
 
-                                        
+                                        }else if (obj.IDTIPOMOVIMENTACAO == 2){
+                                            RetornaNegativo += parseFloat(obj.VALOR); 
 
+                                        }
 
                                     })
+                                    $('#iPositivo').html(Retornapositivo).show();
+                                    $('#iNegativo').html(RetornaNegativo).show();
+
+                                    var RetornaSaldo = Retornapositivo - RetornaNegativo;
+
+                                    $('#iSaldo').html(RetornaSaldo).show();
                                     $('#cardsGravados').html(Retornocards).show();
                                 } else {
                                     console.log("Sem retorno de resultado")
