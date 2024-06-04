@@ -513,10 +513,9 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
                                         }else if (obj.IDTIPOMOVIMENTACAO == 2){
                                             RetornaNegativo += parseFloat(obj.VALOR); 
 
-                                        }else{
+                                        }else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3){
                                             Retornapositivo = 0;
                                             RetornaNegativo = 0;
-
                                         }
 
                                     })
@@ -539,53 +538,7 @@ $('#mesEscolhido, #anoEscolhido').on('change', function() {
                 })
             })
 
-            /////////////////////////CALCULOS/////////////////////////
-
-            $(document).ready(function() {
-
-                $('#mesEscolhido, #anoEscolhido, #ibt').on('change', function() {
-
-                    var mesEscol = $('#mesEscolhido').val();
-                    var anoEscol = $('#anoEscolhido').val();
-                    var realizaCalculo = 1;
-
-                    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
-
-                        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol + '&realizaCalculo' + realizaCalculo,
-                            function(calculos) {
-
-                                if (calculos.length > 0) {
-
-                                    var positivo = '';
-                                    var negativo = '';
-                                    var saldo = '';
-
-                                    $.each(calculos, function(i, obj) {
-
-                                    console.log(obj.POSITIVO/*, obj.NEGATIVO, obj.SALDO*/);
-
-                                        positivo = '<span>R$ '+ obj.POSITIVO +' </span>';
-                                        /*negativo = '<span>R$ '+ obj.NEGATIVO +' </span>';
-                                        saldo = '<span>R$ '+ obj.SALDO +' </span>';*/
-                                    })
-                                    
-                                    $('#iPositivo').html(positivo).show();
-                                    /*$('#iNegativo').html(negativo).show();
-                                    $('#iSaldo').html(saldo).show();*/
-                                } else {
-                                    console.log("Sem retorno de resultado")
-                                }
-                            })
-                    } else {
-                        console.log("Sem retorno de resultado")
-                    }
-
-
-                })
-            })
-
-            //////////////////////////////////////////////////////////
-
+         
             document.addEventListener('DOMContentLoaded', (event) => {
 
                 const seleCore = document.getElementById('selecaoTipo');
