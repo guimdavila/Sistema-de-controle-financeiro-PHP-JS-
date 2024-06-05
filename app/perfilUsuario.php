@@ -64,7 +64,7 @@ include('php/funcoes.php');
 
 
                                 <!-- Profile Image -->
-                                <div class="card card-primary card-outline">
+                                <div class="card card-primary card-outline tamanho-card-perfil">
                                     <div class="card-body box-profile box-perfil-user">
                                         <div class="text-center">
                                             <button type="button" class="botao-foto profile-user-img img-fluid img-circle" data-toggle="modal" data-target="#editarFoto">
@@ -93,9 +93,9 @@ include('php/funcoes.php');
                                                                 <div class="col-4 caixaFoto">
                                                                     <div class="form-group ">
 
-                                                                        <div class="botao-foto profile-user-img img-fluid img-circle">
-                                                                            <img class="img-fluid img-circle" src="
-                                                        <?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
+                                                                        <div class="botao-foto profile-user-img profile-user-img-edit img-fluid img-circle">
+                                                                            <img class="img-fluid img-fluid-edit img-circle" src="
+                                                                            <?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
                                                                         </div>
 
                                                                     </div>
@@ -104,8 +104,8 @@ include('php/funcoes.php');
                                                                 <div class="col-8 caixaFile">
                                                                     <div class="form-group ">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" name="foto" id="foto" onchange="exibirImagem(this)">
                                                                             <label class="custom-file-label">Enviar arquivo</label>
+                                                                            <input type="file" class="custom-file-input" name="foto" id="foto" onchange="exibirImagem(this)">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -113,7 +113,7 @@ include('php/funcoes.php');
                                                             </div>
 
 
-                                                            <div class="modal-footer">
+                                                            <div class="modal-footer modal-footer-edit">
                                                                 <button type="button" class="btn btn-edit-perfil" data-dismiss="modal">Voltar</button>
                                                                 <button type="submit" class="btn btn-edit-perfil">Salvar</button>
                                                             </div>
@@ -226,57 +226,6 @@ include('php/funcoes.php');
                     </div><!-- /.container-fluid -->  
 
 
-
-
-                    <!-- Editar coabitante -->
-                    <div class="modal fade" id="editarCoabitante">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Coabitantes</h4>
-                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <form method="post" action="php/teste.php" enctype="multipart/form-data">
-
-                                    <div class="modal-body">
-
-                                        <div class="row">
-
-                                            <div class="card-body">
-                                                <table id="tabela" class="table table-bordered table-hover">
-                                                    <button type='button' class='btn btn-edit-perfil' data-toggle='modal' onclick='adicionarLinha()'>Adicionar</button>
-
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Nome</th>
-                                                        </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                        <?php echo listaUsuario($_SESSION['idUsuario']); ?>
-
-                                                    </tbody>
-
-                                                </table>
-                                            </div>
-
-                                        </div>
-
-                                        <button type="submit" class="btn btn-edit-perfil">Salvar</button>
-
-                                </form>
-
-                            </div>
-
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-
-                   <!-- /.modal-dialog -->
                 </section>
             </div>
             <!-- /.modal -->
