@@ -71,6 +71,10 @@ include('php/funcoes.php');
                                                 <img class=" img-fluid img-circle" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
                                             </button>
                                         </div>
+                                        
+                                        <h3 class="profile-username profile-username-edit text-center">
+                                            <?php echo nomeUsuario($_SESSION['idUsuario']); ?>
+                                        </h3>
 
                                         <!-- Editar foto -->
                                         <div class="modal fade" id="editarFoto">
@@ -93,8 +97,8 @@ include('php/funcoes.php');
                                                                 <div class="col-4 caixaFoto">
                                                                     <div class="form-group ">
 
-                                                                        <div class="botao-foto profile-user-img profile-user-img-edit img-fluid img-circle">
-                                                                            <img class="img-fluid img-fluid-edit img-circle" src="
+                                                                        <div class="botao-foto profile-user-img profile-user-img-edit img-fluid img-circle ">
+                                                                            <img class="img-fluid img-fluid-edit img-circle profile-user-img-edit-interno" src="
                                                                             <?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
                                                                         </div>
 
@@ -105,7 +109,7 @@ include('php/funcoes.php');
                                                                     <div class="form-group ">
                                                                         <div class="custom-file">
                                                                             <label class="custom-file-label">Enviar arquivo</label>
-                                                                            <input type="file" class="custom-file-input" name="foto" id="foto" onchange="exibirImagem(this)">
+                                                                            <input type="file" class="custom-file-input" name="foto" id="foto">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -125,9 +129,6 @@ include('php/funcoes.php');
                                             <!-- /.modal-content -->
                                         </div>
 
-                                        <h3 class="profile-username text-center">
-                                            <?php echo nomeUsuario($_SESSION['idUsuario']); ?>
-                                        </h3>
 
 
                                     </div>
@@ -136,7 +137,7 @@ include('php/funcoes.php');
                                 <!-- /.card -->
 
                                 <!-- About Me Box -->
-                                <div class="card card-primary">
+                                <div class="card card-primary card-primary-id1">
                                     <div class="card-header">
                                         <h3 class="card-title">Dados</h3>
                                     </div>
@@ -242,13 +243,11 @@ include('php/funcoes.php');
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-
-
                             <!-- Profile Image -->
                             <div class="card card-primary card-outline">
-                                <div class="card-body box-profile box-perfil-user">
+                                <div class="card-body box-profile box-perfil-user box-perfil-user-edit">
                                     <div class="text-center">
-                                        <img class="profile-user-img img-fluid img-circle" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
+                                            <img class=" img-fluid img-circle profile-user-img-edit-interno" src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" alt="User profile picture">
                                     </div>
 
 
@@ -262,12 +261,12 @@ include('php/funcoes.php');
                             <!-- /.card -->
 
                             <!-- About Me Box -->
-                            <div class="card card-primary">
+                            <div class="card card-primary ">
                                 <div class="card-header">
                                     <h3 class="card-title">Dados</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="card-body" id="card-body-margin-reduzida">
+                                <div class="card-body" id="card-body-margin-reduzida card-body-margin-reduzida-edit">
 
                                     <form method="POST" action="php/salvarUsuario.php">
 

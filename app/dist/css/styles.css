@@ -133,13 +133,28 @@ hr {
 
 .profile-user-img {
     
-    margin-top: 1.8rem;
+    margin-top: 1.2rem;
     padding: 0px;
+}
+.profile-user-img-edit-interno {
+    
+    margin-top: 1.2rem;
+    padding: 0px;
+}
+.profile-username-edit{
+    margin-top: 10px;
 }
 .profile-user-img-edit {
     
     margin-top: 15px;
     padding: 0px;
+}
+.box-perfil-user-edit{
+    height: 29vh;
+}
+
+.card-body-margin-reduzida-edit{
+    height: 37vh;
 }
 
 .botao-foto {
@@ -214,7 +229,6 @@ hr {
 
 .box-perfil-user {
     padding: 0.50rem;
-    height: 145px;
 }
 
 
