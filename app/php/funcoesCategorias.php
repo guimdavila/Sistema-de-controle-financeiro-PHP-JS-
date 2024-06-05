@@ -70,13 +70,13 @@ function SolicitaCategorias($id){
 
     include("conexao.php");
 
-    $sql = "SELECT NOMESUBCATEGORIA, IDCATEGORIA FROM SUBCATEGORIA WHERE idusuario = $id OR idusuario IS NULL;";
+    $sql = "SELECT NOMECATEGORIA, IDCATEGORIA FROM CATEGORIA WHERE idusuario = $id OR idusuario IS NULL;";
 
     $resultSql = mysqli_query($conexao, $sql);
 
     foreach ($resultSql as $coluna) {
         
-        $lista .= "<option value= '". $coluna["IDCATEGORIA"] . "'>".$coluna["NOMESUBCATEGORIA"]."</option>";
+        $lista .= "<option value= '". $coluna["IDCATEGORIA"] . "'>".$coluna["NOMECATEGORIA"]."</option>";
     }
 
     return $lista;
