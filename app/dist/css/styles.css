@@ -565,6 +565,10 @@ tr.colunasCategorias td:hover {
 .spanCore {
     font-size: 40px;
 }
+.btn-novo-core-anual{
+    margin-left: 16rem;
+
+}
 
 
 .vertical-line {
@@ -581,6 +585,11 @@ tr.colunasCategorias td:hover {
     transition: none;
     color: white;
     left: 100%;
+}
+.btn-novo-core:hover {
+    background-color: #27374D;
+    border-color: #27374D;
+    color: white;
 }
 
 .text-muted-Core-button {
