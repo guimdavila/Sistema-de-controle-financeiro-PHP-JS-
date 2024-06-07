@@ -117,7 +117,13 @@ include('php/funcoes.php');
 
                                             <div class="text-muted-Core-button">
                                                 <button type="button" id="ibt" class="btn btn-novo-core" data-toggle="modal">Salvar</button>
+                                                
+                                                <button type="button" id="ibt" class="btn btn-novo-core btn-novo-core-anual" data-toggle="modal">Anual</button>
+
                                             </div>
+
+
+                                          
                                         </div>
                                     </div>
                                 </form>
@@ -140,114 +146,114 @@ include('php/funcoes.php');
         </div>
         <footer class="footerCore">
             <div class="containerResultados row">
-                    <!--
+                <!--
                     <span class="labelResultados"><strong>Entradas:</strong></span>
                     -->
-                    <div class="col-4">
-                        <i class="fa-solid fa-plus labelResultados iconsResultados"></i>
-                        <div class="col-10 fa-solid text-success iconefooter" id="iPositivo"></div>
-                    </div>
-                    <!--
+                <div class="col-4">
+                    <i class="fa-solid fa-plus labelResultados iconsResultados"></i>
+                    <div class="col-10 fa-solid text-success iconefooter" id="iPositivo"></div>
+                </div>
+                <!--
                     <span class="labelResultados"><strong>Saidas:</strong></span>
                     -->
-                    <div class="col-4">
+                <div class="col-4">
                     <i class="fa-solid fa-minus labelResultados iconsResultados"></i>
                     <div class="col-10 fa-solid text-danger iconefooter" id="iNegativo"></div>
 
-                    </div>
-                    <!--
+                </div>
+                <!--
                     <span class="labelResultados"><strong>Saldo:</strong></span>
                     -->
-                    <div class="col-4">
+                <div class="col-4">
                     <i class="fa-solid fa-equals labelResultados iconsResultados"></i>
                     <div class="col-10 fa-solid iconefooter" id="iSaldo"></div>
-                    
-                    </div>
-
 
                 </div>
 
+
             </div>
 
-        </footer>
+    </div>
+
+    </footer>
 
 
-        <script>
-            $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
-                $('#selecaoTipo').on('change', function() {
-                    var tipoMov = $('#selecaoTipo').val();
-                    var opcaoSub = '';
-                    opcaoSub = '<option value="" disabled selected></option>'
-                    $('#iSubCategoria').html(opcaoSub).show();
-                    var opcaoCategoria = '';
-                    if (tipoMov != "" && tipoMov != 0) {
-                        console.log('php/Corephpajax.php?tipoMov=' + tipoMov)
+            $('#selecaoTipo').on('change', function() {
+                var tipoMov = $('#selecaoTipo').val();
+                var opcaoSub = '';
+                opcaoSub = '<option value="" disabled selected></option>'
+                $('#iSubCategoria').html(opcaoSub).show();
+                var opcaoCategoria = '';
+                if (tipoMov != "" && tipoMov != 0) {
+                    console.log('php/Corephpajax.php?tipoMov=' + tipoMov)
 
-                        $.getJSON('php/Corephpajax.php?tipoMov=' + tipoMov,
-                            function(dados) {
-                                opcaoCategoria = '<option value="" disabled selected>Selecione</option>'
+                    $.getJSON('php/Corephpajax.php?tipoMov=' + tipoMov,
+                        function(dados) {
+                            opcaoCategoria = '<option value="" disabled selected>Selecione</option>'
 
 
-                                if (dados.length > 0) {
-                                    $.each(dados, function(i, obj) {
-                                        opcaoCategoria += '<option value="' + obj.idCategoria + '">' + obj.nomeCategoria + '</option>';
-                                    })
-                                    $('#iCategoria').attr("required", "req");
-                                    $('#iCategoria').html(opcaoCategoria).show();
-                                } else {
-                                    opcaoCategoria += '<option value="">Puxar do banco</option>'
-                                    $('iCategoria').html(opcaoCategoria).show()
-                                }
-                            })
-                    } else {
-                        opcaoCategoria += '<option value="">Selecione</option>'
-                        $('iCategoria').html(opcaoCategoria).show()
-                    }
-                })
+                            if (dados.length > 0) {
+                                $.each(dados, function(i, obj) {
+                                    opcaoCategoria += '<option value="' + obj.idCategoria + '">' + obj.nomeCategoria + '</option>';
+                                })
+                                $('#iCategoria').attr("required", "req");
+                                $('#iCategoria').html(opcaoCategoria).show();
+                            } else {
+                                opcaoCategoria += '<option value="">Puxar do banco</option>'
+                                $('iCategoria').html(opcaoCategoria).show()
+                            }
+                        })
+                } else {
+                    opcaoCategoria += '<option value="">Selecione</option>'
+                    $('iCategoria').html(opcaoCategoria).show()
+                }
             })
+        })
 
-            $(document).ready(function() {
+        $(document).ready(function() {
 
-                $('#iCategoria').on('change', function() {
-                    var categoria = $('#iCategoria').val();
-                    if (categoria != "" && categoria != 0) {
-                        console.log('php/Corephpajax.php?categoria=' + categoria)
+            $('#iCategoria').on('change', function() {
+                var categoria = $('#iCategoria').val();
+                if (categoria != "" && categoria != 0) {
+                    console.log('php/Corephpajax.php?categoria=' + categoria)
 
-                        $.getJSON('php/Corephpajax.php?categoria=' + categoria,
-                            function(dados1) {
+                    $.getJSON('php/Corephpajax.php?categoria=' + categoria,
+                        function(dados1) {
 
-                                opcaoSub = '<option value="" disabled selected>Selecione</option>'
+                            opcaoSub = '<option value="" disabled selected>Selecione</option>'
 
-                                if (dados1.length > 0) {
-                                    $.each(dados1, function(i, obj) {
-                                        opcaoSub += '<option value="' + obj.idSubCategoria + '">' + obj.nomeSubCategoria + '</option>';
-                                    })
-                                    $('#iSubCategoria').attr("required", "req");
-                                    $('#iSubCategoria').html(opcaoSub).show();
-                                } else {
-                                    opcaoSub += '<option value="">Puxar do banco</option>'
-                                    $('iSubCategoria').html(opcaoSub).show();
-                                }
-                            })
-                    } else {
-                        opcaoSub += '<option value="">Selecione</option>'
-                        $('iSubCategoria').html(opcaoSub).show();
+                            if (dados1.length > 0) {
+                                $.each(dados1, function(i, obj) {
+                                    opcaoSub += '<option value="' + obj.idSubCategoria + '">' + obj.nomeSubCategoria + '</option>';
+                                })
+                                $('#iSubCategoria').attr("required", "req");
+                                $('#iSubCategoria').html(opcaoSub).show();
+                            } else {
+                                opcaoSub += '<option value="">Puxar do banco</option>'
+                                $('iSubCategoria').html(opcaoSub).show();
+                            }
+                        })
+                } else {
+                    opcaoSub += '<option value="">Selecione</option>'
+                    $('iSubCategoria').html(opcaoSub).show();
 
-                    }
+                }
 
 
-                })
             })
+        })
 
-            $(document).ready(function() {
-                $('#ibt').on('click', function() {
-                    var mesEscol = $('#mesEscolhido').val();
-                    var anoEscol = $('#anoEscolhido').val();
-                    console.log(mesEscol);
-                    if(mesEscol == "" || anoEscol == ""){
+        $(document).ready(function() {
+            $('#ibt').on('click', function() {
+                var mesEscol = $('#mesEscolhido').val();
+                var anoEscol = $('#anoEscolhido').val();
+                console.log(mesEscol);
+                if (mesEscol == "" || anoEscol == "") {
 
-                    }else{
+                } else {
                     var tipo = $('#selecaoTipo').val();
                     var categoria = $('#iCategoria').val();
                     var subcategoria = $('#iSubCategoria').val();
@@ -258,7 +264,7 @@ include('php/funcoes.php');
                     valo = valo.replace(/[^0-9,]/g, '');
                     valo = valo.replace(/,/g, '.');
                     var valor = valo;
-                    
+
                     $.getJSON('php/coreInsert.php?tipo=' + tipo + '&categoria=' + categoria + '&subcategoria=' + subcategoria + '&data=' + data +
                         '&desc=' + desc + '&valor=' + valor + '&mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
                         function(cards) {
@@ -271,7 +277,7 @@ include('php/funcoes.php');
 
                                 $.each(cards, function(i, obj) {
 
-                                    
+
 
                                     Retornocards += '<div class="container-resumo">' +
                                         '<div class="info">' +
@@ -290,15 +296,15 @@ include('php/funcoes.php');
                                         '</div>' +
                                         '</div>' +
                                         '</div>';
-                                    
-                                        if(obj.IDTIPOMOVIMENTACAO == 1){
-                                            Retornapositivo += parseFloat(obj.VALOR);
 
-                                        }else if (obj.IDTIPOMOVIMENTACAO == 2){
-                                            RetornaNegativo += parseFloat(obj.VALOR); 
+                                    if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                        Retornapositivo += parseFloat(obj.VALOR);
 
-                                        }
-                                        
+                                    } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                        RetornaNegativo += parseFloat(obj.VALOR);
+
+                                    }
+
                                 })
 
                             } else {
@@ -308,310 +314,311 @@ include('php/funcoes.php');
                             $('#cardsGravados').html(Retornocards).show();
 
                         });
-                    }});
-            });
-
-            $(document).ready(function() {
-
-$('#mesEscolhido, #anoEscolhido').on('change', function() {
-
-    var mesEscol = $('#mesEscolhido').val();
-    var anoEscol = $('#anoEscolhido').val();
-
-    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
-
-        console.log(mesEscol, anoEscol)
-
-        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
-            function(retornoCardsCore) {
-
-                if (retornoCardsCore.length > 0) {
-
-                    var Retornocards = '';
-                    var Retornapositivo = 0;
-                    var RetornaNegativo = 0;
-                    var RetornaSaldo = 0;
-                    
-
-                    $.each(retornoCardsCore, function(i, obj) {
-
-
-                        Retornocards += '<div class="container-resumo">' +
-                            '<div class="info">' +
-                            '<div class="col">' +
-                            '<div class="caixaSpan">' +
-                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
-                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
-                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="col">' +
-                            '<div class="caixaSpan">' +
-                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
-                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>';
-
-                        if(obj.IDTIPOMOVIMENTACAO == 1){
-                            Retornapositivo += parseFloat(obj.VALOR);
-
-                        }else if (obj.IDTIPOMOVIMENTACAO == 2){
-                            RetornaNegativo += parseFloat(obj.VALOR); 
-
-                        }
-
-                    })
-                    $('#iPositivo').html(Retornapositivo).show();
-                    $('#iNegativo').html(RetornaNegativo).show();
-
-                    var RetornaSaldo = Retornapositivo - RetornaNegativo;
-
-                    $('#iSaldo').html(RetornaSaldo).show();
-                    $('#cardsGravados').html(Retornocards).show();
-                } else {
-                    console.log("Sem retorno de resultado")
                 }
-            })
-    } else {
-        console.log("Sem retorno de resultado")
-    }
+            });
+        });
+
+        $(document).ready(function() {
+
+            $('#mesEscolhido, #anoEscolhido').on('change', function() {
+
+                var mesEscol = $('#mesEscolhido').val();
+                var anoEscol = $('#anoEscolhido').val();
+
+                if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
+
+                    console.log(mesEscol, anoEscol)
+
+                    $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+                        function(retornoCardsCore) {
+
+                            if (retornoCardsCore.length > 0) {
+
+                                var Retornocards = '';
+                                var Retornapositivo = 0;
+                                var RetornaNegativo = 0;
+                                var RetornaSaldo = 0;
 
 
-})
-})
-            
-            //////////////////////////////////////////////////////
-            $(document).ready(function() {
+                                $.each(retornoCardsCore, function(i, obj) {
 
-$('#mesEscolhido, #anoEscolhido').on('change', function() {
 
-    var mesEscol = $('#mesEscolhido').val();
-    var anoEscol = $('#anoEscolhido').val();
+                                    Retornocards += '<div class="container-resumo">' +
+                                        '<div class="info">' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
+                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
+                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
+                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
 
-    if (mesEscol != "" && mesEscol != null && anoEscol != "" && anoEscol != null) {
+                                    if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                        Retornapositivo += parseFloat(obj.VALOR);
 
-        console.log(mesEscol, anoEscol)
+                                    } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                        RetornaNegativo += parseFloat(obj.VALOR);
 
-        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
-            function(retornoCardsCore) {
+                                    }
 
-                if (retornoCardsCore.length > 0) {
+                                })
+                                $('#iPositivo').html(Retornapositivo).show();
+                                $('#iNegativo').html(RetornaNegativo).show();
 
-                    var Retornocards = '';
-                    var Retornapositivo = 0;
-                    var RetornaNegativo = 0;
-                    var RetornaSaldo = 0;
+                                var RetornaSaldo = Retornapositivo - RetornaNegativo;
 
-                    $.each(retornoCardsCore, function(i, obj) {
-
-                        Retornocards += '<div class="container-resumo">' +
-                            '<div class="info">' +
-                            '<div class="col">' +
-                            '<div class="caixaSpan">' +
-                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
-                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
-                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
-                            '</div>' +
-                            '</div>' +
-                            '<div class="col">' +
-                            '<div class="caixaSpan">' +
-                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
-                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>';
-
-                            if(obj.IDTIPOMOVIMENTACAO == 1){
-                            Retornapositivo += parseFloat(obj.VALOR);
-
-                            }else if(obj.IDTIPOMOVIMENTACAO == 2){
-                            RetornaNegativo += parseFloat(obj.VALOR);
-
+                                $('#iSaldo').html(RetornaSaldo).show();
+                                $('#cardsGravados').html(Retornocards).show();
+                            } else {
+                                console.log("Sem retorno de resultado")
                             }
-
-                    })
-                    
+                        })
                 } else {
-                    Retornocards = '<div class="container-resumo">' +
-                    '<div class="info">' +
-                    '<div class="col">' +
-                    '<div class="caixaSpan">' +
-                    '<span class="label label-span">Sem retorno de resultado</span>';
-
-                    Retornapositivo = 0;
-                    RetornaNegativo = 0;
-
                     console.log("Sem retorno de resultado")
                 }
-                $('#iPositivo').html(Retornapositivo).show();
-                $('#iNegativo').html(RetornaNegativo).show();
 
-                var RetornaSaldo = Retornapositivo - RetornaNegativo;
 
-                $('#iSaldo').html(RetornaSaldo).show();
-                $('#cardsGravados').html(Retornocards).show();
-                
             })
-    } else {
-        console.log("Sem retorno de resultado")
-    }
+        })
+
+        //////////////////////////////////////////////////////
+        $(document).ready(function() {
+
+            $('#mesEscolhido, #anoEscolhido').on('change', function() {
+
+                var mesEscol = $('#mesEscolhido').val();
+                var anoEscol = $('#anoEscolhido').val();
+
+                if (mesEscol != "" && mesEscol != null && anoEscol != "" && anoEscol != null) {
+
+                    console.log(mesEscol, anoEscol)
+
+                    $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+                        function(retornoCardsCore) {
+
+                            if (retornoCardsCore.length > 0) {
+
+                                var Retornocards = '';
+                                var Retornapositivo = 0;
+                                var RetornaNegativo = 0;
+                                var RetornaSaldo = 0;
+
+                                $.each(retornoCardsCore, function(i, obj) {
+
+                                    Retornocards += '<div class="container-resumo">' +
+                                        '<div class="info">' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
+                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
+                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
+                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
+
+                                    if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                        Retornapositivo += parseFloat(obj.VALOR);
+
+                                    } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                        RetornaNegativo += parseFloat(obj.VALOR);
+
+                                    }
+
+                                })
+
+                            } else {
+                                Retornocards = '<div class="container-resumo">' +
+                                    '<div class="info">' +
+                                    '<div class="col">' +
+                                    '<div class="caixaSpan">' +
+                                    '<span class="label label-span">Sem retorno de resultado</span>';
+
+                                Retornapositivo = 0;
+                                RetornaNegativo = 0;
+
+                                console.log("Sem retorno de resultado")
+                            }
+                            $('#iPositivo').html(Retornapositivo).show();
+                            $('#iNegativo').html(RetornaNegativo).show();
+
+                            var RetornaSaldo = Retornapositivo - RetornaNegativo;
+
+                            $('#iSaldo').html(RetornaSaldo).show();
+                            $('#cardsGravados').html(Retornocards).show();
+
+                        })
+                } else {
+                    console.log("Sem retorno de resultado")
+                }
 
 
-})
-})
-            ////////////////////////////////////////////////////
-
-            //document.addEventListener('DOMContentLoaded', (event) => {
-            $(document).ready(function() {
-
-                $('#mesEscolhido, #anoEscolhido').on('change', function() {
-
-                    var mesEscol = $('#mesEscolhido').val();
-                    var anoEscol = $('#anoEscolhido').val();
-
-                    if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
-
-                        console.log(mesEscol, anoEscol)
-
-                        $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
-                            function(retornoCardsCore) {
-
-                                if (retornoCardsCore.length > 0) {
-
-                                    var Retornocards = '';
-                                    var Retornapositivo = 0;
-                                    var RetornaNegativo = 0;
-                                    var RetornaSaldo = 0;
-                                    
-
-                                    $.each(retornoCardsCore, function(i, obj) {
-
-                                        Retornocards += '<div class="container-resumo">' +
-                                            '<div class="info">' +
-                                            '<div class="col">' +
-                                            '<div class="caixaSpan">' +
-                                            '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
-                                            '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
-                                            '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
-                                            '</div>' +
-                                            '</div>' +
-                                            '<div class="col">' +
-                                            '<div class="caixaSpan">' +
-                                            '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
-                                            '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
-                                            '</div>' +
-                                            '</div>' +
-                                            '</div>' +
-                                            '</div>';
-
-                                        if(obj.IDTIPOMOVIMENTACAO == 1){
-                                            Retornapositivo += parseFloat(obj.VALOR);
-
-                                        }else if (obj.IDTIPOMOVIMENTACAO == 2){
-                                            RetornaNegativo += parseFloat(obj.VALOR); 
-
-                                        }else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3){
-                                            Retornapositivo = 0;
-                                            RetornaNegativo = 0;
-                                        }
-
-                                    })
-                                    $('#iPositivo').html(Retornapositivo).show();
-                                    $('#iNegativo').html(RetornaNegativo).show();
-
-                                    var RetornaSaldo = Retornapositivo - RetornaNegativo;
-
-                                    $('#iSaldo').html(RetornaSaldo).show();
-                                    $('#cardsGravados').html(Retornocards).show();
-                                } else {
-                                    console.log("Sem retorno de resultado")
-                                }
-                            })
-                    } else {
-                        console.log("Sem retorno de resultado")
-                    }
-
-
-                })
             })
+        })
+        ////////////////////////////////////////////////////
 
-         
-            document.addEventListener('DOMContentLoaded', (event) => {
+        //document.addEventListener('DOMContentLoaded', (event) => {
+        $(document).ready(function() {
 
-                const seleCore = document.getElementById('selecaoTipo');
-                const cateCore = document.getElementById('iCategoria');
-                const SubCCore = document.getElementById('iSubCategoria');
-                const DataCore = document.getElementById('iDataCore');
-                const DescCore = document.getElementById('iDescr');
-                const valoCore = document.getElementById('valoCore');
+            $('#mesEscolhido, #anoEscolhido').on('change', function() {
 
-                seleCore.addEventListener('input', checkInput);
-                cateCore.addEventListener('input', checkInput);
-                SubCCore.addEventListener('input', checkInput);
-                DataCore.addEventListener('input', checkInput);
-                DescCore.addEventListener('input', checkInput);
-                valoCore.addEventListener('input', checkInput);
+                var mesEscol = $('#mesEscolhido').val();
+                var anoEscol = $('#anoEscolhido').val();
 
-                // Chama a função inicialmente para definir o estado correto do input2
-                checkInput();
-            });
+                if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
 
-            function checkInput() {
-                const seleCore = document.getElementById('selecaoTipo');
-                const cateCore = document.getElementById('iCategoria');
-                const SubCCore = document.getElementById('iSubCategoria');
-                const DataCore = document.getElementById('iDataCore');
-                const DescCore = document.getElementById('iDescr');
-                const valoCore = document.getElementById('valoCore');
+                    console.log(mesEscol, anoEscol)
 
-                if (seleCore.value.trim() === '') {
-                    console.log(document.getElementById('selecaoTipo'))
-                    cateCore.disabled = true;
+                    $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+                        function(retornoCardsCore) {
+
+                            if (retornoCardsCore.length > 0) {
+
+                                var Retornocards = '';
+                                var Retornapositivo = 0;
+                                var RetornaNegativo = 0;
+                                var RetornaSaldo = 0;
+
+
+                                $.each(retornoCardsCore, function(i, obj) {
+
+                                    Retornocards += '<div class="container-resumo">' +
+                                        '<div class="info">' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
+                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
+                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<div class="col">' +
+                                        '<div class="caixaSpan">' +
+                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
+                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
+
+                                    if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                        Retornapositivo += parseFloat(obj.VALOR);
+
+                                    } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                        RetornaNegativo += parseFloat(obj.VALOR);
+
+                                    } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                        Retornapositivo = 0;
+                                        RetornaNegativo = 0;
+                                    }
+
+                                })
+                                $('#iPositivo').html(Retornapositivo).show();
+                                $('#iNegativo').html(RetornaNegativo).show();
+
+                                var RetornaSaldo = Retornapositivo - RetornaNegativo;
+
+                                $('#iSaldo').html(RetornaSaldo).show();
+                                $('#cardsGravados').html(Retornocards).show();
+                            } else {
+                                console.log("Sem retorno de resultado")
+                            }
+                        })
                 } else {
-                    cateCore.disabled = false;
+                    console.log("Sem retorno de resultado")
                 }
 
-                if (cateCore.value.trim() === '') {
-                    SubCCore.disabled = true;
-                } else {
-                    SubCCore.disabled = false;
-                }
 
-                if (SubCCore.value.trim() === '') {
-                    DataCore.disabled = true;
-                } else {
-                    DataCore.disabled = false;
-                }
+            })
+        })
 
-                if (DataCore.value.trim() === '') {
-                    DescCore.disabled = true;
-                    valoCore.disabled = true;
 
-                } else {
-                    DescCore.disabled = false;
-                    valoCore.disabled = false;
-                }
+        document.addEventListener('DOMContentLoaded', (event) => {
+
+            const seleCore = document.getElementById('selecaoTipo');
+            const cateCore = document.getElementById('iCategoria');
+            const SubCCore = document.getElementById('iSubCategoria');
+            const DataCore = document.getElementById('iDataCore');
+            const DescCore = document.getElementById('iDescr');
+            const valoCore = document.getElementById('valoCore');
+
+            seleCore.addEventListener('input', checkInput);
+            cateCore.addEventListener('input', checkInput);
+            SubCCore.addEventListener('input', checkInput);
+            DataCore.addEventListener('input', checkInput);
+            DescCore.addEventListener('input', checkInput);
+            valoCore.addEventListener('input', checkInput);
+
+            // Chama a função inicialmente para definir o estado correto do input2
+            checkInput();
+        });
+
+        function checkInput() {
+            const seleCore = document.getElementById('selecaoTipo');
+            const cateCore = document.getElementById('iCategoria');
+            const SubCCore = document.getElementById('iSubCategoria');
+            const DataCore = document.getElementById('iDataCore');
+            const DescCore = document.getElementById('iDescr');
+            const valoCore = document.getElementById('valoCore');
+
+            if (seleCore.value.trim() === '') {
+                console.log(document.getElementById('selecaoTipo'))
+                cateCore.disabled = true;
+            } else {
+                cateCore.disabled = false;
             }
 
-            function formatarValorMonetario(input) {
-                let value = input.value;
-
-                value = value.replace(/\D/g, '');
-                value = (value / 100).toFixed(2) + '';
-                value = value.replace('.', ',');
-                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                value = 'R$ ' + value;
-
-                input.value = value;
+            if (cateCore.value.trim() === '') {
+                SubCCore.disabled = true;
+            } else {
+                SubCCore.disabled = false;
             }
-        </script>
 
-        <?php
-        include('partes/js.php');
-        ?>
+            if (SubCCore.value.trim() === '') {
+                DataCore.disabled = true;
+            } else {
+                DataCore.disabled = false;
+            }
+
+            if (DataCore.value.trim() === '') {
+                DescCore.disabled = true;
+                valoCore.disabled = true;
+
+            } else {
+                DescCore.disabled = false;
+                valoCore.disabled = false;
+            }
+        }
+
+        function formatarValorMonetario(input) {
+            let value = input.value;
+
+            value = value.replace(/\D/g, '');
+            value = (value / 100).toFixed(2) + '';
+            value = value.replace('.', ',');
+            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            value = 'R$ ' + value;
+
+            input.value = value;
+        }
+    </script>
+
+    <?php
+    include('partes/js.php');
+    ?>
 </body>
 
 </html>
