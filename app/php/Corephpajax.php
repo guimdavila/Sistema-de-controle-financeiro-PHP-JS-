@@ -19,6 +19,31 @@ $mesEscol = isset($_GET['mesEscol']) ? $_GET['mesEscol'] : '';
 $anoEscol = isset($_GET['anoEscol']) ? $_GET['anoEscol'] : '';
 $realizaCalculo = isset($_GET['realizaCalculo']) ? $_GET['realizaCalculo'] : '';
 
+
+$anoEscolAnual = isset($_GET['anoEscolhido']) ? $_GET['anoEscolhido'] : '';
+
+
+if (!empty($anoEscolAnual)) {
+    echo saldosAno($anoEscolAnual, $id);
+   
+}
+
+function saldosAno($anoEscolAnual, $id){
+    
+    $pdo = Conectar();
+
+    $sql = "SELECT A.DATA, A.VALOR, A.IDTIPOMOVIMENTACAO FROM MOVIMENTACAO AS A INNER JOIN CATEGORIA AS B ON A.IDCATEGORIA = B.IDCATEGORIA INNER JOIN SUBCATEGORIA AS C ON A.IDSUBCATEGORIA = C.IDSUBCATEGORIA "
+        . " WHERE A.DATA BETWEEN '".$anoEscolAnual."0101' AND '".$anoEscolAnual."1231' AND A.IDUSUARIO = $id order by A.IDMOVIMENTACAO desc;" ;
+
+    $stm = $pdo->prepare($sql);
+    $stm->execute();
+
+    sleep(0.5);
+
+    echo json_encode($stm->fetchAll(PDO::FETCH_ASSOC));
+    $pdo = null;
+}
+
 if (!empty($mesEscol) && !empty($anoEscol)) {
     echo getCardsMesAno($anoEscol, $mesEscol, $id);
    

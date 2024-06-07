@@ -117,13 +117,62 @@ include('php/funcoes.php');
 
                                             <div class="text-muted-Core-button">
                                                 <button type="button" id="ibt" class="btn btn-novo-core" data-toggle="modal">Salvar</button>
-                                                
-                                                <button type="button" id="ibt" class="btn btn-novo-core btn-novo-core-anual" data-toggle="modal">Anual</button>
 
+                                                <button type="button" id="ibtAnual" class="btn btn-novo-core" data-toggle="modal" data-target="#visaoAnual">Anual</button>
+                                            </div>
+
+                                            <div class="modal fade" id="visaoAnual">
+                                                <div class="modal-dialog modal-custom">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Anual</h4>
+                                                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="card-body">
+
+                                                                    <table id="tabela" class="table table-bordered table-hover Anualtable">
+                                                                        <thead>
+                                                                            <tr class="mes colunasCategorias">
+                                                                                <th></th>
+                                                                                <th>Janeiro</th>
+                                                                                <th>Fevereiro</th>
+                                                                                <th>Março</th>
+                                                                                <th>Abril</th>
+                                                                                <th>Maio</th>
+                                                                                <th>Junho</th>
+                                                                                <th>Julho</th>
+                                                                                <th>Agosto</th>
+                                                                                <th>Setembro</th>
+                                                                                <th>Outubro</th>
+                                                                                <th>Novembro</th>
+                                                                                <th>Dezembro</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="iTbodyAnual">
+
+                                                                            <?php //echo listaUsuario(); 
+                                                                            ?>
+
+
+                                                                        </tbody>
+
+                                                                    </table>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
                                             </div>
 
 
-                                          
                                         </div>
                                     </div>
                                 </form>
@@ -179,6 +228,351 @@ include('php/funcoes.php');
 
 
     <script>
+        $(document).ready(function() {
+            $('#ibtAnual').on('click', function() {
+                var anoEscol = $('#ibtAnual').val();
+
+                if (anoEscol != "") {
+                    //fazer validação do que deve ocorrer caso não tenha ano selecionado
+                } else {
+                    var anoEscolAnual = $('#anoEscolhido').val();
+
+                    $.getJSON('php/Corephpajax.php?anoEscolhido=' + anoEscolAnual,
+                        function(saldoanual) {
+
+                            var RetornoAnual = '';
+
+                            var positivoJaneiro = 0;
+                            var negativoJaneiro = 0;
+                            var saldoJaneiro = 0;
+
+                            var positivoFeveiro = 0;
+                            var negativoFeveiro = 0;
+                            var saldoFeveiro = 0;
+
+                            var positivoMarco = 0;
+                            var negativoMarco = 0;
+                            var saldoMarco = 0;
+
+                            var positivoAbril = 0;
+                            var negativoAbril = 0;
+                            var saldoAbril = 0;
+
+                            var positivoMaio = 0;
+                            var negativoMaio = 0;
+                            var saldoMaio = 0;
+
+                            var positivoJunho = 0;
+                            var negativoJunho = 0;
+                            var saldoJunho = 0;
+
+                            var positivoJulho = 0;
+                            var negativoJulho = 0;
+                            var saldoJulho = 0;
+
+                            var positivoAgosto = 0;
+                            var negativoAgosto = 0;
+                            var saldoAgosto = 0;
+
+                            var positivoSetembro = 0;
+                            var negativoSetembro = 0;
+                            var saldoSetembro = 0;
+
+                            var positivoOutubro = 0;
+                            var negativoOutubro = 0;
+                            var saldoOutubro = 0;
+
+                            var positivoNovembro = 0;
+                            var negativoNovembro = 0;
+                            var saldoNovembro = 0;
+
+                            var positivoDezembro = 0;
+                            var negativoDezembro = 0;
+                            var saldoDezembro = 0;
+
+                            if (saldoanual.length > 0) {
+
+                                $.each(saldoanual, function(i, obj) {
+
+                                    if (obj.DATA >= anoEscolAnual + "-01-01 00:00:00" && obj.DATA <= anoEscolAnual + "-01-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoJaneiro += parseFloat(obj.VALOR);
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoJaneiro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoJaneiro = 0;
+                                            negativoJaneiro = 0;
+                                        }
+
+                                        saldoJaneiro = positivoJaneiro - negativoJaneiro;
+
+                                        positivoJaneiro = parseFloat(positivoJaneiro.toFixed(2));
+                                        negativoJaneiro = parseFloat(negativoJaneiro.toFixed(2));
+                                        saldoJaneiro = parseFloat(saldoJaneiro.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-02-01 00:00:00" && obj.DATA <= anoEscolAnual + "-02-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoFeveiro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoFeveiro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoFeveiro = 0;
+                                            negativoFeveiro = 0;
+                                        }
+                                        saldoFeveiro = positivoFeveiro - negativoFeveiro;
+
+                                        positivoFeveiro = parseFloat(positivoFeveiro.toFixed(2));
+                                        negativoFeveiro = parseFloat(negativoFeveiro.toFixed(2));
+                                        saldoFeveiro = parseFloat(saldoFeveiro.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-03-01 00:00:00" && obj.DATA <= anoEscolAnual + "-03-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoMarco += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoMarco += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoMarco = 0;
+                                            negativoMarco = 0;
+                                        }
+                                        saldoMarco = positivoMarco - negativoMarco;
+                                        
+                                        positivoMarco = parseFloat(positivoMarco.toFixed(2));
+                                        negativoMarco = parseFloat(negativoMarco.toFixed(2));
+                                        saldoMarco = parseFloat(saldoMarco.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-04-01 00:00:00" && obj.DATA <= anoEscolAnual + "-04-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoAbril += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoAbril += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoAbril = 0;
+                                            negativoAbril = 0;
+                                        }
+                                        saldoAbril = positivoAbril - negativoAbril;
+
+                                        positivoAbril = parseFloat(positivoAbril.toFixed(2));
+                                        negativoAbril = parseFloat(negativoAbril.toFixed(2));
+                                        saldoAbril = parseFloat(saldoAbril.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-05-01 00:00:00" && obj.DATA <= anoEscolAnual + "-05-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoMaio += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoMaio += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoMaio = 0;
+                                            negativoMaio = 0;
+                                        }
+                                        saldoMaio = positivoMaio - negativoMaio;
+                                        
+                                        positivoMaio = parseFloat(positivoMaio.toFixed(2));
+                                        negativoMaio = parseFloat(negativoMaio.toFixed(2));
+                                        saldoMaio = parseFloat(saldoMaio.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-06-01 00:00:00" && obj.DATA <= anoEscolAnual + "-06-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoJunho += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoJunho += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoJunho = 0;
+                                            negativoJunho = 0;
+                                        }
+                                        saldoJunho = positivoJunho - negativoJunho;
+
+                                        positivoJunho = parseFloat(positivoJunho.toFixed(2));
+                                        negativoJunho = parseFloat(negativoJunho.toFixed(2));
+                                        saldoJunho = parseFloat(saldoJunho.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-07-01 00:00:00" && obj.DATA <= anoEscolAnual + "-07-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoJulho += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoJulho += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoJulho = 0;
+                                            negativoJulho = 0;
+                                        }
+                                        saldoJulho = positivoJulho - negativoJulho;
+
+                                        positivoJulho = parseFloat(positivoJulho.toFixed(2));
+                                        negativoJulho = parseFloat(negativoJulho.toFixed(2));
+                                        saldoJulho = parseFloat(saldoJulho.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-08-01 00:00:00" && obj.DATA <= anoEscolAnual + "-08-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoAgosto += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoAgosto += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoAgosto = 0;
+                                            negativoAgosto = 0;
+                                        }
+                                        saldoAgosto = positivoAgosto - negativoAgosto;
+                                        
+                                        positivoAgosto = parseFloat(positivoAgosto.toFixed(2));
+                                        negativoAgosto = parseFloat(negativoAgosto.toFixed(2));
+                                        saldoAgosto = parseFloat(saldoAgosto.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-09-01 00:00:00" && obj.DATA <= anoEscolAnual + "-09-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoSetembro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoSetembro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoSetembro = 0;
+                                            negativoSetembro = 0;
+                                        }
+                                        saldoSetembro = positivoSetembro - negativoSetembro;
+
+                                        positivoSetembro = parseFloat(positivoSetembro.toFixed(2));
+                                        negativoSetembro = parseFloat(negativoSetembro.toFixed(2));
+                                        saldoSetembro = parseFloat(saldoSetembro.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-10-01 00:00:00" && obj.DATA <= anoEscolAnual + "-10-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoOutubro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoOutubro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoOutubro = 0;
+                                            negativoOutubro = 0;
+                                        }
+                                        saldoOutubro = positivoOutubro - negativoOutubro;
+
+                                        positivoOutubro = parseFloat(positivoOutubro.toFixed(2));
+                                        negativoOutubro = parseFloat(negativoOutubro.toFixed(2));
+                                        saldoOutubro = parseFloat(saldoOutubro.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-11-01 00:00:00" && obj.DATA <= anoEscolAnual + "-11-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoNovembro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoNovembro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoNovembro = 0;
+                                            negativoNovembro = 0;
+                                        }
+                                        saldoNovembro = positivoNovembro - negativoNovembro;
+                                        
+                                        positivoNovembro = parseFloat(positivoNovembro.toFixed(2));
+                                        negativoNovembro = parseFloat(negativoNovembro.toFixed(2));
+                                        saldoNovembro = parseFloat(saldoNovembro.toFixed(2));
+
+                                    } else if (obj.DATA >= anoEscolAnual + "-12-01 00:00:00" && obj.DATA <= anoEscolAnual + "-12-31 00:00:00") {
+
+                                        if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                            positivoDezembro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                            negativoDezembro += parseFloat(obj.VALOR);
+
+                                        } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                            positivoDezembro = 0;
+                                            negativoDezembro = 0;
+                                        }
+                                        saldoDezembro = positivoDezembro - negativoDezembro;
+                                        
+                                        positivoDezembro = parseFloat(positivoDezembro.toFixed(2));
+                                        negativoDezembro = parseFloat(negativoDezembro.toFixed(2));
+                                        saldoDezembro = parseFloat(saldoDezembro.toFixed(2));
+
+                                    }
+                                    
+
+                                    RetornoAnual = '<tr>' +
+                                        '<td>Positivo</td>' +
+                                        '<td> R$ ' + positivoJaneiro + '</td>' +
+                                        '<td> R$ ' + positivoFeveiro + '</td>' +
+                                        '<td> R$ ' + positivoMarco + '</td>' +
+                                        '<td> R$ ' + positivoAbril + '</td>' +
+                                        '<td> R$ ' + positivoMaio + '</td>' +
+                                        '<td> R$ ' + positivoJunho + '</td>' +
+                                        '<td> R$ ' + positivoJulho + '</td>' +
+                                        '<td> R$ ' + positivoAgosto + '</td>' +
+                                        '<td> R$ ' + positivoSetembro + '</td>' +
+                                        '<td> R$ ' + positivoOutubro + '</td>' +
+                                        '<td> R$ ' + positivoNovembro + '</td>' +
+                                        '<td> R$ ' + positivoDezembro + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                        '<td>Negativo</td>' +
+                                        '<td> R$ ' + negativoJaneiro + '</td>' +
+                                        '<td> R$ ' + negativoFeveiro + '</td>' +
+                                        '<td> R$ ' + negativoMarco + '</td>' +
+                                        '<td> R$ ' + negativoAbril + '</td>' +
+                                        '<td> R$ ' + negativoMaio + '</td>' +
+                                        '<td> R$ ' + negativoJunho + '</td>' +
+                                        '<td> R$ ' + negativoJulho + '</td>' +
+                                        '<td> R$ ' + negativoAgosto + '</td>' +
+                                        '<td> R$ ' + negativoSetembro + '</td>' +
+                                        '<td> R$ ' + negativoOutubro + '</td>' +
+                                        '<td> R$ ' + negativoNovembro + '</td>' +
+                                        '<td> R$ ' + negativoDezembro + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                        '<td>Saldo</td>' +
+                                        '<td> R$ ' + saldoJaneiro + '</td>' +
+                                        '<td> R$ ' + saldoFeveiro + '</td>' +
+                                        '<td> R$ ' + saldoMarco + '</td>' +
+                                        '<td> R$ ' + saldoAbril + '</td>' +
+                                        '<td> R$ ' + saldoMaio + '</td>' +
+                                        '<td> R$ ' + saldoJunho + '</td>' +
+                                        '<td> R$ ' + saldoJulho + '</td>' +
+                                        '<td> R$ ' + saldoAgosto + '</td>' +
+                                        '<td> R$ ' + saldoSetembro + '</td>' +
+                                        '<td> R$ ' + saldoOutubro + '</td>' +
+                                        '<td> R$ ' + saldoNovembro + '</td>' +
+                                        '<td> R$ ' + saldoDezembro + '</td>' +
+                                        '</tr>'
+                                })
+
+                            } else {
+                                console.log("Sem retorno de resultado");
+                            }
+
+                            $('#iTbodyAnual').html(RetornoAnual).show();
+
+                        });
+                }
+            });
+        });
+
+
+
         $(document).ready(function() {
 
             $('#selecaoTipo').on('change', function() {
@@ -278,7 +672,6 @@ include('php/funcoes.php');
                                 $.each(cards, function(i, obj) {
 
 
-
                                     Retornocards += '<div class="container-resumo">' +
                                         '<div class="info">' +
                                         '<div class="col">' +
@@ -303,6 +696,9 @@ include('php/funcoes.php');
                                     } else if (obj.IDTIPOMOVIMENTACAO == 2) {
                                         RetornaNegativo += parseFloat(obj.VALOR);
 
+                                    } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                        Retornapositivo = 0;
+                                        RetornaNegativo = 0;
                                     }
 
                                 })
@@ -367,7 +763,16 @@ include('php/funcoes.php');
                                     } else if (obj.IDTIPOMOVIMENTACAO == 2) {
                                         RetornaNegativo += parseFloat(obj.VALOR);
 
+                                    } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                        Retornapositivo = 0;
+                                        RetornaNegativo = 0;
                                     }
+
+
+
+
+
+
 
                                 })
                                 $('#iPositivo').html(Retornapositivo).show();
@@ -437,6 +842,9 @@ include('php/funcoes.php');
                                     } else if (obj.IDTIPOMOVIMENTACAO == 2) {
                                         RetornaNegativo += parseFloat(obj.VALOR);
 
+                                    } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                        Retornapositivo = 0;
+                                        RetornaNegativo = 0;
                                     }
 
                                 })
@@ -614,6 +1022,9 @@ include('php/funcoes.php');
 
             input.value = value;
         }
+
+
+        
     </script>
 
     <?php
