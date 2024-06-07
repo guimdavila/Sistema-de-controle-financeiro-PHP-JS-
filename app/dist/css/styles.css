@@ -200,16 +200,16 @@ hr {
     margin-left: 10px;
     width: 110px;
     height: 35px;
-    background-color: rgb(55, 132, 164);
-    border-color: rgb(55, 132, 164);
+    background-color: #27374D;
+    border-color: #27374D;
     transition: none;
     color: white;
 
 }
 
 .btn-edit-perfil:hover {
-    background-color: rgb(55, 132, 164);
-    border-color: rgb(55, 132, 164);
+    background-color: #27374D;
+    border-color: #27374D;
     color: white;
 
 }
@@ -565,10 +565,7 @@ tr.colunasCategorias td:hover {
 .spanCore {
     font-size: 40px;
 }
-.btn-novo-core-anual{
-    margin-left: 16rem;
 
-}
 
 
 .vertical-line {
@@ -578,6 +575,7 @@ tr.colunasCategorias td:hover {
 
 .btn-novo-core {
     margin-bottom: 10px;
+    margin-right: 20px;
     width: 200px;
     height: 35px;
     background-color: #27374D;
@@ -663,7 +661,10 @@ tr.colunasCategorias td:hover {
     width: 100%;
     height: 85px;
 }
-
+.modal-custom {
+    left: 6.5%;
+    max-width: 75%; 
+}
 .containerResultados{
     margin-left: 20%;
 }
@@ -675,4 +676,15 @@ tr.colunasCategorias td:hover {
     margin-right: 20px;
     font-size: 35px;
     color: #526D82;
+}
+
+.Anualtable {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.tr.mes th {
+    width: 7.69%; 
+    border: 1px solid black;
 }
