@@ -87,10 +87,7 @@ include('partes/css.php'); //importes de CSS
                       <div class="card-header">
                         <h3 class="card-title">Pie Chart</h3>
 
-                        <div class="card-tools">
-                          
-                         
-                        </div>
+                       
                       </div>
                       <div class="card-body">
                         <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
