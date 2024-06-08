@@ -155,14 +155,6 @@ function listaCategoria($id)
 
 
 
-
-
-
-
-
-
-
-
 // Tabela de Subcategorias
 function listaSubCategoria($id)
 {
@@ -171,7 +163,7 @@ function listaSubCategoria($id)
 
     include("conexao.php");
 
-    $sql = "SELECT c.nomesubcategoria ,b.nomecategoria, a.especieMovimentacao, c.idUsuario FROM tipomovimentacao AS a  INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao INNER JOIN subcategoria as c ON B.idcategoria = c.idcategoria  WHERE b.idusuario = $id OR b.idusuario IS NULL;";
+    $sql = "SELECT c.nomesubcategoria ,b.nomecategoria, a.especieMovimentacao, c.idUsuario, c.idsubcategoria FROM tipomovimentacao AS a  INNER JOIN categoria AS b ON a.idTipoMovimentacao = b.idTipoMovimentacao INNER JOIN subcategoria as c ON B.idcategoria = c.idcategoria  WHERE b.idusuario = $id OR b.idusuario IS NULL;";
 
     $result = mysqli_query($conexao, $sql);
 
@@ -179,7 +171,7 @@ function listaSubCategoria($id)
         foreach ($result as $coluna) {
             if ($coluna["idUsuario"] != "") {
                 $tipoCategoria = "Personalizada";
-                $tipoPermissao = "<i class='fa-solid fa-pen classeLapis iconTabela'></i> <i class='fa-solid fa-eye iconTabela'></i>";
+                $tipoPermissao = "<button class='botaoInvisivel' id='btnsub_".$coluna["idsubcategoria"]."'><i class='fa-solid fa-pen classeLapis iconTabela' data-toggle='modal' data-target='#crudSubCategoria'></i></button> <i class='fa-solid fa-eye iconTabela'></i>";
             } else {
                 $tipoCategoria = "Padrão";
                 $tipoPermissao = "<i class='fa-solid fa-eye iconTabela'></i>";

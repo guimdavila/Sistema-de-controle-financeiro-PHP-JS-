@@ -164,7 +164,7 @@ include('partes/css.php'); //importes de CSS
                                                             <?php echo listaCategoria($_SESSION['idUsuario'], 0, ''); ?>
                                                         </tbody>
 
- 
+
                                                     </table>
                                                 </div>
                                             </div>
@@ -271,6 +271,29 @@ include('partes/css.php'); //importes de CSS
                                                 </div>
                                             </div>
                                         </form>
+                                        <div class="modal fade" id="crudSubCategoria">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edição</h4>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="card-body" id="dadosSubCategoria">
+
+                                                                <!-- chamada em ajaxx -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -281,12 +304,83 @@ include('partes/css.php'); //importes de CSS
         </div>
     </div>
 
-
     <?php
-    include('partes/js.php'); //importes de CSS
+    include('partes/js.php'); 
     ?>
 
     <script>
+        $(document).ready(function() {
+            $("button[id^='btnsub_']").on('click', function() {
+                let idSubCategoria = $(this).attr('id').split('_')[1];
+
+                if (idSubCategoria == "") {
+                    
+                } else {
+                    $.getJSON('php/categoriaAjax.php?idEditarSubCategoria=' + idSubCategoria,
+                        function(results) {
+                            var retornoSubCategoria = '';
+                            var tipoEspecie = '';
+                            var retornoAlteraCategorias = '';
+                            var selectedCategoriaId = null;
+
+                            if (results.subcategorias.length > 0) {
+                                selectedCategoriaId = results.subcategorias[0].IDCATEGORIA; 
+                            }
+
+                            if (results.categorias.length > 0) {
+                                $.each(results.categorias, function(i, obj) {
+                                    var selected = (obj.IDCATEGORIA == selectedCategoriaId) ? 'selected' : '';
+                                    retornoAlteraCategorias += '<option value="' + obj.IDCATEGORIA + '" ' + selected + '>' + obj.NOMECATEGORIA + '</option>';
+                                });
+                            } else {
+                                console.log("Sem retorno de resultados para categorias");
+                            }
+
+                            if (results.subcategorias.length > 0) {
+                                $.each(results.subcategorias, function(i, obj) {
+                                    if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                        tipoEspecie = "Positivo";
+                                    } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                        tipoEspecie = "Negativo";
+                                    } else {
+                                        tipoEspecie = "Neutro";
+                                    }
+
+                                    retornoSubCategoria = '<form method="POST" action="php/AlteraSubCategoria.php">' +
+                                        '<div class="containerAlteracao">' +
+                                        '<input type="hidden" name="nAlteraIdSubCategoria" value="' + obj.IDSUBCATEGORIA + '">' +
+                                        '</div>' +
+                                        '<div class="containerAlteracao">' +
+                                        '<span class="tituloAlteracao"><strong>Nome Sub-Categoria:</strong></span>' +
+                                        '<input type="text" id="inputAlteracaoNomeSubCategoria" class="form-control inputAlteracao" name="nNovoNomeSubCategoria" value="' + obj.NOMESUBCATEGORIA + '">' +
+                                        '</div>' +
+                                        '<div class="containerAlteracao">' +
+                                        '<span class="tituloAlteracao"><strong>Categoria vinculada:</strong></span>' +
+                                        '<select class="input-group-text caixaSelecaoCate" name="nNovoNomeCategoriaVinculada" id="SelectAlteraCategorias">' +
+                                        retornoAlteraCategorias + 
+                                        '</select>' +
+                                        '</div>' +
+                                        '<div class="containerAlteracao">' +
+                                        '<span class="tituloAlteracao"><strong>Espécie:</strong></span>' +
+                                        '<span class="tituloAlteracao">' + tipoEspecie + '</span>' +
+                                        '</div>' +
+                                        '<div class="modal-footer modal-footer-edit">' +
+                                        '<button type="submit" class="btn btn-edit-perfil">Salvar</button>' +
+                                        '</div>' +
+                                        '</form>';
+                                });
+                            } else {
+                                console.log("Sem retorno de resultados para subcategorias");
+                            }
+
+                            $('#dadosSubCategoria').html(retornoSubCategoria).show();
+                        });
+                }
+            });
+        });
+
+
+
         $(document).ready(function() {
             $("button[id^='btn_']").on('click', function() {
                 let idCategoria = $(this).attr('id').split('_')[1];
@@ -305,32 +399,31 @@ include('partes/css.php'); //importes de CSS
 
                                 $.each(results, function(i, obj) {
 
-                                    if(obj.IDTIPOMOVIMENTACAO == 1){
+                                    if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         tipoEspecie = "Positivo"
-                                    }else if(obj.IDTIPOMOVIMENTACAO == 2){
+                                    } else if (obj.IDTIPOMOVIMENTACAO == 2) {
                                         tipoEspecie = "Negativo"
-                                    }else{
+                                    } else {
                                         tipoEspecie = "Neutro"
                                     }
-                                    console.log("chegou")
-                                    
-                                    retornoCategoria = '<form method="POST" action="php/AlteraCategoria.php">'+
+
+                                    retornoCategoria = '<form method="POST" action="php/AlteraCategoria.php">' +
                                         '<div class="containerAlteracao">' +
-                                        '<input type="hidden" name="nAlteraIdCategoria" value="'+obj.IDCATEGORIA+'">' +
+                                        '<input type="hidden" name="nAlteraIdCategoria" value="' + obj.IDCATEGORIA + '">' +
                                         '</div>' +
                                         '<div class="containerAlteracao">' +
                                         '<span class="tituloAlteracao"><strong>Nome Categoria:</strong></span>' +
-                                        '<input type="text" id="inputAlteracaoNomeCategoria" class="form-control inputAlteracao" name = "nNovoNomeCategoria" value="'+obj.NOMECATEGORIA+'">' +
+                                        '<input type="text" id="inputAlteracaoNomeCategoria" class="form-control inputAlteracao" name = "nNovoNomeCategoria" value="' + obj.NOMECATEGORIA + '">' +
                                         '</div>' +
                                         '<div class="containerAlteracao">' +
                                         '<span class="tituloAlteracao"><strong>Espécie:</strong></span>' +
-                                        '<span class="tituloAlteracao">'+tipoEspecie+'</span>' +
-                                        '</div>'+
-                                        '<div class="modal-footer modal-footer-edit">'+
-                                            '<button type="submit" class="btn btn-edit-perfil">Salvar</button>'+
-                                        '</div>'+
+                                        '<span class="tituloAlteracao">' + tipoEspecie + '</span>' +
+                                        '</div>' +
+                                        '<div class="modal-footer modal-footer-edit">' +
+                                        '<button type="submit" class="btn btn-edit-perfil">Salvar</button>' +
+                                        '</div>' +
                                         '</form>';
-        
+
                                 })
 
                             } else {
