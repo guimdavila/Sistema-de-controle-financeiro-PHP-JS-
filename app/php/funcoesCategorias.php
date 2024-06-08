@@ -14,6 +14,7 @@ $nomeSubCategoria          = $_POST['nNomeSubCategoria'];
 $categoriasNaSubcategoria       = $_POST['nCategoriasNaSubcategoria'];
 
 
+
 // Criar categoria
 if ($nomeCategoria != "") {
 
@@ -133,7 +134,7 @@ function listaCategoria($id)
         foreach ($result as $coluna) {
             if ($coluna["idUsuario"] != "") {
                 $tipoCategoria = "Personalizada";
-                $tipoPermissao = "<i class='fa-solid fa-pen classeLapis iconTabela' data-toggle='modal' data-target='#crudCategoria'></i> <i class='fa-solid fa-eye iconTabela'></i>";
+                $tipoPermissao = "<button class='botaoInvisivel' id='btn_".$coluna["idcategoria"]."'><i class='fa-solid fa-pen classeLapis iconTabela' data-toggle='modal' data-target='#crudCategoria'></i></button> <i class='fa-solid fa-eye iconTabela'></i>";
             } else {
                 $tipoCategoria = "Padrão";
                 $tipoPermissao = "<i class='fa-solid fa-eye iconTabela'></i>";
@@ -151,6 +152,7 @@ function listaCategoria($id)
 
     return $lista;
 }
+
 
 
 

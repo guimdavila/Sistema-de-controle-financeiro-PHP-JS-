@@ -202,6 +202,10 @@ include('php/funcoes.php');
 
 
     <script>
+
+
+
+
         $(document).ready(function() {
             $('#ibtAnual').on('click', function() {
                 var anoEscol = $('#ibtAnual').val();
@@ -510,7 +514,7 @@ include('php/funcoes.php');
                                         '</thead>' +
                                         '<tbody id="iTbodyAnual">' +
                                         '<tr>' +
-                                        '<td class="colunasCategorias">Positivo</td>' +
+                                        '<td class="colunasCategoriasCore">Positivo</td>' +
                                         '<td> R$ ' + positivoJaneiro + '</td>' +
                                         '<td> R$ ' + positivoFeveiro + '</td>' +
                                         '<td> R$ ' + positivoMarco + '</td>' +
@@ -525,7 +529,7 @@ include('php/funcoes.php');
                                         '<td> R$ ' + positivoDezembro + '</td>' +
                                         '</tr>' +
                                         '<tr>' +
-                                        '<td class="colunasCategorias">Negativo</td>' +
+                                        '<td class="colunasCategoriasCore">Negativo</td>' +
                                         '<td> R$ ' + negativoJaneiro + '</td>' +
                                         '<td> R$ ' + negativoFeveiro + '</td>' +
                                         '<td> R$ ' + negativoMarco + '</td>' +
@@ -540,7 +544,7 @@ include('php/funcoes.php');
                                         '<td> R$ ' + negativoDezembro + '</td>' +
                                         '</tr>' +
                                         '<tr>' +
-                                        '<td class="colunasCategorias">Saldo</td>' +
+                                        '<td class="colunasCategoriasCore">Saldo</td>' +
                                         '<td> R$ ' + saldoJaneiro + '</td>' +
                                         '<td> R$ ' + saldoFeveiro + '</td>' +
                                         '<td> R$ ' + saldoMarco + '</td>' +

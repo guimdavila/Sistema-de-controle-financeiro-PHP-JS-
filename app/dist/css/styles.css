@@ -357,13 +357,13 @@ tr.colunasCategorias td:hover {
     cursor: pointer;
 }
 
-.colunasCategorias {
+.colunasCategoriasCore {
     background-color: #27374D;
     color: white;
     text-align: center;
 }
 
-.colunasCategorias:hover{
+.colunasCategoriasCore:hover{
     border-color: #27374D;
 }
 
@@ -699,4 +699,27 @@ tr.colunasCategorias td:hover {
 .tr.mes th {
     width: 7.69%; 
     border: 1px solid black;
+}
+
+.botaoInvisivel{
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    margin-right: 10px;
+    height: 0px;
+}
+
+.containerAlteracao{
+    display: flex;
+    align-items: center; 
+    margin-bottom: 30px;
+}
+.inputAlteracao{
+    width: 18rem;
+}
+
+.tituloAlteracao{
+    margin-right: 20px;
+
 }

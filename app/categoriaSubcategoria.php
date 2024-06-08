@@ -164,6 +164,7 @@ include('partes/css.php'); //importes de CSS
                                                             <?php echo listaCategoria($_SESSION['idUsuario'], 0, ''); ?>
                                                         </tbody>
 
+ 
                                                     </table>
                                                 </div>
                                             </div>
@@ -182,12 +183,9 @@ include('partes/css.php'); //importes de CSS
 
                                                     <div class="modal-body">
                                                         <div class="row">
-                                                            <div class="card-body">
+                                                            <div class="card-body" id="dadosCategoria">
 
-                                                                <?php echo acaoCategoria($_SESSION['idUsuario']); ?>
-
-                                                                <p></p>
-
+                                                                <!-- chamada em ajaxx -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -283,11 +281,71 @@ include('partes/css.php'); //importes de CSS
         </div>
     </div>
 
+
     <?php
     include('partes/js.php'); //importes de CSS
     ?>
 
     <script>
+        $(document).ready(function() {
+            $("button[id^='btn_']").on('click', function() {
+                let idCategoria = $(this).attr('id').split('_')[1];
+
+                if (idCategoria == "") {
+
+                } else {
+
+                    $.getJSON('php/categoriaAjax.php?idEditarCategoria=' + idCategoria,
+                        function(results) {
+
+                            var retornoCategoria = '';
+                            var tipoEspecie = '';
+
+                            if (results.length > 0) {
+
+                                $.each(results, function(i, obj) {
+
+                                    if(obj.IDTIPOMOVIMENTACAO == 1){
+                                        tipoEspecie = "Positivo"
+                                    }else if(obj.IDTIPOMOVIMENTACAO == 2){
+                                        tipoEspecie = "Negativo"
+                                    }else{
+                                        tipoEspecie = "Neutro"
+                                    }
+                                    console.log("chegou")
+                                    
+                                    retornoCategoria = '<form method="POST" action="php/AlteraCategoria.php">'+
+                                        '<div class="containerAlteracao">' +
+                                        '<input type="hidden" name="nAlteraIdCategoria" value="'+obj.IDCATEGORIA+'">' +
+                                        '</div>' +
+                                        '<div class="containerAlteracao">' +
+                                        '<span class="tituloAlteracao"><strong>Nome Categoria:</strong></span>' +
+                                        '<input type="text" id="inputAlteracaoNomeCategoria" class="form-control inputAlteracao" name = "nNovoNomeCategoria" value="'+obj.NOMECATEGORIA+'">' +
+                                        '</div>' +
+                                        '<div class="containerAlteracao">' +
+                                        '<span class="tituloAlteracao"><strong>Espécie:</strong></span>' +
+                                        '<span class="tituloAlteracao">'+tipoEspecie+'</span>' +
+                                        '</div>'+
+                                        '<div class="modal-footer modal-footer-edit">'+
+                                            '<button type="submit" class="btn btn-edit-perfil">Salvar</button>'+
+                                        '</div>'+
+                                        '</form>';
+        
+                                })
+
+                            } else {
+                                console.log("Sem retorno de resultado");
+                            }
+
+                            $('#dadosCategoria').html(retornoCategoria).show();
+
+                        });
+                }
+            });
+        });
+
+
+
         $(function() {
             $('#tabela1').DataTable({
                 "paging": true,
@@ -318,8 +376,8 @@ include('partes/css.php'); //importes de CSS
         });
     </script>
 
-<script src="dist/js/script.js"></script>
-        
+    <script src="dist/js/script.js"></script>
+
 </body>
 
 </html>
