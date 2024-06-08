@@ -134,35 +134,9 @@ include('php/funcoes.php');
 
                                                         <div class="modal-body">
                                                             <div class="row">
-                                                                <div class="card-body">
-
-                                                                    <table id="tabela" class="table table-bordered table-hover Anualtable">
-                                                                        <thead>
-                                                                            <tr class="mes colunasCategorias">
-                                                                                <th></th>
-                                                                                <th>Janeiro</th>
-                                                                                <th>Fevereiro</th>
-                                                                                <th>Março</th>
-                                                                                <th>Abril</th>
-                                                                                <th>Maio</th>
-                                                                                <th>Junho</th>
-                                                                                <th>Julho</th>
-                                                                                <th>Agosto</th>
-                                                                                <th>Setembro</th>
-                                                                                <th>Outubro</th>
-                                                                                <th>Novembro</th>
-                                                                                <th>Dezembro</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="iTbodyAnual">
-
-                                                                            <?php //echo listaUsuario(); 
-                                                                            ?>
+                                                                <div class="card-body" id="tabelaAnual">
 
 
-                                                                        </tbody>
-
-                                                                    </table>
 
                                                                 </div>
                                                             </div>
@@ -231,16 +205,19 @@ include('php/funcoes.php');
         $(document).ready(function() {
             $('#ibtAnual').on('click', function() {
                 var anoEscol = $('#ibtAnual').val();
+                var RetornoAnual = '';
 
                 if (anoEscol != "") {
-                    //fazer validação do que deve ocorrer caso não tenha ano selecionado
+
+                    RetornoAnual = '<span class="labelResultados"><strong> Preencher campo anual </strong></span>'
+                    
+                    
+
                 } else {
                     var anoEscolAnual = $('#anoEscolhido').val();
 
                     $.getJSON('php/Corephpajax.php?anoEscolhido=' + anoEscolAnual,
                         function(saldoanual) {
-
-                            var RetornoAnual = '';
 
                             var positivoJaneiro = 0;
                             var negativoJaneiro = 0;
@@ -343,7 +320,7 @@ include('php/funcoes.php');
                                             negativoMarco = 0;
                                         }
                                         saldoMarco = positivoMarco - negativoMarco;
-                                        
+
                                         positivoMarco = parseFloat(positivoMarco.toFixed(2));
                                         negativoMarco = parseFloat(negativoMarco.toFixed(2));
                                         saldoMarco = parseFloat(saldoMarco.toFixed(2));
@@ -379,7 +356,7 @@ include('php/funcoes.php');
                                             negativoMaio = 0;
                                         }
                                         saldoMaio = positivoMaio - negativoMaio;
-                                        
+
                                         positivoMaio = parseFloat(positivoMaio.toFixed(2));
                                         negativoMaio = parseFloat(negativoMaio.toFixed(2));
                                         saldoMaio = parseFloat(saldoMaio.toFixed(2));
@@ -433,7 +410,7 @@ include('php/funcoes.php');
                                             negativoAgosto = 0;
                                         }
                                         saldoAgosto = positivoAgosto - negativoAgosto;
-                                        
+
                                         positivoAgosto = parseFloat(positivoAgosto.toFixed(2));
                                         negativoAgosto = parseFloat(negativoAgosto.toFixed(2));
                                         saldoAgosto = parseFloat(saldoAgosto.toFixed(2));
@@ -487,7 +464,7 @@ include('php/funcoes.php');
                                             negativoNovembro = 0;
                                         }
                                         saldoNovembro = positivoNovembro - negativoNovembro;
-                                        
+
                                         positivoNovembro = parseFloat(positivoNovembro.toFixed(2));
                                         negativoNovembro = parseFloat(negativoNovembro.toFixed(2));
                                         saldoNovembro = parseFloat(saldoNovembro.toFixed(2));
@@ -505,16 +482,35 @@ include('php/funcoes.php');
                                             negativoDezembro = 0;
                                         }
                                         saldoDezembro = positivoDezembro - negativoDezembro;
-                                        
+
                                         positivoDezembro = parseFloat(positivoDezembro.toFixed(2));
                                         negativoDezembro = parseFloat(negativoDezembro.toFixed(2));
                                         saldoDezembro = parseFloat(saldoDezembro.toFixed(2));
 
                                     }
-                                    
 
-                                    RetornoAnual = '<tr>' +
-                                        '<td>Positivo</td>' +
+
+                                    RetornoAnual = '<table class="table table-bordered table-hover Anualtable">' +
+                                        '<thead>' +
+                                        '<tr class="mes colunasCategorias">' +
+                                        '<th></th>' +
+                                        '<th>Janeiro</th>' +
+                                        '<th>Fevereiro</th>' +
+                                        '<th>Março</th>' +
+                                        '<th>Abril</th>' +
+                                        '<th>Maio</th>' +
+                                        '<th>Junho</th>' +
+                                        '<th>Julho</th>' +
+                                        '<th>Agosto</th>' +
+                                        '<th>Setembro</th>' +
+                                        '<th>Outubro</th>' +
+                                        '<th>Novembro</th>' +
+                                        '<th>Dezembro</th>' +
+                                        '</tr>' +
+                                        '</thead>' +
+                                        '<tbody id="iTbodyAnual">' +
+                                        '<tr>' +
+                                        '<td class="colunasCategorias">Positivo</td>' +
                                         '<td> R$ ' + positivoJaneiro + '</td>' +
                                         '<td> R$ ' + positivoFeveiro + '</td>' +
                                         '<td> R$ ' + positivoMarco + '</td>' +
@@ -529,7 +525,7 @@ include('php/funcoes.php');
                                         '<td> R$ ' + positivoDezembro + '</td>' +
                                         '</tr>' +
                                         '<tr>' +
-                                        '<td>Negativo</td>' +
+                                        '<td class="colunasCategorias">Negativo</td>' +
                                         '<td> R$ ' + negativoJaneiro + '</td>' +
                                         '<td> R$ ' + negativoFeveiro + '</td>' +
                                         '<td> R$ ' + negativoMarco + '</td>' +
@@ -544,7 +540,7 @@ include('php/funcoes.php');
                                         '<td> R$ ' + negativoDezembro + '</td>' +
                                         '</tr>' +
                                         '<tr>' +
-                                        '<td>Saldo</td>' +
+                                        '<td class="colunasCategorias">Saldo</td>' +
                                         '<td> R$ ' + saldoJaneiro + '</td>' +
                                         '<td> R$ ' + saldoFeveiro + '</td>' +
                                         '<td> R$ ' + saldoMarco + '</td>' +
@@ -558,17 +554,19 @@ include('php/funcoes.php');
                                         '<td> R$ ' + saldoNovembro + '</td>' +
                                         '<td> R$ ' + saldoDezembro + '</td>' +
                                         '</tr>'
+                                    '</tbody>' +
+                                    '</table>';
                                 })
 
                             } else {
                                 console.log("Sem retorno de resultado");
                             }
 
-                            $('#iTbodyAnual').html(RetornoAnual).show();
+                            $('#tabelaAnual').html(RetornoAnual).show();
 
-                        });
+                        })
                 }
-            });
+            })
         });
 
 
@@ -1022,9 +1020,6 @@ include('php/funcoes.php');
 
             input.value = value;
         }
-
-
-        
     </script>
 
     <?php
