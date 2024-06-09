@@ -723,3 +723,32 @@ tr.colunasCategorias td:hover {
     margin-right: 20px;
 
 }
+
+.container-resumo-card {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 45rem;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #DDE6ED;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.caixaSpanCard{
+    position: relative;
+}
+
+.label-priCol{
+    display: inline-block; /* This ensures the width is respected */
+    width: 74px;
+}
+.label-secCol{
+    position: absolute;
+    left: 40%;
+}
+.value-secCol{
+    position: absolute;
+    left: 55%;
+}

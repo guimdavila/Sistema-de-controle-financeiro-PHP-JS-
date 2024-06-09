@@ -28,11 +28,24 @@ include('php/funcoes.php');
 <body class="hold-transition sidebar-mini layout-fixed">
 
 
+<script>
+  // Suponha que sua data esteja em formato de string
+const dataStr = "2024-06-01 00:00:00";
 
-  <select class="input-group-text caixaSelecaoCate" name="nNovoNomeCategoriaVinculada" id="SelectAlteraCategorias">
-    <option value="obj.IDCATEGORIA"> obj.NOMECATEGORIA </option>
-  </select>
+// Converta a string para um objeto Date
+const dataObj = new Date(dataStr);
 
+// Obtenha os componentes da data
+const dia = String(dataObj.getDate()).padStart(2, '0');
+const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
+const ano = dataObj.getFullYear();
+
+// Formate a data no formato desejado
+const dataFormatada = `${dia}/${mes}/${ano}`;
+
+console.log(dataFormatada);
+
+</script>
 
 </body>
 

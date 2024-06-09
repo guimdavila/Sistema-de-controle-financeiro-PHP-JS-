@@ -672,25 +672,36 @@ include('php/funcoes.php');
                             if (cards.length > 0) {
 
                                 $.each(cards, function(i, obj) {
+                                    var dataFormatada = "";
+                                    if(obj.DATA != ""){
+                                        const dataStr = obj.DATA;
 
+                                        const dataObj = new Date(dataStr);
 
-                                    Retornocards += '<div class="container-resumo">' +
-                                        '<div class="info">' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + '</span>' +
-                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + '</span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + '</span>' +
-                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + '</span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';
+                                        const dia = String(dataObj.getDate()).padStart(2, '0');
+                                        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
+                                        const ano = dataObj.getFullYear();
+
+                                        // Formate a data no formato desejado
+                                        dataFormatada = `${dia}/${mes}/${ano}`;
+
+                                    }
+
+                                    Retornocards += '<div class="container-resumo-card">'+
+                                                        '<div class="info">'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'+
+                                                            '<span class="label label-secCol">Sub Categoria:</span> <span class="value  value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>'+
+                                                            '</div>'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
+                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + obj.DESCRICAO + '</span> '+
+                                                            '</div>'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Valor:</span> <span class="value">' + obj.VALOR + '</span>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                    '</div>';   
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
@@ -739,26 +750,37 @@ include('php/funcoes.php');
 
 
                                 $.each(retornoCardsCore, function(i, obj) {
+                                    var dataFormatada = "";
+                                    if(obj.DATA != ""){
+                                        const dataStr = obj.DATA;
 
+                                        const dataObj = new Date(dataStr);
 
-                                    Retornocards += '<div class="container-resumo">' +
-                                        '<div class="info">' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
-                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
-                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
-                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';
+                                        const dia = String(dataObj.getDate()).padStart(2, '0');
+                                        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
+                                        const ano = dataObj.getFullYear();
 
+                                        // Formate a data no formato desejado
+                                        dataFormatada = `${dia}/${mes}/${ano}`;
+
+                                    }
+
+                                    Retornocards += '<div class="container-resumo-card">'+
+                                                        '<div class="info">'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'+
+                                                            '<span class="label label-secCol">Sub Categoria:</span> <span class="value  value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>'+
+                                                            '</div>'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
+                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + obj.DESCRICAO + '</span> '+
+                                                            '</div>'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Valor:</span> <span class="value">' + obj.VALOR + '</span>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                    '</div>';   
+                                    
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
 
@@ -769,11 +791,6 @@ include('php/funcoes.php');
                                         Retornapositivo = 0;
                                         RetornaNegativo = 0;
                                     }
-
-
-
-
-
 
 
                                 })
@@ -819,24 +836,37 @@ include('php/funcoes.php');
                                 var RetornaSaldo = 0;
 
                                 $.each(retornoCardsCore, function(i, obj) {
+                                    
+                                    var dataFormatada = "";
+                                    if(obj.DATA != ""){
+                                        const dataStr = obj.DATA;
 
-                                    Retornocards += '<div class="container-resumo">' +
-                                        '<div class="info">' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
-                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
-                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
-                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';
+                                        const dataObj = new Date(dataStr);
+
+                                        const dia = String(dataObj.getDate()).padStart(2, '0');
+                                        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
+                                        const ano = dataObj.getFullYear();
+
+                                        // Formate a data no formato desejado
+                                        dataFormatada = `${dia}/${mes}/${ano}`;
+
+                                    }
+
+                                    Retornocards += '<div class="container-resumo-card">'+
+                                                        '<div class="info">'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'+
+                                                            '<span class="label label-secCol">Sub Categoria:</span> <span class="value  value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>'+
+                                                            '</div>'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
+                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + obj.DESCRICAO + '</span> '+
+                                                            '</div>'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Valor:</span> <span class="value">' + obj.VALOR + '</span>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                    '</div>';   
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
@@ -905,24 +935,37 @@ include('php/funcoes.php');
 
 
                                 $.each(retornoCardsCore, function(i, obj) {
+                                    
+                                    var dataFormatada = "";
+                                    if(obj.DATA != ""){
+                                        const dataStr = obj.DATA;
 
-                                    Retornocards += '<div class="container-resumo">' +
-                                        '<div class="info">' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + ' </span>' +
-                                        '<span class="label label-span">Data:</span> <span class="value">' + obj.DATA + ' </span>' +
-                                        '<span class="label label-span">Descrição:</span> <span class="value">' + obj.DESCRICAO + ' </span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '<div class="col">' +
-                                        '<div class="caixaSpan">' +
-                                        '<span class="label label-span">Sub Categoria:</span> <span class="value">' + obj.NOMESUBCATEGORIA + ' </span>' +
-                                        '<span class="label label-span">Valor:</span> <span class="value">' + obj.VALOR + ' </span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';
+                                        const dataObj = new Date(dataStr);
+
+                                        const dia = String(dataObj.getDate()).padStart(2, '0');
+                                        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
+                                        const ano = dataObj.getFullYear();
+
+                                        // Formate a data no formato desejado
+                                        dataFormatada = `${dia}/${mes}/${ano}`;
+
+                                    }
+
+                                    Retornocards += '<div class="container-resumo-card">'+
+                                                        '<div class="info">'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'+
+                                                            '<span class="label label-secCol">Sub Categoria:</span> <span class="value  value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>'+
+                                                            '</div>'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
+                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + obj.DESCRICAO + '</span> '+
+                                                            '</div>'+
+                                                            '<div class="caixaSpanCard">'+
+                                                            '<span class="label label-priCol">Valor:</span> <span class="value">' + obj.VALOR + '</span>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                    '</div>';   
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
