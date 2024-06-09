@@ -738,6 +738,7 @@ tr.colunasCategorias td:hover {
 }
 .caixaSpanCard{
     position: relative;
+    margin-left: 70px;
 }
 
 .label-priCol{
@@ -750,5 +751,17 @@ tr.colunasCategorias td:hover {
 }
 .value-secCol{
     position: absolute;
-    left: 55%;
+    left: 57%;
+}
+
+.botaoInvisivelCard{
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    margin-right: 10px;
+    height: 0px;
+    position: relative;
+    align-self: center; /* Centraliza o botão verticalmente */
+    left:60%;
 }

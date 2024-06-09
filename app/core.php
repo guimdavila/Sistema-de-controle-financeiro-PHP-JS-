@@ -575,6 +575,7 @@ include('php/funcoes.php');
 
 
 
+
         $(document).ready(function() {
 
             $('#selecaoTipo').on('change', function() {
@@ -642,6 +643,71 @@ include('php/funcoes.php');
             })
         })
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        $(document).ready(function() {
+                    $("button[id^='btnEditCar_']").on('click', function() {
+                        let idmovimentacao = $(this).attr('id').split('_')[1];
+
+                        console.log(idmovimentacao)
+
+                        if (idmovimentacao == "") {
+
+                        } else {
+
+                            $.getJSON('php/categoriaAjax.php?idEditarCategoria=' + idCategoria,
+                                function(results) {
+
+                                    var retornoCategoria = '';
+                                    var tipoEspecie = '';
+
+                                    if (results.length > 0) {
+
+                                        $.each(results, function(i, obj) {
+
+                                            if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                                tipoEspecie = "Positivo"
+                                            } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                                tipoEspecie = "Negativo"
+                                            } else {
+                                                tipoEspecie = "Neutro"
+                                            }
+
+                                            retornoCategoria = '<form method="POST" action="php/AlteraCategoria.php">' +
+                                                '<div class="containerAlteracao">' +
+                                                '<input type="hidden" name="nAlteraIdCategoria" value="' + obj.IDCATEGORIA + '">' +
+                                                '</div>' +
+                                                '<div class="containerAlteracao">' +
+                                                '<span class="tituloAlteracao"><strong>Nome Categoria:</strong></span>' +
+                                                '<input type="text" id="inputAlteracaoNomeCategoria" class="form-control inputAlteracao" name = "nNovoNomeCategoria" value="' + obj.NOMECATEGORIA + '">' +
+                                                '</div>' +
+                                                '<div class="containerAlteracao">' +
+                                                '<span class="tituloAlteracao"><strong>Espécie:</strong></span>' +
+                                                '<span class="tituloAlteracao">' + tipoEspecie + '</span>' +
+                                                '</div>' +
+                                                '<div class="modal-footer modal-footer-edit">' +
+                                                '<button type="submit" class="btn btn-edit-perfil">Salvar</button>' +
+                                                '</div>' +
+                                                '</form>';
+
+                                        })
+
+                                    } else {
+                                        console.log("Sem retorno de resultado");
+                                    }
+
+                                    $('#dadosCategoria').html(retornoCategoria).show();
+
+                                });
+                        }
+                    });
+                });
+
+
+
+
+
+
         $(document).ready(function() {
             $('#ibt').on('click', function() {
                 var mesEscol = $('#mesEscolhido').val();
@@ -687,6 +753,13 @@ include('php/funcoes.php');
 
                                     }
 
+                                    var descricao = "";
+                                    if(obj.DESCRICAO == ""){
+                                        descricao = "-"
+                                    }else{
+                                        descricao = obj.DESCRICAO;
+                                    }
+                                    
                                     Retornocards += '<div class="container-resumo-card">'+
                                                         '<div class="info">'+
                                                             '<div class="caixaSpanCard">'+
@@ -695,13 +768,14 @@ include('php/funcoes.php');
                                                             '</div>'+
                                                             '<div class="caixaSpanCard">'+
                                                             '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
-                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + obj.DESCRICAO + '</span> '+
+                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> '+
+                                                            '<button class="botaoInvisivelCard" id=""><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>'+
                                                             '</div>'+
                                                             '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Valor:</span> <span class="value">' + obj.VALOR + '</span>'+
+                                                            '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>'+
                                                             '</div>'+
                                                         '</div>'+
-                                                    '</div>';   
+                                                    '</div>';    
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
@@ -764,7 +838,14 @@ include('php/funcoes.php');
                                         dataFormatada = `${dia}/${mes}/${ano}`;
 
                                     }
+                                    var descricao = "";
+                                    if(obj.DESCRICAO == ""){
+                                        descricao = "-"
+                                    }else{
+                                        descricao = obj.DESCRICAO;
+                                    }
 
+                                    
                                     Retornocards += '<div class="container-resumo-card">'+
                                                         '<div class="info">'+
                                                             '<div class="caixaSpanCard">'+
@@ -773,10 +854,11 @@ include('php/funcoes.php');
                                                             '</div>'+
                                                             '<div class="caixaSpanCard">'+
                                                             '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
-                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + obj.DESCRICAO + '</span> '+
+                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> '+
+                                                            '<button class="botaoInvisivelCard" id="btnEditCar_'+ obj.IDMOVIMENTACAO +'"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>'+
                                                             '</div>'+
                                                             '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Valor:</span> <span class="value">' + obj.VALOR + '</span>'+
+                                                            '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>'+
                                                             '</div>'+
                                                         '</div>'+
                                                     '</div>';   
@@ -852,6 +934,14 @@ include('php/funcoes.php');
 
                                     }
 
+                                    var descricao = "";
+                                    if(obj.DESCRICAO == ""){
+                                        descricao = "-"
+                                    }else{
+                                        descricao = obj.DESCRICAO;
+                                    }
+
+                                    
                                     Retornocards += '<div class="container-resumo-card">'+
                                                         '<div class="info">'+
                                                             '<div class="caixaSpanCard">'+
@@ -860,13 +950,14 @@ include('php/funcoes.php');
                                                             '</div>'+
                                                             '<div class="caixaSpanCard">'+
                                                             '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
-                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + obj.DESCRICAO + '</span> '+
+                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> '+
+                                                            '<button class="botaoInvisivelCard" id="btnEditCar_'+ obj.IDMOVIMENTACAO +'"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>'+
                                                             '</div>'+
                                                             '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Valor:</span> <span class="value">' + obj.VALOR + '</span>'+
+                                                            '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>'+
                                                             '</div>'+
                                                         '</div>'+
-                                                    '</div>';   
+                                                    '</div>';     
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
@@ -937,6 +1028,7 @@ include('php/funcoes.php');
                                 $.each(retornoCardsCore, function(i, obj) {
                                     
                                     var dataFormatada = "";
+
                                     if(obj.DATA != ""){
                                         const dataStr = obj.DATA;
 
@@ -951,6 +1043,14 @@ include('php/funcoes.php');
 
                                     }
 
+                                    var descricao = "";
+                                    if(obj.DESCRICAO == ""){
+                                        descricao = "-"
+                                    }else{
+                                        descricao = obj.DESCRICAO;
+                                    }
+
+                                    
                                     Retornocards += '<div class="container-resumo-card">'+
                                                         '<div class="info">'+
                                                             '<div class="caixaSpanCard">'+
@@ -959,10 +1059,11 @@ include('php/funcoes.php');
                                                             '</div>'+
                                                             '<div class="caixaSpanCard">'+
                                                             '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
-                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + obj.DESCRICAO + '</span> '+
+                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> '+
+                                                            '<button class="botaoInvisivelCard" id="btnEditCar_'+ obj.IDMOVIMENTACAO +'"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>'+
                                                             '</div>'+
                                                             '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Valor:</span> <span class="value">' + obj.VALOR + '</span>'+
+                                                            '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>'+
                                                             '</div>'+
                                                         '</div>'+
                                                     '</div>';   

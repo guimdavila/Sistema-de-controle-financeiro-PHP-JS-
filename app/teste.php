@@ -28,24 +28,23 @@ include('php/funcoes.php');
 <body class="hold-transition sidebar-mini layout-fixed">
 
 
-<script>
-  // Suponha que sua data esteja em formato de string
-const dataStr = "2024-06-01 00:00:00";
-
-// Converta a string para um objeto Date
-const dataObj = new Date(dataStr);
-
-// Obtenha os componentes da data
-const dia = String(dataObj.getDate()).padStart(2, '0');
-const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
-const ano = dataObj.getFullYear();
-
-// Formate a data no formato desejado
-const dataFormatada = `${dia}/${mes}/${ano}`;
-
-console.log(dataFormatada);
-
-</script>
+<div class="container-resumo-card">
+  <div class="info">
+    <div class="caixaSpanCard">
+      <span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>
+      <span class="label label-secCol">Sub Categoria:</span> <span class="value  value-secCol ">   + obj.NOMESUBCATEGORIA + </span>
+    </div>
+    <div class="caixaSpanCard">
+      <span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>
+      <span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> 
+    </div>
+    <div class="caixaSpanCard">
+      <span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>
+    </div>
+    <button class='botaoInvisivel' id='btn'><i class='fa-solid fa-pen classeLapis iconTabela'></i></button>
+  </div>
+</div>  
+ 
 
 </body>
 
