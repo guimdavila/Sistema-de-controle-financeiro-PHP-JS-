@@ -1,7 +1,5 @@
 <?php
 
-
-
 function qtdCategorias(){
     
     $qtdCategorias = 0;
@@ -22,4 +20,26 @@ function qtdCategorias(){
     }
     
     return $qtdCategorias;
+}
+
+function qtdSubCategoria(){
+    
+    $qtdSubCategoria = 0;
+
+    include("conexao.php");
+
+    $sql = "SELECT COUNT(idSubCategoria) AS subcategoria FROM subcategoria;";
+    $result = mysqli_query($conexao,$sql);
+    mysqli_close($conexao);
+
+     //Validar se tem retorno do BD
+     if (mysqli_num_rows($result) > 0) {
+        
+        foreach ($result as $coluna) {            
+            //***Verificar os dados da consulta SQL
+            $qtdSubCategoria = $coluna['subcategoria'];
+        }        
+    }
+    
+    return $qtdSubCategoria;
 }

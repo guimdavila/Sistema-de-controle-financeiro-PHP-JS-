@@ -66,12 +66,13 @@ include('partes/css.php'); //importes de CSS
                       </div>
                     </div>
                   </div>
+                  
                   <div class="col-6">
                     <div class="small-box bg-danger">
                       <div class="inner">
-                        <h3>53<sup style="font-size: 20px"></sup></h3>
+                      <h3><?php echo qtdSubCategoria(); ?></h3>
 
-                        <p>Saídas</p>
+                        <p>Quantidade de SubCategorias</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-stats-bars"></i>
@@ -138,12 +139,12 @@ include('partes/css.php'); //importes de CSS
       var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
       var pieData = {
         labels: [
-          'Entradas',
           'Saidas',
+          'Entradas',
         ],
         datasets: [{
           data: [700, 500],
-          backgroundColor: ['#f56954', '#00a65a'],
+          backgroundColor: ['#DC3545', '#00a65a'],
         }]
       }
       var pieOptions = {
