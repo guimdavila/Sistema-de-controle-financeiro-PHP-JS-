@@ -38,11 +38,7 @@ include('php/funcoes.php');
             <?php
             include('partes/sidebar.php'); //importes de CSS
             ?>
-
-
-
         </aside>
-
 
         <div class="content-wrapper">
             <!-- Main content -->
@@ -136,30 +132,28 @@ include('php/funcoes.php');
                                                             <div class="row">
                                                                 <div class="card-body" id="tabelaAnual">
 
-
-
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- /.modal-content -->
                                                 </div>
                                             </div>
-
 
                                         </div>
                                     </div>
                                 </form>
                             </div>
+                            
                         </div>
-
 
                         <div class="col-md-6 divCore">
                             <div class="card">
                                 <div class="card-body tamanho-body2">
                                     <div id="cardsGravados" class="cardsGravados">
                                         <!--CARDS-->
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -169,43 +163,29 @@ include('php/funcoes.php');
         </div>
         <footer class="footerCore">
             <div class="containerResultados row">
-                <!--
-                    <span class="labelResultados"><strong>Entradas:</strong></span>
-                    -->
+
                 <div class="col-4">
                     <i class="fa-solid fa-plus labelResultados iconsResultados"></i>
                     <div class="col-10 fa-solid text-success iconefooter" id="iPositivo"></div>
                 </div>
-                <!--
-                    <span class="labelResultados"><strong>Saidas:</strong></span>
-                    -->
+
                 <div class="col-4">
                     <i class="fa-solid fa-minus labelResultados iconsResultados"></i>
                     <div class="col-10 fa-solid text-danger iconefooter" id="iNegativo"></div>
-
                 </div>
-                <!--
-                    <span class="labelResultados"><strong>Saldo:</strong></span>
-                    -->
+
                 <div class="col-4">
                     <i class="fa-solid fa-equals labelResultados iconsResultados"></i>
                     <div class="col-10 fa-solid iconefooter" id="iSaldo"></div>
-
                 </div>
-
-
             </div>
-
+        </footer>
     </div>
 
-    </footer>
 
 
     <script>
-
-
-
-
+        //GERA ANUAL
         $(document).ready(function() {
             $('#ibtAnual').on('click', function() {
                 var anoEscol = $('#ibtAnual').val();
@@ -214,8 +194,6 @@ include('php/funcoes.php');
                 if (anoEscol != "") {
 
                     RetornoAnual = '<span class="labelResultados"><strong> Preencher campo anual </strong></span>'
-                    
-                    
 
                 } else {
                     var anoEscolAnual = $('#anoEscolhido').val();
@@ -573,9 +551,7 @@ include('php/funcoes.php');
             })
         });
 
-
-
-
+        //CHAMA CATEGORIA
         $(document).ready(function() {
 
             $('#selecaoTipo').on('change', function() {
@@ -610,6 +586,7 @@ include('php/funcoes.php');
             })
         })
 
+        //CHAMA SUBCATEGORIA
         $(document).ready(function() {
 
             $('#iCategoria').on('change', function() {
@@ -643,69 +620,93 @@ include('php/funcoes.php');
             })
         })
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////// EDITAR CARD  ///////////////////////////////////////////////////
 
         $(document).ready(function() {
-                    $("button[id^='btnEditCar_']").on('click', function() {
-                        let idmovimentacao = $(this).attr('id').split('_')[1];
+            // Função para atualizar os cartões e valores
+            $('#mesEscolhido, #anoEscolhido').on('change', function() {
+                var mesEscol = $('#mesEscolhido').val();
+                var anoEscol = $('#anoEscolhido').val();
 
-                        console.log(idmovimentacao)
+                if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
+                    console.log(mesEscol, anoEscol);
 
-                        if (idmovimentacao == "") {
+                    $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol, function(retornoCardsCore) {
+                        if (retornoCardsCore.length > 0) {
+                            var Retornocards = '';
+                            var Retornapositivo = 0;
+                            var RetornaNegativo = 0;
+                            var RetornaSaldo = 0;
 
+                            $.each(retornoCardsCore, function(i, obj) {
+                                var dataFormatada = "";
+                                if (obj.DATA != "") {
+                                    const dataStr = obj.DATA;
+                                    const dataObj = new Date(dataStr);
+                                    const dia = String(dataObj.getDate()).padStart(2, '0');
+                                    const mes = String(dataObj.getMonth() + 1).padStart(2, '0');
+                                    const ano = dataObj.getFullYear();
+                                    dataFormatada = `${dia}/${mes}/${ano}`;
+                                }
+                                var descricao = obj.DESCRICAO == "" ? "-" : obj.DESCRICAO;
+
+                                Retornocards += '<div class="container-resumo-card">' +
+                                    '<div class="info">' +
+                                    '<div class="caixaSpanCard">' +
+                                    '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                    '<span class="label label-secCol">Sub Categoria:</span> <span class="value value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                    '</div>' +
+                                    '<div class="caixaSpanCard">' +
+                                    '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
+                                    '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
+                                    '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editarCard" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
+                                    '</div>' +
+                                    '<div class="caixaSpanCard">' +
+                                    '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="modal fade" id="editarCard">' +
+                                    '<div class="modal-dialog modal-custom">' +
+                                    '<div class="modal-content">' +
+                                    '<div class="modal-header">' +
+                                    '<h4 class="modal-title">Editar</h4>' +
+                                    '<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">' +
+                                    '<span aria-hidden="true">&times;</span>' +
+                                    '</button>' +
+                                    '</div>' +
+                                    '<div class="modal-body">' +
+                                    '<div class="row">' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>';
+
+                                if (obj.IDTIPOMOVIMENTACAO == 1) {
+                                    Retornapositivo += parseFloat(obj.VALOR);
+                                } else if (obj.IDTIPOMOVIMENTACAO == 2) {
+                                    RetornaNegativo += parseFloat(obj.VALOR);
+                                } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
+                                    Retornapositivo = 0;
+                                    RetornaNegativo = 0;
+                                }
+                            });
+
+                            $('#iPositivo').html(Retornapositivo).show();
+                            $('#iNegativo').html(RetornaNegativo).show();
+                            var RetornaSaldo = Retornapositivo - RetornaNegativo;
+                            $('#iSaldo').html(RetornaSaldo).show();
+                            $('#cardsGravados').html(Retornocards).show();
                         } else {
-
-                            $.getJSON('php/categoriaAjax.php?idEditarCategoria=' + idCategoria,
-                                function(results) {
-
-                                    var retornoCategoria = '';
-                                    var tipoEspecie = '';
-
-                                    if (results.length > 0) {
-
-                                        $.each(results, function(i, obj) {
-
-                                            if (obj.IDTIPOMOVIMENTACAO == 1) {
-                                                tipoEspecie = "Positivo"
-                                            } else if (obj.IDTIPOMOVIMENTACAO == 2) {
-                                                tipoEspecie = "Negativo"
-                                            } else {
-                                                tipoEspecie = "Neutro"
-                                            }
-
-                                            retornoCategoria = '<form method="POST" action="php/AlteraCategoria.php">' +
-                                                '<div class="containerAlteracao">' +
-                                                '<input type="hidden" name="nAlteraIdCategoria" value="' + obj.IDCATEGORIA + '">' +
-                                                '</div>' +
-                                                '<div class="containerAlteracao">' +
-                                                '<span class="tituloAlteracao"><strong>Nome Categoria:</strong></span>' +
-                                                '<input type="text" id="inputAlteracaoNomeCategoria" class="form-control inputAlteracao" name = "nNovoNomeCategoria" value="' + obj.NOMECATEGORIA + '">' +
-                                                '</div>' +
-                                                '<div class="containerAlteracao">' +
-                                                '<span class="tituloAlteracao"><strong>Espécie:</strong></span>' +
-                                                '<span class="tituloAlteracao">' + tipoEspecie + '</span>' +
-                                                '</div>' +
-                                                '<div class="modal-footer modal-footer-edit">' +
-                                                '<button type="submit" class="btn btn-edit-perfil">Salvar</button>' +
-                                                '</div>' +
-                                                '</form>';
-
-                                        })
-
-                                    } else {
-                                        console.log("Sem retorno de resultado");
-                                    }
-
-                                    $('#dadosCategoria').html(retornoCategoria).show();
-
-                                });
+                            console.log("Sem retorno de resultado");
                         }
                     });
-                });
-
-
-
-
+                } else {
+                    console.log("Sem retorno de resultado");
+                }
+            })
+        });
 
 
         $(document).ready(function() {
@@ -739,7 +740,7 @@ include('php/funcoes.php');
 
                                 $.each(cards, function(i, obj) {
                                     var dataFormatada = "";
-                                    if(obj.DATA != ""){
+                                    if (obj.DATA != "") {
                                         const dataStr = obj.DATA;
 
                                         const dataObj = new Date(dataStr);
@@ -754,28 +755,44 @@ include('php/funcoes.php');
                                     }
 
                                     var descricao = "";
-                                    if(obj.DESCRICAO == ""){
+                                    if (obj.DESCRICAO == "") {
                                         descricao = "-"
-                                    }else{
+                                    } else {
                                         descricao = obj.DESCRICAO;
                                     }
-                                    
-                                    Retornocards += '<div class="container-resumo-card">'+
-                                                        '<div class="info">'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'+
-                                                            '<span class="label label-secCol">Sub Categoria:</span> <span class="value  value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>'+
-                                                            '</div>'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
-                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> '+
-                                                            '<button class="botaoInvisivelCard" id=""><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>'+
-                                                            '</div>'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>'+
-                                                            '</div>'+
-                                                        '</div>'+
-                                                    '</div>';    
+
+                                    Retornocards += '<div class="container-resumo-card">' +
+                                        '<div class="info">' +
+                                        '<div class="caixaSpanCard">' +
+                                        '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                        '<span class="label label-secCol">Sub Categoria:</span> <span class="value value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                        '</div>' +
+                                        '<div class="caixaSpanCard">' +
+                                        '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
+                                        '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
+                                        '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editarCard" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
+                                        '</div>' +
+                                        '<div class="caixaSpanCard">' +
+                                        '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<div class="modal fade" id="editarCard">' +
+                                        '<div class="modal-dialog modal-custom">' +
+                                        '<div class="modal-content">' +
+                                        '<div class="modal-header">' +
+                                        '<h4 class="modal-title">Editar</h4>' +
+                                        '<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">' +
+                                        '<span aria-hidden="true">&times;</span>' +
+                                        '</button>' +
+                                        '</div>' +
+                                        '<div class="modal-body">' +
+                                        '<div class="row">' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
@@ -800,101 +817,6 @@ include('php/funcoes.php');
                 }
             });
         });
-
-        $(document).ready(function() {
-
-            $('#mesEscolhido, #anoEscolhido').on('change', function() {
-
-                var mesEscol = $('#mesEscolhido').val();
-                var anoEscol = $('#anoEscolhido').val();
-
-                if (mesEscol != "" && mesEscol != 0 && anoEscol != "" && anoEscol != 0) {
-
-                    console.log(mesEscol, anoEscol)
-
-                    $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
-                        function(retornoCardsCore) {
-
-                            if (retornoCardsCore.length > 0) {
-
-                                var Retornocards = '';
-                                var Retornapositivo = 0;
-                                var RetornaNegativo = 0;
-                                var RetornaSaldo = 0;
-
-
-                                $.each(retornoCardsCore, function(i, obj) {
-                                    var dataFormatada = "";
-                                    if(obj.DATA != ""){
-                                        const dataStr = obj.DATA;
-
-                                        const dataObj = new Date(dataStr);
-
-                                        const dia = String(dataObj.getDate()).padStart(2, '0');
-                                        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
-                                        const ano = dataObj.getFullYear();
-
-                                        // Formate a data no formato desejado
-                                        dataFormatada = `${dia}/${mes}/${ano}`;
-
-                                    }
-                                    var descricao = "";
-                                    if(obj.DESCRICAO == ""){
-                                        descricao = "-"
-                                    }else{
-                                        descricao = obj.DESCRICAO;
-                                    }
-
-                                    
-                                    Retornocards += '<div class="container-resumo-card">'+
-                                                        '<div class="info">'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'+
-                                                            '<span class="label label-secCol">Sub Categoria:</span> <span class="value  value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>'+
-                                                            '</div>'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
-                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> '+
-                                                            '<button class="botaoInvisivelCard" id="btnEditCar_'+ obj.IDMOVIMENTACAO +'"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>'+
-                                                            '</div>'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>'+
-                                                            '</div>'+
-                                                        '</div>'+
-                                                    '</div>';   
-                                    
-                                    if (obj.IDTIPOMOVIMENTACAO == 1) {
-                                        Retornapositivo += parseFloat(obj.VALOR);
-
-                                    } else if (obj.IDTIPOMOVIMENTACAO == 2) {
-                                        RetornaNegativo += parseFloat(obj.VALOR);
-
-                                    } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
-                                        Retornapositivo = 0;
-                                        RetornaNegativo = 0;
-                                    }
-
-
-                                })
-                                $('#iPositivo').html(Retornapositivo).show();
-                                $('#iNegativo').html(RetornaNegativo).show();
-
-                                var RetornaSaldo = Retornapositivo - RetornaNegativo;
-
-                                $('#iSaldo').html(RetornaSaldo).show();
-                                $('#cardsGravados').html(Retornocards).show();
-                            } else {
-                                console.log("Sem retorno de resultado")
-                            }
-                        })
-                } else {
-                    console.log("Sem retorno de resultado")
-                }
-
-
-            })
-        })
-
         //////////////////////////////////////////////////////
         $(document).ready(function() {
 
@@ -918,9 +840,9 @@ include('php/funcoes.php');
                                 var RetornaSaldo = 0;
 
                                 $.each(retornoCardsCore, function(i, obj) {
-                                    
+
                                     var dataFormatada = "";
-                                    if(obj.DATA != ""){
+                                    if (obj.DATA != "") {
                                         const dataStr = obj.DATA;
 
                                         const dataObj = new Date(dataStr);
@@ -935,29 +857,45 @@ include('php/funcoes.php');
                                     }
 
                                     var descricao = "";
-                                    if(obj.DESCRICAO == ""){
+                                    if (obj.DESCRICAO == "") {
                                         descricao = "-"
-                                    }else{
+                                    } else {
                                         descricao = obj.DESCRICAO;
                                     }
 
-                                    
-                                    Retornocards += '<div class="container-resumo-card">'+
-                                                        '<div class="info">'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'+
-                                                            '<span class="label label-secCol">Sub Categoria:</span> <span class="value  value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>'+
-                                                            '</div>'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
-                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> '+
-                                                            '<button class="botaoInvisivelCard" id="btnEditCar_'+ obj.IDMOVIMENTACAO +'"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>'+
-                                                            '</div>'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>'+
-                                                            '</div>'+
-                                                        '</div>'+
-                                                    '</div>';     
+
+                                    Retornocards += '<div class="container-resumo-card">' +
+                                        '<div class="info">' +
+                                        '<div class="caixaSpanCard">' +
+                                        '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                        '<span class="label label-secCol">Sub Categoria:</span> <span class="value value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                        '</div>' +
+                                        '<div class="caixaSpanCard">' +
+                                        '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
+                                        '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
+                                        '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editarCard" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
+                                        '</div>' +
+                                        '<div class="caixaSpanCard">' +
+                                        '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<div class="modal fade" id="editarCard">' +
+                                        '<div class="modal-dialog modal-custom">' +
+                                        '<div class="modal-content">' +
+                                        '<div class="modal-header">' +
+                                        '<h4 class="modal-title">Editar</h4>' +
+                                        '<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">' +
+                                        '<span aria-hidden="true">&times;</span>' +
+                                        '</button>' +
+                                        '</div>' +
+                                        '<div class="modal-body">' +
+                                        '<div class="row">' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
@@ -1026,10 +964,10 @@ include('php/funcoes.php');
 
 
                                 $.each(retornoCardsCore, function(i, obj) {
-                                    
+
                                     var dataFormatada = "";
 
-                                    if(obj.DATA != ""){
+                                    if (obj.DATA != "") {
                                         const dataStr = obj.DATA;
 
                                         const dataObj = new Date(dataStr);
@@ -1044,29 +982,90 @@ include('php/funcoes.php');
                                     }
 
                                     var descricao = "";
-                                    if(obj.DESCRICAO == ""){
+                                    if (obj.DESCRICAO == "") {
                                         descricao = "-"
-                                    }else{
+                                    } else {
                                         descricao = obj.DESCRICAO;
                                     }
 
-                                    
-                                    Retornocards += '<div class="container-resumo-card">'+
-                                                        '<div class="info">'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>'+
-                                                            '<span class="label label-secCol">Sub Categoria:</span> <span class="value  value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>'+
-                                                            '</div>'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>'+
-                                                            '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> '+
-                                                            '<button class="botaoInvisivelCard" id="btnEditCar_'+ obj.IDMOVIMENTACAO +'"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>'+
-                                                            '</div>'+
-                                                            '<div class="caixaSpanCard">'+
-                                                            '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>'+
-                                                            '</div>'+
-                                                        '</div>'+
-                                                    '</div>';   
+
+                                    var ModalAlteraCards = '';
+
+                                    Retornocards += 
+                                        '<div class="container-resumo-card">' +
+                                            '<div class="info">' +
+                                                '<div class="caixaSpanCard">' +
+                                                    '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                                    '<span class="label label-secCol">Sub Categoria:</span> <span class="value value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                                '</div>' +
+                                                '<div class="caixaSpanCard">' +
+                                                    '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
+                                                    '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
+                                                    '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editar' + obj.IDMOVIMENTACAO + '" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
+                                                '</div>' +
+                                                '<div class="caixaSpanCard">' +
+                                                    '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
+                                                '</div>' +
+                                            '</div>' +
+                                        '</div>' +
+                                        '<div class="modal fade" id="editar' + obj.IDMOVIMENTACAO + '">' +
+                                            '<div class="modal-dialog modal-custom">' +
+                                                '<div class="modal-content">' +
+                                                    '<div class="modal-header">' +
+                                                        '<h4 class="modal-title">Editar</h4>' +
+                                                        '<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">' +
+                                                            '<span aria-hidden="true">&times;</span>' +
+                                                        '</button>' +
+                                                    '</div>' +
+                                                    '<div class="modal-body">' +
+                                                        '<div class="row">' +
+                                                            '<div class="col-md-12">' +
+                                                                '<form action="">' +
+                                                                    '<div class="col-md-12">' +
+                                                                        '<p class="text-muted-Core">' +
+                                                                            '<span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>' +
+                                                                            '<select id="selecaoTipo" name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore">' +
+                                                                                '<option value="" disabled selected>Selecione</option>' +
+                                                                                '<option value="1">Entrada de valores</option>' +
+                                                                                '<option value="2">Saída de valores</option>' +
+                                                                                '<option value="3">Transferência</option>' +
+                                                                            '</select>' +
+                                                                        '</p>' +
+                                                                        '<p class="text-muted-Core">' +
+                                                                            '<span class="tituloInputCore"><strong>Categoria:</strong></span>' +
+                                                                            '<select name="nCategoriaCore" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                                                            '</select>' +
+                                                                        '</p>' +
+                                                                        '<p class="text-muted-Core">' +
+                                                                            '<span class="tituloInputCore"><strong>SubCategoria:</strong></span>' +
+                                                                            '<select name="nSubCategoriaCore" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                                                            '</select>' +
+                                                                        '</p>' +
+                                                                        '<p class="text-muted-Core">' +
+                                                                            '<span class="tituloInputCore"><strong>Data:</strong></span>' +
+                                                                            '<input name="nDataCore" id="iDataCore" type="date" class="form-control caixaSelecaoCore">' +
+                                                                        '</p>' +
+                                                                        '<p class="text-muted-Core text-muted-Core-area">' +
+                                                                            '<span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>' +
+                                                                            '<textarea name="nDescr" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>' +
+                                                                        '</p>' +
+                                                                        '<p class="text-muted-Core">' +
+                                                                            '<span class="tituloInputCore"><strong>Valor:</strong></span>' +
+                                                                            '<input name="nValorCore" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">' +
+                                                                        '</p>' +
+                                                                        '<div class="text-muted-Core-button">' +
+                                                                            '<button type="button" id="ibtAlterarCard" class="btn btn-novo-core" data-toggle="modal">Alterar</button>' +
+                                                                        '</div>' +
+                                                                    '</div>' +
+                                                                '</form>' +
+                                                            '</div>' +
+                                                        '</div>' +
+                                                    '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                        '</div>';
+
+
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
