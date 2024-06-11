@@ -889,7 +889,7 @@ include('php/funcoes.php');
                                 })
 
                                 $('#iPositivo').html(Retornapositivo).show()
-                                $('#iNegativo').html(Retornapositivo).show()
+                                $('#iNegativo').html(RetornaNegativo).show()
                                 var RetornaSaldo = Retornapositivo - RetornaNegativo;
                                 $('#iSaldo').html(RetornaSaldo).show();
                                 $('#cardsGravados').html(Retornocards).show();
