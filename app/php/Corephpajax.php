@@ -139,13 +139,24 @@ function getSubCategoria($idcategoria, $id)
 {
     $pdo = Conectar();
 
+    if($idcategoria == 12){
 
-    $sql = "SELECT idSubCategoria, nomeSubCategoria "
-        . "FROM subcategoria "
-        . "WHERE idCategoria = $idcategoria AND (idUsuario = $id OR idUsuario IS NULL) ORDER BY nomesubCategoria";
+        $sql = "SELECT a.idSubCategoria, a.nomeSubCategoria FROM subcategoria as a inner join categoria as b on a.idcategoria  = b.idcategoria inner join tipomovimentacao as c on c.idTipoMovimentacao = b.idTipoMovimentacao WHERE b.idTipoMovimentacao = 2 and (b.idUsuario = 1 OR b.idUsuario IS NULL) ORDER BY a.nomesubCategoria";
+    
+        $stm1 = $pdo->prepare($sql);
+        $stm1->execute();
 
-    $stm1 = $pdo->prepare($sql);
-    $stm1->execute();
+    }else{
+
+        $sql = "SELECT idSubCategoria, nomeSubCategoria "
+            . "FROM subcategoria "
+            . "WHERE idCategoria = $idcategoria AND (idUsuario = $id OR idUsuario IS NULL) ORDER BY nomesubCategoria";
+    
+        $stm1 = $pdo->prepare($sql);
+        $stm1->execute();
+
+    }
+
 
     echo json_encode($stm1->fetchAll(PDO::FETCH_ASSOC));
     sleep(0.5);
