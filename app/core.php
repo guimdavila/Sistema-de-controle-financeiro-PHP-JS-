@@ -1000,7 +1000,8 @@ include('php/funcoes.php');
                                         '<div class="caixaSpanCard">' +
                                         '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
                                         '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
-                                        '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editar' + obj.IDMOVIMENTACAO + '" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
+                                        '<!--<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editar' + obj.IDMOVIMENTACAO + '" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>-->' +
+                                        '<button class="botaoInvisivelCard" id="btnExc_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-trash iconTabela"></i></button>' +
                                         '</div>' +
                                         '<div class="caixaSpanCard">' +
                                         '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
