@@ -7,33 +7,78 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 include('funcoes.php');
 require_once('conexaoPDO.php');
 
-$id = $_SESSION['idUsuario'];
 $idTipoMov = isset($_GET['tipoMov']) ? $_GET['tipoMov'] : '';
 $idcategoria = isset($_GET['categoria']) ? $_GET['categoria'] : '';
 $subcategoria = isset($_GET['subcategoria']) ? $_GET['subcategoria'] : '';
 $desc = isset($_GET['desc']) ? $_GET['desc'] : '';
 $valor = isset($_GET['valor']) ? $_GET['valor'] : '';
+$realizaCalculo = isset($_GET['realizaCalculo']) ? $_GET['realizaCalculo'] : '';
+$anoEscolAnual = isset($_GET['anoEscolhido']) ? $_GET['anoEscolhido'] : '';
 
 
+$id = $_SESSION['idUsuario'];
 $mesEscol = isset($_GET['mesEscol']) ? $_GET['mesEscol'] : '';
 $anoEscol = isset($_GET['anoEscol']) ? $_GET['anoEscol'] : '';
-$realizaCalculo = isset($_GET['realizaCalculo']) ? $_GET['realizaCalculo'] : '';
+$idMovimentacaoExclusao = isset($_GET['idMovimentacaoExclusao']) ? $_GET['idMovimentacaoExclusao'] : '';
 
+if (!empty($idMovimentacaoExclusao)) {
+    echo json_encode(excluiMovimentacao($anoEscol, $mesEscol, $idMovimentacaoExclusao, $id));
+}
 
-$anoEscolAnual = isset($_GET['anoEscolhido']) ? $_GET['anoEscolhido'] : '';
+function excluiMovimentacao($anoEscol, $mesEscol, $idMovimentacaoExclusao, $id) {
+    try {
+        $pdo = Conectar();
+        
+        $sql = "DELETE FROM movimentacao WHERE IDMOVIMENTACAO = :idMovimentacaoExclusao AND IDUSUARIO = :id";
+        $stm = $pdo->prepare($sql);
+        $stm->bindParam(':idMovimentacaoExclusao', $idMovimentacaoExclusao, PDO::PARAM_INT);
+        $stm->bindParam(':id', $id, PDO::PARAM_INT);
+        $stm->execute();
+
+        sleep(0.5);
+
+        $sql1 = "SELECT B.NOMECATEGORIA, C.NOMESUBCATEGORIA, A.DATA, A.VALOR, A.DESCRICAO, A.IDTIPOMOVIMENTACAO, A.IDMOVIMENTACAO 
+                 FROM MOVIMENTACAO AS A 
+                 INNER JOIN CATEGORIA AS B ON A.IDCATEGORIA = B.IDCATEGORIA 
+                 INNER JOIN SUBCATEGORIA AS C ON A.IDSUBCATEGORIA = C.IDSUBCATEGORIA 
+                 WHERE A.DATA BETWEEN :startDate AND :endDate 
+                 AND A.IDUSUARIO = :id 
+                 ORDER BY A.IDMOVIMENTACAO DESC;";
+        
+        $startDate = $anoEscol . $mesEscol . "01";
+        $endDate = $anoEscol . $mesEscol . "31";
+        
+        $stm1 = $pdo->prepare($sql1);
+        $stm1->bindParam(':startDate', $startDate, PDO::PARAM_STR);
+        $stm1->bindParam(':endDate', $endDate, PDO::PARAM_STR);
+        $stm1->bindParam(':id', $id, PDO::PARAM_INT);
+        $stm1->execute();
+
+        sleep(0.5);
+
+        echo json_encode($stm1->fetchAll(PDO::FETCH_ASSOC));
+        $pdo = null;
+        
+    } catch (Exception $e) {
+        error_log("Erro: " . $e->getMessage());
+        return [];
+    } finally {
+        $pdo = null;
+    }
+}
 
 
 if (!empty($anoEscolAnual)) {
     echo saldosAno($anoEscolAnual, $id);
-   
 }
 
-function saldosAno($anoEscolAnual, $id){
-    
+function saldosAno($anoEscolAnual, $id)
+{
+
     $pdo = Conectar();
 
     $sql = "SELECT A.DATA, A.VALOR, A.IDTIPOMOVIMENTACAO FROM MOVIMENTACAO AS A INNER JOIN CATEGORIA AS B ON A.IDCATEGORIA = B.IDCATEGORIA INNER JOIN SUBCATEGORIA AS C ON A.IDSUBCATEGORIA = C.IDSUBCATEGORIA "
-        . " WHERE A.DATA BETWEEN '".$anoEscolAnual."0101' AND '".$anoEscolAnual."1231' AND A.IDUSUARIO = $id order by A.IDMOVIMENTACAO desc;" ;
+        . " WHERE A.DATA BETWEEN '" . $anoEscolAnual . "0101' AND '" . $anoEscolAnual . "1231' AND A.IDUSUARIO = $id order by A.IDMOVIMENTACAO desc;";
 
     $stm = $pdo->prepare($sql);
     $stm->execute();
@@ -46,15 +91,15 @@ function saldosAno($anoEscolAnual, $id){
 
 if (!empty($mesEscol) && !empty($anoEscol)) {
     echo getCardsMesAno($anoEscol, $mesEscol, $id);
-   
 }
 
-function getCardsMesAno($anoEscol, $mesEscol, $id){
-    
+function getCardsMesAno($anoEscol, $mesEscol, $id)
+{
+
     $pdo = Conectar();
 
     $sql = "SELECT B.NOMECATEGORIA, C.NOMESUBCATEGORIA, A.DATA, A.VALOR, A.DESCRICAO, A.IDTIPOMOVIMENTACAO, A.IDMOVIMENTACAO FROM MOVIMENTACAO AS A INNER JOIN CATEGORIA AS B ON A.IDCATEGORIA = B.IDCATEGORIA INNER JOIN SUBCATEGORIA AS C ON A.IDSUBCATEGORIA = C.IDSUBCATEGORIA "
-        . " WHERE A.DATA BETWEEN '".$anoEscol."".$mesEscol."01' AND '".$anoEscol."".$mesEscol."31' AND A.IDUSUARIO = $id order by A.IDMOVIMENTACAO desc;" ;
+        . " WHERE A.DATA BETWEEN '" . $anoEscol . "" . $mesEscol . "01' AND '" . $anoEscol . "" . $mesEscol . "31' AND A.IDUSUARIO = $id order by A.IDMOVIMENTACAO desc;";
 
     $stm = $pdo->prepare($sql);
     $stm->execute();
@@ -67,7 +112,6 @@ function getCardsMesAno($anoEscol, $mesEscol, $id){
 
 if (!empty($idTipoMov)) {
     echo getCategoria($idTipoMov, $id);
-   
 }
 
 function getCategoria($TipoMov, $id)
@@ -117,31 +161,32 @@ if (!empty($data) && !empty($valor)) {
     die();
 }
 
-function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor) {
+function atualizabanco($id, $idTipoMov, $idcategoria, $subcategoria, $data, $desc, $valor)
+{
     // Conectando ao banco de dados
     $pdo = Conectar();
-    
+
     // Preparando a instrução SQL com parâmetros
     $sql = "INSERT INTO MOVIMENTACAO (DESCRICAO, DATA, VALOR, IDUSUARIO, IDCATEGORIA, IDSUBCATEGORIA, IDTIPOMOVIMENTACAO) VALUES ('$desc', '$data', $valor, $id, $idcategoria, $subcategoria, $idTipoMov)";
-    
-   return $sql;
 
-   $pdo = null;
+    return $sql;
+
+    $pdo = null;
 }
 
 ////////////////////////////////////////////
 
 if (!empty($realizaCalculo)) {
     echo resultados($anoEscol, $mesEscol, $id);
-   
 }
 
-function resultados($anoEscol, $mesEscol, $id){
-    
+function resultados($anoEscol, $mesEscol, $id)
+{
+
     $pdo = Conectar();
 
     $sql = "SELECT SUM(CASE WHEN IDTIPOMOVIMENTACAO = '1' THEN VALOR ELSE 0 END) AS POSITIVO /*, SUM(CASE WHEN IDTIPOMOVIMENTACAO = '2' THEN VALOR ELSE 0 END) AS NEGATIVO, SUM(CASE WHEN IDTIPOMOVIMENTACAO = '1' THEN VALOR ELSE -VALOR END) AS SALDO*/ "
-        . " FROM MOVIMENTACAO WHERE IDUSUARIO = $id AND DATA BETWEEN '".$anoEscol."".$mesEscol."01' AND '".$anoEscol."".$mesEscol."31' " ;
+        . " FROM MOVIMENTACAO WHERE IDUSUARIO = $id AND DATA BETWEEN '" . $anoEscol . "" . $mesEscol . "01' AND '" . $anoEscol . "" . $mesEscol . "31' ";
 
     $stm = $pdo->prepare($sql);
     $stm->execute();
