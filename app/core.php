@@ -143,7 +143,7 @@ include('php/funcoes.php');
                                     </div>
                                 </form>
                             </div>
-                            
+
                         </div>
 
                         <div class="col-md-6 divCore">
@@ -553,7 +553,6 @@ include('php/funcoes.php');
 
         //CHAMA CATEGORIA
         $(document).ready(function() {
-
             $('#selecaoTipo').on('change', function() {
                 var tipoMov = $('#selecaoTipo').val();
                 var opcaoSub = '';
@@ -991,81 +990,79 @@ include('php/funcoes.php');
 
                                     var ModalAlteraCards = '';
 
-                                    Retornocards += 
+                                    Retornocards +=
                                         '<div class="container-resumo-card">' +
-                                            '<div class="info">' +
-                                                '<div class="caixaSpanCard">' +
-                                                    '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                                                    '<span class="label label-secCol">Sub Categoria:</span> <span class="value value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>' +
-                                                '</div>' +
-                                                '<div class="caixaSpanCard">' +
-                                                    '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
-                                                    '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
-                                                    '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editar' + obj.IDMOVIMENTACAO + '" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
-                                                '</div>' +
-                                                '<div class="caixaSpanCard">' +
-                                                    '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
-                                                '</div>' +
-                                            '</div>' +
+                                        '<div class="info">' +
+                                        '<div class="caixaSpanCard">' +
+                                        '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
+                                        '<span class="label label-secCol">Sub Categoria:</span> <span class="value value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>' +
+                                        '</div>' +
+                                        '<div class="caixaSpanCard">' +
+                                        '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
+                                        '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
+                                        '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editar' + obj.IDMOVIMENTACAO + '" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
+                                        '</div>' +
+                                        '<div class="caixaSpanCard">' +
+                                        '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
+                                        '</div>' +
+                                        '</div>' +
                                         '</div>' +
                                         '<div class="modal fade" id="editar' + obj.IDMOVIMENTACAO + '">' +
-                                            '<div class="modal-dialog modal-custom">' +
-                                                '<div class="modal-content">' +
-                                                    '<div class="modal-header">' +
-                                                        '<h4 class="modal-title">Editar</h4>' +
-                                                        '<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">' +
-                                                            '<span aria-hidden="true">&times;</span>' +
-                                                        '</button>' +
-                                                    '</div>' +
-                                                    '<div class="modal-body">' +
-                                                        '<div class="row">' +
-                                                            '<div class="col-md-12">' +
-                                                                '<form action="">' +
-                                                                    '<div class="col-md-12">' +
-                                                                        '<p class="text-muted-Core">' +
-                                                                            '<span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>' +
-                                                                            '<select id="selecaoTipo" name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore">' +
-                                                                                '<option value="" disabled selected>Selecione</option>' +
-                                                                                '<option value="1">Entrada de valores</option>' +
-                                                                                '<option value="2">Saída de valores</option>' +
-                                                                                '<option value="3">Transferência</option>' +
-                                                                            '</select>' +
-                                                                        '</p>' +
-                                                                        '<p class="text-muted-Core">' +
-                                                                            '<span class="tituloInputCore"><strong>Categoria:</strong></span>' +
-                                                                            '<select name="nCategoriaCore" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
-                                                                            '</select>' +
-                                                                        '</p>' +
-                                                                        '<p class="text-muted-Core">' +
-                                                                            '<span class="tituloInputCore"><strong>SubCategoria:</strong></span>' +
-                                                                            '<select name="nSubCategoriaCore" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
-                                                                            '</select>' +
-                                                                        '</p>' +
-                                                                        '<p class="text-muted-Core">' +
-                                                                            '<span class="tituloInputCore"><strong>Data:</strong></span>' +
-                                                                            '<input name="nDataCore" id="iDataCore" type="date" class="form-control caixaSelecaoCore">' +
-                                                                        '</p>' +
-                                                                        '<p class="text-muted-Core text-muted-Core-area">' +
-                                                                            '<span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>' +
-                                                                            '<textarea name="nDescr" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>' +
-                                                                        '</p>' +
-                                                                        '<p class="text-muted-Core">' +
-                                                                            '<span class="tituloInputCore"><strong>Valor:</strong></span>' +
-                                                                            '<input name="nValorCore" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">' +
-                                                                        '</p>' +
-                                                                        '<div class="text-muted-Core-button">' +
-                                                                            '<button type="button" id="ibtAlterarCard" class="btn btn-novo-core" data-toggle="modal">Alterar</button>' +
-                                                                        '</div>' +
-                                                                    '</div>' +
-                                                                '</form>' +
-                                                            '</div>' +
-                                                        '</div>' +
-                                                    '</div>' +
-                                                '</div>' +
-                                            '</div>' +
+                                        '<div class="modal-dialog modal-custom">' +
+                                        '<div class="modal-content">' +
+                                        '<div class="modal-header">' +
+                                        '<h4 class="modal-title">Editar</h4>' +
+                                        '<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">' +
+                                        '<span aria-hidden="true">&times;</span>' +
+                                        '</button>' +
+                                        '</div>' +
+                                        '<div class="modal-body">' +
+                                        '<div class="row">' +
+                                        '<div class="col-md-12">' +
+                                        '<form action="">' +
+                                        '<div class="col-md-12">' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>' +
+                                        '<select id="selecaoTipoAlterar" name="nTipoMovimentacaoAltera" class="input-group-text caixaSelecaoCate caixaSelecaoCore">' +
+                                        '<option value="" disabled selected>Selecione</option>' +
+                                        '<option value="1">Entrada de valores</option>' +
+                                        '<option value="2">Saída de valores</option>' +
+                                        '<option value="3">Transferência</option>' +
+                                        '</select>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Categoria:</strong></span>' +
+                                        '<select name="nCategoriaCoreAltera" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                        '</select>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>SubCategoria:</strong></span>' +
+                                        '<select name="nSubCategoriaCoreAltera" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                        '</select>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Data:</strong></span>' +
+                                        '<input name="nDataCoreAltera" id="iDataCore" type="date" class="form-control caixaSelecaoCore">' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core text-muted-Core-area">' +
+                                        '<span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>' +
+                                        '<textarea name="nDescrAltera" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Valor:</strong></span>' +
+                                        '<input name="nValorCoreAltera" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">' +
+                                        '</p>' +
+                                        '<div class="text-muted-Core-button">' +
+                                        '<button type="button" id="ibtAlterarCard" class="btn btn-novo-core" data-toggle="modal">Alterar</button>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</form>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
                                         '</div>';
-
-
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
@@ -1095,6 +1092,43 @@ include('php/funcoes.php');
                 }
 
 
+            })
+        });
+
+
+        $(document).ready(function() {
+            console.log("1")
+            $('#selecaoTipoAlterar').on('change', function() {
+                
+            console.log("2")
+                var tipoMov = $('#selecaoTipoAlterar').val();
+                var opcaoSub = '';
+                var opcaoCategoria = '';
+
+                console.log(tipoMov)
+
+                if (tipoMov != "" && tipoMov != 0) {
+
+                    $.getJSON('php/Corephpajax.php?tipoMov=' + tipoMov,
+                        function(dados) {
+                            opcaoCategoria = '<option value="" disabled selected>Selecione</option>'
+
+
+                            if (dados.length > 0) {
+                                $.each(dados, function(i, obj) {
+                                    opcaoCategoria += '<option value="' + obj.idCategoria + '">' + obj.nomeCategoria + '</option>';
+                                })
+                                $('#iCategoria').attr("required", "req");
+                                $('#iCategoria').html(opcaoCategoria).show();
+                            } else {
+                                opcaoCategoria += '<option value="">Puxar do banco</option>'
+                                $('iCategoria').html(opcaoCategoria).show()
+                            }
+                        })
+                } else {
+                    opcaoCategoria += '<option value="">Selecione</option>'
+                    $('iCategoria').html(opcaoCategoria).show()
+                }
             })
         })
 
