@@ -658,14 +658,15 @@ include('php/funcoes.php');
                                     '<div class="caixaSpanCard">' +
                                     '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
                                     '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
-                                    '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editarCard" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
+                                    '<!--<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editar' + obj.IDMOVIMENTACAO + '" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>-->' +
+                                    '<button class="botaoInvisivelCard" id="btnExc_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-trash iconTabela"></i></button>' +
                                     '</div>' +
                                     '<div class="caixaSpanCard">' +
                                     '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>' +
-                                    '<div class="modal fade" id="editarCard">' +
+                                    '<div class="modal fade" id="editar' + obj.IDMOVIMENTACAO + '">' +
                                     '<div class="modal-dialog modal-custom">' +
                                     '<div class="modal-content">' +
                                     '<div class="modal-header">' +
@@ -676,6 +677,46 @@ include('php/funcoes.php');
                                     '</div>' +
                                     '<div class="modal-body">' +
                                     '<div class="row">' +
+                                    '<div class="col-md-12">' +
+                                    '<form action="">' +
+                                    '<div class="col-md-12">' +
+                                    '<p class="text-muted-Core">' +
+                                    '<span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>' +
+                                    '<select id="selecaoTipoAlterar" name="nTipoMovimentacaoAltera" class="input-group-text caixaSelecaoCate caixaSelecaoCore">' +
+                                    '<option value="" disabled selected>Selecione</option>' +
+                                    '<option value="1">Entrada de valores</option>' +
+                                    '<option value="2">Saída de valores</option>' +
+                                    '<option value="3">Transferência</option>' +
+                                    '</select>' +
+                                    '</p>' +
+                                    '<p class="text-muted-Core">' +
+                                    '<span class="tituloInputCore"><strong>Categoria:</strong></span>' +
+                                    '<select name="nCategoriaCoreAltera" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                    '</select>' +
+                                    '</p>' +
+                                    '<p class="text-muted-Core">' +
+                                    '<span class="tituloInputCore"><strong>SubCategoria:</strong></span>' +
+                                    '<select name="nSubCategoriaCoreAltera" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                    '</select>' +
+                                    '</p>' +
+                                    '<p class="text-muted-Core">' +
+                                    '<span class="tituloInputCore"><strong>Data:</strong></span>' +
+                                    '<input name="nDataCoreAltera" id="iDataCore" type="date" class="form-control caixaSelecaoCore">' +
+                                    '</p>' +
+                                    '<p class="text-muted-Core text-muted-Core-area">' +
+                                    '<span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>' +
+                                    '<textarea name="nDescrAltera" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>' +
+                                    '</p>' +
+                                    '<p class="text-muted-Core">' +
+                                    '<span class="tituloInputCore"><strong>Valor:</strong></span>' +
+                                    '<input name="nValorCoreAltera" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">' +
+                                    '</p>' +
+                                    '<div class="text-muted-Core-button">' +
+                                    '<button type="button" id="ibtAlterarCard" class="btn btn-novo-core" data-toggle="modal">Alterar</button>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</form>' +
+                                    '</div>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>' +
@@ -769,14 +810,15 @@ include('php/funcoes.php');
                                         '<div class="caixaSpanCard">' +
                                         '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
                                         '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
-                                        '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editarCard" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
+                                        '<!--<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editar' + obj.IDMOVIMENTACAO + '" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>-->' +
+                                        '<button class="botaoInvisivelCard" id="btnExc_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-trash iconTabela"></i></button>' +
                                         '</div>' +
                                         '<div class="caixaSpanCard">' +
                                         '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
                                         '</div>' +
                                         '</div>' +
                                         '</div>' +
-                                        '<div class="modal fade" id="editarCard">' +
+                                        '<div class="modal fade" id="editar' + obj.IDMOVIMENTACAO + '">' +
                                         '<div class="modal-dialog modal-custom">' +
                                         '<div class="modal-content">' +
                                         '<div class="modal-header">' +
@@ -787,6 +829,46 @@ include('php/funcoes.php');
                                         '</div>' +
                                         '<div class="modal-body">' +
                                         '<div class="row">' +
+                                        '<div class="col-md-12">' +
+                                        '<form action="">' +
+                                        '<div class="col-md-12">' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>' +
+                                        '<select id="selecaoTipoAlterar" name="nTipoMovimentacaoAltera" class="input-group-text caixaSelecaoCate caixaSelecaoCore">' +
+                                        '<option value="" disabled selected>Selecione</option>' +
+                                        '<option value="1">Entrada de valores</option>' +
+                                        '<option value="2">Saída de valores</option>' +
+                                        '<option value="3">Transferência</option>' +
+                                        '</select>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Categoria:</strong></span>' +
+                                        '<select name="nCategoriaCoreAltera" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                        '</select>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>SubCategoria:</strong></span>' +
+                                        '<select name="nSubCategoriaCoreAltera" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                        '</select>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Data:</strong></span>' +
+                                        '<input name="nDataCoreAltera" id="iDataCore" type="date" class="form-control caixaSelecaoCore">' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core text-muted-Core-area">' +
+                                        '<span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>' +
+                                        '<textarea name="nDescrAltera" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Valor:</strong></span>' +
+                                        '<input name="nValorCoreAltera" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">' +
+                                        '</p>' +
+                                        '<div class="text-muted-Core-button">' +
+                                        '<button type="button" id="ibtAlterarCard" class="btn btn-novo-core" data-toggle="modal">Alterar</button>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</form>' +
+                                        '</div>' +
                                         '</div>' +
                                         '</div>' +
                                         '</div>' +
@@ -805,6 +887,12 @@ include('php/funcoes.php');
                                     }
 
                                 })
+
+                                $('#iPositivo').html(Retornapositivo).show()
+                                $('#iNegativo').html(Retornapositivo).show()
+                                var RetornaSaldo = Retornapositivo - RetornaNegativo;
+                                $('#iSaldo').html(RetornaSaldo).show();
+                                $('#cardsGravados').html(Retornocards).show();
 
                             } else {
                                 console.log("Sem retorno de resultado");
@@ -872,14 +960,15 @@ include('php/funcoes.php');
                                         '<div class="caixaSpanCard">' +
                                         '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
                                         '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
-                                        '<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editarCard" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>' +
+                                        '<!--<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editar' + obj.IDMOVIMENTACAO + '" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>-->' +
+                                        '<button class="botaoInvisivelCard" id="btnExc_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-trash iconTabela"></i></button>' +
                                         '</div>' +
                                         '<div class="caixaSpanCard">' +
                                         '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
                                         '</div>' +
                                         '</div>' +
                                         '</div>' +
-                                        '<div class="modal fade" id="editarCard">' +
+                                        '<div class="modal fade" id="editar' + obj.IDMOVIMENTACAO + '">' +
                                         '<div class="modal-dialog modal-custom">' +
                                         '<div class="modal-content">' +
                                         '<div class="modal-header">' +
@@ -890,6 +979,46 @@ include('php/funcoes.php');
                                         '</div>' +
                                         '<div class="modal-body">' +
                                         '<div class="row">' +
+                                        '<div class="col-md-12">' +
+                                        '<form action="">' +
+                                        '<div class="col-md-12">' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>' +
+                                        '<select id="selecaoTipoAlterar" name="nTipoMovimentacaoAltera" class="input-group-text caixaSelecaoCate caixaSelecaoCore">' +
+                                        '<option value="" disabled selected>Selecione</option>' +
+                                        '<option value="1">Entrada de valores</option>' +
+                                        '<option value="2">Saída de valores</option>' +
+                                        '<option value="3">Transferência</option>' +
+                                        '</select>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Categoria:</strong></span>' +
+                                        '<select name="nCategoriaCoreAltera" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                        '</select>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>SubCategoria:</strong></span>' +
+                                        '<select name="nSubCategoriaCoreAltera" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
+                                        '</select>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Data:</strong></span>' +
+                                        '<input name="nDataCoreAltera" id="iDataCore" type="date" class="form-control caixaSelecaoCore">' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core text-muted-Core-area">' +
+                                        '<span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>' +
+                                        '<textarea name="nDescrAltera" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>' +
+                                        '</p>' +
+                                        '<p class="text-muted-Core">' +
+                                        '<span class="tituloInputCore"><strong>Valor:</strong></span>' +
+                                        '<input name="nValorCoreAltera" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">' +
+                                        '</p>' +
+                                        '<div class="text-muted-Core-button">' +
+                                        '<button type="button" id="ibtAlterarCard" class="btn btn-novo-core" data-toggle="modal">Alterar</button>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</form>' +
+                                        '</div>' +
                                         '</div>' +
                                         '</div>' +
                                         '</div>' +
@@ -1100,8 +1229,8 @@ include('php/funcoes.php');
         $(document).ready(function() {
             console.log("1")
             $('#selecaoTipoAlterar').on('change', function() {
-                
-            console.log("2")
+
+                console.log("2")
                 var tipoMov = $('#selecaoTipoAlterar').val();
                 var opcaoSub = '';
                 var opcaoCategoria = '';
