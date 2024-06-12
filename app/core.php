@@ -636,6 +636,8 @@ include('php/funcoes.php');
                             var Retornapositivo = 0;
                             var RetornaNegativo = 0;
                             var RetornaSaldo = 0;
+                            
+                            console.log("2");
 
                             $.each(retornoCardsCore, function(i, obj) {
                                 var dataFormatada = "";
@@ -780,28 +782,18 @@ include('php/funcoes.php');
 
                                 $.each(cards, function(i, obj) {
                                     var dataFormatada = "";
-                                    if (obj.DATA != "") {
-                                        const dataStr = obj.DATA;
-
-                                        const dataObj = new Date(dataStr);
-
-                                        const dia = String(dataObj.getDate()).padStart(2, '0');
-                                        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
-                                        const ano = dataObj.getFullYear();
-
-                                        // Formate a data no formato desejado
-                                        dataFormatada = `${dia}/${mes}/${ano}`;
-
-                                    }
-
-                                    var descricao = "";
-                                    if (obj.DESCRICAO == "") {
-                                        descricao = "-"
-                                    } else {
-                                        descricao = obj.DESCRICAO;
-                                    }
-
-                                    Retornocards += '<div class="container-resumo-card">' +
+                                if (obj.DATA != "") {
+                                    const dataStr = obj.DATA;
+                                    const dataObj = new Date(dataStr);
+                                    const dia = String(dataObj.getDate()).padStart(2, '0');
+                                    const mes = String(dataObj.getMonth() + 1).padStart(2, '0');
+                                    const ano = dataObj.getFullYear();
+                                    dataFormatada = `${dia}/${mes}/${ano}`;
+                                }
+                                var descricao = obj.DESCRICAO == "" ? "-" : obj.DESCRICAO;
+                                
+                                    Retornocards +=
+                                        '<div class="container-resumo-card">' +
                                         '<div class="info">' +
                                         '<div class="caixaSpanCard">' +
                                         '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
@@ -951,7 +943,8 @@ include('php/funcoes.php');
                                     }
 
 
-                                    Retornocards += '<div class="container-resumo-card">' +
+                                    Retornocards += 
+                                        '<div class="container-resumo-card">' +
                                         '<div class="info">' +
                                         '<div class="caixaSpanCard">' +
                                         '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
@@ -1023,7 +1016,7 @@ include('php/funcoes.php');
                                         '</div>' +
                                         '</div>' +
                                         '</div>' +
-                                        '</div>';
+                                        '</div>';   
 
                                     if (obj.IDTIPOMOVIMENTACAO == 1) {
                                         Retornapositivo += parseFloat(obj.VALOR);
@@ -1067,8 +1060,7 @@ include('php/funcoes.php');
             })
         })
         ////////////////////////////////////////////////////
-
-        //document.addEventListener('DOMContentLoaded', (event) => {
+        
         $(document).ready(function() {
 
             $('#mesEscolhido, #anoEscolhido').on('change', function() {
@@ -1089,6 +1081,8 @@ include('php/funcoes.php');
                                 var Retornapositivo = 0;
                                 var RetornaNegativo = 0;
                                 var RetornaSaldo = 0;
+
+                                //console.log("1");
 
 
                                 $.each(retornoCardsCore, function(i, obj) {
@@ -1115,9 +1109,6 @@ include('php/funcoes.php');
                                     } else {
                                         descricao = obj.DESCRICAO;
                                     }
-
-
-                                    var ModalAlteraCards = '';
 
                                     Retornocards +=
                                         '<div class="container-resumo-card">' +
@@ -1231,21 +1222,38 @@ include('php/funcoes.php');
                 var mesEscol = $('#mesEscolhido').val();
                 var anoEscol = $('#anoEscolhido').val();
 
-                if (idMovimentacaoExclusao == "") {
-                    // Adicione um comportamento desejado aqui, se necessário
-                } else {
-
-                    console.log('idMovimentacaoExclusao=' + idMovimentacaoExclusao + '&mesEscol=' + mesEscol + '&anoEscol=' + anoEscol)
-                    $.getJSON('php/Corephpajax.php?idMovimentacaoExclusao=' + idMovimentacaoExclusao + '&mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
+                    $.getJSON('php/ExcluiCore.php?idMovimentacaoExclusao=' + idMovimentacaoExclusao + '&mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
                         function(results) {
 
-                            console.log(results)
-                            var retornoExclusao = '';
-
                             if (results.length > 0) {
+                                var retornoExclusao = '';
                                 $.each(results, function(i, obj) {
 
-                                    retornoExclusao = '<div class="container-resumo-card">' +
+                                    var dataFormatada = "";
+
+                                    if (obj.DATA != "") {
+                                        const dataStr = obj.DATA;
+
+                                        const dataObj = new Date(dataStr);
+
+                                        const dia = String(dataObj.getDate()).padStart(2, '0');
+                                        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
+                                        const ano = dataObj.getFullYear();
+
+                                        // Formate a data no formato desejado
+                                        dataFormatada = `${dia}/${mes}/${ano}`;
+
+                                    }
+
+                                    var descricao = "";
+                                    if (obj.DESCRICAO == "") {
+                                        descricao = "-"
+                                    } else {
+                                        descricao = obj.DESCRICAO;
+                                    }
+
+                                    retornoExclusao += 
+                                        '<div class="container-resumo-card">' +
                                         '<div class="info">' +
                                         '<div class="caixaSpanCard">' +
                                         '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
@@ -1326,7 +1334,7 @@ include('php/funcoes.php');
                             $('#cardsGravados').html(retornoExclusao).show();
                         }
                     )
-                }
+                
             });
         });
 
