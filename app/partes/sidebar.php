@@ -5,10 +5,10 @@
   <!-- Sidebar user panel (optional) -->
   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
-      <img src="<?php  echo fotoUsuario($_SESSION['idUsuario']); ?>" class="img-circle elevation-2" alt="User Image"> <!-- adicionar icone para foto de usuário -->
+      <img src="<?php echo fotoUsuario($_SESSION['idUsuario']); ?>" class="img-circle elevation-2" alt="User Image"> <!-- adicionar icone para foto de usuário -->
     </div>
     <div class="info">
-      <a href="../app/perfilUsuario.php" class="d-block"><?php  echo primeiroNomeUsuario($_SESSION['idUsuario']);?> </a>
+      <a href="../app/perfilUsuario.php" class="d-block"><?php echo primeiroNomeUsuario($_SESSION['idUsuario']); ?> </a>
     </div>
   </div>
 
@@ -20,6 +20,16 @@
          with font-awesome or any other icon font library -->
 
       <li class="nav-item"> <!--classe para abrir o menu - menu-open -->
+        <a href="home.php" class="nav-link">
+          <i class="nav-icon fa-solid fa-house"></i>
+          <p>
+            Home
+          </p>
+        </a>
+
+
+      </li>
+      <li class="nav-item"> <!--classe para abrir o menu - menu-open -->
         <a href="#" class="nav-link ">
           <i class="nav-icon fa-solid fa-bars-progress"></i>
           <p>
@@ -30,7 +40,7 @@
         <ul class="nav nav-treeview">
           <li class="nav-item">
             <a href="core.php" class="nav-link"><!--pra flegar é aplicar o 'active' -->
-            <i class="fa-solid fa-pen-clip iconeSideBar"></i>
+              <i class="fa-solid fa-pen-clip iconeSideBar"></i>
               <p>Registrar Movimentação</p>
             </a>
           </li>
@@ -54,7 +64,7 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/charts/chartjs.html" class="nav-link">
+            <a href="resumo.php" class="nav-link">
               <i class="fa-regular fa-file-lines iconeSideBar"></i>
               <p>Resumo</p>
             </a>
@@ -67,7 +77,7 @@
           </li>
         </ul>
       </li>
-      
+
     </ul>
   </nav>
   <!-- /.sidebar-menu -->

@@ -68,7 +68,7 @@ include('partes/css.php'); //importes de CSS
                   </div>
                   
                   <div class="col-6">
-                    <div class="small-box bg-danger">
+                    <div class="small-box cardGrafico">
                       <div class="inner">
                       <h3><?php echo qtdSubCategoria(); ?></h3>
 
