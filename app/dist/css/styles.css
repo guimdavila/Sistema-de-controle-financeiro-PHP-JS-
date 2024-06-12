@@ -441,9 +441,6 @@ tr.colunasCategorias td:hover {
     height: 89vh;
 }
 
-.tamanhoHome {
-    height: 87vh;
-}
 
 /* Cor quando está checked */
 .custom-control-input:checked~.custom-control-label::before {
@@ -764,4 +761,21 @@ tr.colunasCategorias td:hover {
     position: relative;
     align-self: center; /* Centraliza o botão verticalmente */
     left:60%;
+}
+
+.cardGrafico{
+    background-color: 526D82;
+    color: white;
+}
+.iconGrafico{
+    color: white;
+}
+
+.FundoGrafico{
+    padding: 30px;
+}
+
+
+.tamanhoHome {
+    height: 96vh;
 }

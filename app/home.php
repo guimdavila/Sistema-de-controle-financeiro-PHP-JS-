@@ -53,16 +53,16 @@ include('partes/css.php'); //importes de CSS
           <div class="row">
             <div class="col-12">
               <div class="card tamanhoHome">
-                <div class="row">
+                <div class="row FundoGrafico">
                   <div class="col-6">
-                    <div class="small-box bg-success">
+                    <div class="small-box cardGrafico">
                       <div class="inner">
                         <h3><?php echo qtdCategorias(); ?></h3>
 
                         <p>Quantidade de Categorias</p>
                       </div>
                       <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
+                        <i class="ion ion-stats-bars iconGrafico"></i>
                       </div>
                     </div>
                   </div>
