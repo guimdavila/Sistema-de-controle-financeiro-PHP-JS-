@@ -25,48 +25,6 @@ if (!empty($idMovimentacaoExclusao)) {
     echo json_encode(excluiMovimentacao($anoEscol, $mesEscol, $idMovimentacaoExclusao, $id));
 }
 
-function excluiMovimentacao($anoEscol, $mesEscol, $idMovimentacaoExclusao, $id) {
-    try {
-        $pdo = Conectar();
-        
-        $sql = "DELETE FROM movimentacao WHERE IDMOVIMENTACAO = :idMovimentacaoExclusao AND IDUSUARIO = :id";
-        $stm = $pdo->prepare($sql);
-        $stm->bindParam(':idMovimentacaoExclusao', $idMovimentacaoExclusao, PDO::PARAM_INT);
-        $stm->bindParam(':id', $id, PDO::PARAM_INT);
-        $stm->execute();
-
-        sleep(0.5);
-
-        $sql1 = "SELECT B.NOMECATEGORIA, C.NOMESUBCATEGORIA, A.DATA, A.VALOR, A.DESCRICAO, A.IDTIPOMOVIMENTACAO, A.IDMOVIMENTACAO 
-                 FROM MOVIMENTACAO AS A 
-                 INNER JOIN CATEGORIA AS B ON A.IDCATEGORIA = B.IDCATEGORIA 
-                 INNER JOIN SUBCATEGORIA AS C ON A.IDSUBCATEGORIA = C.IDSUBCATEGORIA 
-                 WHERE A.DATA BETWEEN :startDate AND :endDate 
-                 AND A.IDUSUARIO = :id 
-                 ORDER BY A.IDMOVIMENTACAO DESC;";
-        
-        $startDate = $anoEscol . $mesEscol . "01";
-        $endDate = $anoEscol . $mesEscol . "31";
-        
-        $stm1 = $pdo->prepare($sql1);
-        $stm1->bindParam(':startDate', $startDate, PDO::PARAM_STR);
-        $stm1->bindParam(':endDate', $endDate, PDO::PARAM_STR);
-        $stm1->bindParam(':id', $id, PDO::PARAM_INT);
-        $stm1->execute();
-
-        sleep(0.5);
-
-        echo json_encode($stm1->fetchAll(PDO::FETCH_ASSOC));
-        $pdo = null;
-        
-    } catch (Exception $e) {
-        error_log("Erro: " . $e->getMessage());
-        return [];
-    } finally {
-        $pdo = null;
-    }
-}
-
 
 if (!empty($anoEscolAnual)) {
     echo saldosAno($anoEscolAnual, $id);
