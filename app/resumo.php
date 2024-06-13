@@ -118,7 +118,7 @@ include('partes/css.php');
                                             <div class="inner">
                                                 <h3> R$ <?php echo totalInvestimento($id); ?></h3>
 
-                                                <p>Total Investimentos</p>
+                                                <p>Total Investido</p>
                                             </div>
                                             <div class="icon">
                                                 <i class="ion fa-solid fa-piggy-bank iconGrafico"></i>
@@ -126,7 +126,7 @@ include('partes/css.php');
                                         </div>
                                         <div class="card card-danger">
                                             <div class="card-header">
-                                                <h3 class="card-title">Pie Chart</h3>
+                                                <h3 class="card-title">Investimentos</h3>
 
                                             </div>
                                             <div class="card-body">
@@ -134,7 +134,16 @@ include('partes/css.php');
                                             </div>
                                             <!-- /.card-body -->
                                         </div>
-                                        <!-- /.card -->
+                                        <div class="small-box cardGrafico">
+                                            <div class="icon">
+                                                <i class="ion fa-solid fa-percent iconGraficoPercent"></i>
+                                            </div>
+                                            <div class="inner">
+                                                <h3>Divisão</h3>
+                                                <h4>  <?php echo DivisaoPorcInvestimentos(); ?></h4>
+
+                                            </div>
+                                        </div>
 
                                     </div>
 
@@ -165,7 +174,7 @@ include('partes/css.php');
                 labels: [<?php echo labelsInvestimentos();?>],
                 datasets: [{
                     data: [<?php echo ValoresInvestimentos();?>],
-                    backgroundColor: ['#DC3545', '#00a65a'],
+                    backgroundColor: ['#DC3545', '#00A65A', '#FF5733', '#FFC300', '#DAF7A6', '#581845', '#900C3F', '#C70039', '#FF5733', '#900C3F', '#1D8348', '#117A65', '#154360', '#2874A6', '#48C9B0'],
                 }]
             }
             var pieOptions = {

@@ -34,78 +34,7 @@ include('php/funcoes.php');
         <div class="row">
           <div class="col-md-6 divCore">
             <div class="card">
-              <div class="card-header">
-
-
-                <div class="modal-dialog modal-custom">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title">Editar</h4>
-                      <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="row">
-
-
-
-
-
-                        <form method="POST" action="php/AlteraCategoria.php">
-                          <div class="col-md-12">
-                            <p class="text-muted-Core">
-                              <span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>
-                              <select id="selecaoTipo" name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore">
-                                <option value="" disabled selected>Selecione</option>
-                                <option value="1">Entrada de valores</option>
-                                <option value="2">Saída de valores</option>
-                                <option value="3">Transferência</option>
-                              </select>
-                            </p>
-                            <p class="text-muted-Core">
-                              <span class="tituloInputCore"><strong>Categoria:</strong></span>
-                              <select name="nCategoriaCore" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>
-                              </select>
-                            </p>
-                            <p class="text-muted-Core">
-                              <span class="tituloInputCore"><strong>SubCategoria:</strong></span>
-                              <select name="nSubCategoriaCore" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>
-                              </select>
-                            </p>
-
-                            <p class="text-muted-Core">
-                              <span class="tituloInputCore"><strong>Data:</strong></span>
-                              <input name="nDataCore" id="iDataCore" type="date" class="form-control caixaSelecaoCore">
-                            </p>
-
-
-                            <p class="text-muted-Core text-muted-Core-area">
-                              <span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>
-                              <textarea name="nDescr" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>
-                            </p>
-
-                            <p class="text-muted-Core">
-                              <span class="tituloInputCore"><strong>Valor:</strong></span>
-                              <input name="nValorCore" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">
-                            </p>
-
-                            <div class="text-muted-Core-button">
-                              <button type="button" id="ibtAlterarCard" class="btn btn-novo-core" data-toggle="modal">Alterar</button>
-                            </div>
-                        </form>
-
-
-
-
-
-
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <h3><?php echo DivisaoPorcInvestimentos(); ?></h3>
             </div>
           </div>
         </div>

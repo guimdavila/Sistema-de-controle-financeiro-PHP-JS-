@@ -770,6 +770,11 @@ tr.colunasCategorias td:hover {
 .iconGrafico{
     color: white;
 }
+.iconGraficoPercent{
+    color: white;
+    position: relative;
+    margin-top: 7%;
+}
 
 .FundoGrafico{
     padding: 30px;
