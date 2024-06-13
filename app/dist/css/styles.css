@@ -1,5 +1,9 @@
 body {
     background-color: #27374D;
+    
+}
+.sidebar{
+    background-color: #27374D;
 }
 
 /*Sidebar*/
@@ -8,6 +12,7 @@ body {
     margin-left: 13px;
     margin-right: 5px;
 }
+
 
 /*Sidebar*/
 
