@@ -1,5 +1,5 @@
 body {
-    background-color: #134b4b;
+    background-color: #27374D;
 }
 
 /*Sidebar*/
@@ -87,7 +87,7 @@ button {
 
 
 .card-primary:not(.card-outline)>.card-header {
-    background-color: #134b4b;
+    background-color: #27374D;
     padding-top: 10px;
     padding-bottom: 10px;
 
@@ -108,14 +108,14 @@ hr {
 }
 
 .brand-link {
-    background-color: #134b4b;
+    background-color: #27374D;
     font-size: 22px;
     font-family: "Sedan", serif;
 }
 
 .os-content {
 
-    background-color: #134b4b;
+    background-color: #27374D;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -123,7 +123,7 @@ hr {
 }
 
 .navbar-white {
-    background-color: #134b4b;
+    background-color: #27374D;
 }
 
 .navbar-light .navbar-nav .nav-link:focus,
@@ -132,12 +132,51 @@ hr {
 }
 
 .profile-user-img {
+    
+    margin-top: 1.2rem;
     padding: 0px;
+}
+.profile-user-img-edit-interno {
+    
+    margin-top: 1.2rem;
+    padding: 0px;
+}
+.profile-username-edit{
+    margin-top: 10px;
+}
+.profile-user-img-edit {
+    
+    margin-top: 15px;
+    padding: 0px;
+}
+.box-perfil-user-edit{
+    height: 29vh;
+}
+
+.card-body-margin-reduzida-edit{
+    height: 37vh;
 }
 
 .botao-foto {
     background-color: transparent;
     border: 1px solid transparent;
+    
+}
+
+.modal-footer-edit{
+    margin-top: 1rem;
+}
+.custom-file-input{
+    margin-top: 1.1rem;
+}
+.img-fluid {
+    height: 150px;
+    width: 150px;
+}
+
+.img-fluid-edit{
+    height: 100px;
+    width: 100px;
 }
 
 .fa-pen-to-square {
@@ -161,16 +200,16 @@ hr {
     margin-left: 10px;
     width: 110px;
     height: 35px;
-    background-color: rgb(55, 132, 164);
-    border-color: rgb(55, 132, 164);
+    background-color: #27374D;
+    border-color: #27374D;
     transition: none;
     color: white;
 
 }
 
 .btn-edit-perfil:hover {
-    background-color: rgb(55, 132, 164);
-    border-color: rgb(55, 132, 164);
+    background-color: #27374D;
+    border-color: #27374D;
     color: white;
 
 }
@@ -184,16 +223,14 @@ hr {
 
 }
 
+.tamanho-card-perfil{
+    height: 97vh;
+}
 
 .box-perfil-user {
     padding: 0.50rem;
-    height: 145px;
 }
 
-.img-fluid {
-    height: 100px;
-    width: 100px;
-}
 
 .text-muted {
     margin: 0px;
@@ -231,7 +268,7 @@ hr {
 }
 
 .modal-header {
-    background-color: #134b4b;
+    background-color: #27374D;
 
 }
 
@@ -259,17 +296,17 @@ hr {
 }
 
 .botaoCategorias.active {
-    background-color: #134b4b;
+    background-color: #27374D;
     color: white;
 }
 
 .botaoCategorias.active:hover {
-    background-color: #134b4b;
+    background-color: #27374D;
     color: white;
 }
 
 .botaoCategorias:hover {
-    color: #134b4b;
+    color: #27374D;
 }
 
 .tituloInput {
@@ -307,19 +344,32 @@ hr {
 }
 
 tr.colunasCategorias th {
-    background-color: #134b4b;
+    background-color: #27374D;
     color: white;
     text-align: center;
 }
 
 tr.colunasCategorias td {
-    border-color: #134b4b;
+    border-color: #27374D;
 }
 
 tr.colunasCategorias td:hover {
     cursor: pointer;
 }
-.container-cat-botao{
+
+.colunasCategoriasCore {
+    background-color: #27374D;
+    color: white;
+    text-align: center;
+}
+
+.colunasCategoriasCore:hover{
+    border-color: #27374D;
+}
+
+
+
+.container-cat-botao {
     display: flex;
     justify-content: flex-end;
 }
@@ -328,37 +378,38 @@ tr.colunasCategorias td:hover {
     margin-bottom: 10px;
     width: 200px;
     height: 35px;
-    background-color: #134b4b;
-    border-color: #134b4b;
+    background-color: #27374D;
+    border-color: #27374D;
     transition: none;
     color: white;
     left: 100%;
 }
 
+
 .btn-novo-cat:hover {
-    background-color: #134b4b;
-    border-color: #134b4b;
+    background-color: #27374D;
+    border-color: #27374D;
     color: white;
 
 }
 
-.form-control-categoria{
+.form-control-categoria {
     width: 15rem;
 }
 
 .tituloInputNovoCate {
     margin-right: 15px;
     margin-bottom: 20px;
-    display: flex;
     padding-top: 5px;
+    display: flex;
     width: 150px;
 }
 
-.input-group-prependCategoria{
+.input-group-prependCategoria {
     margin-top: 20px;
 }
 
-.caixaSelecaoCate{
+.caixaSelecaoCate {
     background-color: white;
     height: 35px;
     width: 240px;
@@ -368,16 +419,16 @@ tr.colunasCategorias td:hover {
     margin-bottom: 10px;
     width: 150px;
     height: 35px;
-    background-color: #134b4b;
-    border-color: #134b4b;
+    background-color: #27374D;
+    border-color: #27374D;
     transition: none;
     color: white;
     left: 100%;
 }
 
 .btn-salvar-cat:hover {
-    background-color: #134b4b;
-    border-color: #134b4b;
+    background-color: #27374D;
+    border-color: #27374D;
     color: white;
 
 }
@@ -385,13 +436,15 @@ tr.colunasCategorias td:hover {
 .tdInvisivel {
     display: none;
 }
-.tamanhoBodyConsulta{
-    height: 87vh;
+
+.tamanhoBodyConsulta {
+    height: 89vh;
 }
+
 
 /* Cor quando está checked */
 .custom-control-input:checked~.custom-control-label::before {
-    background-color: #134b4b !important;
+    background-color: #27374D !important;
 }
 
 .classeLapis {
@@ -399,56 +452,60 @@ tr.colunasCategorias td:hover {
 }
 
 .iconTabela {
-    color: #134b4b;
+    color: #27374D;
 }
+
 .hidden {
     display: none;
 }
 
 
 /*Core.php*/
-.mesAnoCore{
+.mesAnoCore {
     height: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-.AnoCore{
+
+.AnoCore {
     width: 100px;
 }
 
-.MesCore{
+.MesCore {
     width: 120px;
 }
-.BotaoTransparente{
+
+.BotaoTransparente {
     background-color: transparent;
     border: none;
     width: 50px;
 }
+
 .tamanho-body1 {
-    height: 82vh; 
+    height: 75vh;
 }
+
 .tamanho-body2 {
-    height: 89vh; 
+    height: 87vh;
     padding: 0px;
     border-radius: 5%;
 }
-.tituloInputCore{
+
+.tituloInputCore {
     margin-right: 20px;
     color: black;
-    display: inline-block; 
+    display: inline-block;
     width: 170px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .caixaSelecaoCore {
-    display: inline-block; 
-    width: 300px; 
+    display: inline-block;
+    width: 300px;
 }
 
-.divCore{
-    
-}
-
-.form-control-core{
+.form-control-core {
     width: 300px;
 }
 
@@ -456,7 +513,7 @@ tr.colunasCategorias td:hover {
     flex: auto;
     display: flex;
     align-items: center;
-    border: 1px solid black; 
+    border: 1px solid black;
     height: 33.33%;
     color: white;
 }
@@ -464,47 +521,266 @@ tr.colunasCategorias td:hover {
 .text-muted-Core {
     margin: 0px;
     position: relative;
-    top: 35%; 
-
+    top: 35%;
+    align-items: center;
+    display: flex;
 }
 
-.objetoEntrada{
+.text-muted-Core-area {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.objetoEntrada {
     background-color: rgb(9, 53, 9);
 }
-.objetoSaida{
+
+.objetoSaida {
     background-color: rgb(110, 10, 10);
 }
-.objetoSaldo{
-    background-color:#134b4b
+
+.objetoSaldo {
+    background-color: #27374D
 }
 
-.iconesCore{
+.iconesCore {
     font-size: 80px;
     margin-left: 30px;
     margin-right: 30px;
     width: 70px;
 }
-.iconesCore:hover{
-    transition: 0.5s;  
-    font-size: 85px;  
+
+.iconesCore:hover {
+    transition: 0.5s;
+    font-size: 85px;
 
 }
-.iconesCoreEntrada, .spanCoreEntrada{
+
+.iconesCoreEntrada,
+.spanCoreEntrada {
     color: rgb(4, 26, 4);
 }
-.iconesCoreSaida, .spanCoreSaida{
+
+.iconesCoreSaida,
+.spanCoreSaida {
     color: rgb(77, 7, 7);
 }
-.iconesCoreSaldo, .spanCoreSaldo{
-    color:#0c3030
+
+.iconesCoreSaldo,
+.spanCoreSaldo {
+    color: #0c3030
 }
 
-.spanCore{
+.spanCore {
     font-size: 40px;
 }
 
 
+
 .vertical-line {
-    border-left: 1px solid black; 
-    height: 100%; 
-  }
+    border-left: 1px solid black;
+    height: 100%;
+}
+
+.btn-novo-core {
+    margin-bottom: 10px;
+    margin-right: 20px;
+    width: 200px;
+    height: 35px;
+    background-color: #27374D;
+    border-color: #27374D;
+    transition: none;
+    color: white;
+    left: 100%;
+}
+.btn-novo-core:hover {
+    background-color: #27374D;
+    border-color: #27374D;
+    color: white;
+}
+
+.text-muted-Core-button {
+    margin-top: 0.8rem;
+}
+
+.text-area-core {
+    max-height: 80px;
+    min-height: 80px;
+}
+
+
+.container-resumo {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 45rem;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #DDE6ED;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.infoCore {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.value {
+    margin-left: 5px;
+}
+
+.infoCore>.col>div {
+    margin-bottom: 10px;
+}
+
+.cardsGravados {
+    margin-top: 10px;
+    width: auto;
+    height: 85vh;
+    /* Define a altura máxima da div para evitar que ela cresça infinitamente */
+    overflow-y: auto;
+}
+
+.iconefooter{
+    display: block; 
+    justify-items: center; 
+    padding-top: 5px;
+    
+
+}
+.footerCore {
+    background-color: #27374D;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 85px;
+}
+.modal-custom {
+    left: 6.5%;
+    max-width: 75%; 
+}
+.containerResultados{
+    margin-left: 20%;
+}
+.labelResultados{
+    margin-right: 10px;
+}
+
+.iconsResultados{
+    margin-right: 20px;
+    font-size: 35px;
+    color: #526D82;
+}
+
+.Anualtable {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.tr.mes th {
+    width: 7.69%; 
+    border: 1px solid black;
+}
+
+.botaoInvisivel{
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    margin-right: 10px;
+    height: 0px;
+}
+
+.containerAlteracao{
+    display: flex;
+    align-items: center; 
+    margin-bottom: 30px;
+}
+.inputAlteracao{
+    width: 18rem;
+}
+
+.tituloAlteracao{
+    margin-right: 20px;
+
+}
+
+.container-resumo-card {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 45rem;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #DDE6ED;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.caixaSpanCard{
+    position: relative;
+    margin-left: 70px;
+}
+
+.label-priCol{
+    display: inline-block; /* This ensures the width is respected */
+    width: 74px;
+}
+.label-secCol{
+    position: absolute;
+    left: 40%;
+}
+.value-secCol{
+    position: absolute;
+    left: 57%;
+}
+
+.botaoInvisivelCard{
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    margin-right: 10px;
+    height: 0px;
+    position: relative;
+    align-self: center; /* Centraliza o botão verticalmente */
+    left:60%;
+}
+
+.cardGrafico{
+    background-color: 526D82;
+    color: white;
+}
+.iconGrafico{
+    color: white;
+}
+.iconGraficoPercent{
+    color: white;
+    position: relative;
+    margin-top: 7%;
+}
+
+.FundoGrafico{
+    padding: 30px;
+}
+
+
+.tamanhoHome {
+    height: 96vh;
+}

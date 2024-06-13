@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Abr-2024 às 03:10
+-- Tempo de geração: 12-Jun-2024 às 03:04
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 8.1.2
 
@@ -56,7 +56,12 @@ INSERT INTO `categoria` (`idCategoria`, `nomeCategoria`, `idTipoMovimentacao`, `
 (15, 'Seguros', 2, NULL),
 (16, 'Impostos', 2, NULL),
 (17, 'Animais Domésticos', 2, NULL),
-(18, 'Vouchers', 3, NULL);
+(18, 'Vouchers', 3, NULL),
+(19, 'Outros', 1, NULL),
+(20, 'Outros', 2, NULL),
+(21, 'Envio a Investimento', 3, NULL),
+(22, 'aTESTE', 1, 1),
+(23, 'Retirada de Investimento', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -75,7 +80,7 @@ CREATE TABLE `coabitanteusuario` (
 --
 
 INSERT INTO `coabitanteusuario` (`idCoabitanteUsuario`, `nomeCoabitante`, `idUsuarioPrincipal`) VALUES
-(1, 'Nicole Bergamo de Santana', 1),
+(1, '1', 1),
 (2, 'Camila', 3);
 
 -- --------------------------------------------------------
@@ -95,6 +100,22 @@ CREATE TABLE `movimentacao` (
   `idTipoMovimentacao` int(11) DEFAULT NULL,
   `dataAviso` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `movimentacao`
+--
+
+INSERT INTO `movimentacao` (`idMovimentacao`, `descricao`, `data`, `valor`, `idUsuario`, `idCategoria`, `idSubCategoria`, `idTipoMovimentacao`, `dataAviso`) VALUES
+(5, 'Guilherme', '2025-06-01 00:00:00', '540.00', 1, 18, 44, 3, NULL),
+(6, '', '2024-01-01 00:00:00', '1786.72', 1, 7, 47, 2, NULL),
+(8, 'Contadora (IR)', '2024-01-01 00:00:00', '160.00', 1, 20, 48, 2, NULL),
+(64, 'aa', '2024-06-11 00:00:00', '11.11', 1, 3, 4, 1, NULL),
+(65, 'aa', '2024-06-11 00:00:00', '11.11', 1, 3, 4, 1, NULL),
+(66, 'aaa', '2024-06-11 00:00:00', '5000.00', 1, 21, 49, 3, NULL),
+(67, 'aaa', '2024-06-11 00:00:00', '5000.00', 1, 21, 49, 3, NULL),
+(68, 'aaa', '2024-06-11 00:00:00', '1000.00', 1, 21, 50, 3, NULL),
+(69, 'aaa', '2024-06-11 00:00:00', '200.00', 1, 23, 53, 3, NULL),
+(70, 'aaa', '2024-06-11 00:00:00', '1000.00', 1, 23, 52, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -155,10 +176,17 @@ INSERT INTO `subcategoria` (`idSubCategoria`, `nomeSubCategoria`, `idCategoria`,
 (39, 'Imposto de Renda', 16, NULL),
 (40, 'Alimentação', 17, NULL),
 (41, 'Medicamentos e Vacinas', 17, NULL),
-(42, 'Outros', 17, NULL),
 (43, 'Vale Refeição', 18, NULL),
 (44, 'Vale Alimentação', 18, NULL),
-(45, 'Vale Transporte', 18, NULL);
+(45, 'Vale Transporte', 18, NULL),
+(46, 'Outros', 19, NULL),
+(47, 'Financiamento', 7, NULL),
+(48, 'Outros', 20, NULL),
+(49, 'Poupança', 21, NULL),
+(50, 'Tesouro Direto', 21, NULL),
+(51, 'TesteNOVO', 1, 1),
+(52, 'Poupança', 23, NULL),
+(53, 'Tesouro Direto', 23, NULL);
 
 -- --------------------------------------------------------
 
@@ -291,7 +319,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `coabitanteusuario`
@@ -303,13 +331,13 @@ ALTER TABLE `coabitanteusuario`
 -- AUTO_INCREMENT de tabela `movimentacao`
 --
 ALTER TABLE `movimentacao`
-  MODIFY `idMovimentacao` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMovimentacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT de tabela `subcategoria`
 --
 ALTER TABLE `subcategoria`
-  MODIFY `idSubCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `idSubCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de tabela `tipomovimentacao`

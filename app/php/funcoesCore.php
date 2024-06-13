@@ -7,36 +7,12 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 
 $id                     = $_SESSION['idUsuario'];
-$tipoMovimentacao          = $_POST['nTipoMovimentacao'];
 
 
 if($tipoMovimentacao != ""){
 
     SolicitaCategoriasCore($id, $tipoMovimentacao);
 }
-
-
-$phpTipoMovimentacao = $_POST['selecaoTipo'];
-
-if($phpTipoMovimentacao != ""){
-
-    include("conexao.php");
-
-    $sql = "SELECT NOMECATEGORIA FROM CATEGORIA WHERE (idusuario = $id OR idusuario IS NULL) and idTipoMovimentacao = $phpTipoMovimentacao;";
-
-    $resultSql = mysqli_query($conexao, $sql);
-
-}
-
-
-
-
-
-
-
-
-
-
 
 
 function SolicitaCategoriasCore($id, $tipoMovimentacao){
@@ -55,6 +31,3 @@ function SolicitaCategoriasCore($id, $tipoMovimentacao){
 
     return $lista;
 }
-
-
-
