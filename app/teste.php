@@ -34,7 +34,7 @@ include('php/funcoes.php');
         <div class="row">
           <div class="col-md-6 divCore">
             <div class="card">
-            <h3><?php echo DivisaoPorcInvestimentos(); ?></h3>
+              <h3> <?php PositivoMes($id) ?></h3>
             </div>
           </div>
         </div>
@@ -42,6 +42,32 @@ include('php/funcoes.php');
     </section>
   </div>
 
+  <script>
+    var anoAtual = new Date().getFullYear();
+    var mesAtual = new Date().getMonth() + 1;
+    var mesAtualFormatado = mesAtual < 10 ? '0' + mesAtual : mesAtual.toString();
+
+    console.log(anoAtual, mesAtualFormatado)
+
+    fetch('php/funcaoAnalitico.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ano: anoAtual,
+          mes: mesAtualFormatado
+        })
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log("Resposta do servidor:", data);
+      })
+      .catch(error => {
+        console.error("Erro:", error);
+      });
+
+  </script>
 </body>
 
 </html>

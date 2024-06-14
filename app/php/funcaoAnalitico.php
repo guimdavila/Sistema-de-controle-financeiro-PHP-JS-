@@ -6,6 +6,229 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 $id = $_SESSION['idUsuario'];
 
+$input = file_get_contents('php://input');
+$data = json_decode($input, true);
+$mesAtual = '';
+
+// No arquivo php/funcaoAnalitico.php
+$ano = '';
+
+function PositivoMes($id)
+{
+    $Positivo = '';
+    $Negativo = '';
+    $cont = 0;
+    $ano = date('y');
+
+    include("conexao.php");
+
+    $sql = "SELECT
+            meses.mes,
+            COALESCE(SUM(CASE WHEN m.idTipoMovimentacao = '1' THEN m.valor ELSE 0 END), 0) AS positivo,
+            COALESCE(SUM(CASE WHEN m.idTipoMovimentacao = '2' THEN m.valor ELSE 0 END), 0) AS negativo
+        FROM (
+            SELECT 1 AS mes UNION ALL
+            SELECT 2 AS mes UNION ALL
+            SELECT 3 AS mes UNION ALL
+            SELECT 4 AS mes UNION ALL
+            SELECT 5 AS mes UNION ALL
+            SELECT 6 AS mes UNION ALL
+            SELECT 7 AS mes UNION ALL
+            SELECT 8 AS mes UNION ALL
+            SELECT 9 AS mes UNION ALL
+            SELECT 10 AS mes UNION ALL
+            SELECT 11 AS mes UNION ALL
+            SELECT 12 AS mes
+        ) meses
+        LEFT JOIN MOVIMENTACAO m ON MONTH(m.data) = meses.mes AND YEAR(m.data) = '20$ano'  AND m.idusuario = '$id'
+        GROUP BY meses.mes
+        ORDER BY meses.mes;";
+
+
+    $result = mysqli_query($conexao, $sql);
+
+    // Validar se tem retorno do BD
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            if ($cont == 0) {
+                $Positivo .=  $row['positivo'] ;
+            } else {
+                $Positivo .= ", " . $row['positivo'];
+            }
+
+            if ($row['negativo'] != "") {
+                $Negativo .= "'" . $row['negativo'] . "'";
+            } else {
+                $Negativo .= ",'" . $row['negativo'] . "'";
+            }
+
+            $cont++;
+        }
+        echo $Positivo;
+    } else {
+        echo "Nenhum registro encontrado.";
+    }
+
+    mysqli_close($conexao);
+}
+
+function NegativosMes($id)
+{
+    $Negativo = '';
+    $cont = 0;
+    $ano = date('y');
+
+    include("conexao.php");
+
+    $sql = "SELECT
+            meses.mes,
+            COALESCE(SUM(CASE WHEN m.idTipoMovimentacao = '1' THEN m.valor ELSE 0 END), 0) AS positivo,
+            COALESCE(SUM(CASE WHEN m.idTipoMovimentacao = '2' THEN m.valor ELSE 0 END), 0) AS negativo
+        FROM (
+            SELECT 1 AS mes UNION ALL
+            SELECT 2 AS mes UNION ALL
+            SELECT 3 AS mes UNION ALL
+            SELECT 4 AS mes UNION ALL
+            SELECT 5 AS mes UNION ALL
+            SELECT 6 AS mes UNION ALL
+            SELECT 7 AS mes UNION ALL
+            SELECT 8 AS mes UNION ALL
+            SELECT 9 AS mes UNION ALL
+            SELECT 10 AS mes UNION ALL
+            SELECT 11 AS mes UNION ALL
+            SELECT 12 AS mes
+        ) meses
+        LEFT JOIN MOVIMENTACAO m ON MONTH(m.data) = meses.mes AND YEAR(m.data) = '20$ano'  AND m.idusuario = '$id'
+        GROUP BY meses.mes
+        ORDER BY meses.mes;";
+
+
+    $result = mysqli_query($conexao, $sql);
+
+    // Validar se tem retorno do BD
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+
+            if ($cont == 0) {
+                $Negativo .=  $row['negativo'] ;
+            } else {
+                $Negativo .= ", " . $row['negativo'];
+            }
+            
+            $cont++;
+        }
+        echo $Negativo;
+    } else {
+        echo "Nenhum registro encontrado.";
+    }
+
+    mysqli_close($conexao);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function positivosMes($id)
+{
+    $positivoMes = 0;
+
+    $mesAtual = date('m');
+
+    include("conexao.php");
+
+    $sql = "SELECT sum(valor) as positivo 
+            FROM MOVIMENTACAO 
+            WHERE data BETWEEN '2024-$mesAtual-01 00:00:00' AND '2024-$mesAtual-31 23:59:59' 
+            AND idTipoMovimentacao = '1' 
+            AND idusuario = $id;";
+    $result = mysqli_query($conexao, $sql);
+    mysqli_close($conexao);
+
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $coluna) {
+            $positivoMes = $coluna['positivo'];
+        }
+    }
+
+    return $positivoMes;
+}
+
+function negativoMes($id)
+{
+    $negativo = 0;
+
+    $mesAtual = date('m');
+
+    include("conexao.php");
+
+    $sql = "SELECT sum(valor) as negativo 
+            FROM MOVIMENTACAO 
+            WHERE data BETWEEN '2024-$mesAtual-01 00:00:00' AND '2024-$mesAtual-31 23:59:59' 
+            AND idTipoMovimentacao = '2' 
+            AND idusuario = $id;";
+    $result = mysqli_query($conexao, $sql);
+    mysqli_close($conexao);
+
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $coluna) {
+            $negativo = $coluna['negativo'];
+        }
+    }
+
+    return $negativo;
+}
+
+
+function saldoMes($id)
+{
+    $saldo = 0;
+
+    $mesAtual = date('m');
+
+    include("conexao.php");
+
+    $sql = "SELECT
+    (SELECT SUM(valor) 
+     FROM MOVIMENTACAO 
+     WHERE data BETWEEN '2024-$mesAtual-01 00:00:00' AND '2024-$mesAtual-31 00:00:00' 
+     AND idTipoMovimentacao = '1' 
+     AND idusuario = $id) 
+    -
+    (SELECT SUM(valor) 
+     FROM MOVIMENTACAO 
+     WHERE data BETWEEN '2024-$mesAtual-01 00:00:00' AND '2024-$mesAtual-31 00:00:00' 
+     AND idTipoMovimentacao = '2'
+     AND idusuario = $id) 
+    AS saldo;";
+
+    $result = mysqli_query($conexao, $sql);
+    mysqli_close($conexao);
+
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $coluna) {
+            $saldo = $coluna['saldo'];
+        }
+    }
+
+    return $saldo;
+}
+
 function qtdCategorias()
 {
 
@@ -241,17 +464,15 @@ function DivisaoPorcInvestimentos()
             }
 
             $porcentagem = number_format($porcentagem, 2, ',', '.');
-            
+
             if (!empty($porcentagem)) {
                 if ($cont == 0) {
-                    $ReturnPorcentagem = $resultado['nomeSubcategoria'] . " - ". $porcentagem . "%<br>";
+                    $ReturnPorcentagem = $resultado['nomeSubcategoria'] . " - " . $porcentagem . "%<br>";
                 } else {
-                    $ReturnPorcentagem .= $resultado['nomeSubcategoria'] . " - ". $porcentagem . "%<br>";
+                    $ReturnPorcentagem .= $resultado['nomeSubcategoria'] . " - " . $porcentagem . "%<br>";
                 }
                 $cont++;
             }
-            
-            
         }
 
         echo $ReturnPorcentagem;

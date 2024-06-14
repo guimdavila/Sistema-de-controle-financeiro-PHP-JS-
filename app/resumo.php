@@ -114,6 +114,8 @@ include('partes/css.php');
                                     </div>
                                     <div class="col-4">
 
+                                        <h1 class="display-1 tituloResultados">Investimentos</h1>
+
                                         <div class="small-box cardGrafico">
                                             <div class="inner">
                                                 <h3> R$ <?php echo totalInvestimento($id); ?></h3>
@@ -124,7 +126,7 @@ include('partes/css.php');
                                                 <i class="ion fa-solid fa-piggy-bank iconGrafico"></i>
                                             </div>
                                         </div>
-                                        <div class="card card-danger">
+                                        <div class="card card-success">
                                             <div class="card-header">
                                                 <h3 class="card-title">Investimentos</h3>
 

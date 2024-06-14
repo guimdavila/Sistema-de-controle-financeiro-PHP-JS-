@@ -764,7 +764,7 @@ tr.colunasCategorias td:hover {
 }
 
 .cardGrafico{
-    background-color: 526D82;
+    background-color: #526D82;
     color: white;
 }
 .iconGrafico{
@@ -779,8 +779,45 @@ tr.colunasCategorias td:hover {
 .FundoGrafico{
     padding: 30px;
 }
-
+.FundoGraficoHome{
+    padding: 15px;
+}
 
 .tamanhoHome {
     height: 96vh;
+    padding-left: 100px;
+}
+
+.tituloResultados{
+    font-size: 40px;
+    margin-bottom: 3rem;
+}
+
+.containerAno{
+    margin-left: 40px;
+}
+
+
+.cardGraficoHome{
+    background-color: #526D82;
+    color: white;
+    height: 6.5rem;
+}
+
+.iconGraficoHome{
+    color: white;
+    margin-right: 10px;
+}
+
+.tituloResultadosHome{
+    font-size: 25px;
+    margin-bottom: 1rem;
+}
+
+.card-success:not(.card-outline)>.card-header {
+    background-color: #526D82;
+}
+.containerAnoTitulo{
+    margin-left: 40px;
+    margin-top: 70px;
 }

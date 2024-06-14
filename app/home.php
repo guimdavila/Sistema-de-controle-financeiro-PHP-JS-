@@ -53,73 +53,89 @@ include('partes/css.php'); //importes de CSS
           <div class="row">
             <div class="col-12">
               <div class="card tamanhoHome">
-                <div class="row FundoGrafico">
-                  <div class="col-6">
-                    <div class="small-box cardGrafico">
-                      <div class="inner">
-                        <h3><?php echo qtdCategorias(); ?></h3>
-
-                        <p>Quantidade de Categorias</p>
-                      </div>
-                      <div class="icon">
-                        <i class="ion ion-stats-bars iconGrafico"></i>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="col-6">
-                    <div class="small-box cardGrafico">
-                      <div class="inner">
-                      <h3><?php echo qtdSubCategoria(); ?></h3>
-
-                        <p>Quantidade de SubCategorias</p>
-                      </div>
-                      <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                      </div>
+                <div class="row FundoGraficoHome">
+                  <div class="col-12">
+                    <div class="containerAnoTitulo">
+                      <h1 class="display-1 tituloResultadosHome"><b>Resumo Mês Atual</b></h1>
                     </div>
                   </div>
 
+                  <div class="col-4">
 
-                  <!-- PIE CHART -->
+                    <div class="containerAno">
+                      <div class="small-box small-box-Home cardGraficoHome">
+                        <div class="inner">
+                          <h3 class="h3Home">R$ <?php echo positivosMes($id); ?></h3>
+                          <p class="pHome">Entradas</p>
+                        </div>
+                        <div class="icon">
+                          <i class="ion fa-solid fa-plus iconGraficoHome" style="font-size: 50px;"></i>
+                        </div>
+                      </div>
 
-                  <div class="col-6">
-                    <div class="card card-danger">
+                      <div class="small-box small-box-Home cardGraficoHome">
+                        <div class="inner">
+                          <h3 class="h3Home">R$ <?php echo negativoMes($id); ?></h3>
+                          <p class="pHome">Saídas</p>
+                        </div>
+                        <div class="icon">
+                          <i class="ion fa-solid fa-minus iconGraficoHome" style="font-size: 50px;"></i>
+                        </div>
+                      </div>
+
+                      <div class="small-box small-box-Home cardGraficoHome">
+                        <div class="inner">
+                          <h3 class="h3Home">R$ <?php echo saldoMes($id); ?></h3>
+                          <p class="pHome">Saldo</p>
+                        </div>
+                        <div class="icon">
+                          <i class="ion fa-solid fa-equals iconGraficoHome" style="font-size: 50px;"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-6 " style="margin-left: 120px;">
+                    <div class="card card-success graficopizzaHome">
                       <div class="card-header">
-                        <h3 class="card-title">Pie Chart</h3>
-
-                       
+                        <h3 class="card-title">Divisão </h3>
                       </div>
                       <div class="card-body">
                         <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                       </div>
                       <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                   </div>
 
 
+                  <div class="col-12">
+                    <div class="containerAnoTitulo">
+                      <h1 class="display-1 tituloResultadosHome"><b>Resumo Anual</b></h1>
+                    </div>
+                  </div>
 
-                  <div class="col-6">
-                    <!-- BAR CHART -->
-                    <div class="card card-success">
-                      <div class="card-header">
-                        <h3 class="card-title">Bar Chart</h3>
-                      </div>
-                      <div class="card-body">
-                        <div class="chart">
-                          <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+
+                  <div class="col-11">
+                    <div class="containerAno">
+                      <div class="card card-success">
+                        <div class="card-header cabeçalho">
+                          <h3 class="card-title">Anual</h3>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart">
+                            <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                          </div>
                         </div>
                       </div>
-                      <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                   </div>
 
                 </div>
               </div>
             </div>
           </div>
+
+
 
 
         </div>
@@ -130,6 +146,35 @@ include('partes/css.php'); //importes de CSS
   <!-- ./wrapper -->
 
   <script>
+    // Obter o ano atual
+    var anoAtual = new Date().getFullYear();
+    var mesAtual = new Date().getMonth() + 1;
+    var mesAtualFormatado = mesAtual < 10 ? '0' + mesAtual : mesAtual.toString();
+
+    console.log(anoAtual, mesAtualFormatado)
+
+    fetch('php/funcaoAnalitico.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ano: anoAtual,
+          mes: mesAtualFormatado
+        })
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log("Resposta do servidor:", data);
+      })
+      .catch(error => {
+        console.error("Erro:", error);
+      });
+
+      
+
+
+
     $(function() {
 
       //-------------
@@ -161,31 +206,31 @@ include('partes/css.php'); //importes de CSS
 
 
       var areaChartData = {
-        labels: ['Admin', 'Empresa', 'Comum'],//CRIAR UM ECHO EM PHP PARA RETORNAR AS LABELS
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'], //CRIAR UM ECHO EM PHP PARA RETORNAR AS LABELS
         datasets: [
 
           {
-            label: 'Ativo',
-            backgroundColor: 'rgba(60,141,188,0.9)',
+            label: 'Entradas',
+            backgroundColor: 'rgb(79, 121, 66)',
             borderColor: 'rgba(60,141,188,0.8)',
             pointRadius: false,
             pointColor: '#3b8bba',
             pointStrokeColor: 'rgba(60,141,188,1)',
             pointHighlightFill: '#fff',
             pointHighlightStroke: 'rgba(60,141,188,1)',
-            data: [28, 48, 40] //CRIAR UM ECHO EM PHP PARA RETORNAR OS RESULTAODS
+            data: [<?php PositivoMes($id) ?>] //CRIAR UM ECHO EM PHP PARA RETORNAR OS RESULTAODS
           },
 
           {
-            label: 'Inativo',
-            backgroundColor: 'rgba(210, 214, 222, 1)',
+            label: 'Saídas',
+            backgroundColor: 'rgba(161, 26, 26, 1)',
             borderColor: 'rgba(210, 214, 222, 1)',
             pointRadius: false,
             pointColor: 'rgba(210, 214, 222, 1)',
             pointStrokeColor: '#c1c7d1',
             pointHighlightFill: '#fff',
             pointHighlightStroke: 'rgba(220,220,220,1)',
-            data: [65, 59, 80]
+            data: [<?php NegativosMes($id) ?>]
           },
 
         ]
