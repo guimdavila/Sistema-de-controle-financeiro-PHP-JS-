@@ -51,7 +51,7 @@ function PositivoMes($id)
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             if ($cont == 0) {
-                $Positivo .=  $row['positivo'] ;
+                $Positivo .=  $row['positivo'];
             } else {
                 $Positivo .= ", " . $row['positivo'];
             }
@@ -110,11 +110,11 @@ function NegativosMes($id)
         while ($row = mysqli_fetch_assoc($result)) {
 
             if ($cont == 0) {
-                $Negativo .=  $row['negativo'] ;
+                $Negativo .=  $row['negativo'];
             } else {
                 $Negativo .= ", " . $row['negativo'];
             }
-            
+
             $cont++;
         }
         echo $Negativo;
@@ -125,23 +125,38 @@ function NegativosMes($id)
     mysqli_close($conexao);
 }
 
+function misto($id)
+{
+    $misto = 0;
 
+    $mesAtual = date('m');
 
+    include("conexao.php");
 
+    $sql = "SELECT
+    (SELECT COALESCE(SUM(valor), 0) 
+     FROM MOVIMENTACAO 
+     WHERE data BETWEEN '2024-$mesAtual-01 00:00:00' AND '2024-$mesAtual-31 23:59:59' 
+     AND idTipoMovimentacao = '1' 
+     AND idusuario = $id) AS positivo,
+    
+    (SELECT COALESCE(SUM(valor), 0) 
+     FROM MOVIMENTACAO 
+     WHERE data BETWEEN '2024-$mesAtual-01 00:00:00' AND '2024-$mesAtual-31 23:59:59' 
+     AND idTipoMovimentacao = '2' 
+     AND idusuario = $id) AS negativo;
+";
+    $result = mysqli_query($conexao, $sql);
+    mysqli_close($conexao);
 
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $coluna) {
+            $misto = $coluna['positivo'] . ", " .  $coluna['negativo'];
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    return $misto;
+}
 
 
 function positivosMes($id)

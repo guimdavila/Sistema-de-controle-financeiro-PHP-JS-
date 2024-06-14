@@ -101,7 +101,7 @@ include('partes/css.php'); //importes de CSS
                         <h3 class="card-title">Divisão </h3>
                       </div>
                       <div class="card-body">
-                        <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        <canvas id="pieChart" style="min-height: 200px; height: 200px; max-height: 200px; max-width: 100%;"></canvas>
                       </div>
                       <!-- /.card-body -->
                     </div>
@@ -123,7 +123,7 @@ include('partes/css.php'); //importes de CSS
                         </div>
                         <div class="card-body">
                           <div class="chart">
-                            <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                            <canvas id="barChart" style="min-height: 200px; height: 200px; max-height: 200px; max-width: 100%;"></canvas>
                           </div>
                         </div>
                       </div>
@@ -184,12 +184,12 @@ include('partes/css.php'); //importes de CSS
       var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
       var pieData = {
         labels: [
-          'Saidas',
           'Entradas',
+          'Saidas',
         ],
         datasets: [{
-          data: [700, 500],
-          backgroundColor: ['#DC3545', '#00a65a'],
+          data: [<?php echo  misto($id) ?>],
+          backgroundColor: ['rgb(79, 121, 66)', '#a11a1a'],
         }]
       }
       var pieOptions = {

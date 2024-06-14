@@ -811,6 +811,8 @@ tr.colunasCategorias td:hover {
 }
 .FundoGraficoHome{
     padding: 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .tamanhoHome {
@@ -831,7 +833,7 @@ tr.colunasCategorias td:hover {
 .cardGraficoHome{
     background-color: #526D82;
     color: white;
-    height: 6.5rem;
+    height: 5.5rem;
 }
 
 .iconGraficoHome{
@@ -840,8 +842,8 @@ tr.colunasCategorias td:hover {
 }
 
 .tituloResultadosHome{
+    margin-top: 25px;
     font-size: 25px;
-    margin-bottom: 1rem;
 }
 
 .card-success:not(.card-outline)>.card-header {
@@ -849,5 +851,15 @@ tr.colunasCategorias td:hover {
 }
 .containerAnoTitulo{
     margin-left: 40px;
-    margin-top: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+element.style {
+    min-height: 200px;
+    height: 200px;
+    max-height: 200px;
+    max-width: 100%;
+    display: block;
+    width: 770px;
 }
