@@ -1,6 +1,35 @@
 body {
     background-color: #27374D;
+    
 }
+
+.sidebar{
+    background-color: #27374D;
+}
+
+.page-link {
+    color: #fff;  /* Cor do texto dos links de paginação */
+    color: #27374D;  /* Cor de fundo dos links de paginação */
+}
+
+.page-link:hover {
+    color: #fff;  /* Cor do texto dos links de paginação ao passar o mouse */
+    background-color: #27374D;  /* Cor de fundo dos links de paginação ao passar o mouse */
+    border-color: #27374D;  /* Cor da borda dos links de paginação ao passar o mouse */
+}
+
+.page-item.active .page-link {
+    color: #fff;  /* Cor do texto do link de paginação ativo */
+    background-color: #27374D;  /* Cor de fundo do link de paginação ativo */
+    border-color: #27374D;  /* Cor da borda do link de paginação ativo */
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;  /* Cor do texto do link de paginação desativado */
+    background-color: #fff;  /* Cor de fundo do link de paginação desativado */
+    border-color: #dee2e6;  /* Cor da borda do link de paginação desativado */
+}
+
 
 /*Sidebar*/
 
@@ -8,6 +37,7 @@ body {
     margin-left: 13px;
     margin-right: 5px;
 }
+
 
 /*Sidebar*/
 
