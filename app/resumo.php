@@ -54,60 +54,56 @@ include('partes/css.php');
                         <div class="col-12">
                             <div class="card tamanhoHome">
                                 <div class="row FundoGrafico">
-                                    <div class="col-4">
-                                        <div class="small-box cardGrafico">
+                                    <div class="col-6">
+                                        
+                                    <h1 class="display-1 tituloResultados">Dados do mês</h1>
+                                        <div class="small-box cardGrafico cardGraficoResumo">
+                                            <div class="inner">
+                                                <h3><?php echo SubCategoriaMaiorSaída($id); ?></h3>
+
+                                                <p>Sub-Categoria com maior saída</p>
+                                            </div>
+                                            <div class="icon">
+                                            <i class="ion fa-solid fa-money-bill-trend-up iconGrafico"></i>
+                                            </div>
+                                        </div>
+                                        <div class="small-box cardGrafico cardGraficoResumo">
+                                            <div class="inner">
+                                                <h3></h3>
+
+                                                <p>Em desenvolvimento</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion fa-solid fa-person-digging iconGrafico"></i>
+                                            </div>
+                                        </div>
+                                        
+                                        <h1 class="display-1 tituloResultados">Categoria e Sub-Categoria</h1>
+
+                                        <div class="small-box cardGrafico cardGraficoResumo">
                                             <div class="inner">
                                                 <h3><?php echo qtdCategorias(); ?></h3>
 
                                                 <p>Quantidade de Categorias</p>
                                             </div>
                                             <div class="icon">
-                                                <i class="ion ion-stats-bars iconGrafico"></i>
+                                                <i class="ion fa-solid fa-list iconGrafico"></i>
                                             </div>
                                         </div>
-                                        <div class="small-box cardGrafico">
+                                        <div class="small-box cardGrafico cardGraficoResumo">
                                             <div class="inner">
                                                 <h3><?php echo qtdSubCategoria(); ?></h3>
 
                                                 <p>Quantidade de SubCategorias</p>
                                             </div>
                                             <div class="icon">
-                                                <i class="ion ion-stats-bars iconGrafico"></i>
+                                                <i class="ion fa-solid fa-tags iconGrafico"></i>
                                             </div>
                                         </div>
-                                        <div class="small-box cardGrafico">
-                                            <div class="inner">
-                                                <h3><?php echo qtdSubCategoria(); ?></h3>
-
-                                                <p>Quantidade de SubCategorias</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ion ion-stats-bars iconGrafico"></i>
-                                            </div>
-                                        </div>
-                                        <div class="small-box cardGrafico">
-                                            <div class="inner">
-                                                <h3><?php echo qtdSubCategoria(); ?></h3>
-
-                                                <p>Quantidade de SubCategorias</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ion ion-stats-bars iconGrafico"></i>
-                                            </div>
-                                        </div>
-                                        <div class="small-box cardGrafico">
-                                            <div class="inner">
-                                                <h3><?php echo qtdSubCategoria(); ?></h3>
-
-                                                <p>Quantidade de SubCategorias</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ion ion-stats-bars iconGrafico"></i>
-                                            </div>
-                                        </div>
+                                     
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-2">
 
 
 
@@ -136,7 +132,7 @@ include('partes/css.php');
                                             </div>
                                             <!-- /.card-body -->
                                         </div>
-                                        <div class="small-box cardGrafico">
+                                        <div class="small-box cardGrafico cardGraficoPorcent">
                                             <div class="icon">
                                                 <i class="ion fa-solid fa-percent iconGraficoPercent"></i>
                                             </div>

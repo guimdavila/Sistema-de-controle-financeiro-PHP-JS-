@@ -13,6 +13,42 @@ $mesAtual = '';
 // No arquivo php/funcaoAnalitico.php
 $ano = '';
 
+function SubCategoriaMaiorSaída($id)
+{
+    $SubMaiorSaida = 0;
+
+    $mesAtual = date('m');
+
+    include("conexao.php");
+
+    $sql = "SELECT b.nomesubcategoria, 
+            SUM(a.valor) AS total_valor
+            FROM MOVIMENTACAO AS a
+            INNER JOIN SUBCATEGORIA AS b
+            ON a.idsubcategoria = b.idsubcategoria
+            WHERE a.IDUSUARIO = $id AND a.IDTIPOMOVIMENTACAO = 2 and a.data between '2024-$mesAtual-01 00:00:00' and '2024-$mesAtual-31 23:59:59'
+            GROUP BY b.nomesubcategoria, a.idsubcategoria
+            ORDER BY total_valor DESC
+            LIMIT 1;";
+
+    $result = mysqli_query($conexao, $sql);
+    mysqli_close($conexao);
+
+    if (mysqli_num_rows($result) > 0) {
+        foreach ($result as $coluna) {
+
+            if($coluna['total_valor'] == "0"){
+                $SubMaiorSaida = "";
+            }else{
+                $SubMaiorSaida = $coluna['nomesubcategoria'] . " - R$ " . $coluna['total_valor'] ;
+            }
+
+        }
+    }
+
+    return $SubMaiorSaida;
+}
+
 function PositivoMes($id)
 {
     $Positivo = '';
@@ -151,7 +187,13 @@ function misto($id)
 
     if (mysqli_num_rows($result) > 0) {
         foreach ($result as $coluna) {
-            $misto = $coluna['positivo'] . ", " .  $coluna['negativo'];
+
+            
+            if($coluna['negativo'] == "" && $coluna['positivo'] ){
+                $misto = 0.00 . ", " . 0.00;
+            }else{
+                $misto = $coluna['positivo'] . ", " .  $coluna['negativo'];
+            }
         }
     }
 
@@ -177,8 +219,13 @@ function positivosMes($id)
 
     if (mysqli_num_rows($result) > 0) {
         foreach ($result as $coluna) {
-            $positivoMes = $coluna['positivo'];
+            if($coluna['positivo'] == ""){
+                $positivoMes = "0.00";
+            }else{
+                $positivoMes = $coluna['positivo'];
+            }
         }
+    }else{
     }
 
     return $positivoMes;
@@ -202,7 +249,12 @@ function negativoMes($id)
 
     if (mysqli_num_rows($result) > 0) {
         foreach ($result as $coluna) {
-            $negativo = $coluna['negativo'];
+
+            if($coluna['negativo'] == ""){
+                $negativo = "0.00";
+            }else{
+                $negativo = $coluna['negativo'];
+            }
         }
     }
 
@@ -237,7 +289,12 @@ function saldoMes($id)
 
     if (mysqli_num_rows($result) > 0) {
         foreach ($result as $coluna) {
-            $saldo = $coluna['saldo'];
+
+            if($coluna['saldo'] == ""){
+                $saldo = "0.00";
+            }else{
+                $saldo = $coluna['saldo'];
+            }
         }
     }
 

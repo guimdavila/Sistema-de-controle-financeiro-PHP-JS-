@@ -34,7 +34,7 @@ include('php/funcoes.php');
         <div class="row">
           <div class="col-md-6 divCore">
             <div class="card">
-              <h3> <?php echo  misto($id) ?></h3>
+              <h3> <?php echo SubCategoriaMaiorSaída($id)?></h3>
             </div>
           </div>
         </div>

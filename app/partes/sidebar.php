@@ -26,8 +26,6 @@
             Home
           </p>
         </a>
-
-
       </li>
       <li class="nav-item"> <!--classe para abrir o menu - menu-open -->
         <a href="#" class="nav-link ">
@@ -67,12 +65,6 @@
             <a href="resumo.php" class="nav-link">
               <i class="fa-regular fa-file-lines iconeSideBar"></i>
               <p>Resumo</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/flot.html" class="nav-link">
-              <i class="fas fa-chart-pie iconeSideBar"></i>
-              <p>Graficos</p>
             </a>
           </li>
         </ul>
