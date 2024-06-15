@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Jun-2024 às 03:04
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.2
+-- Tempo de geração: 15/06/2024 às 05:52
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categoria`
+-- Estrutura para tabela `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -32,10 +32,10 @@ CREATE TABLE `categoria` (
   `nomeCategoria` varchar(35) NOT NULL,
   `idTipoMovimentacao` int(11) NOT NULL,
   `idUsuario` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `categoria`
+-- Despejando dados para a tabela `categoria`
 --
 
 INSERT INTO `categoria` (`idCategoria`, `nomeCategoria`, `idTipoMovimentacao`, `idUsuario`) VALUES
@@ -60,23 +60,22 @@ INSERT INTO `categoria` (`idCategoria`, `nomeCategoria`, `idTipoMovimentacao`, `
 (19, 'Outros', 1, NULL),
 (20, 'Outros', 2, NULL),
 (21, 'Envio a Investimento', 3, NULL),
-(22, 'aTESTE', 1, 1),
 (23, 'Retirada de Investimento', 3, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `coabitanteusuario`
+-- Estrutura para tabela `coabitanteusuario`
 --
 
 CREATE TABLE `coabitanteusuario` (
   `idCoabitanteUsuario` int(11) NOT NULL,
   `nomeCoabitante` varchar(50) NOT NULL,
   `idUsuarioPrincipal` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `coabitanteusuario`
+-- Despejando dados para a tabela `coabitanteusuario`
 --
 
 INSERT INTO `coabitanteusuario` (`idCoabitanteUsuario`, `nomeCoabitante`, `idUsuarioPrincipal`) VALUES
@@ -86,7 +85,7 @@ INSERT INTO `coabitanteusuario` (`idCoabitanteUsuario`, `nomeCoabitante`, `idUsu
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `movimentacao`
+-- Estrutura para tabela `movimentacao`
 --
 
 CREATE TABLE `movimentacao` (
@@ -99,28 +98,28 @@ CREATE TABLE `movimentacao` (
   `idSubCategoria` int(11) DEFAULT NULL,
   `idTipoMovimentacao` int(11) DEFAULT NULL,
   `dataAviso` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `movimentacao`
+-- Despejando dados para a tabela `movimentacao`
 --
 
 INSERT INTO `movimentacao` (`idMovimentacao`, `descricao`, `data`, `valor`, `idUsuario`, `idCategoria`, `idSubCategoria`, `idTipoMovimentacao`, `dataAviso`) VALUES
-(5, 'Guilherme', '2025-06-01 00:00:00', '540.00', 1, 18, 44, 3, NULL),
-(6, '', '2024-01-01 00:00:00', '1786.72', 1, 7, 47, 2, NULL),
-(8, 'Contadora (IR)', '2024-01-01 00:00:00', '160.00', 1, 20, 48, 2, NULL),
-(64, 'aa', '2024-06-11 00:00:00', '11.11', 1, 3, 4, 1, NULL),
-(65, 'aa', '2024-06-11 00:00:00', '11.11', 1, 3, 4, 1, NULL),
-(66, 'aaa', '2024-06-11 00:00:00', '5000.00', 1, 21, 49, 3, NULL),
-(67, 'aaa', '2024-06-11 00:00:00', '5000.00', 1, 21, 49, 3, NULL),
-(68, 'aaa', '2024-06-11 00:00:00', '1000.00', 1, 21, 50, 3, NULL),
-(69, 'aaa', '2024-06-11 00:00:00', '200.00', 1, 23, 53, 3, NULL),
-(70, 'aaa', '2024-06-11 00:00:00', '1000.00', 1, 23, 52, 3, NULL);
+(84, 'Guilherme', '2024-02-01 00:00:00', 2166.15, 1, 1, 1, 1, NULL),
+(85, 'Nicole', '2024-02-01 00:00:00', 3650.00, 1, 1, 1, 1, NULL),
+(86, 'Guilherme', '2024-02-01 00:00:00', 540.00, 1, 18, 43, 3, NULL),
+(87, 'Nicole', '2024-02-01 00:00:00', 980.00, 1, 12, 30, 2, NULL),
+(88, 'Guilherme', '2024-02-01 00:00:00', 3780.00, 1, 12, 30, 2, NULL),
+(89, '', '2024-02-01 00:00:00', 1795.97, 1, 7, 47, 2, NULL),
+(90, '', '2024-02-01 00:00:00', 420.00, 1, 7, 15, 2, NULL),
+(91, '', '2024-02-01 00:00:00', 298.00, 1, 7, 13, 2, NULL),
+(94, '', '2024-02-01 00:00:00', 309.00, 1, 7, 84, 2, NULL),
+(95, '', '2024-02-01 00:00:00', 100.00, 1, 21, 49, 3, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `subcategoria`
+-- Estrutura para tabela `subcategoria`
 --
 
 CREATE TABLE `subcategoria` (
@@ -128,10 +127,10 @@ CREATE TABLE `subcategoria` (
   `nomeSubCategoria` varchar(35) NOT NULL,
   `idCategoria` int(11) NOT NULL,
   `idUsuario` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `subcategoria`
+-- Despejando dados para a tabela `subcategoria`
 --
 
 INSERT INTO `subcategoria` (`idSubCategoria`, `nomeSubCategoria`, `idCategoria`, `idUsuario`) VALUES
@@ -184,23 +183,50 @@ INSERT INTO `subcategoria` (`idSubCategoria`, `nomeSubCategoria`, `idCategoria`,
 (48, 'Outros', 20, NULL),
 (49, 'Poupança', 21, NULL),
 (50, 'Tesouro Direto', 21, NULL),
-(51, 'TesteNOVO', 1, 1),
 (52, 'Poupança', 23, NULL),
-(53, 'Tesouro Direto', 23, NULL);
+(53, 'Tesouro Direto', 23, NULL),
+(56, 'CDB', 21, NULL),
+(57, 'LCI', 21, NULL),
+(58, 'LCA', 21, NULL),
+(59, 'Debêntures', 21, NULL),
+(60, 'Fundos de Investimento', 21, NULL),
+(61, 'Ações', 21, NULL),
+(62, 'Fundos Imobiliários', 21, NULL),
+(63, 'Previdência Privada', 21, NULL),
+(64, 'COE', 21, NULL),
+(65, 'CRI', 21, NULL),
+(66, 'CRA', 21, NULL),
+(67, 'LC', 21, NULL),
+(68, 'Fundos de Índice', 21, NULL),
+(71, 'CDB', 23, NULL),
+(72, 'LCI', 23, NULL),
+(73, 'LCA', 23, NULL),
+(74, 'Debêntures', 23, NULL),
+(75, 'Fundos de Investimento', 23, NULL),
+(76, 'Ações', 23, NULL),
+(77, 'Fundos Imobiliários', 23, NULL),
+(78, 'Previdência Privada', 23, NULL),
+(79, 'COE', 23, NULL),
+(80, 'CRI', 23, NULL),
+(81, 'CRA', 23, NULL),
+(82, 'LC', 23, NULL),
+(83, 'Fundos de Índice', 23, NULL),
+(84, 'Internet', 7, NULL),
+(85, 'IPTU', 7, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipomovimentacao`
+-- Estrutura para tabela `tipomovimentacao`
 --
 
 CREATE TABLE `tipomovimentacao` (
   `idTipoMovimentacao` int(11) NOT NULL,
   `especieMovimentacao` enum('Positivo','Negativo','Neutro') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `tipomovimentacao`
+-- Despejando dados para a tabela `tipomovimentacao`
 --
 
 INSERT INTO `tipomovimentacao` (`idTipoMovimentacao`, `especieMovimentacao`) VALUES
@@ -211,16 +237,16 @@ INSERT INTO `tipomovimentacao` (`idTipoMovimentacao`, `especieMovimentacao`) VAL
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipousuario`
+-- Estrutura para tabela `tipousuario`
 --
 
 CREATE TABLE `tipousuario` (
   `idTipoUsuario` int(11) NOT NULL,
   `descricao` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `tipousuario`
+-- Despejando dados para a tabela `tipousuario`
 --
 
 INSERT INTO `tipousuario` (`idTipoUsuario`, `descricao`) VALUES
@@ -230,7 +256,7 @@ INSERT INTO `tipousuario` (`idTipoUsuario`, `descricao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -244,10 +270,10 @@ CREATE TABLE `usuario` (
   `sexo` enum('Masculino','Feminino') DEFAULT NULL,
   `idTipoUsuario` int(11) NOT NULL,
   `fotoPerfil` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Despejando dados para a tabela `usuario`
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nomeUsuario`, `dataNasc`, `telefone`, `cpf`, `email`, `senha`, `sexo`, `idTipoUsuario`, `fotoPerfil`) VALUES
@@ -261,21 +287,21 @@ INSERT INTO `usuario` (`idUsuario`, `nomeUsuario`, `dataNasc`, `telefone`, `cpf`
 --
 
 --
--- Índices para tabela `categoria`
+-- Índices de tabela `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`idCategoria`),
   ADD KEY `idTipoMovimentacao` (`idTipoMovimentacao`);
 
 --
--- Índices para tabela `coabitanteusuario`
+-- Índices de tabela `coabitanteusuario`
 --
 ALTER TABLE `coabitanteusuario`
   ADD PRIMARY KEY (`idCoabitanteUsuario`),
   ADD KEY `idUsuarioPrincipal` (`idUsuarioPrincipal`);
 
 --
--- Índices para tabela `movimentacao`
+-- Índices de tabela `movimentacao`
 --
 ALTER TABLE `movimentacao`
   ADD PRIMARY KEY (`idMovimentacao`),
@@ -285,26 +311,26 @@ ALTER TABLE `movimentacao`
   ADD KEY `idTipoMovimentacao` (`idTipoMovimentacao`);
 
 --
--- Índices para tabela `subcategoria`
+-- Índices de tabela `subcategoria`
 --
 ALTER TABLE `subcategoria`
   ADD PRIMARY KEY (`idSubCategoria`),
   ADD KEY `idCategoria` (`idCategoria`);
 
 --
--- Índices para tabela `tipomovimentacao`
+-- Índices de tabela `tipomovimentacao`
 --
 ALTER TABLE `tipomovimentacao`
   ADD PRIMARY KEY (`idTipoMovimentacao`);
 
 --
--- Índices para tabela `tipousuario`
+-- Índices de tabela `tipousuario`
 --
 ALTER TABLE `tipousuario`
   ADD PRIMARY KEY (`idTipoUsuario`);
 
 --
--- Índices para tabela `usuario`
+-- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`),
@@ -312,7 +338,7 @@ ALTER TABLE `usuario`
   ADD KEY `idTipoUsuario` (`idTipoUsuario`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -331,13 +357,13 @@ ALTER TABLE `coabitanteusuario`
 -- AUTO_INCREMENT de tabela `movimentacao`
 --
 ALTER TABLE `movimentacao`
-  MODIFY `idMovimentacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `idMovimentacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT de tabela `subcategoria`
 --
 ALTER TABLE `subcategoria`
-  MODIFY `idSubCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `idSubCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT de tabela `tipomovimentacao`
@@ -358,23 +384,23 @@ ALTER TABLE `usuario`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `categoria`
+-- Restrições para tabelas `categoria`
 --
 ALTER TABLE `categoria`
   ADD CONSTRAINT `categoria_ibfk_1` FOREIGN KEY (`idTipoMovimentacao`) REFERENCES `tipomovimentacao` (`idTipoMovimentacao`);
 
 --
--- Limitadores para a tabela `coabitanteusuario`
+-- Restrições para tabelas `coabitanteusuario`
 --
 ALTER TABLE `coabitanteusuario`
   ADD CONSTRAINT `coabitanteusuario_ibfk_1` FOREIGN KEY (`idUsuarioPrincipal`) REFERENCES `usuario` (`idUsuario`);
 
 --
--- Limitadores para a tabela `movimentacao`
+-- Restrições para tabelas `movimentacao`
 --
 ALTER TABLE `movimentacao`
   ADD CONSTRAINT `movimentacao_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`),
@@ -383,13 +409,13 @@ ALTER TABLE `movimentacao`
   ADD CONSTRAINT `movimentacao_ibfk_4` FOREIGN KEY (`idTipoMovimentacao`) REFERENCES `tipomovimentacao` (`idTipoMovimentacao`);
 
 --
--- Limitadores para a tabela `subcategoria`
+-- Restrições para tabelas `subcategoria`
 --
 ALTER TABLE `subcategoria`
   ADD CONSTRAINT `subcategoria_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`);
 
 --
--- Limitadores para a tabela `usuario`
+-- Restrições para tabelas `usuario`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idTipoUsuario`) REFERENCES `tipousuario` (`idTipoUsuario`);

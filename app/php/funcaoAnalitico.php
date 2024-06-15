@@ -37,12 +37,11 @@ function SubCategoriaMaiorSaída($id)
     if (mysqli_num_rows($result) > 0) {
         foreach ($result as $coluna) {
 
-            if($coluna['total_valor'] == "0"){
+            if ($coluna['total_valor'] == "0") {
                 $SubMaiorSaida = "";
-            }else{
-                $SubMaiorSaida = $coluna['nomesubcategoria'] . " - R$ " . $coluna['total_valor'] ;
+            } else {
+                $SubMaiorSaida = $coluna['nomesubcategoria'] . " - R$ " . $coluna['total_valor'];
             }
-
         }
     }
 
@@ -188,10 +187,10 @@ function misto($id)
     if (mysqli_num_rows($result) > 0) {
         foreach ($result as $coluna) {
 
-            
-            if($coluna['negativo'] == "" && $coluna['positivo'] ){
+
+            if ($coluna['negativo'] == "" && $coluna['positivo']) {
                 $misto = 0.00 . ", " . 0.00;
-            }else{
+            } else {
                 $misto = $coluna['positivo'] . ", " .  $coluna['negativo'];
             }
         }
@@ -219,13 +218,13 @@ function positivosMes($id)
 
     if (mysqli_num_rows($result) > 0) {
         foreach ($result as $coluna) {
-            if($coluna['positivo'] == ""){
+            if ($coluna['positivo'] == "") {
                 $positivoMes = "0.00";
-            }else{
+            } else {
                 $positivoMes = $coluna['positivo'];
             }
         }
-    }else{
+    } else {
     }
 
     return $positivoMes;
@@ -250,9 +249,9 @@ function negativoMes($id)
     if (mysqli_num_rows($result) > 0) {
         foreach ($result as $coluna) {
 
-            if($coluna['negativo'] == ""){
+            if ($coluna['negativo'] == "") {
                 $negativo = "0.00";
-            }else{
+            } else {
                 $negativo = $coluna['negativo'];
             }
         }
@@ -290,9 +289,9 @@ function saldoMes($id)
     if (mysqli_num_rows($result) > 0) {
         foreach ($result as $coluna) {
 
-            if($coluna['saldo'] == ""){
+            if ($coluna['saldo'] == "") {
                 $saldo = "0.00";
-            }else{
+            } else {
                 $saldo = $coluna['saldo'];
             }
         }
@@ -356,7 +355,15 @@ function totalInvestimento($id)
 
     include("conexao.php");
 
-    $sql = "WITH SomaCategorias AS (SELECT IDCATEGORIA, SUM(VALOR) AS SomaValor FROM MOVIMENTACAO WHERE IDCATEGORIA IN (21, 23) AND idUsuario = $id GROUP BY IDCATEGORIA) SELECT (SELECT SomaValor FROM SomaCategorias WHERE IDCATEGORIA = 21) - (SELECT SomaValor FROM SomaCategorias WHERE IDCATEGORIA = 23) AS Saldo;";
+    $sql = "WITH SomaCategorias AS (
+    SELECT IDCATEGORIA, SUM(VALOR) AS SomaValor 
+    FROM MOVIMENTACAO 
+    WHERE IDCATEGORIA IN (21, 23) AND idUsuario = $id
+    GROUP BY IDCATEGORIA
+    ) 
+    SELECT 
+    COALESCE((SELECT SomaValor FROM SomaCategorias WHERE IDCATEGORIA = 21), 0) - 
+    COALESCE((SELECT SomaValor FROM SomaCategorias WHERE IDCATEGORIA = 23), 0) AS Saldo;";
     $result = mysqli_query($conexao, $sql);
     mysqli_close($conexao);
 
