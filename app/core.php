@@ -798,6 +798,8 @@ include('php/funcoes.php');
                                         RetornaNegativo = 0;
                                     }
 
+                                    
+
                                 })
                                 
                             } else {
@@ -816,10 +818,10 @@ include('php/funcoes.php');
                             var RetornaSaldo = Retornapositivo - RetornaNegativo;
                             
 
-                            $('#iPositivo').html("R$ "+Retornapositivo.toFixed(2)).show();
-                            $('#iNegativo').html("R$ "+RetornaNegativo.toFixed(2)).show();
+                            $('#iPositivo').html("R$: "+Retornapositivo.toFixed(2)).show();
+                            $('#iNegativo').html("R$: "+RetornaNegativo.toFixed(2)).show();
 
-                            $('#iSaldo').html("R$ "+RetornaSaldo.toFixed(2)).show();
+                            $('#iSaldo').html("R$: "+RetornaSaldo.toFixed(2)).show();
                             $('#cardsGravados').html(Retornocards).show();
 
                         })
@@ -864,175 +866,24 @@ include('php/funcoes.php');
                         });
 
                         cards();
+
+                        $('#selecaoTipo').html(' <select id="selecaoTipo" name="nTipoMovimentacao" class="input-group-text caixaSelecaoCate caixaSelecaoCore">'
+                        +'<option value="" disabled selected>Selecione</option>'
+                        +'<option value="1">Entrada de valores</option>'
+                        +'<option value="2">Saída de valores</option>'
+                        +'<option value="3">Transferência</option>'
+                        +'</select>').show();
+
+                        var opcaoSub = '';
+                        opcaoSub = '<option value="" block selected></option>'
+                        $('#iSubCategoria').html(opcaoSub).show();
+
+                        var opcaoCategoria = '<option value="" block selected></option>';
+                        $('#iCategoria').html(opcaoSub).show();                     
+       
                 }
             });
         });
-
-        //////////////////////////////////////////////////////
-       /* $(document).ready(function() {
-
-            $('#mesEscolhido, #anoEscolhido').on('change', function() {
-
-                var mesEscol = $('#mesEscolhido').val();
-                var anoEscol = $('#anoEscolhido').val();
-
-                if (mesEscol != "" && mesEscol != null && anoEscol != "" && anoEscol != null) {
-
-                    console.log(mesEscol, anoEscol)
-
-                    $.getJSON('php/Corephpajax.php?mesEscol=' + mesEscol + '&anoEscol=' + anoEscol,
-                        function(retornoCardsCore) {
-
-                            if (retornoCardsCore.length > 0) {
-
-                                var Retornocards = '';
-                                var Retornapositivo = 0;
-                                var RetornaNegativo = 0;
-                                var RetornaSaldo = 0;
-
-                                $.each(retornoCardsCore, function(i, obj) {
-
-                                    var dataFormatada = "";
-                                    if (obj.DATA != "") {
-                                        const dataStr = obj.DATA;
-
-                                        const dataObj = new Date(dataStr);
-
-                                        const dia = String(dataObj.getDate()).padStart(2, '0');
-                                        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são indexados de 0 a 11
-                                        const ano = dataObj.getFullYear();
-
-                                        // Formate a data no formato desejado
-                                        dataFormatada = `${dia}/${mes}/${ano}`;
-
-                                    }
-
-                                    var descricao = "";
-                                    if (obj.DESCRICAO == "") {
-                                        descricao = "-"
-                                    } else {
-                                        descricao = obj.DESCRICAO;
-                                    }
-
-
-                                    Retornocards += 
-                                        '<div class="container-resumo-card">' +
-                                        '<div class="info">' +
-                                        '<div class="caixaSpanCard">' +
-                                        '<span class="label label-priCol">Categoria:</span> <span class="value">' + obj.NOMECATEGORIA + '</span>' +
-                                        '<span class="label label-secCol">Sub Categoria:</span> <span class="value value-secCol ">' + obj.NOMESUBCATEGORIA + '</span>' +
-                                        '</div>' +
-                                        '<div class="caixaSpanCard">' +
-                                        '<span class="label label-priCol">Data:</span> <span class="value">' + dataFormatada + '</span>' +
-                                        '<span class="label label-secCol">Descrição:</span> <span class="value value-secCol">' + descricao + '</span> ' +
-                                        '<!--<button class="botaoInvisivelCard" data-toggle="modal" data-target="#editar' + obj.IDMOVIMENTACAO + '" id="btnEditCar_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-pen classeLapis iconTabela"></i></button>-->' +
-                                        '<button class="botaoInvisivelCard" id="btnExc_' + obj.IDMOVIMENTACAO + '"><i class="fa-solid fa-trash iconTabela"></i></button>' +
-                                        '</div>' +
-                                        '<div class="caixaSpanCard">' +
-                                        '<span class="label label-priCol">Valor:</span> <span class="value">  R$' + obj.VALOR + '</span>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '<div class="modal fade" id="editar' + obj.IDMOVIMENTACAO + '">' +
-                                        '<div class="modal-dialog modal-custom">' +
-                                        '<div class="modal-content">' +
-                                        '<div class="modal-header">' +
-                                        '<h4 class="modal-title">Editar</h4>' +
-                                        '<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">' +
-                                        '<span aria-hidden="true">&times;</span>' +
-                                        '</button>' +
-                                        '</div>' +
-                                        '<div class="modal-body">' +
-                                        '<div class="row">' +
-                                        '<div class="col-md-12">' +
-                                        '<form action="">' +
-                                        '<div class="col-md-12">' +
-                                        '<p class="text-muted-Core">' +
-                                        '<span class="tituloInputCore"><strong>Tipo de movimentação:</strong></span>' +
-                                        '<select id="selecaoTipoAlterar" name="nTipoMovimentacaoAltera" class="input-group-text caixaSelecaoCate caixaSelecaoCore">' +
-                                        '<option value="" disabled selected>Selecione</option>' +
-                                        '<option value="1">Entrada de valores</option>' +
-                                        '<option value="2">Saída de valores</option>' +
-                                        '<option value="3">Transferência</option>' +
-                                        '</select>' +
-                                        '</p>' +
-                                        '<p class="text-muted-Core">' +
-                                        '<span class="tituloInputCore"><strong>Categoria:</strong></span>' +
-                                        '<select name="nCategoriaCoreAltera" id="iCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
-                                        '</select>' +
-                                        '</p>' +
-                                        '<p class="text-muted-Core">' +
-                                        '<span class="tituloInputCore"><strong>SubCategoria:</strong></span>' +
-                                        '<select name="nSubCategoriaCoreAltera" id="iSubCategoria" class="input-group-text caixaSelecaoCate caixaSelecaoCore" disabled>' +
-                                        '</select>' +
-                                        '</p>' +
-                                        '<p class="text-muted-Core">' +
-                                        '<span class="tituloInputCore"><strong>Data:</strong></span>' +
-                                        '<input name="nDataCoreAltera" id="iDataCore" type="date" class="form-control caixaSelecaoCore">' +
-                                        '</p>' +
-                                        '<p class="text-muted-Core text-muted-Core-area">' +
-                                        '<span class="tituloInputCore label-text-area"><strong>Descrição:</strong></span>' +
-                                        '<textarea name="nDescrAltera" id="iDescr" class="form-control caixaSelecaoCore text-area-core" disabled maxlength="50"></textarea>' +
-                                        '</p>' +
-                                        '<p class="text-muted-Core">' +
-                                        '<span class="tituloInputCore"><strong>Valor:</strong></span>' +
-                                        '<input name="nValorCoreAltera" id="valoCore" type="text-area" class="form-control caixaSelecaoCore" placeholder="R$ 0,00" disabled oninput="formatarValorMonetario(this)">' +
-                                        '</p>' +
-                                        '<div class="text-muted-Core-button">' +
-                                        '<button type="button" id="ibtAlterarCard" class="btn btn-novo-core" data-toggle="modal">Alterar</button>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</form>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>' +
-                                        '</div>';   
-
-                                    if (obj.IDTIPOMOVIMENTACAO == 1) {
-                                        Retornapositivo += parseFloat(obj.VALOR);
-
-                                    } else if (obj.IDTIPOMOVIMENTACAO == 2) {
-                                        RetornaNegativo += parseFloat(obj.VALOR);
-
-                                    } else if (obj.IDTIPOMOVIMENTACAO != 1 && obj.IDTIPOMOVIMENTACAO != 2 && obj.IDTIPOMOVIMENTACAO != 3) {
-                                        Retornapositivo = 0;
-                                        RetornaNegativo = 0;
-                                    }
-
-                                })
-
-                            } else {
-                                Retornocards = '<div class="container-resumo">' +
-                                    '<div class="info">' +
-                                    '<div class="col">' +
-                                    '<div class="caixaSpan">' +
-                                    '<span class="label label-span">Sem retorno de resultado</span>';
-
-                                Retornapositivo = 0;
-                                RetornaNegativo = 0;
-
-                                console.log("Sem retorno de resultado")
-                            }
-                            $('#iPositivo').html(Retornapositivo).show();
-                            $('#iNegativo').html(RetornaNegativo).show();
-
-                            var RetornaSaldo = Retornapositivo - RetornaNegativo;
-
-                            $('#iSaldo').html(RetornaSaldo).show();
-                            $('#cardsGravados').html(Retornocards).show();
-
-                        })
-                } else {
-                    console.log("Sem retorno de resultado")
-                }
-
-
-            })
-        })
-        ////////////////////////////////////////////////////
-        */
         
         $(document).ready(function() {
 
@@ -1065,7 +916,6 @@ include('php/funcoes.php');
             console.log("1")
             $('#selecaoTipoAlterar').on('change', function() {
 
-                console.log("2")
                 var tipoMov = $('#selecaoTipoAlterar').val();
                 var opcaoSub = '';
                 var opcaoCategoria = '';
