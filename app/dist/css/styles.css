@@ -737,6 +737,7 @@ tr.colunasCategorias td:hover {
     height: 0px;
 }
 
+
 .containerAlteracao{
     display: flex;
     align-items: center; 
@@ -875,3 +876,36 @@ element.style {
     margin-bottom: 2rem;
 }
 
+.buttonLogout{
+    position: absolute;
+    top: 15%;
+    left: 80%;
+    color: #c2c7d0;
+    cursor: pointer;
+}
+.buttonLogout:hover{
+    position: absolute;
+    top: 15%;
+    left: 80%;
+    color: #fff;
+    cursor: pointer;
+}
+.botaoInvisivelSideBar{
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    margin-right: 10px;
+    height: 0px;
+    position: absolute;
+    top: 15%;
+    left: 80%;
+}
+
+.infoSideBar{
+    max-height: 2px;
+}
+
+.painelUser{
+    padding-bottom: 10px;
+}

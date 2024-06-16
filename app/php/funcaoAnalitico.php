@@ -440,10 +440,11 @@ function ValoresInvestimentos()
 
     $totaisInvestidos = '';
     $cont = 0;
+    $id = $_SESSION['idUsuario'];
 
     include("conexao.php");
 
-    $sql = "select mov.idCategoria, sub.idSubCategoria, sub.nomeSubCategoria, sum(mov.valor) as valor from movimentacao mov inner join subcategoria sub on sub.idSubCategoria = mov.idSubCategoria where mov.idCategoria in (21,23) group by mov.idCategoria, sub.idSubCategoria, sub.nomeSubCategoria";
+    $sql = "select mov.idCategoria, sub.idSubCategoria, sub.nomeSubCategoria, sum(mov.valor) as valor from movimentacao mov inner join subcategoria sub on sub.idSubCategoria = mov.idSubCategoria where mov.idCategoria in (21,23) and mov.idusuario = $id group by mov.idCategoria, sub.idSubCategoria, sub.nomeSubCategoria";
     $result = mysqli_query($conexao, $sql);
     mysqli_close($conexao);
 
@@ -493,12 +494,13 @@ function ValoresInvestimentos()
 function DivisaoPorcInvestimentos()
 {
     $id = $_SESSION['idUsuario'];
-    $totaisInvestidos = '';
     $cont = 0;
 
     include("conexao.php");
 
-    $sql = "select mov.idCategoria, sub.idSubCategoria, sub.nomeSubCategoria, sum(mov.valor) as valor from movimentacao mov inner join subcategoria sub on sub.idSubCategoria = mov.idSubCategoria where mov.idCategoria in (21,23) group by mov.idCategoria, sub.idSubCategoria, sub.nomeSubCategoria";
+    $sql = "select mov.idCategoria, sub.idSubCategoria, sub.nomeSubCategoria, sum(mov.valor) as valor 
+    from movimentacao mov inner join subcategoria sub on sub.idSubCategoria = mov.idSubCategoria 
+    where mov.idCategoria in (21,23) and mov.idusuario = $id group by mov.idCategoria, sub.idSubCategoria, sub.nomeSubCategoria";
     $result = mysqli_query($conexao, $sql);
     mysqli_close($conexao);
 
