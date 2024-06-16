@@ -537,8 +537,11 @@ function DivisaoPorcInvestimentos()
         foreach ($resultados as $resultado) {
 
             if ($resultado['valorSubtraido'] != 0) {
-                $porcentagem = ($resultado['valorSubtraido'] * 100) / totalInvestimento($id);
-            } else {
+                if(totalInvestimento($id) != 0){
+                    $porcentagem = ($resultado['valorSubtraido'] * 100) / totalInvestimento($id);
+                }
+
+                } else {
                 $porcentagem = 0;
             }
 

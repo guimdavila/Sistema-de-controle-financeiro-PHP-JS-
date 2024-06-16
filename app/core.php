@@ -812,12 +812,14 @@ include('php/funcoes.php');
 
                                 console.log("Sem retorno de resultado")
                             }
-                            $('#iPositivo').html(Retornapositivo).show();
-                            $('#iNegativo').html(RetornaNegativo).show();
 
                             var RetornaSaldo = Retornapositivo - RetornaNegativo;
+                            
 
-                            $('#iSaldo').html(RetornaSaldo).show();
+                            $('#iPositivo').html("R$: "+Retornapositivo.toFixed(2)).show();
+                            $('#iNegativo').html("R$: "+RetornaNegativo.toFixed(2)).show();
+
+                            $('#iSaldo').html("R$: "+RetornaSaldo.toFixed(2)).show();
                             $('#cardsGravados').html(Retornocards).show();
 
                         })
