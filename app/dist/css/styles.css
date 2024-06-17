@@ -840,8 +840,10 @@ tr.colunasCategorias td:hover {
 }
 
 .cardGraficoPorcent{
-    
-    min-height: 240px;
+    min-height: 230px;
+    height: 230px;
+    max-height: 230px;
+    font-size: 10px;
 }
 
 .iconGraficoHome{
@@ -908,4 +910,8 @@ element.style {
 
 .painelUser{
     padding-bottom: 10px;
+}
+
+.h4Porcent{
+    font-size: 20px;
 }

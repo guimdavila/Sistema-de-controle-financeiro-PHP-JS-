@@ -818,10 +818,10 @@ include('php/funcoes.php');
                             var RetornaSaldo = Retornapositivo - RetornaNegativo;
                             
 
-                            $('#iPositivo').html("R$: "+Retornapositivo.toFixed(2)).show();
-                            $('#iNegativo').html("R$: "+RetornaNegativo.toFixed(2)).show();
+                            $('#iPositivo').html("R$ "+Retornapositivo.toFixed(2)).show();
+                            $('#iNegativo').html("R$ "+RetornaNegativo.toFixed(2)).show();
 
-                            $('#iSaldo').html("R$: "+RetornaSaldo.toFixed(2)).show();
+                            $('#iSaldo').html("R$ "+RetornaSaldo.toFixed(2)).show();
                             $('#cardsGravados').html(Retornocards).show();
 
                         })

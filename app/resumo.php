@@ -112,7 +112,7 @@ include('partes/css.php');
 
                                         <h1 class="display-1 tituloResultados">Investimentos</h1>
 
-                                        <div class="small-box cardGrafico">
+                                        <div class="small-box cardGrafico ">
                                             <div class="inner">
                                                 <h3> R$ <?php echo totalInvestimento($id); ?></h3>
 
@@ -128,7 +128,7 @@ include('partes/css.php');
 
                                             </div>
                                             <div class="card-body">
-                                                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                                <canvas id="pieChart" style="min-height: 170px; height: 170px; max-height: 170px; max-width: 100%;"></canvas>
                                             </div>
                                             <!-- /.card-body -->
                                         </div>
@@ -138,7 +138,7 @@ include('partes/css.php');
                                             </div>
                                             <div class="inner">
                                                 <h3>Divisão</h3>
-                                                <h4>  <?php echo DivisaoPorcInvestimentos(); ?></h4>
+                                                <h4 class= "h4Porcent">  <?php echo DivisaoPorcInvestimentos(); ?></h4>
 
                                             </div>
                                         </div>
